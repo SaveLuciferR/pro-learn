@@ -1,0 +1,24 @@
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+
+
+.upload-images img {
+	border: 2px solid #ccc;
+	padding: 3px;
+}
+
+.product-img-upload {
+	position: relative;
+	
+	margin: 12px 0;
+}
+
+.del-img {
+	position: absolute;
+	left: 0;
+	top: 0;
+	font-size: 30px;
+}

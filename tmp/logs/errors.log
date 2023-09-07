@@ -1,0 +1,2059 @@
+[2023-05-22 20:12:16] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-05-22 20:12:17] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-05-22 20:12:17] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-05-22 20:12:17] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-05-22 20:12:18] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-05-22 20:12:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 20:12:45] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 20:12:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 20:12:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 20:12:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 20:12:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 20:13:03] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 20:13:04] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 20:13:04] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 20:13:04] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 20:13:36] Текст ошибки: Call to undefined method app\controllers\MainController::getModel() | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 53
+=================
+[2023-05-22 20:14:16] Текст ошибки: Не найден вид C:\OSPanel\domains\ProLearn/app/views/Main/index.php | Файл: C:\OSPanel\domains\ProLearn\vendor\core\View.php | Строка: 32
+=================
+[2023-05-22 20:14:31] Текст ошибки: Не найден шаблон C:\OSPanel\domains\ProLearn/app/views/layouts/lager.php | Файл: C:\OSPanel\domains\ProLearn\vendor\core\View.php | Строка: 41
+=================
+[2023-05-22 20:16:07] Текст ошибки: Не найден шаблон C:\OSPanel\domains\ProLearn/app/views/layouts/lager.php | Файл: C:\OSPanel\domains\ProLearn\vendor\core\View.php | Строка: 41
+=================
+[2023-05-22 20:16:23] Текст ошибки: Не найден шаблон C:\OSPanel\domains\ProLearn/app/views/layouts/prolearn.php | Файл: C:\OSPanel\domains\ProLearn\vendor\core\View.php | Строка: 41
+=================
+[2023-05-22 20:16:38] Текст ошибки: Не найден шаблон C:\OSPanel\domains\ProLearn/app/views/layouts/prolearn.php | Файл: C:\OSPanel\domains\ProLearn\vendor\core\View.php | Строка: 41
+=================
+[2023-05-22 21:23:51] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:24:21] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:25:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:26:01] Текст ошибки: Метод app\controllers\admin\MainController::indexAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-05-22 21:33:08] Текст ошибки: Не найден шаблон C:\OSPanel\domains\ProLearn/app/views/layouts/admin.php | Файл: C:\OSPanel\domains\ProLearn\vendor\core\View.php | Строка: 41
+=================
+[2023-05-22 21:37:26] Текст ошибки: Call to undefined method core\View::gerPart() | Файл: C:\OSPanel\domains\ProLearn\app\views\layouts\admin.php | Строка: 3
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:39:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:40:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:43:32] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:48:07] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:48:07] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:48:07] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:48:07] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:48:07] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:48:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:48:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:48:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:48:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:48:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:50:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:50:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:50:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:50:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:50:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:50:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:50:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-22 21:50:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 14:00:21] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 14:00:21] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 14:00:22] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 14:00:22] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 14:00:22] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 14:00:22] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 14:00:22] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 14:00:22] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 14:00:22] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:34:42] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:34:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:34:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:34:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:34:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:34:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:34:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:34:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:34:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:35:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:35:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:35:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:35:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:35:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:35:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:35:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:35:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:35:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:36:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:37:08] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:37:08] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:37:08] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:37:08] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:37:08] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:37:08] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:37:08] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:37:08] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:29] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:29] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:29] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:29] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:29] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:29] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:29] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:38:29] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:39:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:41:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:42:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:42:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:42:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:42:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:42:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:42:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:42:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:42:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:56:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:56:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:56:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:56:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:56:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:56:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:56:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 16:56:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:44] Текст ошибки: Контроллер app\controllers\admin\ProductController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-05-23 17:02:50] Текст ошибки: Контроллер app\controllers\admin\ProductController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-05-23 17:02:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:02:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:03:34] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:03:34] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:03:34] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:03:34] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:03:34] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:03:34] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:03:34] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:03:34] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 17:03:40] Текст ошибки: Не найден вид C:\OSPanel\domains\ProLearn/app/views/admin/Blog/index.php | Файл: C:\OSPanel\domains\ProLearn\vendor\core\View.php | Строка: 32
+=================
+[2023-05-23 17:06:26] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 18:39:23] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-23 18:39:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-24 11:20:51] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-24 11:20:53] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-29 13:04:22] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-05-29 13:04:22] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-02 18:53:48] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-02 18:53:48] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-03 19:19:37] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-03 19:19:37] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-04 20:17:25] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-04 20:17:26] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-05 18:20:52] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-05 18:20:53] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-06 12:02:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-06 12:02:45] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 16:39:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 16:39:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 17:46:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 18:55:14] Текст ошибки: date_format(): Argument #1 ($object) must be of type DateTimeInterface, string given | Файл: C:\OSPanel\domains\ProLearn\app\views\parts\blogs_loop.php | Строка: 14
+=================
+[2023-06-14 18:58:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 18:58:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 18:59:29] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 19:10:29] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:11:08] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:11:09] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:11:09] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:11:09] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:11:53] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:11:54] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:11:54] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:13:09] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:13:26] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:13:26] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:13:26] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:13:26] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:13:27] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:00] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:01] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:01] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:01] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:01] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:01] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:02] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:02] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:02] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:02] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:02] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:09] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:10] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:10] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:20] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:20] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:20] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:20] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:21] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:21] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:21] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:21] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:21] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 11
+=================
+[2023-06-14 19:14:28] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 12
+=================
+[2023-06-14 19:19:52] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 12
+=================
+[2023-06-14 19:19:52] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 12
+=================
+[2023-06-14 19:19:53] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 12
+=================
+[2023-06-14 19:19:53] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 12
+=================
+[2023-06-14 19:21:48] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.category' doesn't exist | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:22:15] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.category' doesn't exist | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:22:15] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.category' doesn't exist | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:22:34] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\app\controllers\AppController.php | Строка: 29
+=================
+[2023-06-14 19:22:47] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.category' doesn't exist | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:22:54] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.category' doesn't exist | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:22:54] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.category' doesn't exist | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:23:00] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 12
+=================
+[2023-06-14 19:23:45] Текст ошибки: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:24:08] Текст ошибки: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:24:14] Текст ошибки: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:26:17] Текст ошибки: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:26:18] Текст ошибки: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:26:18] Текст ошибки: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:26:18] Текст ошибки: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-14 19:32:01] Текст ошибки: Undefined array key "title" | Файл: C:\OSPanel\domains\ProLearn\app\widgets\language\lang_tpl.php | Строка: 7
+=================
+[2023-06-14 19:32:14] Текст ошибки: Undefined array key "title" | Файл: C:\OSPanel\domains\ProLearn\app\widgets\language\lang_tpl.php | Строка: 7
+=================
+[2023-06-14 19:32:53] Текст ошибки: Undefined array key "Code" | Файл: C:\OSPanel\domains\ProLearn\app\widgets\language\lang_tpl.php | Строка: 17
+=================
+[2023-06-14 19:32:57] Текст ошибки: Undefined array key "Code" | Файл: C:\OSPanel\domains\ProLearn\app\widgets\language\lang_tpl.php | Строка: 17
+=================
+[2023-06-14 19:33:13] Текст ошибки: Undefined array key "Code" | Файл: C:\OSPanel\domains\ProLearn\app\widgets\language\lang_tpl.php | Строка: 17
+=================
+[2023-06-14 19:33:14] Текст ошибки: Undefined array key "Code" | Файл: C:\OSPanel\domains\ProLearn\app\widgets\language\lang_tpl.php | Строка: 17
+=================
+[2023-06-14 19:33:16] Текст ошибки: Undefined array key "Code" | Файл: C:\OSPanel\domains\ProLearn\app\widgets\language\lang_tpl.php | Строка: 17
+=================
+[2023-06-14 19:34:37] Текст ошибки: Undefined array key "Code" | Файл: C:\OSPanel\domains\ProLearn\app\widgets\language\lang_tpl.php | Строка: 17
+=================
+[2023-06-14 19:35:36] Текст ошибки: Undefined array key "code" | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Language.php | Строка: 13
+=================
+[2023-06-14 19:36:10] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 19:36:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-14 19:43:32] Текст ошибки: compact(): Undefined variable $blogsItem, categoriesItem | Файл: C:\OSPanel\domains\ProLearn\app\controllers\MainController.php | Строка: 14
+=================
+[2023-06-14 19:43:53] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\Main\index.php | Строка: 41
+=================
+[2023-06-14 19:44:12] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\Main\index.php | Строка: 41
+=================
+[2023-06-14 19:44:14] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\Main\index.php | Строка: 41
+=================
+[2023-06-14 19:45:02] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\Main\index.php | Строка: 41
+=================
+[2023-06-14 19:47:14] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'bc.Language_ID' in 'where clause' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 13:23:26] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 13:23:27] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 13:42:03] Текст ошибки: compact(): Undefined variable $$blogs | Файл: C:\OSPanel\domains\ProLearn\app\controllers\SearchController.php | Строка: 16
+=================
+[2023-06-15 13:42:16] Текст ошибки: Не найден вид C:\OSPanel\domains\ProLearn/app/views/Search/index.php | Файл: C:\OSPanel\domains\ProLearn\vendor\core\View.php | Строка: 32
+=================
+[2023-06-15 13:42:50] Текст ошибки: compact(): Undefined variable $blogsItem | Файл: C:\OSPanel\domains\ProLearn\app\views\Search\index.php | Строка: 16
+=================
+[2023-06-15 13:43:34] Текст ошибки: compact(): Undefined variable $blogs | Файл: C:\OSPanel\domains\ProLearn\app\controllers\SearchController.php | Строка: 16
+=================
+[2023-06-15 13:43:41] Текст ошибки: Undefined variable $categoriesItem | Файл: C:\OSPanel\domains\ProLearn\app\views\Search\index.php | Строка: 40
+=================
+[2023-06-15 13:48:05] Текст ошибки: Not Found language {lang} | Файл: C:\OSPanel\domains\ProLearn\app\widgets\language\Language.php | Строка: 41
+=================
+[2023-06-15 13:55:54] Текст ошибки: Not Found language {lang} | Файл: C:\OSPanel\domains\ProLearn\app\widgets\language\Language.php | Строка: 41
+=================
+[2023-06-15 14:03:52] Текст ошибки: Not Found language {lang} | Файл: C:\OSPanel\domains\ProLearn\app\widgets\language\Language.php | Строка: 41
+=================
+[2023-06-15 14:09:50] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:19:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:19:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:19:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:19:22] Текст ошибки: Метод app\controllers\BlogController::helloFuncAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-15 14:20:15] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:20:15] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:20:15] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:26:54] Текст ошибки: Undefined constant "blog" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 24
+=================
+[2023-06-15 14:26:54] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:26:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:26:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:26:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:27:53] Текст ошибки: Undefined array key "Username" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 30
+=================
+[2023-06-15 14:27:53] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:28:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:28:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:28:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:30:33] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT br.*
+                                                        FROM Blor...' at line 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 14:30:42] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT br.*
+                                                        FROM Blog...' at line 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 14:30:43] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT br.*
+                                                        FROM Blog...' at line 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 14:30:44] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT br.*
+                                                        FROM Blog...' at line 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 14:30:44] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT br.*
+                                                        FROM Blog...' at line 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 14:30:44] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT br.*
+                                                        FROM Blog...' at line 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 14:30:44] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT br.*
+                                                        FROM Blog...' at line 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 14:35:27] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:35:27] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:35:27] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:37:19] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+                       FROM BlorResponse br
+                        WHERE b...' at line 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 14:37:31] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+                       FROM BlogResponse br
+                        WHERE b...' at line 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 14:39:14] Текст ошибки: Undefined array key "Count" | Файл: C:\OSPanel\domains\ProLearn\app\models\Blog.php | Строка: 22
+=================
+[2023-06-15 14:40:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:40:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:40:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:41:51] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 14:43:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 15:39:30] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DESC' at line 4 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 15:47:08] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'br.Username' in 'field list' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 15:47:14] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'br' in 'field list' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-15 15:56:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:03:02] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:03:03] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:04:02] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:04:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:09:22] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:09:22] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:09:23] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:09:23] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:09:23] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:09:23] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:09:24] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:09:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:09:24] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:09:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:09:24] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:09:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:09:24] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:09:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:10:11] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:10:11] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:10:12] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:10:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:10:12] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:10:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:10:12] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:10:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:10:12] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:10:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:10:12] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:10:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:10:12] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:10:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:10:13] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:10:13] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:10:13] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:10:13] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:10:13] Текст ошибки: Undefined array key "children" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 91
+=================
+[2023-06-15 16:10:13] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:17:05] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-15 16:17:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 13:02:49] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 13:02:49] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 13:02:51] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 13:03:05] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 13:03:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 13:03:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 13:03:11] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 13:06:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 13:11:29] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 13:21:50] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 53
+=================
+[2023-06-17 13:23:43] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 53
+=================
+[2023-06-17 13:23:59] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 53
+=================
+[2023-06-17 13:28:15] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 13:28:41] Текст ошибки: Метод app\controllers\UserController::signUpAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 14:23:20] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'email' in 'where clause' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-17 14:23:37] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'email' in 'where clause' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-17 14:23:53] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-17 14:23:54] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-17 14:24:01] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-17 14:25:48] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-17 14:25:57] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-17 14:31:45] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-17 14:32:00] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-17 14:40:35] Текст ошибки: Attempt to read property "Password" on null | Файл: C:\OSPanel\domains\ProLearn\app\models\User.php | Строка: 27
+=================
+[2023-06-17 14:40:43] Текст ошибки: Attempt to read property "password" on null | Файл: C:\OSPanel\domains\ProLearn\app\models\User.php | Строка: 27
+=================
+[2023-06-17 15:01:48] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-17 15:01:52] Текст ошибки: Undefined array key "Id" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-17 15:13:37] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:13:37] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:15:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:15:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:15:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:15:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:22:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:22:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:22:42] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:22:50] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:24:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:24:51] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:24:51] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:24:54] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:24:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:26:00] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:26:50] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:26:53] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:27:07] Текст ошибки: Not Found language {lang} | Файл: C:\OSPanel\domains\ProLearn\app\widgets\language\Language.php | Строка: 41
+=================
+[2023-06-17 15:27:11] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:27:33] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:27:37] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:27:42] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:30:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:30:31] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:30:31] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:30:31] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:30:31] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:30:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:30:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 15:31:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:34:06] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 77
+=================
+[2023-06-17 16:34:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:34:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:34:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:34:50] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:36:37] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:38:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:38:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:39:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:39:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:40:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:40:29] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:41:31] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:42:15] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:43:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:51:07] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:51:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:51:52] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:53:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:53:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:53:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:57:51] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:57:53] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 16:59:49] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:01:00] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:02:05] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:02:08] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:02:15] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:02:53] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:03:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:04:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:04:37] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:04:49] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:05:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:05:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:05:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 17:40:08] Текст ошибки: Too few arguments to function core\Model::save(), 0 passed in C:\OSPanel\domains\ProLearn\app\controllers\BlogController.php on line 14 and exactly 1 expected | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Model.php | Строка: 29
+=================
+[2023-06-17 17:40:45] Текст ошибки: Invalid type: BlogResponse | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Util\DispenseHelper.php | Строка: 78
+=================
+[2023-06-17 17:43:39] Текст ошибки: Invalid type: BlogResponse | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Util\DispenseHelper.php | Строка: 78
+=================
+[2023-06-17 17:43:39] Текст ошибки: Invalid type: BlogResponse | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Util\DispenseHelper.php | Строка: 78
+=================
+[2023-06-17 17:43:39] Текст ошибки: Invalid type: BlogResponse | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Util\DispenseHelper.php | Строка: 78
+=================
+[2023-06-17 17:43:39] Текст ошибки: Invalid type: BlogResponse | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Util\DispenseHelper.php | Строка: 78
+=================
+[2023-06-17 17:43:39] Текст ошибки: Invalid type: BlogResponse | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Util\DispenseHelper.php | Строка: 78
+=================
+[2023-06-17 17:44:27] Текст ошибки: Invalid type: BlogResponse | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Util\DispenseHelper.php | Строка: 78
+=================
+[2023-06-17 17:47:55] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column '_blog_id' in 'field list' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-17 17:59:50] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:00:03] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:01:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:03:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:03:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:03:32] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:03:32] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:03:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:03:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:03:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:09:52] Текст ошибки: Контроллер app\controllers\EnController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-06-17 18:09:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:09:59] Текст ошибки: Undefined array key "role" | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\User.php | Строка: 11
+=================
+[2023-06-17 18:10:17] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:10:17] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:10:17] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:10:17] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:10:17] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:10:17] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:10:17] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:12:19] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:12:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:12:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:12:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:12:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:12:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:12:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:12:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:20:47] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.blog_category' doesn't exist | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-17 18:22:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:22:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:22:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:22:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:22:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:22:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:22:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:23:00] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:23:00] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:23:00] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:23:00] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:23:00] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:23:00] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:23:00] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:25:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:25:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:25:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:25:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:25:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:25:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:25:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:27] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:51] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:52] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:54] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:26:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:27:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:30:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:30:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:31:00] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:31:04] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:31:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:34:31] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:34:33] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:34:33] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:34:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:35:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:36:10] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-17 18:47:35] Текст ошибки: Не найден вид C:\OSPanel\domains\ProLearn/app/views/admin/User/view.php | Файл: C:\OSPanel\domains\ProLearn\vendor\core\View.php | Строка: 32
+=================
+[2023-06-17 18:47:49] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:47:59] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:48:00] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:48:01] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:48:01] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:48:01] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:48:01] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:48:01] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:48:01] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:48:05] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:48:06] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 18:48:06] Текст ошибки: Метод app\controllers\admin\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 19:06:25] Текст ошибки: Class "wfm\Pagination" not found | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\UserController.php | Строка: 19
+=================
+[2023-06-17 19:06:39] Текст ошибки: Class "wfm\Pagination" not found | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\UserController.php | Строка: 19
+=================
+[2023-06-17 19:06:46] Текст ошибки: Контроллер app\controllers\admin\CategoryController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-06-17 19:06:51] Текст ошибки: Метод app\controllers\admin\BlogController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-17 19:09:14] Текст ошибки: Undefined array key "DateOfPublication" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\index.php | Строка: 38
+=================
+[2023-06-17 19:09:47] Текст ошибки: Undefined array key "DateOfPublication" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\index.php | Строка: 38
+=================
+[2023-06-17 19:09:48] Текст ошибки: Undefined array key "DateOfPublication" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\index.php | Строка: 38
+=================
+[2023-06-17 19:09:48] Текст ошибки: Undefined array key "DateOfPublication" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\index.php | Строка: 38
+=================
+[2023-06-17 19:09:48] Текст ошибки: Undefined array key "DateOfPublication" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\index.php | Строка: 38
+=================
+[2023-06-17 19:09:48] Текст ошибки: Undefined array key "DateOfPublication" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\index.php | Строка: 38
+=================
+[2023-06-17 19:12:47] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\index.php | Строка: 42
+=================
+[2023-06-18 13:14:54] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-19 14:01:39] Текст ошибки: Метод app\controllers\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-19 14:01:56] Текст ошибки: Метод app\controllers\UserController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-19 14:04:07] Текст ошибки: Undefined array key "AllProfile_Privat" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\view.php | Строка: 70
+=================
+[2023-06-19 14:51:58] Текст ошибки: Undefined array key "email" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\edit.php | Строка: 11
+=================
+[2023-06-19 15:10:07] Текст ошибки: Undefined array key "email" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\edit.php | Строка: 11
+=================
+[2023-06-19 15:10:46] Текст ошибки: Undefined array key "email" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\edit.php | Строка: 11
+=================
+[2023-06-19 15:11:06] Текст ошибки: Undefined array key "email" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\edit.php | Строка: 11
+=================
+[2023-06-19 15:11:07] Текст ошибки: Undefined array key "email" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\edit.php | Строка: 11
+=================
+[2023-06-19 15:11:39] Текст ошибки: Undefined array key "username" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\edit.php | Строка: 12
+=================
+[2023-06-19 15:12:05] Текст ошибки: Undefined array key "mail" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\edit.php | Строка: 19
+=================
+[2023-06-19 15:14:47] Текст ошибки: Undefined array key "AllProfile_Psrivate" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\edit.php | Строка: 98
+=================
+[2023-06-19 15:17:51] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'password' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 15:19:39] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository\Frozen.php | Строка: 71
+=================
+[2023-06-19 15:20:45] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\index.php | Строка: 30
+=================
+[2023-06-19 15:34:35] Текст ошибки: Метод app\controllers\admin\UserController::addAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-19 15:58:09] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:06:41] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:06:42] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:06:42] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:07:53] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:09:45] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:10:15] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:12:55] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:12:56] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:12:56] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:12:57] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:12:57] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:13:25] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:15:30] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Username' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:15:58] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'DateOfRegistration' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 16:18:24] Текст ошибки: Контроллер app\controllers\admin\CategoryController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-06-19 16:39:12] Текст ошибки: Контроллер app\controllers\admin\CategoryController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-06-19 16:41:08] Текст ошибки: Метод app\controllers\admin\BlogController::viewAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-19 16:52:57] Текст ошибки: Call to undefined method app\models\admin\Blog::get_products() | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\BlogController.php | Строка: 20
+=================
+[2023-06-19 16:53:04] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:54:00] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:54:16] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:54:23] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:54:24] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:54:25] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:54:25] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:54:25] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:55:46] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:55:46] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:55:46] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:55:46] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:55:47] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:55:47] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 16:56:02] Текст ошибки: Контроллер app\controllers\admin\CategoryController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-06-19 16:56:05] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 17:00:10] Текст ошибки: Too few arguments to function app\models\admin\Blog::getBlogs(), 2 passed in C:\OSPanel\domains\ProLearn\app\controllers\admin\BlogController.php on line 20 and exactly 3 expected | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 10
+=================
+[2023-06-19 17:00:11] Текст ошибки: Too few arguments to function app\models\admin\Blog::getBlogs(), 2 passed in C:\OSPanel\domains\ProLearn\app\controllers\admin\BlogController.php on line 20 and exactly 3 expected | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 10
+=================
+[2023-06-19 17:02:21] Текст ошибки: Undefined variable $lang | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 12
+=================
+[2023-06-19 17:04:46] Текст ошибки: Undefined variable $product | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\index.php | Строка: 28
+=================
+[2023-06-19 17:10:09] Текст ошибки: Undefined variable $products | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\index.php | Строка: 57
+=================
+[2023-06-19 18:09:55] Текст ошибки: Not found blog | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\BlogController.php | Строка: 43
+=================
+[2023-06-19 18:16:54] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.b' doesn't exist | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 18:17:16] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\BlogController.php | Строка: 46
+=================
+[2023-06-19 18:25:54] Текст ошибки: Undefined array key "category_id" | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\BlogController.php | Строка: 48
+=================
+[2023-06-19 18:26:58] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'bcd.Title' in 'field list' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 18:28:11] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'bcd.Blog_ID' in 'on clause' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-19 18:28:24] Текст ошибки: Undefined variable $blog | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 6
+=================
+[2023-06-19 18:32:22] Текст ошибки: Undefined variable $blog | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 6
+=================
+[2023-06-19 18:32:23] Текст ошибки: Undefined variable $blog | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 6
+=================
+[2023-06-19 18:32:23] Текст ошибки: Undefined variable $blog | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 6
+=================
+[2023-06-19 18:32:38] Текст ошибки: Undefined variable $product | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 24
+=================
+[2023-06-19 18:37:18] Текст ошибки: Undefined variable $blogs | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 6
+=================
+[2023-06-20 11:19:08] Текст ошибки: Undefined variable $product | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 31
+=================
+[2023-06-20 11:19:10] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-20 12:08:21] Текст ошибки: Undefined array key "Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 54
+=================
+[2023-06-20 12:08:22] Текст ошибки: Undefined array key "Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 54
+=================
+[2023-06-20 12:08:23] Текст ошибки: Undefined array key "Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 54
+=================
+[2023-06-20 12:08:24] Текст ошибки: Undefined array key "Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 54
+=================
+[2023-06-20 12:08:25] Текст ошибки: Undefined array key "Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 54
+=================
+[2023-06-20 12:08:26] Текст ошибки: Undefined array key "Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 54
+=================
+[2023-06-20 12:10:01] Текст ошибки: Undefined array key "Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 54
+=================
+[2023-06-20 12:10:51] Текст ошибки: Undefined array key "Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 54
+=================
+[2023-06-20 12:10:56] Текст ошибки: Undefined array key "img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 54
+=================
+[2023-06-20 12:12:07] Текст ошибки: Undefined array key "Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 56
+=================
+[2023-06-20 12:15:15] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 73
+=================
+[2023-06-20 12:16:17] Текст ошибки: syntax error, unexpected token "if" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 73
+=================
+[2023-06-20 12:16:21] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 73
+=================
+[2023-06-20 12:20:25] Текст ошибки: syntax error, unexpected token "endforeach", expecting end of file | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 78
+=================
+[2023-06-20 12:20:44] Текст ошибки: syntax error, unexpected token "endforeach", expecting end of file | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 78
+=================
+[2023-06-20 12:20:49] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 74
+=================
+[2023-06-20 12:23:12] Текст ошибки: Undefined array key "base" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 84
+=================
+[2023-06-20 12:25:03] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\BlogController.php | Строка: 49
+=================
+[2023-06-20 12:31:50] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 88
+=================
+[2023-06-20 12:32:23] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 88
+=================
+[2023-06-20 12:32:43] Текст ошибки: Undefined variable $product | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 88
+=================
+[2023-06-20 12:34:24] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 107
+=================
+[2023-06-20 12:35:01] Текст ошибки: Undefined array key "content" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\edit.php | Строка: 107
+=================
+[2023-06-20 13:04:07] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-20 13:48:35] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'CURTIME' at line 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 13:54:58] Текст ошибки: syntax error, unexpected variable "$blog" | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 20
+=================
+[2023-06-20 13:55:02] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOW()' at line 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 13:56:21] Текст ошибки: syntax error, unexpected token ";", expecting ")" | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 18
+=================
+[2023-06-20 14:11:25] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 45
+=================
+[2023-06-20 14:26:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-20 14:30:59] Текст ошибки: Новости по запросу hello-world не найден | Файл: C:\OSPanel\domains\ProLearn\app\controllers\BlogController.php | Строка: 24
+=================
+[2023-06-20 14:34:11] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-20 14:34:24] Текст ошибки: Метод app\controllers\admin\BlogController::addAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-20 14:41:30] Текст ошибки: Undefined variable $categories | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\add.php | Строка: 11
+=================
+[2023-06-20 14:41:40] Текст ошибки: Undefined variable $categories | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Blog\add.php | Строка: 11
+=================
+[2023-06-20 14:47:15] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 14:47:37] Текст ошибки: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 14:48:55] Текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ssss' for key 'UniqueSlug' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 14:50:00] Текст ошибки: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 14:51:00] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.blog_descritption' doesn't exist | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 14:51:20] Текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ssss' for key 'UniqueSlug' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 14:51:39] Текст ошибки: Undefined variable $id | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 145
+=================
+[2023-06-20 14:53:19] Текст ошибки: Undefined variable $id | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 145
+=================
+[2023-06-20 15:07:49] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'ProLearn.bbc' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 15:07:57] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'bbc.BlogCategory' in 'where clause' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 15:09:40] Текст ошибки: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 15:09:50] Текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '2-3' for key 'PRIMARY' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 15:10:50] Текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '2-1' for key 'PRIMARY' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 15:11:12] Текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '2-1' for key 'PRIMARY' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 15:20:55] Текст ошибки: Метод app\controllers\admin\BlogController::deleteAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-20 16:33:03] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.category' doesn't exist | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 16:33:53] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'bcd.Category_ID' in 'on clause' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 16:33:54] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'bcd.Category_ID' in 'on clause' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 16:33:59] Текст ошибки: Undefined variable $users | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\index.php | Строка: 20
+=================
+[2023-06-20 16:34:45] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\index.php | Строка: 25
+=================
+[2023-06-20 16:40:10] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\index.php | Строка: 22
+=================
+[2023-06-20 16:41:12] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\index.php | Строка: 22
+=================
+[2023-06-20 16:42:07] Текст ошибки: Undefined variable $comment | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\index.php | Строка: 36
+=================
+[2023-06-20 16:59:00] Текст ошибки: Call to undefined method app\models\admin\Category::getCategoryByID() | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\CategoryController.php | Строка: 32
+=================
+[2023-06-20 16:59:23] Текст ошибки: Call to undefined method app\models\admin\Category::getCategoryByID() | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\CategoryController.php | Строка: 32
+=================
+[2023-06-20 16:59:32] Текст ошибки: Call to undefined method app\models\admin\Category::getCategoryByID() | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\CategoryController.php | Строка: 32
+=================
+[2023-06-20 17:02:02] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\CategoryController.php | Строка: 39
+=================
+[2023-06-20 17:02:16] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\CategoryController.php | Строка: 39
+=================
+[2023-06-20 17:02:25] Текст ошибки: Uninitialized string offset 1 | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\CategoryController.php | Строка: 40
+=================
+[2023-06-20 17:02:34] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\edit.php | Строка: 11
+=================
+[2023-06-20 17:03:30] Текст ошибки: Undefined variable $categories | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\edit.php | Строка: 16
+=================
+[2023-06-20 17:03:33] Текст ошибки: Undefined variable $categories | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\edit.php | Строка: 16
+=================
+[2023-06-20 17:04:00] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\edit.php | Строка: 23
+=================
+[2023-06-20 17:04:01] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\edit.php | Строка: 23
+=================
+[2023-06-20 17:04:25] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\edit.php | Строка: 23
+=================
+[2023-06-20 17:05:24] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\edit.php | Строка: 18
+=================
+[2023-06-20 17:06:05] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\edit.php | Строка: 18
+=================
+[2023-06-20 17:06:23] Текст ошибки: Undefined array key "base" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\Category\edit.php | Строка: 31
+=================
+[2023-06-20 17:07:13] Текст ошибки: Not found category | Файл: C:\OSPanel\domains\ProLearn\app\controllers\admin\CategoryController.php | Строка: 36
+=================
+[2023-06-20 17:15:11] Текст ошибки: Undefined array key "blogcategory_description" | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Category.php | Строка: 47
+=================
+[2023-06-20 17:16:25] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'BlogCategory' in 'where clause' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-20 17:25:03] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 40
+=================
+[2023-06-21 12:18:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-21 12:41:13] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 12:44:23] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 12:44:23] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 12:44:24] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 12:44:31] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 12:45:35] Текст ошибки: Undefined array key "User" | Файл: C:\OSPanel\domains\ProLearn\app\models\User.php | Строка: 17
+=================
+[2023-06-21 12:45:45] Текст ошибки: Undefined array key "User" | Файл: C:\OSPanel\domains\ProLearn\app\models\User.php | Строка: 20
+=================
+[2023-06-21 12:45:53] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 12:47:05] Текст ошибки: Undefined array key "User" | Файл: C:\OSPanel\domains\ProLearn\app\models\User.php | Строка: 25
+=================
+[2023-06-21 12:47:09] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 13:18:18] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 13:18:45] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 13:18:55] Текст ошибки: Invalid type: User | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Util\DispenseHelper.php | Строка: 78
+=================
+[2023-06-21 13:19:05] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 13:24:21] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 13:24:21] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 13:24:22] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 13:24:22] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 13:24:22] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2023-06-21 13:25:13] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\views\Blog\index.php | Строка: 146
+=================
+[2023-06-21 13:26:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-21 13:41:26] Текст ошибки: Undefined array key "user" | Файл: C:\OSPanel\domains\ProLearn\app\controllers\AppController.php | Строка: 23
+=================
+[2023-06-21 13:42:18] Текст ошибки: Не найден вид C:\OSPanel\domains\ProLearn/app/views/admin/User/login-admin.php | Файл: C:\OSPanel\domains\ProLearn\vendor\core\View.php | Строка: 32
+=================
+[2023-06-21 13:42:39] Текст ошибки: Undefined array key "User" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\parts\sidebar.php | Строка: 17
+=================
+[2023-06-21 13:43:04] Текст ошибки: Undefined array key "User" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\parts\sidebar.php | Строка: 17
+=================
+[2023-06-21 13:43:16] Текст ошибки: Undefined array key "User" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\parts\sidebar.php | Строка: 17
+=================
+[2023-06-21 14:26:45] Текст ошибки: Cannot assign int to property core\Language::$langView of type array | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Language.php | Строка: 21
+=================
+[2023-06-21 17:13:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-21 17:13:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-21 17:13:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-21 17:13:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-21 17:13:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-21 17:19:07] Текст ошибки: Метод app\controllers\admin\UserController::logoutAction не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 60
+=================
+[2023-06-21 19:28:00] Текст ошибки: SQLSTATE[HY000]: General error: 1364 Field 'Heading_img' doesn't have a default value | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 19:37:18] Текст ошибки: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'on' for column `prolearn`.`user`.`AllProfile_Private` at row 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 19:38:01] Текст ошибки: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'on' for column `prolearn`.`user`.`AllProfile_Private` at row 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 19:40:33] Текст ошибки: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'on' for column `prolearn`.`user`.`LookCurrentCourse_Private` at row 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 19:40:47] Текст ошибки: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'on' for column `prolearn`.`user`.`PersonalInfo_Private` at row 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 19:40:52] Текст ошибки: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'on' for column `prolearn`.`user`.`PersonalInfo_Private` at row 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 19:42:27] Текст ошибки: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'on' for column `prolearn`.`user`.`PersonalInfo_Private` at row 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 19:43:06] Текст ошибки: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'on' for column `prolearn`.`user`.`PersonalInfo_Private` at row 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 19:43:24] Текст ошибки: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'on' for column `prolearn`.`user`.`PersonalInfo_Private` at row 1 | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 19:50:47] Текст ошибки: Не найден вид C:\OSPanel\domains\ProLearn/app/views/admin/Category/add.php | Файл: C:\OSPanel\domains\ProLearn\vendor\core\View.php | Строка: 32
+=================
+[2023-06-21 19:53:19] Текст ошибки: Не найден вид C:\OSPanel\domains\ProLearn/app/views/admin/Category/add.php | Файл: C:\OSPanel\domains\ProLearn\vendor\core\View.php | Строка: 32
+=================
+[2023-06-21 20:04:43] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Lanuguage_ID' in 'field list' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 20:36:03] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'category_id' in 'where clause' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 20:36:53] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'category_id' in 'where clause' | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 20:38:03] Текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`prolearn`.`blogcategory_description`, CONSTRAINT `blogcategory_description_ibfk_1` FOREIGN KEY (`BlogCategory_ID`) REFERENCES `BlogCategory` (`ID`)) | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-06-21 20:39:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-21 20:39:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-21 20:39:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-21 20:39:19] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-21 20:39:21] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:07:27] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:08:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:09:22] Текст ошибки: Контроллер app\controllers\EnController не найден | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 63
+=================
+[2023-06-22 11:52:52] Текст ошибки: Undefined array key "Avatar_Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\edit.php | Строка: 48
+=================
+[2023-06-22 11:53:29] Текст ошибки: Undefined array key "Avatar_Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\edit.php | Строка: 48
+=================
+[2023-06-22 11:53:30] Текст ошибки: Undefined array key "Avatar_Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\edit.php | Строка: 48
+=================
+[2023-06-22 11:53:30] Текст ошибки: Undefined array key "Avatar_Img" | Файл: C:\OSPanel\domains\ProLearn\app\views\admin\User\edit.php | Строка: 48
+=================
+[2023-06-22 11:53:42] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:53:42] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:54:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:54:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:54:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:54:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:55:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:55:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:55:50] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:55:50] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:56:11] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 11:56:11] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 15:08:24] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\ProLearn\app\models\admin\Blog.php | Строка: 50
+=================
+[2023-06-22 16:50:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-22 16:52:27] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-23 18:18:38] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\ProLearn\vendor\core\DataBase.php | Строка: 18
+=================
+[2023-06-23 18:19:14] Текст ошибки: Undefined variable $dataBase | Файл: C:\OSPanel\domains\ProLearn\vendor\core\DataBase.php | Строка: 18
+=================
+[2023-06-23 18:19:29] Текст ошибки: Undefined variable $dataBase | Файл: C:\OSPanel\domains\ProLearn\vendor\core\DataBase.php | Строка: 18
+=================
+[2023-06-23 18:19:29] Текст ошибки: Undefined variable $dataBase | Файл: C:\OSPanel\domains\ProLearn\vendor\core\DataBase.php | Строка: 18
+=================
+[2023-06-23 18:19:35] Текст ошибки: Undefined variable $dataBase | Файл: C:\OSPanel\domains\ProLearn\vendor\core\DataBase.php | Строка: 18
+=================
+[2023-06-23 18:19:36] Текст ошибки: Undefined variable $dataBase | Файл: C:\OSPanel\domains\ProLearn\vendor\core\DataBase.php | Строка: 18
+=================
+[2023-06-23 18:19:36] Текст ошибки: Undefined variable $dataBase | Файл: C:\OSPanel\domains\ProLearn\vendor\core\DataBase.php | Строка: 18
+=================
+[2023-06-23 18:24:16] Текст ошибки: Accessing static property core\DataBase::$dataBase as non static | Файл: C:\OSPanel\domains\ProLearn\vendor\core\DataBase.php | Строка: 17
+=================
+[2023-06-23 18:28:16] Текст ошибки: Undefined array key "Role" | Файл: C:\OSPanel\domains\ProLearn\app\controllers\UserController.php | Строка: 20
+=================
+[2023-06-23 18:28:36] Текст ошибки: Undefined array key "dsn" | Файл: C:\OSPanel\domains\ProLearn\vendor\core\DataBase.php | Строка: 35
+=================
+[2023-06-23 18:30:14] Текст ошибки: A database has already been specified for this key. | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Facade.php | Строка: 416
+=================
+[2023-06-23 18:30:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-23 18:31:17] Текст ошибки: A database has already been specified for this key. | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Facade.php | Строка: 416
+=================
+[2023-06-23 18:35:50] Текст ошибки: A database has already been specified for this key. | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Facade.php | Строка: 416
+=================
+[2023-06-23 18:42:27] Текст ошибки: A database has already been specified for this key. | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Facade.php | Строка: 416
+=================
+[2023-06-23 18:43:01] Текст ошибки: A database has already been specified for this key. | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Facade.php | Строка: 416
+=================
+[2023-06-24 14:11:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-24 14:11:34] Текст ошибки: A database has already been specified for this key. | Файл: C:\OSPanel\domains\ProLearn\vendor\gabordemooij\redbean\RedBeanPHP\Facade.php | Строка: 416
+=================
+[2023-06-24 14:21:52] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-25 15:15:03] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-26 10:17:32] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-26 12:23:45] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-06-26 19:10:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-08-27 16:18:32] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-08-27 16:18:37] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-02 22:18:34] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-05 12:13:26] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-05 12:38:48] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-05 12:43:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-05 18:33:50] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-05 19:03:52] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-05 19:41:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\ProLearn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 22:52:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 22:52:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 22:52:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 22:52:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 22:52:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 22:52:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 22:52:22] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 22:55:23] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:02] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:02] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:12] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:12] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:29] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:29] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:30] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:30] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:31] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:31] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:33] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:33] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:40] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:40] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:46] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:46] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:48] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:05:48] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:06:08] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:06:08] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:06:12] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:06:12] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:06:15] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:06:15] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:08:59] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:08:59] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:09:11] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:09:11] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:09:11] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:09:11] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:09:19] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:11:25] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:11:25] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:11:31] Текст ошибки: Контроллер app\controllers\MainController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:12:54] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/Main/index.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 32
+=================
+[2023-09-07 23:12:54] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/Main/index.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 32
+=================
+[2023-09-07 23:13:09] Текст ошибки: Не найден шаблон C:\OSPanel\domains\pro-learn/app/views/layouts/prolearn.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 41
+=================
+[2023-09-07 23:15:04] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 23:15:04] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 23:15:05] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 23:15:05] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 23:15:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 23:15:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-07 23:15:39] Текст ошибки: Контроллер app\controllers\UserController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:15:39] Текст ошибки: Контроллер app\controllers\UserController не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 63
+=================
+[2023-09-07 23:16:38] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:16:38] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:16:41] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:16:41] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:16:48] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:18:52] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:18:53] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:18:53] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:18:53] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:18:53] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:18:54] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:19:31] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:19:32] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:19:32] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:19:32] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:19:32] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:19:32] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:19:39] Текст ошибки: Class "app\widgets\language\Language" not found | Файл: C:\OSPanel\domains\pro-learn\app\controllers\AppController.php | Строка: 27
+=================
+[2023-09-07 23:19:46] Текст ошибки: Class "app\widgets\language\Language" not found | Файл: C:\OSPanel\domains\pro-learn\app\controllers\AppController.php | Строка: 27
+=================
+[2023-09-07 23:19:47] Текст ошибки: Class "app\widgets\language\Language" not found | Файл: C:\OSPanel\domains\pro-learn\app\controllers\AppController.php | Строка: 27
+=================
+[2023-09-07 23:19:49] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:19:49] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
+[2023-09-07 23:19:55] Текст ошибки: Class "app\widgets\language\Language" not found | Файл: C:\OSPanel\domains\pro-learn\app\controllers\AppController.php | Строка: 27
+=================
+[2023-09-07 23:19:55] Текст ошибки: Class "app\widgets\language\Language" not found | Файл: C:\OSPanel\domains\pro-learn\app\controllers\AppController.php | Строка: 27
+=================
+[2023-09-07 23:19:55] Текст ошибки: Class "app\widgets\language\Language" not found | Файл: C:\OSPanel\domains\pro-learn\app\controllers\AppController.php | Строка: 27
+=================
+[2023-09-07 23:19:55] Текст ошибки: Class "app\widgets\language\Language" not found | Файл: C:\OSPanel\domains\pro-learn\app\controllers\AppController.php | Строка: 27
+=================
+[2023-09-07 23:20:38] Текст ошибки: Call to undefined method app\controllers\UserController::getModel() | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 53
+=================
