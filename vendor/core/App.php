@@ -13,7 +13,7 @@ class App
 
         session_start();
 
-        echo json_encode(array('query' => $query));
+        // echo json_encode(array('query' => $query));
 
         self::$app = Registry::getInstance();
         $this->getParams();

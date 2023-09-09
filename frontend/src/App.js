@@ -1,7 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
-function App() {
+const axiosClient = axios.create({
+  baseURL: `http://pro-learn`,
+
+});
+
+
+const App = () => {
+
+  function testGet() {
+    axiosClient.post('/blog/hello-var')
+      .then(({data}) => {
+        console.log(data);
+        // console.log(data.allBlogs);
+
+        // data.allBlogs.map(element => {
+        //   if (element.popular == 1) console.log(element);
+        // })
+
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  testGet();
+
+  
+
   return (
     <div className="App">
       <header className="App-header">
