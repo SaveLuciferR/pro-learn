@@ -37,6 +37,7 @@ function Header() {
                     d="M12.8333 22.1667C17.988 22.1667 22.1667 17.988 22.1667 12.8333C22.1667 7.67868 17.988 3.5 12.8333 3.5C7.67868 3.5 3.5 7.67868 3.5 12.8333C3.5 17.988 7.67868 22.1667 12.8333 22.1667Z"
                     stroke="white"
                     stroke-width="2"
+                    strokeWidth={2}
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
