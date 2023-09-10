@@ -14,6 +14,7 @@ function Header() {
             {/* Часть с сменой языка, поиском и аккаунтом */}
             <div className="header_lang">
               <p>rus</p>
+              {/* ^ */}
               <svg
                 width="9"
                 height="5"
@@ -26,6 +27,7 @@ function Header() {
             </div>
             <div className="header_icons">
               <div className="header_icons__icon">
+                {/* Иконка поиска */}
                 <svg
                   width="28"
                   height="28"
@@ -50,6 +52,7 @@ function Header() {
                 </svg>
               </div>
               <div className="header_icons__icon">
+                {/* Иконка аккаунта */}
                 <svg
                   width="28"
                   height="28"

@@ -1,0 +1,40 @@
+@use "scss-reset/reset";
+
+.sidebar{
+  position: fixed;
+  margin-top: 100px;
+
+  background-color: #161B22;
+  width: 64px;
+  height: 100%;
+
+  z-index: 1;
+
+  &_btngroup{
+    padding: 16px;
+    
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+  }
+
+  &_btn{
+    height: 32px;
+    width: 32px;
+    border-radius: 4px;
+    background-color: rgba(166, 166, 166, 0.3);
+  
+    transition: 0.2s;
+
+    &:hover{
+      cursor: pointer;
+      background-color: rgba(166, 166, 166, 0.2);
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    &__item{
+      padding: 4px 4px;
+      border-radius: 4px;
+    }
+  }
+}
