@@ -8,24 +8,47 @@
 
   z-index: 2;
 
+  & a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
   &_category {
     display: inline-flex;
-    column-gap: 12px;
+    column-gap: 64px;
     text-align: center;
     align-items: center;
-    border-bottom: 0px solid #ffffff;
-
     font-size: 18px;
-    transition: 0.1s;
 
-    &:hover{
-      border-bottom-width: 2px;
+    &__item {
+      position: relative;
+      cursor: pointer;
+
+      &::before {
+        content: "";
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #ffffff;
+        transition: 0.2s;
+        transform: scaleX(0);
+      }
+
+      &:hover::before {
+        transform: scaleX(1);
+      }
     }
   }
 
   &_icons {
     display: flex;
     column-gap: 16px;
+
+    &__icon {
+      cursor: pointer;
+    }
   }
 
   &_lang {
@@ -49,6 +72,13 @@
     font-weight: 700;
     font-size: 24px;
     color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.6);
+    }
   }
 
   &_warpper {
