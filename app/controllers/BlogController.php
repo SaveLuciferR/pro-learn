@@ -19,6 +19,10 @@ class BlogController extends AppController
     {
         $blog = $this->model->getBlog(App::$app->getProperty('language')['ID'], $this->route['slug']);
 
+        $blogresponse = $this->model->getResponseByBlog($this->route['slug']);
+
+        debug($blogresponse, 1);
+
         echo json_encode(array('blog' => $blog));
     }
 }
