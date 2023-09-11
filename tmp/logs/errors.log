@@ -2614,6 +2614,8 @@ Stack trace:
 =================
 [2023-09-10 15:25:47] Текст ошибки: Call to undefined method app\models\Blog::getResponseByBlog() | Файл: C:\OSPanel\domains\pro-learn\app\controllers\BlogController.php | Строка: 22
 =================
+[2023-09-11 20:04:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
 [2023-09-11 19:47:33] Текст ошибки: No connection to DataBase | Файл: E:\OpenServer\domains\pro-learn\vendor\core\DataBase.php | Строка: 44
 =================
 [2023-09-11 19:47:33] Текст ошибки: Страница не найдена | Файл: E:\OpenServer\domains\pro-learn\vendor\core\Router.php | Строка: 66
@@ -2649,4 +2651,10 @@ Stack trace:
 [2023-09-11 20:37:55] Текст ошибки: Статья по запросу hello-world не найдена | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 27
 =================
 [2023-09-11 20:38:48] Текст ошибки: Статья по запросу hello-world не найдена | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 27
+=================
+[2023-09-11 23:26:15] Текст ошибки: Не найден шаблон C:\OSPanel\domains\pro-learn/app/views/layouts/pro-learn.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 44
+=================
+[2023-09-11 23:27:24] Текст ошибки: Не найден шаблон C:\OSPanel\domains\pro-learn/app/views/layouts/pro-learn.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 44
+=================
+[2023-09-11 23:28:51] Текст ошибки: Статья по запросу hello-workd не найдена | Файл: C:\OSPanel\domains\pro-learn\app\controllers\BlogController.php | Строка: 40
 =================
