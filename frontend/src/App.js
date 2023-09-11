@@ -14,7 +14,7 @@ const axiosClient = axios.create({
 const App = () => {
   function testGet() {
     axiosClient
-      .post("/blog/hello-var")
+      .post("/blog/hello-world")
       .then(({ data }) => {
         console.log(data);
         // console.log(data.allBlogs);

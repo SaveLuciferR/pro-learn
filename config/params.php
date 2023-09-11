@@ -3,7 +3,7 @@
 return [
     'admin_email' => 'YourEmail',
     'site_name' => 'ProLearn',
-    'pagination' => 3, // Count products per page
+    'pagination' => 3, // Count per page
 
     'smtp_host' => 'smtp.mailtrap.io',
     'smtp_auth' => true,

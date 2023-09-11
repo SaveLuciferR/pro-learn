@@ -10,6 +10,12 @@ use core\Language as CoreLanguage;
 use app\models\User;
 use RedBeanPHP\R;
 
+
+/** Контроллер, который наследуется от контроллера фреймворка.
+ * Здесь прописана логика для всех контроллеров общего доступа.
+ * От AppController идет наследование на все контроллеры общего доступа.
+ */
+
 class AppController extends Controller
 {
     public function __construct($route)
@@ -22,10 +28,10 @@ class AppController extends Controller
 
         // debug($_SESSION['user'], 1);
 
-        new AppModel();
+        new AppModel(); // Создание модели
 
-        App::$app->setProperty('languages', Language::getLanguages());
-        App::$app->setProperty('language', Language::getLanguage(App::$app->getProperty('languages')));
+        App::$app->setProperty('languages', Language::getLanguages()); // Запись всех языков из базы данных
+        App::$app->setProperty('language', Language::getLanguage(App::$app->getProperty('languages'))); // Проверка и запись текущего языка на сайте
 
         $lang = App::$app->getProperty('language');
         CoreLanguage::loadWords($lang, $this->route);

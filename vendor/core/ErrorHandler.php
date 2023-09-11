@@ -2,6 +2,9 @@
 
 namespace core;
 
+
+/** Класс для отловли ошибок для отладки */
+
 class ErrorHandler
 {
     public function __construct()

@@ -2,6 +2,9 @@
 
 namespace core;
 
+
+/** Основной класс фреймворка. В нем идет запись параметров, создание класса отловли ошибок и запись url-адреса */
+
 class App
 {
     public static $app;
@@ -20,6 +23,9 @@ class App
 
         Router::dispatch($query);
     }
+
+
+    /** Функция для подключения в проект параметров */
 
     protected function getParams()
     {

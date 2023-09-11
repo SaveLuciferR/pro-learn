@@ -2614,3 +2614,39 @@ Stack trace:
 =================
 [2023-09-10 15:25:47] Текст ошибки: Call to undefined method app\models\Blog::getResponseByBlog() | Файл: C:\OSPanel\domains\pro-learn\app\controllers\BlogController.php | Строка: 22
 =================
+[2023-09-11 19:47:33] Текст ошибки: No connection to DataBase | Файл: E:\OpenServer\domains\pro-learn\vendor\core\DataBase.php | Строка: 44
+=================
+[2023-09-11 19:47:33] Текст ошибки: Страница не найдена | Файл: E:\OpenServer\domains\pro-learn\vendor\core\Router.php | Строка: 66
+=================
+[2023-09-11 19:55:29] Текст ошибки: Not Found language {lang} | Файл: E:\OpenServer\domains\pro-learn\app\languages\Language.php | Строка: 43
+=================
+[2023-09-11 19:59:31] Текст ошибки: Not Found language {lang} | Файл: E:\OpenServer\domains\pro-learn\app\languages\Language.php | Строка: 43
+=================
+[2023-09-11 20:00:40] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.user' doesn't exist | Файл: E:\OpenServer\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-09-11 20:22:33] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'br.slug' in 'where clause' | Файл: E:\OpenServer\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-09-11 20:25:55] Текст ошибки: Undefined array key "id" | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 22
+=================
+[2023-09-11 20:34:53] Текст ошибки: Undefined array key "id" | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 26
+=================
+[2023-09-11 20:34:53] Текст ошибки: Undefined array key "id" | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 26
+=================
+[2023-09-11 20:36:03] Текст ошибки: Статья по запросу hello не найдена | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 27
+=================
+[2023-09-11 20:36:03] Текст ошибки: Статья по запросу hello не найдена | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 27
+=================
+[2023-09-11 20:37:43] Текст ошибки: Статья по запросу hello не найдена | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 27
+=================
+[2023-09-11 20:37:43] Текст ошибки: Статья по запросу hello не найдена | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 27
+=================
+[2023-09-11 20:37:54] Текст ошибки: Статья по запросу hello-world не найдена | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 27
+=================
+[2023-09-11 20:37:54] Текст ошибки: Статья по запросу hello-world не найдена | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 27
+=================
+[2023-09-11 20:37:55] Текст ошибки: Статья по запросу hello-world не найдена | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 27
+=================
+[2023-09-11 20:37:55] Текст ошибки: Статья по запросу hello-world не найдена | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 27
+=================
+[2023-09-11 20:38:48] Текст ошибки: Статья по запросу hello-world не найдена | Файл: E:\OpenServer\domains\pro-learn\app\controllers\BlogController.php | Строка: 27
+=================
