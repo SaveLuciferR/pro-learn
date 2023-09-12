@@ -4,6 +4,9 @@ namespace core;
 
 use RedBeanPHP\R;
 
+
+/** Абстрактный класс модели. Здесь описана работа сохранения, загрузки и обновления данных */
+
 abstract class Model
 {
     public array $attributes = [];
@@ -63,13 +66,13 @@ abstract class Model
 
         // debug($attributes, 1);
 
-        foreach ($this->attributes as $name => $value) {
-            if ($value != '') {
-                debug($name);
-                debug($value);
-                $tbl->$name = $value;
-            }
-        }
+//        foreach ($this->attributes as $name => $value) {
+//            if ($value != '') {
+//                debug($name);
+//                debug($value);
+//                $tbl->$name = $value;
+//            }
+//        }
         return R::store($tbl);
     }
 }

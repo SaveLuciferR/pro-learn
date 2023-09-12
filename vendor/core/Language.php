@@ -2,11 +2,17 @@
 
 namespace core;
 
+
+/** Класс для работы шаблонами статического текста на сайте на разных языках */
+
 class Language
 {
     public static array $langData = [];
     public static array $langLayout = [];
     public static array $langView = [];
+
+
+    /** Функция для загрузка шаблонов в программу, если они существуют */
 
     public static function loadWords($lang, $route)
     {
@@ -23,6 +29,12 @@ class Language
 
         self::$langData = array_merge(self::$langLayout, self::$langView);
     }
+
+
+    /** Функция для получения текста на текущем языке сайта по ключу шаблона
+     * @param string $key Ключ текста из шаблона
+     * @return string Возвращает текст, если нашел его по ключу, иначе вернет ключ
+     */
 
     public static function getWords($key)
     {

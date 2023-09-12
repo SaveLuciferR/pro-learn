@@ -5,12 +5,11 @@ namespace app\languages;
 use core\App;
 use RedBeanPHP\R;
 
+
+/** Класс, который собирает информацию о языках из базы данных */
+
 class Language
 {
-    // protected $tpl;
-    // protected $languages;
-    // protected $language;
-
     public function __construct()
     {
         // $this->tpl = __DIR__ . '\lang_tpl.php';
@@ -24,10 +23,16 @@ class Language
     //     echo $this->getHtml();
     // }
 
+    /** Функция, которая собирает данные о языках из базы данных */
     public static function getLanguages(): array
     {
         return R::getAssoc("SELECT Code, Title, Base, ID FROM Language ORDER BY base DESC");
     }
+
+
+    /** Функция, которая проверяет наличие языка в базе данных, который был введен в url-адрес, и возвращает его (либо 404 ошибка)
+     * @throws \Exception
+     */
 
     public static function getLanguage($languages)
     {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 11 2023 г., 17:46
+-- Время создания: Сен 11 2023 г., 20:06
 -- Версия сервера: 10.8.4-MariaDB
 -- Версия PHP: 8.1.9
 
@@ -656,60 +656,6 @@ INSERT INTO `Forum_ForumCategory` (`ForumCategory_ID`, `Forum_ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Дублирующая структура для представления `getallachievementdesc`
--- (См. Ниже фактическое представление)
---
-CREATE TABLE `getallachievementdesc` (
-`Title achievement` varchar(255)
-,`Parent achievement` varchar(255)
-,`Title language` varchar(50)
-);
-
--- --------------------------------------------------------
-
---
--- Дублирующая структура для представления `getallblogdesc`
--- (См. Ниже фактическое представление)
---
-CREATE TABLE `getallblogdesc` (
-);
-
--- --------------------------------------------------------
-
---
--- Дублирующая структура для представления `getallproglangdocumentation`
--- (См. Ниже фактическое представление)
---
-CREATE TABLE `getallproglangdocumentation` (
-`Title` varchar(255)
-,`Color` varchar(7)
-);
-
--- --------------------------------------------------------
-
---
--- Дублирующая структура для представления `getallproglangincourse`
--- (См. Ниже фактическое представление)
---
-CREATE TABLE `getallproglangincourse` (
-`Title` varchar(255)
-,`Color` varchar(7)
-);
-
--- --------------------------------------------------------
-
---
--- Дублирующая структура для представления `getallusedcategoryblogdesc`
--- (См. Ниже фактическое представление)
---
-CREATE TABLE `getallusedcategoryblogdesc` (
-`Title` varchar(255)
-,`Parent category` varchar(255)
-);
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `InputOutputData_Challenge`
 --
 
@@ -751,27 +697,6 @@ INSERT INTO `LangProg` (`ID`, `Title`, `Icon`, `Color`) VALUES
 (3, 'C#', 'public/uploads/c#.svg', '#ffffff'),
 (4, 'C++', 'public/uploads/c++.svg', '#ffffff'),
 (5, 'PHP', 'public/uploads/php.svg', '#ffffff');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `LangProgTest`
---
-
-CREATE TABLE `LangProgTest` (
-  `ID` int(11) NOT NULL,
-  `Title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Color` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп данных таблицы `LangProgTest`
---
-
-INSERT INTO `LangProgTest` (`ID`, `Title`, `Icon`, `Color`) VALUES
-(1, 'C#', 'public/uploads/c#.svg', '#ffffff'),
-(2, 'C++', 'public/uploads/c++.svg', '#ffffff');
 
 -- --------------------------------------------------------
 
@@ -1104,51 +1029,6 @@ CREATE TABLE `User_Course` (
 INSERT INTO `User_Course` (`User_ID`, `Course_ID`, `Success`, `CurrentStep`, `CurrentStage`) VALUES
 (2, 1, 0, 2, 2);
 
--- --------------------------------------------------------
-
---
--- Структура для представления `getallachievementdesc`
---
-DROP TABLE IF EXISTS `getallachievementdesc`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `prolearn`.`getallachievementdesc`  AS SELECT `ad`.`Title` AS `Title achievement`, (select `achd`.`Title` from (`prolearn`.`achievement` `ach` join `prolearn`.`achievement_description` `achd` on(`ach`.`ID` = `achd`.`Achievement_ID`)) where `a`.`Parent_ID` = `ach`.`ID` and `achd`.`Language_ID` = `l`.`ID`) AS `Parent achievement`, `l`.`Title` AS `Title language` FROM ((`prolearn`.`achievement` `a` join `prolearn`.`achievement_description` `ad` on(`a`.`ID` = `ad`.`Achievement_ID`)) join `prolearn`.`language` `l` on(`l`.`ID` = `ad`.`Language_ID`))  ;
-
--- --------------------------------------------------------
-
---
--- Структура для представления `getallblogdesc`
---
-DROP TABLE IF EXISTS `getallblogdesc`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `prolearn`.`getallblogdesc`  AS SELECT `b`.`slug` AS `Slug`, `u`.`Username` AS `Username`, `b`.`dateofpublication` AS `DateOfPublication`, `b`.`Mark_Like` AS `Mark_Like`, `bd`.`Heading` AS `Heading`, `bd`.`Content` AS `Content`, `l`.`Title` AS `Title` FROM (((`prolearn`.`blog` `b` join `prolearn`.`blog_description` `bd` on(`b`.`ID` = `bd`.`Blog_ID`)) join `prolearn`.`user` `u` on(`u`.`ID` = `b`.`User_ID`)) join `prolearn`.`language` `l` on(`l`.`ID` = `bd`.`Language_ID`))  ;
-
--- --------------------------------------------------------
-
---
--- Структура для представления `getallproglangdocumentation`
---
-DROP TABLE IF EXISTS `getallproglangdocumentation`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `prolearn`.`getallproglangdocumentation`  AS SELECT `lp`.`Title` AS `Title`, `lp`.`Color` AS `Color` FROM (`prolearn`.`langprog` `lp` join `prolearn`.`documentation` `d` on(`d`.`LangProg_ID` = `lp`.`ID`)) GROUP BY `lp`.`Title``Title`  ;
-
--- --------------------------------------------------------
-
---
--- Структура для представления `getallproglangincourse`
---
-DROP TABLE IF EXISTS `getallproglangincourse`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `prolearn`.`getallproglangincourse`  AS SELECT `lp`.`Title` AS `Title`, `lp`.`Color` AS `Color` FROM ((`prolearn`.`course` `c` join `prolearn`.`course_categorylangprog` `cclp` on(`c`.`ID` = `cclp`.`Course_ID`)) join `prolearn`.`langprog` `lp` on(`lp`.`ID` = `cclp`.`LangProg_ID`)) GROUP BY `lp`.`Title``Title`  ;
-
--- --------------------------------------------------------
-
---
--- Структура для представления `getallusedcategoryblogdesc`
---
-DROP TABLE IF EXISTS `getallusedcategoryblogdesc`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `prolearn`.`getallusedcategoryblogdesc`  AS SELECT `bcd`.`Title` AS `Title`, (select `bcatd`.`Title` from ((`prolearn`.`blogcategory` `bcat` join `prolearn`.`blogcategory_description` `bcatd` on(`bcatd`.`BlogCategory_ID` = `bcat`.`ID`)) join `prolearn`.`language` `lang` on(`lang`.`ID` = `bcatd`.`Language_ID`)) where `bc`.`Parent_ID` = `bcat`.`ID` and `bcatd`.`Language_ID` = `l`.`ID`) AS `Parent category` FROM ((((`prolearn`.`blog` `b` join `prolearn`.`blog_blogcategory` `bbc` on(`bbc`.`Blog_ID` = `b`.`id`)) join `prolearn`.`blogcategory` `bc` on(`bc`.`ID` = `bbc`.`BlogCategory_ID`)) join `prolearn`.`blogcategory_description` `bcd` on(`bcd`.`BlogCategory_ID` = `bc`.`ID`)) join `prolearn`.`language` `l` on(`l`.`ID` = `bcd`.`Language_ID`))  ;
-
 --
 -- Индексы сохранённых таблиц
 --
@@ -1343,12 +1223,6 @@ ALTER TABLE `LangProg`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `LangProgTest`
---
-ALTER TABLE `LangProgTest`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Индексы таблицы `Language`
 --
 ALTER TABLE `Language`
@@ -1521,12 +1395,6 @@ ALTER TABLE `ForumResponse`
 --
 ALTER TABLE `InputOutputData_Challenge`
   MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT для таблицы `LangProgTest`
---
-ALTER TABLE `LangProgTest`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `Language`

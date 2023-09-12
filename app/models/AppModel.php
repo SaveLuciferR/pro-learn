@@ -5,26 +5,38 @@ namespace app\models;
 use \core\Model;
 use RedBeanPHP\R;
 
+
+/** Базовый класс для всех моделей общего доступа.
+ * Здесь описаны функции, которыми будут пользоваться 2 или более модели
+ */
+
 class AppModel extends Model
 {
-    public static function create_slug($table, $field, $str, $id): string
+
+
+    /**  */
+
+    public static function createSlug($table, $field, $str, $id): string
     {
-        $str = self::str2url($str);
+        $str = self::strToUrl($str);
         $res = R::findOne($table, "$field = ?", [$str]);
         if ($res) {
             $str = "{$str}-{$id}";
             $res = R::count($table, "$field = ?", [$str]);
             if ($res) {
-                $str = self::create_slug($table, $field, $str, $id);
+                $str = self::createSlug($table, $field, $str, $id);
             }
         }
         return $str;
     }
 
-    public static function str2url($str): string
+
+    /**  */
+
+    public static function strToUrl($str): string
     {
         // переводим в транслит
-        $str = self::rus2translit($str);
+        $str = self::rusToTranslit($str);
         // в нижний регистр
         $str = strtolower($str);
         // заменям все ненужное нам на "-"
@@ -34,7 +46,8 @@ class AppModel extends Model
         return $str;
     }
 
-    public static function rus2translit($string): string
+    /** Транслит русский символов в английские */
+    public static function rusToTranslit($string): string
     {
 
         $converter = array(

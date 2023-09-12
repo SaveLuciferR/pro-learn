@@ -4,6 +4,9 @@ namespace core;
 
 use RedBeanPHP\R;
 
+
+/** Не используется в этом проекте */
+
 class View
 {
     public string $content = '';
