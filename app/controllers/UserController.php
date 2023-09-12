@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\User;
+
+/** @property User $model */
 
 /** Контроллер общего доступа для работы с пользователями (регистрация, авторизация, профиль) */
 class UserController extends AppController
@@ -24,15 +27,34 @@ class UserController extends AppController
         }
     }
 
-    public function profileAction() {
-
+    public function profileAction()
+    {
+        echo "Current Profile: " . $this->route['username'];
     }
 
-    public function projectListAction() {
-
+    public function projectListAction()
+    {
+        debug(PROGRAMMING_LANGUAGES, 1);
     }
 
-    public function projectAction() {
+    public function projectAction()
+    {
+        $project = $this->model->getProjectInfoBySlug($this->route['slug'], $this->route['username']);
+        if (!$project) throw new \Exception("Проект не найден", 404);
 
+        $languagesProgProject = $this->model->getProjectLangsByID($project['id']);
+
+        if (isset($this->route['secondaryPath'])) {
+            $filesProject = $this->model->getFilesProject($project, $this->route['secondaryPath']);
+//            debug($filesProject['body'], 1);
+        } else {
+            $filesProject = $this->model->getFilesProject($project);
+            if ($filesProject === false) {
+                throw new \Exception("Проект не найден", 404);
+            }
+        }
+
+        if (isset($filesProject['body'])) echo json_encode(array('fileInfo' => $filesProject), JSON_UNESCAPED_SLASHES);
+        else echo json_encode(array('filesProject' => $filesProject), JSON_UNESCAPED_SLASHES);
     }
 }
