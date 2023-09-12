@@ -6,6 +6,7 @@ import "./scss/app.scss"; // Подключение стилей
 
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import AllArticlesMain from "./components/All_Articles/AllArticlesMain";
 
 const axiosClient = axios.create({
   baseURL: `http://pro-learn`,
@@ -34,6 +35,7 @@ const App = () => {
     <div>
       <Header />
       <Sidebar />
+      <AllArticlesMain />
     </div>
   );
 };
