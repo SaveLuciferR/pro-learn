@@ -20,13 +20,15 @@ class BlogController extends AppController
     {
         $allBlogItem = $this->model->getAllBlogs(App::$app->getProperty('language')['ID']);
 
+        $popularBlogs = $this->model->getPopularBlogs(App::$app->getProperty('language')['ID']);
+
         if (!$allBlogItem) {
             throw new \Exception("Статьи не найдены...", 404);
         }
 
         // debug($allBlogItem, 1);
 
-        echo json_encode(array('allBlogs' => $allBlogItem));
+        echo json_encode(array('allBlogs' => $allBlogItem, 'popularBlogs' => $popularBlogs));
     }
 
 

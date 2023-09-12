@@ -1,0 +1,113 @@
+[2023-09-12 12:17:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 98
+=================
+[2023-09-12 12:21:12] Текст ошибки: Call to undefined method app\models\Blog::getPopularBlogs() | Файл: C:\OSPanel\domains\pro-learn\app\controllers\BlogController.php | Строка: 23
+=================
+[2023-09-12 12:21:12] Текст ошибки: Call to undefined method app\models\Blog::getPopularBlogs() | Файл: C:\OSPanel\domains\pro-learn\app\controllers\BlogController.php | Строка: 23
+=================
+[2023-09-12 12:21:14] Текст ошибки: Call to undefined method app\models\Blog::getPopularBlogs() | Файл: C:\OSPanel\domains\pro-learn\app\controllers\BlogController.php | Строка: 23
+=================
+[2023-09-12 12:21:14] Текст ошибки: Call to undefined method app\models\Blog::getPopularBlogs() | Файл: C:\OSPanel\domains\pro-learn\app\controllers\BlogController.php | Строка: 23
+=================
+[2023-09-12 12:55:43] Текст ошибки: Not Found language {lang} | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-09-12 12:56:51] Текст ошибки: Undefined array key "user" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CourseController.php | Строка: 11
+=================
+[2023-09-12 12:57:09] Текст ошибки: Undefined array key "user" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CourseController.php | Строка: 11
+=================
+[2023-09-12 12:58:16] Текст ошибки: Typed property core\Controller::$model must not be accessed before initialization | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CourseController.php | Строка: 17
+=================
+[2023-09-12 13:02:24] Текст ошибки: PDO::prepare(): Argument #1 ($query) cannot be empty | Файл: C:\OSPanel\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 178
+=================
+[2023-09-12 13:12:54] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4 | Файл: C:\OSPanel\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-09-12 13:13:05] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4 | Файл: C:\OSPanel\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-09-12 13:13:18] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.cource_description' doesn't exist | Файл: C:\OSPanel\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-09-12 13:15:13] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.cource_description' doesn't exist | Файл: C:\OSPanel\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-09-12 13:15:13] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.cource_description' doesn't exist | Файл: C:\OSPanel\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-09-12 13:15:13] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.cource_description' doesn't exist | Файл: C:\OSPanel\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-09-12 13:33:41] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT cc.challenge_id 
+                                                FROM...' at line 3 | Файл: C:\OSPanel\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-09-12 14:16:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 98
+=================
+[2023-09-12 14:16:41] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/User/auth.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-09-12 14:17:07] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/User/auth.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-09-12 14:20:25] Текст ошибки: syntax error, unexpected token ")" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 16
+=================
+[2023-09-12 14:23:41] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/User/login.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-09-12 14:30:48] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/User/login.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-09-12 14:36:26] Текст ошибки: json_decode(): Argument #1 ($json) must be of type string, array given | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 16
+=================
+[2023-09-12 14:36:26] Текст ошибки: json_decode(): Argument #1 ($json) must be of type string, array given | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 16
+=================
+[2023-09-12 14:39:45] Текст ошибки: json_decode(): Argument #1 ($json) must be of type string, array given | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 16
+=================
+[2023-09-12 14:39:45] Текст ошибки: json_decode(): Argument #1 ($json) must be of type string, array given | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 16
+=================
+[2023-09-12 14:41:32] Текст ошибки: Undefined variable $admin1@mail.ru | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 19
+=================
+[2023-09-12 14:41:32] Текст ошибки: Undefined variable $admin1@mail.ru | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 19
+=================
+[2023-09-12 14:41:33] Текст ошибки: Undefined variable $admin1@mail.ru | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 19
+=================
+[2023-09-12 14:41:33] Текст ошибки: Undefined variable $admin1@mail.ru | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 19
+=================
+[2023-09-12 14:41:33] Текст ошибки: Undefined variable $admin1@mail.ru | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 19
+=================
+[2023-09-12 14:41:33] Текст ошибки: Undefined variable $admin1@mail.ru | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 19
+=================
+[2023-09-12 14:41:33] Текст ошибки: Undefined variable $admin1@mail.ru | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 19
+=================
+[2023-09-12 14:41:33] Текст ошибки: Undefined variable $admin1@mail.ru | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 19
+=================
+[2023-09-12 14:41:41] Текст ошибки: Undefined variable $admin1@mail.ru | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 19
+=================
+[2023-09-12 14:41:41] Текст ошибки: Undefined variable $admin1@mail.ru | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 19
+=================
+[2023-09-12 14:41:42] Текст ошибки: Undefined variable $admin1@mail.ru | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 19
+=================
+[2023-09-12 14:41:42] Текст ошибки: Undefined variable $admin1@mail.ru | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 19
+=================
+[2023-09-12 14:47:33] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'email' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-09-12 14:47:33] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'email' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-09-12 14:52:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 98
+=================
+[2023-09-12 14:52:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 98
+=================
+[2023-09-12 14:52:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 98
+=================
+[2023-09-12 14:52:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 98
+=================
+[2023-09-12 15:17:14] Текст ошибки: Not Found language {lang} | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-09-12 15:18:06] Текст ошибки: Not Found language {lang} | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-09-12 15:18:06] Текст ошибки: Not Found language {lang} | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-09-12 15:18:06] Текст ошибки: Not Found language {lang} | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-09-12 15:18:13] Текст ошибки: Метод app\controllers\UserController::projectsListAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 92
+=================
+[2023-09-12 15:18:24] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/User/projectList.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-09-12 15:18:50] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/User/projectList.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-09-12 15:19:00] Текст ошибки: Not Found language {lang} | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-09-12 16:30:29] Текст ошибки: Not Found language {lang} | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-09-12 16:30:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 98
+=================
+[2023-09-12 16:30:37] Текст ошибки: Not Found language {lang} | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
