@@ -1,7 +1,5 @@
 function BestArticlesItem() {
   return(
-    <div className="maincontent_bestarticle">
-      {/* Часть "лучшие статьи на этой неделе" */}
       <div className="maincontent_bestarticle__items">
         {/*тут тени сделать надо*/}
         <div className="maincontent_bestarticle__item">
@@ -94,7 +92,6 @@ function BestArticlesItem() {
           {/* тут фотку надо вставлять */}
         </div>
       </div>
-    </div>
   );
 }
 
