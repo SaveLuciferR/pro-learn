@@ -1,0 +1,99 @@
+.maincontent{
+  position: absolute;
+  width: 100%;
+  background-color: #0D1117;
+  overflow: hidden;
+
+  &_bestarticle{
+    display: flex;
+    column-gap: 28px;
+    padding-left: 120px;  
+
+    &__items{
+      display: flex;
+      max-height: 512px;
+      max-width: 586px;
+      border-radius: 12px;
+    }
+
+    &__item{
+      position: absolute;
+      margin-top: 314px;
+      margin-left: 20px;
+    
+      max-width: 585px;
+      z-index: 1;
+    }
+
+    &__photo{
+      position: relative;
+      border-radius: 12px;
+      box-shadow: inset 0 -100px 100px 0px rgba(0, 0, 0, 0.9);
+    }
+
+    &__text{
+      position: absolute;
+    }
+
+    &__title{
+      font-size: 18px;
+      font-weight: 700;
+    
+      padding-bottom: 8px;
+    
+      z-index: 1;
+    }
+
+    &__stat{
+      display: flex;
+      justify-content: space-between;
+    
+      padding-top: 16px;
+    }
+
+    &__lac{
+      display: flex;
+      column-gap: 12px;
+    }
+
+    &__statblock{
+      display: flex;
+      column-gap: 4px;
+      align-items: center;
+      /* text-align: center; */
+    }
+
+    &__info{
+      display: flex;
+      column-gap: 16px;
+    
+      padding-bottom: 4px;
+    
+      width: 545px;
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.6);
+      z-index: 1;
+    }
+  }
+}
+
+.mc_ba{
+
+  &_viewtext{
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  &__icon{
+    padding: 3px 3px;
+    background-color: rgba(46, 46, 46, 0.5);
+    border-radius: 2px;
+  }
+
+  &_text{
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
