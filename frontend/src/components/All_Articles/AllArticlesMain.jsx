@@ -5,8 +5,8 @@ const AllArticlesMain = () => {
     <div className="maincontent">
       <div className="maincontent_container">
         <div className="maincontent_maintext">
-          <h1 class="maincontent_title">Статьи</h1>
-          <h4 class="maincontent_category"> Лучшие статьи на этой неделе</h4>
+          <h1 className="maincontent__title">Статьи</h1>
+          <h4 className="maincontent_category"> Лучшие статьи на этой неделе</h4>
         </div>
         <BestArticles />
       </div>
