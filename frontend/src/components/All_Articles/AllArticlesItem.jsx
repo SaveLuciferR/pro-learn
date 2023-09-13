@@ -1,30 +1,31 @@
-function BestArticlesItem() {
-  return(
-      <div className="maincontent_bestarticle__items">
-        {/*тут тени сделать надо*/}
-        <div className="maincontent_bestarticle__item">
-          <div className="maincontent_bestarticle__text">
-            <div className="maincontent_bestarticle__info">
-              {/* Инфо о статье */}
-              <p className="mc_ba__date">26.08.2023</p>
-              <p className="mc_ba_from">От админа</p>
-              <p className="mc_ba_nickname">SaveLuciferR</p>
-            </div>
-            <p className="maincontent_bestarticle__title">
-              Apple начала приём заявок от белых хакеров в программу iPhone
-              Security Research Device Program
-            </p>
-            <p className="maincontent_bestarticle__content">
-              Apple объявила о начале приёме заявок от белых хакеров на участие
-              в программе iPhone Security Research Device Program (SRDP) 2024
-              года. Заявки от ИБ-исследователей...
-            </p>
+const AllArticlesItem = () => {
+  return (
+    <div className="maincontent_allarticle__items">
+      {/*тут тени сделать надо*/}
+      <div className="maincontent_allarticle__item">
+        <div className="maincontent_allarticle__text">
+          <div className="maincontent_allarticle__info">
+            {/* Инфо о статье */}
+            <p className="mc_ba__date">26.08.2023</p>
+            <p className="mc_ba_from">От админа</p>
+            <p className="mc_ba_nickname">SaveLuciferR</p>
+          </div>
+          <p className="maincontent_bestarticle__title">
+            Apple начала приём заявок от белых хакеров в программу iPhone
+            Security Research Device Program
+          </p>
+          <p className="maincontent_bestarticle__content">
+            Apple объявила о начале приёме заявок от белых хакеров на участие в
+            программе iPhone Security Research Device Program (SRDP) 2024 года.
+            Заявки от ИБ-исследователей...
+          </p>
 
-            <div className="maincontent_bestarticle__stat">
-              {/* Часть с лайками, комментами и просмотрами */}
-              <div className="maincontent_bestarticle__lac">
-                <div className="maincontent_bestarticle__statblock">
-                  {/* Heart */}
+          <div className="maincontent_bestarticle__stat">
+            {/* Часть с лайками, комментами и просмотрами */}
+            <div className="maincontent_bestarticle__lac">
+              <div className="maincontent_bestarticle__statblock">
+                {/* Heart */}
+                <div className="mc_ba__icon">
                   <svg
                     width="14"
                     height="14"
@@ -37,10 +38,12 @@ function BestArticlesItem() {
                       fill="white"
                     />
                   </svg>
-                  <p className="mc_ba_text">506</p>
                 </div>
-                <div className="maincontent_bestarticle__statblock">
-                  {/* Comment */}
+                <p className="mc_ba_text">506</p>
+              </div>
+              <div className="maincontent_bestarticle__statblock">
+                {/* Comment */}
+                <div className="mc_ba__icon">
                   <svg
                     width="14"
                     height="14"
@@ -60,39 +63,39 @@ function BestArticlesItem() {
                       </clipPath>
                     </defs>
                   </svg>
-                  <p className="mc_ba_text">80</p>
                 </div>
+                <p className="mc_ba_text">80</p>
               </div>
-              <div className="maincontent_bestarticle__statblock">
-                {/* View */}
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2.45617 11.4718C1.81872 10.6436 1.5 10.2295 1.5 9C1.5 7.77047 1.81872 7.3564 2.45617 6.52825C3.72897 4.87467 5.86359 3 9 3C12.1364 3 14.271 4.87467 15.5438 6.52825C16.1813 7.35639 16.5 7.77047 16.5 9C16.5 10.2295 16.1813 10.6436 15.5438 11.4718C14.271 13.1253 12.1364 15 9 15C5.86359 15 3.72897 13.1253 2.45617 11.4718Z"
-                    stroke="white"
-                    strokeOpacity="0.8"
-                  />
-                  <path
-                    d="M11.25 9C11.25 10.2426 10.2426 11.25 9 11.25C7.75736 11.25 6.75 10.2426 6.75 9C6.75 7.75736 7.75736 6.75 9 6.75C10.2426 6.75 11.25 7.75736 11.25 9Z"
-                    stroke="white"
-                    strokeOpacity="0.8"
-                  />
-                </svg>
-                <p className="mc_ba_viewtext">1066</p>
-              </div>
+            </div>
+            <div className="maincontent_bestarticle__statblock">
+              {/* View */}
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2.45617 11.4718C1.81872 10.6436 1.5 10.2295 1.5 9C1.5 7.77047 1.81872 7.3564 2.45617 6.52825C3.72897 4.87467 5.86359 3 9 3C12.1364 3 14.271 4.87467 15.5438 6.52825C16.1813 7.35639 16.5 7.77047 16.5 9C16.5 10.2295 16.1813 10.6436 15.5438 11.4718C14.271 13.1253 12.1364 15 9 15C5.86359 15 3.72897 13.1253 2.45617 11.4718Z"
+                  stroke="white"
+                  strokeOpacity="0.8"
+                />
+                <path
+                  d="M11.25 9C11.25 10.2426 10.2426 11.25 9 11.25C7.75736 11.25 6.75 10.2426 6.75 9C6.75 7.75736 7.75736 6.75 9 6.75C10.2426 6.75 11.25 7.75736 11.25 9Z"
+                  stroke="white"
+                  strokeOpacity="0.8"
+                />
+              </svg>
+              <p className="mc_ba_viewtext">1066</p>
             </div>
           </div>
         </div>
-        <div className="maincontent_bestarticle__photo">
-          {/* тут фотку надо вставлять */}
-        </div>
       </div>
+      <div className="maincontent_allarticle__photo"></div>
+      {/* <img className="maincontent_bestarticle__photo" src="img/image 4.png" /> */}
+    </div>
   );
-}
+};
 
-export default BestArticlesItem;
+export default AllArticlesItem;
