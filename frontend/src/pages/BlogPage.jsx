@@ -1,7 +1,14 @@
-import AllArticles from "./AllArticles";
-import BestArticles from "./BestArticles";
+import {useEffect} from 'react';
+import AllArticles from "../components/Blog/BlogMain";
+import BestArticles from "../components/Blog/BestBlogCard";
+import axiosClient from "../axoisClient";
 
-const AllArticlesMain = () => {
+const BlogPage = () => {
+  useEffect(() => {
+    axiosClient.post("/blog").then(({data}) => {
+      console.log(data.allBlogs);
+    });
+  }, [])
   return (
     <div className="maincontent">
       <div className="maincontent_container">
@@ -19,4 +26,4 @@ const AllArticlesMain = () => {
   );
 };
 
-export default AllArticlesMain;
+export default BlogPage;

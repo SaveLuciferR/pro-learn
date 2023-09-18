@@ -1,6 +1,18 @@
-import AllArticlesItem from "./AllArticlesItem";
+import { useEffect, useState } from "react";
+import BlogCard from "./BlogCard";
+import axiosClient from "../../axoisClient";
 
 const AllArticles = () => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    axiosClient.post("/blog").then(({data}) => {
+      console.log(setItems(data.allBlogs));
+      setItems(data.allBlogs);
+    });
+  }, [])
+
+  const blogs = items.map((item) => <BlogCard key ={item.id} {...item} />)
   return (
     <div>
       <div className="maincontent_maintext">
@@ -13,12 +25,13 @@ const AllArticles = () => {
       </div>
     </div>
     <div className="maincontent_allarticle">
-      <AllArticlesItem/>
-      <AllArticlesItem/>
-      <AllArticlesItem/>
-      <AllArticlesItem/>
-      <AllArticlesItem/>
-      <AllArticlesItem/>
+      {blogs}
+      {/* <BlogCard/>
+      <BlogCard/>
+      <BlogCard/>
+      <BlogCard/>
+      <BlogCard/>
+      <BlogCard/> */}
     </div>
     </div>
   );
