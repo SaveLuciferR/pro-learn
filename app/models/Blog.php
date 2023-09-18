@@ -18,7 +18,7 @@ class Blog extends AppModel
     public function getAllBlogs($lang)
     {
         return R::getAll(
-            "SELECT b.slug, b.img, b.date_of_publication, 
+            "SELECT b.slug, bd.excerpt, b.img, b.date_of_publication, 
                             b.views, u.role, u.username, bd.title, bd.content, 
                             (SELECT COUNT(bm.user_id)
                             FROM blogmark bm
@@ -38,7 +38,7 @@ class Blog extends AppModel
     /***/
 
     public  function getPopularBlogs($lang) {
-        return R::getAll("SELECT b.slug, b.img, b.date_of_publication, 
+        return R::getAll("SELECT b.slug, bd.excerpt, b.img, b.date_of_publication, 
                             b.views, u.role, u.username, bd.title, bd.content, 
                             (SELECT COUNT(bm.user_id)
                             FROM blogmark bm
