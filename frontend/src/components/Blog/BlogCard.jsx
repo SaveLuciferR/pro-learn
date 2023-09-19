@@ -15,7 +15,7 @@ const AllArticlesItem = (obj) => {
               </p>
               <p className="mc_ba_nickname">{obj.username}</p>
             </div>
-            <p className="maincontent_bestarticle__title">
+            {/* <p className="maincontent_bestarticle__title"> */}
               <ClampLines
                 text={obj.title}
                 id="all-card-title"
@@ -25,19 +25,18 @@ const AllArticlesItem = (obj) => {
                 className="maincontent_bestarticle__title"
                 innerElement="p"
               />
-            </p>
-            <p className="maincontent_bestarticle__content">
+            {/* </p> */}
+            {/* <p className="maincontent_bestarticle__content"> */}
             {/* <ClampLines
                 text={obj.content}
                 id="all-card-text"
                 lines={4}
+                buttons= {false}
                 ellipsis="..."
                 className="maincontent_bestarticle__content"
                 innerElement="p"
               /> */}
-              Apple объявила о начале приёме заявок от белых хакеров на участие в
-            программе iPhone Security Research Device Program (SRDP) 2024 года. Заявки от ИБ-исследователей fjfkdjfkdjf
-            </p>
+            {/* </p> */}
 
             <div className="maincontent_bestarticle__stat">
               {/* Часть с лайками, комментами и просмотрами */}
