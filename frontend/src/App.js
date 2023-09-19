@@ -10,11 +10,11 @@ import BlogPage from "./pages/BlogPage";
 const App = () => {
 
   return (
-    <div>
+    <>
       <Header />
       <Sidebar />
       <BlogPage />
-    </div>
+    </>
   );
 };
 

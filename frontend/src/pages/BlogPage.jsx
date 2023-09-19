@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import AllArticles from "../components/Blog/BlogMain";
 import BestArticles from "../components/Blog/BestBlogCard";
-import axiosClient from "../axoisClient";
+import axiosClient from "../axiosClient";
 
 const BlogPage = () => {
   useEffect(() => {
@@ -15,7 +15,6 @@ const BlogPage = () => {
         <div className="maincontent_maintext">
           <h1 className="maincontent__title">Статьи</h1>
           <h4 className="maincontent_category">
-            
             &gt; Лучшие статьи на этой неделе
           </h4>
         </div>
