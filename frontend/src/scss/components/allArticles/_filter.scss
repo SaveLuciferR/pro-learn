@@ -8,6 +8,7 @@
   height: 100%;
 
   background-color: #161b22;
+  transition: 0.4s;
 
   &_category {
     font-size: 20px;
@@ -115,4 +116,8 @@ label {
   &:checked + .custom_checkbox::before {
     transform: translate(-50%, -50%) scale(1);
   }
+}
+
+.filter.active{
+  transform: translateX(400px);
 }

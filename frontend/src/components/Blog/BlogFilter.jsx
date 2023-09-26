@@ -1,15 +1,21 @@
 import { useState } from "react";
 
 const Filter = () => {
-  // const [isInvisibleFilter, setIsInvisibleFilter] = useState(false);
+  const [btnFilter, setBtnFilter] = useState(false);
+
+  const changeState = () => {
+    setBtnFilter(true);
+  }
+
+  let check = btnFilter ? ' active' : '';
 
   return (
-    <div className="filter">
+    <div className={`filter${check}`}>
       <div className="filter_container">
         <div className="filter_header">
           <svg
-          // onClick={() => setIsInvisibleFilter(false)}
             className="filter_close"
+            onClick={changeState}
             width="24"
             height="24"
             viewBox="0 0 24 24"
