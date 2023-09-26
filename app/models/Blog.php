@@ -18,7 +18,7 @@ class Blog extends AppModel
     public function getAllBlogs($lang)
     {
         return R::getAll(
-            "SELECT b.slug, b.img, b.popular, b.dateofpublication, 
+            "SELECT b.slug, b.img, b.date_of_publication, 
                             b.views, u.role, u.username, bd.title, bd.content, 
                             (SELECT COUNT(bm.user_id)
                             FROM blogmark bm
@@ -28,10 +28,29 @@ class Blog extends AppModel
                             WHERE br.blog_id = b.id) AS 'comments'
                         FROM blog b JOIN blog_description bd ON b.id = bd.blog_id
                         JOIN user u ON u.id = b.user_id
-                        WHERE bd.language_id = ? AND b.status = 'Опубликован'
-                        ORDER BY b.dateofpublication DESC",
+                        WHERE bd.language_id = ? AND b.status = 'Опубликован' AND b.popular = 0
+                        ORDER BY b.date_of_publication DESC",
             [$lang]
         );
+    }
+
+
+    /***/
+
+    public  function getPopularBlogs($lang) {
+        return R::getAll("SELECT b.slug, b.img, b.date_of_publication, 
+                            b.views, u.role, u.username, bd.title, bd.content, 
+                            (SELECT COUNT(bm.user_id)
+                            FROM blogmark bm
+                            WHERE bm.mark = 1 AND bm.blog_id = b.id) AS 'like',
+                            (SELECT COUNT(br.user_id)
+                            FROM blogresponse br
+                            WHERE br.blog_id = b.id) AS 'comments'
+                        FROM blog b JOIN blog_description bd ON b.id = bd.blog_id
+                        JOIN user u ON u.id = b.user_id
+                        WHERE bd.language_id = ? AND b.status = 'Опубликован' AND b.popular = 1
+                        ORDER BY b.date_of_publication DESC",
+            [$lang]);
     }
 
 
@@ -43,7 +62,7 @@ class Blog extends AppModel
     public function getBlog($lang, $slug)
     {
         return R::getRow(
-            "SELECT b.id, b.slug, b.img, b.dateofpublication, b.views, b.status, bd.heading, bd.content, bd.title, bd.description, bd.keywords, u.username, u.role,
+            "SELECT b.id, b.slug, b.img, b.date_of_publication, b.views, b.status, bd.heading, bd.content, bd.title, bd.description, bd.keywords, u.username, u.role,
                             (SELECT COUNT(bm.user_id)
                             FROM blogmark bm
                             WHERE bm.mark = 1 AND bm.blog_id = b.id) AS 'like',
@@ -69,10 +88,10 @@ class Blog extends AppModel
     {
         // лайки и дизлайки в запросе нужны
         $tree = [];
-        $temp = R::getAssoc("SELECT br.id, u.username, u.role, br.parent_id, br.content, br.dateofpublication
+        $temp = R::getAssoc("SELECT br.id, u.username, u.role, br.parent_id, br.content, br.date_of_publication
                                    FROM blogresponse br JOIN user u ON u.id = br.user_id
                                    WHERE br.blog_id = ?
-                                   ORDER BY br.dateofpublication DESC", [$id]);
+                                   ORDER BY br.date_of_publication DESC", [$id]);
 
         // Создание дерева с комментариями
         foreach ($temp as $id => &$response) {

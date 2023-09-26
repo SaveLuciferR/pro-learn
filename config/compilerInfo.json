@@ -1,0 +1,8 @@
+{
+  "py": {
+    "name": "Python 3.11.5",
+    "is_archived": false,
+    "source_file": "main.py",
+    "run_cmd": "/Python/python3 main.py"
+  }
+}

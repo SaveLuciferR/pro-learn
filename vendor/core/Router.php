@@ -72,8 +72,11 @@ class Router
         $url = self::removeQueryString($url);
         if (self::matchRoute($url)) {
             if (!empty(self::$route['lang'])) {
+//                debug(self::$route['lang']);
                 App::$app->setProperty('lang', self::$route['lang']);
             }
+
+            if (!empty(self::$route))
 
             $controller = 'app\controllers\\' . self::$route['admin_prefix'] . self::$route['controller'] . 'Controller';
             if (class_exists($controller)) {
@@ -107,6 +110,8 @@ class Router
 
     public static function matchRoute($url): bool
     {
+//        debug($url, 1);
+
         foreach (self::$routes as $pattern => $route) {
             if (preg_match("#{$pattern}#", $url, $matches)) {
                 foreach ($matches as $k => $v) {
@@ -125,8 +130,14 @@ class Router
                     $route['admin_prefix'] .= '\\';
                 }
 
+                if (isset($route['secondaryPath'])) {
+                    $route['secondaryPath'] = str_replace(' ', '%', $route['secondaryPath']);
+                }
+
                 $route['controller'] = self::upperCamelCase($route['controller']);
                 self::$route = $route;
+
+//                debug($route, 1);
 
                 return true;
             }

@@ -45,7 +45,7 @@ class Language
             $key = key($languages);
         } else {
             $lang = h($lang);
-            throw new \Exception("Not Found language {lang}", 404);
+            throw new \Exception("Not Found language '{$lang}'", 404);
         }
 
         $lang_info = $languages[$key];
