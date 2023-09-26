@@ -7,6 +7,7 @@ import "./scss/app.scss"; // Подключение стилей
 
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import BlogPage from "./pages/BlogPage";
 
 const axiosClient = axios.create({
   baseURL: `http://pro-learn`,

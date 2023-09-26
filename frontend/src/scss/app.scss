@@ -1,7 +1,9 @@
-@import './components/all';
+@use "scss-reset/reset";
 
 body{
   font-family: 'Fira Code', monospace;
   color: #ffffff;
   line-height: normal;
 }
+
+@import './components/all';

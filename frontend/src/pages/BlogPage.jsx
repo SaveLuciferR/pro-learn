@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import AllArticles from "../components/Blog/BlogMain";
 import BestArticles from "../components/Blog/BestBlogCard";
 import axiosClient from "../axiosClient";
-import Filter from "../components/Blog/BlogFilter";
 
 const BlogPage = () => {
   useEffect(() => {

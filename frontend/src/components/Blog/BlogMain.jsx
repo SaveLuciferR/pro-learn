@@ -5,6 +5,7 @@ import axiosClient from "../../axiosClient";
 
 const AllArticles = () => {
   const [items, setItems] = useState([]);
+  const [activeFilter, setActiveFilter] = useState(false);
 
   useEffect(() => {
     axiosClient.post("/blog").then(({ data }) => {
@@ -21,10 +22,9 @@ const AllArticles = () => {
         <div className="maincontent_maintext">
           <div className="maincontent_maintitle">
             <h4 className="maincontent_category"> &gt; Все статьи</h4>
-            <div
-              className="maincontent_filter"
-            >
-              <p className="maincontent_filtertext">Фильтр</p>
+            <button type="button"
+                    onClick={() => setActiveFilter(true)}
+                    className="maincontent_filter">Фильтр
               <svg
                 width="22"
                 height="20"
@@ -40,12 +40,12 @@ const AllArticles = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-            </div>
+            </button>
           </div>
         </div>
         <div className="maincontent_allarticle">{blogs}</div>
       </div>
-      <BlogFilter/>
+      <BlogFilter currentFilter={activeFilter} activeFilter={(state) => setActiveFilter(state)}/>
     </>
   );
 };

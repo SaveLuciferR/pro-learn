@@ -1,21 +1,14 @@
 import { useState } from "react";
 
-const Filter = () => {
-  const [btnFilter, setBtnFilter] = useState(false);
-
-  const changeState = () => {
-    setBtnFilter(true);
-  }
-
-  let check = btnFilter ? ' active' : '';
+const BlogFilter = ({currentFilter, activeFilter}) => {
 
   return (
-    <div className={`filter${check}`}>
+    <div className={`filter${currentFilter ? ' active' : ''}`}>
       <div className="filter_container">
         <div className="filter_header">
+          <button type="button" onClick={() => activeFilter(false)}>
           <svg
             className="filter_close"
-            onClick={changeState}
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -37,6 +30,7 @@ const Filter = () => {
               strokeLinejoin="round"
             />
           </svg>
+          </button>
           <h2 className="filter_title">Фильтр</h2>
         </div>
         <h3 className="filter_category">&gt; Категория статей</h3>
@@ -126,4 +120,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default BlogFilter;
