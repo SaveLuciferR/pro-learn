@@ -1,11 +1,10 @@
-
-const BlogFilter = ({currentFilter, activeFilter}) => {
+const BlogFilter = ({currentFilter, activeFilter}) => {//Фильтр для страницы со статьями
 
   return (
-    <div className={`filter${currentFilter ? ' active' : ''}`}>
+    <div className={`filter${currentFilter ? ' active' : ''}`}>{/* Тернарный оператор на раздачу активного класса */}
       <div className="filter_container">
         <div className="filter_header">
-          <button type="button" onClick={() => activeFilter(false)}>
+          <button type="button" onClick={() => activeFilter(false)}>{/* Изменение state при клике */}
           <svg
             className="filter_close"
             width="24"
@@ -28,12 +27,12 @@ const BlogFilter = ({currentFilter, activeFilter}) => {
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-          </svg>
+          </svg>{/* Иконка закрытия фильтра (Х) */}
           </button>
           <h2 className="filter_title">Фильтр</h2>
         </div>
         <h3 className="filter_category">&gt; Категория статей</h3>
-        <div className="filter_checkbox">
+        <div className="filter_checkbox">{/* Чекбоксы стилизованы */}
           <div className="filter_checkbox__item">
             <label>
               <input className="real_checkbox" type="checkbox" />
@@ -87,7 +86,7 @@ const BlogFilter = ({currentFilter, activeFilter}) => {
             </label>
           </div>
         </div>
-        <div className="filter_search">
+        <div className="filter_search">{/* Строка поиска */}
           <input
             className="filter_search__item"
             type="text"
