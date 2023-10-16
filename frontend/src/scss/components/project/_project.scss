@@ -1,0 +1,64 @@
+.project {
+    position: absolute;
+    background-color: #0d1117;
+    width: 100%;
+    max-width: 100vw;
+    height: 100%;
+    max-height: 100vh;
+}
+
+.project__container {
+    margin: 0 auto;
+    margin-top: 160px;
+    max-width: 1080px;
+}
+
+.project__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-inner {
+        display: flex;
+        &>h1 {
+            padding-right: 24px;
+
+            font-size: 36px;
+            font-weight: 500;
+        }
+        
+    }
+
+    &-public {
+        display: flex;
+        gap: 8px;
+
+        text-align: center;
+        align-items: center;
+
+        &>span {
+            opacity: 0.6;
+            font-size: 16px;
+            font-weight: 300;
+        }
+    }
+
+    
+}
+
+.project_description {
+    padding-top: 16px;
+
+    text-align: justify;
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.project__last-info {
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: 16px;
+    font-size: 16px;
+    opacity: 0.6;
+}
