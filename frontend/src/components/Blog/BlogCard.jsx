@@ -27,15 +27,15 @@ const AllArticlesItem = (obj) => {
               />
             {/* </p> */}
             {/* <p className="maincontent_bestarticle__content"> */}
-            {/* <ClampLines
-                text={obj.content}
+            <ClampLines
+                text={obj.excerpt}
                 id="all-card-text"
                 lines={4}
                 buttons= {false}
                 ellipsis="..."
                 className="maincontent_bestarticle__content"
                 innerElement="p"
-              /> */}
+              />
             {/* </p> */}
 
             <div className="maincontent_bestarticle__stat">
@@ -111,7 +111,7 @@ const AllArticlesItem = (obj) => {
           </div>
         </div>
         <div className="maincontent_allarticle__photo"></div>
-        {/* <img className="maincontent_bestarticle__photo" src="img/image 4.png" /> */}
+         <img className="maincontent_bestarticle__photo" src={`http://pro-learn/${obj.img}`} alt={obj.title} />
       </div>
     </>
   );

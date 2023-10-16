@@ -19,7 +19,6 @@ class BlogController extends AppController
     public function indexAction()
     {
         $allBlogItem = $this->model->getAllBlogs(App::$app->getProperty('language')['ID']);
-
         $popularBlogs = $this->model->getPopularBlogs(App::$app->getProperty('language')['ID']);
 
         if (!$allBlogItem) {
@@ -28,7 +27,7 @@ class BlogController extends AppController
 
         // debug($allBlogItem, 1);
 
-        echo json_encode(array('allBlogs' => $allBlogItem, 'popularBlogs' => $popularBlogs));
+        echo json_encode(array('allBlogs' => $allBlogItem, 'popularBlogs' => $popularBlogs), JSON_UNESCAPED_SLASHES);
     }
 
 

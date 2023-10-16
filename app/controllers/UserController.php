@@ -54,6 +54,8 @@ class UserController extends AppController
             }
         }
 
+        debug($filesProject, 1);
+
         if (isset($filesProject['body'])) echo json_encode(array('fileInfo' => $filesProject), JSON_UNESCAPED_SLASHES);
         else echo json_encode(array('filesProject' => $filesProject), JSON_UNESCAPED_SLASHES);
     }
