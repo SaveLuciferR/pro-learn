@@ -77,5 +77,5 @@ const CompilerConsole = () => {
       <div className="console-text">CONSOLE</div>
     </div>
   );
-}
+};
 export default CompilerConsole;

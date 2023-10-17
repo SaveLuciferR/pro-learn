@@ -1,21 +1,24 @@
-import CompilerConsole from "../components/Compiler/CompilerConsole";
 import CompilerEditor from "../components/Compiler/CompilerEditor";
 import CompilerOutput from "../components/Compiler/CompilerOutput";
+import CompilerConsole from "../components/Compiler/CompilerConsole";
+import CompilerSidebar from "../components/Compiler/CompilerSidebar";
 
 const Compiler = () => {
   return (
-    <div className="compiler">
-      <div className="compiler-container">
-        <div className="compiler-blocks">
-          <div className="compiler-part">
-            {/* Временный костыль тк пока не используется нормальное изменение размеров */}
+    <>
+      <CompilerSidebar />
+      <div className="compiler">
+        <div className="compiler-container">
+          <div className="compiler-blocks">
             <CompilerEditor />
-            <CompilerConsole />
+            <div className="compiler-part">
+              <CompilerOutput />
+              <CompilerConsole />
+            </div>
           </div>
-          <CompilerOutput />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

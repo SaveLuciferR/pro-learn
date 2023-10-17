@@ -12,14 +12,12 @@ const CompilerEditor = () => {
   return (
     <>
       <div className="editor">
-        <div className="editor-tabs">
-          {/* Будущий map по названиям файлов */}
+        <div className="editor-tabs">{/* Будущий map по названиям файлов */}
           {testtitles.map((value, i) => (
             <button
-              key={i}
               type="button"
               onClick={() => onClickTab(i)}
-              className={`editor-tab${activeTab === i ? " active" : ""}`}
+              className={`editor-tab${activeTab === i ? ' active' : ''}`}
             >
               <p className="editor-title">{value}</p>
             </button>

@@ -105,7 +105,7 @@ const BlogCard = (obj) => {//Карточка статьи
             </div>
           </div>
         </div>
-          <img className="maincontent_allarticle__photo" src={`http://pro-learn${obj.img}`} alt="blogcardphoto" />
+          {/* <img className="maincontent_allarticle__photo" src={`http://pro-learn${obj.img}`} alt={obj.title} /> */}
       </div>
     </>
   );
