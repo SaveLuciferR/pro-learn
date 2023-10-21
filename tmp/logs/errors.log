@@ -1088,3 +1088,169 @@
 [2023-10-10 10:52:17] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.id' in 'on clause' | Файл: C:\OSPanel\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
 >>>>>>> Stashed changes
 =================
+[2023-10-17 12:26:10] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-17 12:45:46] Текст ошибки: Undefined array key "body" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 49
+=================
+[2023-10-17 12:48:27] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-17 13:28:41] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-17 13:28:53] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-17 13:32:07] Текст ошибки: syntax error, unexpected token "echo" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 63
+=================
+[2023-10-17 13:32:11] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 42
+=================
+[2023-10-17 13:32:41] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 42
+=================
+[2023-10-17 13:32:42] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 42
+=================
+[2023-10-17 13:32:42] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 42
+=================
+[2023-10-17 13:32:42] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 42
+=================
+[2023-10-17 13:32:42] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 42
+=================
+[2023-10-17 13:32:42] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 42
+=================
+[2023-10-17 13:32:42] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 42
+=================
+[2023-10-17 13:32:43] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 42
+=================
+[2023-10-17 13:32:43] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 42
+=================
+[2023-10-17 14:20:35] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 10
+=================
+[2023-10-17 14:20:50] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 10
+=================
+[2023-10-17 14:22:22] Текст ошибки: array_shift(): Argument #1 ($array) must be of type array, null given | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 11
+=================
+[2023-10-17 14:22:22] Текст ошибки: array_shift(): Argument #1 ($array) must be of type array, null given | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 11
+=================
+[2023-10-17 14:22:27] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 10
+=================
+[2023-10-17 14:22:27] Текст ошибки: array_shift(): Argument #1 ($array) must be of type array, null given | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 11
+=================
+[2023-10-17 14:23:49] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 15
+=================
+[2023-10-17 14:26:13] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 19
+=================
+[2023-10-17 14:26:18] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 19
+=================
+[2023-10-17 14:26:56] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 19
+=================
+[2023-10-17 14:28:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-17 14:29:10] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-17 14:30:14] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-17 14:47:19] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 34
+=================
+[2023-10-17 14:48:15] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 34
+=================
+[2023-10-17 14:49:45] Текст ошибки: array_merge(): Argument #1 must be of type array, bool given | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 47
+=================
+[2023-10-17 14:52:30] Текст ошибки: array_merge(): Argument #1 must be of type array, bool given | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 47
+=================
+[2023-10-17 14:53:14] Текст ошибки: array_merge(): Argument #1 must be of type array, bool given | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 47
+=================
+[2023-10-17 15:05:17] Текст ошибки: strtolower(): Argument #1 ($string) must be of type string, array given | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 44
+=================
+[2023-10-17 15:05:35] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 56
+=================
+[2023-10-17 15:06:02] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 56
+=================
+[2023-10-17 15:07:07] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 56
+=================
+[2023-10-17 20:06:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-20 17:51:25] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-20 18:24:48] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-20 18:25:04] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-20 18:25:08] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-20 18:25:15] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-20 18:25:52] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-20 18:25:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-20 18:25:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-20 18:45:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-20 18:51:16] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 18:51:51] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 18:51:55] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 19:06:38] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 19:39:24] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 20:33:49] Текст ошибки: Проект не найден | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 44
+=================
+[2023-10-20 20:33:49] Текст ошибки: Проект не найден | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 44
+=================
+[2023-10-20 21:04:19] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 21:04:33] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 21:07:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 21:09:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-20 21:09:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-20 21:14:08] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 21:18:35] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 21:18:47] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 21:25:20] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 21:25:42] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 21:26:33] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 21:31:10] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 21:31:13] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 21:59:58] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 22:00:52] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 22:00:58] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 22:03:03] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 22:03:23] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 22:03:42] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 22:03:59] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-20 22:05:03] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 79
+=================
+[2023-10-21 10:03:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-21 10:25:35] Текст ошибки: Class "IntlDateFormatter" not found | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 49
+=================
+[2023-10-21 13:26:03] Текст ошибки: file_exists() expects exactly 1 argument, 2 given | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 70
+=================
+[2023-10-21 13:26:25] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 45
+=================
+[2023-10-21 13:27:05] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 45
+=================
+[2023-10-21 13:27:15] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 45
+=================
+[2023-10-21 13:27:23] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 45
+=================

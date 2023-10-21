@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\User;
+use DateTime;
+use IntlDateFormatter;
 
 /** @property User $model */
 
@@ -39,24 +41,39 @@ class UserController extends AppController
 
     public function projectAction()
     {
+        
+        $path = USER_PROJECT . $this->route['username'] . $this->route['slug'] . (isset($this->route['secondaryPath']) ? $this->route['secondaryPath'] : "");
         $project = $this->model->getProjectInfoBySlug($this->route['slug'], $this->route['username']);
         if (!$project) throw new \Exception("Проект не найден", 404);
 
-        $languagesProgProject = $this->model->getProjectLangsByID($project['id']);
+        $project['date_of_publication'] = date('d.m.Y', strtotime($project['date_of_publication']));
 
         if (isset($this->route['secondaryPath'])) {
-            $filesProject = $this->model->getFilesProject($project, $this->route['secondaryPath']);
-//            debug($filesProject['body'], 1);
+            $filesProject = $this->model->getFilesProject($project, $path, $this->route['secondaryPath']);
+        //    debug($filesProject['body'], 1);
         } else {
-            $filesProject = $this->model->getFilesProject($project);
+            $filesProject = $this->model->getFilesProject($project, $path,);
             if ($filesProject === false) {
                 throw new \Exception("Проект не найден", 404);
             }
         }
 
-        debug($filesProject, 1);
+        $projectInfo = [];
 
-        if (isset($filesProject['body'])) echo json_encode(array('fileInfo' => $filesProject), JSON_UNESCAPED_SLASHES);
-        else echo json_encode(array('filesProject' => $filesProject), JSON_UNESCAPED_SLASHES);
+        $projectInfo['languagesProgProject'] = $this->model->getProjectLangsByID($project['id']);
+        $projectInfo['info'] = $project;
+        // debug($projectInfo, 1);
+
+
+        $readmeFile = "";
+
+        if (file_exists($path . "/README.md")) {
+            $readmeFile = file_get_contents($path . "/README.md");
+            // debug($readmeFile, 1);
+        }
+
+        // debug($path, 1);
+
+       echo json_encode(array('projectInfo' => $projectInfo, 'filesInfo' => $filesProject, 'readmeFile' => $readmeFile), JSON_UNESCAPED_SLASHES);
     }
 }
