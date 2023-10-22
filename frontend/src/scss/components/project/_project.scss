@@ -13,6 +13,11 @@
     max-width: 1080px;
 }
 
+.project__inner {
+    position: relative;
+    display: block;
+}
+
 .project__info {
     display: flex;
     justify-content: space-between;
@@ -207,7 +212,7 @@
                     color: #db5b42;
 
                     &::before {
-                     background-color: #db5b42;   
+                        background-color: #db5b42;
                     }
                 }
             }
@@ -217,4 +222,20 @@
 
 .project__readme {
     margin-top: 200px;
+}
+
+.project__add-title {
+    margin-bottom: 28px;
+    
+    text-align: center;
+}
+
+.project__add-body {
+    width: 100%;
+
+    &_name {
+        display: flex;
+        column-gap: 20px;
+        align-items: center;
+    }
 }
