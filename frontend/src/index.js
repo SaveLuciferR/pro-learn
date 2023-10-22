@@ -9,3 +9,7 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+export const logger = () => {
+  console.log("Привет, я App");
+}
