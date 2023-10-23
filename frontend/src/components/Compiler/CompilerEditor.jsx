@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
+import {ControlledEditor, monaco} from "@monaco-editor/react";
 
 const CompilerEditor = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -8,6 +10,18 @@ const CompilerEditor = () => {
   const onClickTab = (index) => {
     setActiveTab(index);
   };
+
+  // useEffect(() => {
+  //   monaco
+  //     .init()
+  //     .then((monaco) => {
+  //       import("monaco-themes/themes/Blackboard.json").then((data) => {
+  //         monaco.editor.defineTheme("Blackboard", data);
+  //       });
+  //     })
+  //     .catch((error) =>
+  //       console.error("error"));
+  // }, []);
 
   return (
     <>
@@ -26,7 +40,13 @@ const CompilerEditor = () => {
           ))}
         </div>
         <div className="editor-workspace">
-          <div className="editor-container">EDITOR</div>
+          <div className="editor-container">
+            <ControlledEditor
+              height="300px"
+              defaultLanguage="html"
+              // theme = "Blackboard"
+            />
+          </div>
         </div>
       </div>
     </>
