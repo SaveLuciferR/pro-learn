@@ -8,10 +8,8 @@ class CompilerController extends AppController
 {
     public function indexAction()
     {
-        $parameters = json_decode(file_get_contents("php://input"), true);
-        $progLanguage = $parameters['language'];
+        $fileStructure = $this->model->getAllFileProject($this->route['username'], $this->route['slug']);
 
-        shell_exec(COMPILER . PROGRAMMING_LANGUAGES[$progLanguage]['run_cmd']); // /public/compiler/Python /public/projects/Hello-worldProgram/main.py
-
+        echo json_encode(array('fileStructure' => $fileStructure), JSON_UNESCAPED_SLASHES);
     }
 }

@@ -9,7 +9,7 @@ const BlogMain = () => {//Страница со всеми статьями
 
   useEffect(() => {//Effect, который получает данные с бека
     axiosClient.post("/blog").then(({ data }) => {
-      console.log(setItems(data.allBlogs));
+      // console.log(setItems(data.allBlogs));
       setItems(data.allBlogs);
     });
   }, []);

@@ -1,8 +1,10 @@
+@import './components';
+@import './markdown';
 @import './header';
 @import './sidebar';
-
-
 @import './Blog/blogMain';
 @import './Blog/filter';
-
-@import './Compiler/compiler'
+@import './Compiler/compiler';
+@import './allArticles/allArticles';
+@import './allArticles/filter';
+@import './project/project';

@@ -35,7 +35,7 @@ class Cache
      * @return mixed|false Возвращает данные, если нашлись по ключу и/или не вышло время жизни кеша, иначе false
      */
 
-    public function getCache($key)
+    public function getCache($key, &$data = null)
     {
         $file = CACHE . '/' . md5($key) . '.txt';
 
@@ -45,7 +45,7 @@ class Cache
             if (time() <= $content['endTime']) {
                 return $content['data'];
             }
-
+            $data = $content['data'];
             unlink($file);
         }
 

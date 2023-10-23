@@ -18,9 +18,8 @@ class BlogController extends AppController
 
     public function indexAction()
     {
-        $allBlogItem = $this->model->getAllBlogs(App::$app->getProperty('language')['ID']);
-
-        $popularBlogs = $this->model->getPopularBlogs(App::$app->getProperty('language')['ID']);
+        $allBlogItem = $this->model->getAllBlogs(App::$app->getProperty('language')['id']);
+        $popularBlogs = $this->model->getPopularBlogs(App::$app->getProperty('language')['id']);
 
         if (!$allBlogItem) {
             throw new \Exception("Статьи не найдены...", 404);
@@ -28,7 +27,7 @@ class BlogController extends AppController
 
         // debug($allBlogItem, 1);
 
-        echo json_encode(array('allBlogs' => $allBlogItem, 'popularBlogs' => $popularBlogs));
+        echo json_encode(array('allBlogs' => $allBlogItem, 'popularBlogs' => $popularBlogs), JSON_UNESCAPED_SLASHES);
     }
 
 
@@ -36,7 +35,7 @@ class BlogController extends AppController
 
     public function viewAction()
     {
-        $blog = $this->model->getBlog(App::$app->getProperty('language')['ID'], $this->route['slug']);
+        $blog = $this->model->getBlog(App::$app->getProperty('language')['id'], $this->route['slug']);
 
         if (!$blog) {
             throw new \Exception("Статья по запросу {$this->route['slug']} не найдена", 404);

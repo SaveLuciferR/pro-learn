@@ -15,24 +15,24 @@ const BlogCard = (obj) => {//Карточка статьи
               </p>
               <p className="mc_ba_nickname">{obj.username}</p>{/* Имя пользователя */}
             </div>
-              <ClampLines
-                text={obj.title}
-                id="all-card-title"
-                buttons= {false}
-                lines={3}
-                ellipsis="..."
-                className="maincontent_bestarticle__title"
-                innerElement="p"
-              />
             <ClampLines
-                text={obj.content}
-                id="all-card-text"
-                lines={4}
-                buttons= {false}
-                ellipsis="..."
-                className="maincontent_bestarticle__content"
-                innerElement="p"
-              />
+              text={obj.title}
+              id="all-card-title"
+              buttons={false}
+              lines={3}
+              ellipsis="..."
+              className="maincontent_bestarticle__title"
+              innerElement="p"
+            />
+            <ClampLines
+              text={obj.excerpt}
+              id="all-card-text"
+              lines={4}
+              buttons={false}
+              ellipsis="..."
+              className="maincontent_bestarticle__content"
+              innerElement="p"
+            />
             <div className="maincontent_bestarticle__stat">
               {/* Часть с лайками, комментами и просмотрами */}
               <div className="maincontent_bestarticle__lac">
@@ -105,7 +105,9 @@ const BlogCard = (obj) => {//Карточка статьи
             </div>
           </div>
         </div>
-          {/* <img className="maincontent_allarticle__photo" src={`http://pro-learn${obj.img}`} alt={obj.title} /> */}
+        {/* <img className="maincontent_allarticle__photo" src={`http://pro-learn${obj.img}`} alt={obj.title} /> */}
+        <div className="maincontent_allarticle__photo"></div>
+        <img className="maincontent_bestarticle__photo" src={`http://pro-learn/${obj.img}`} alt={obj.title} />
       </div>
     </>
   );

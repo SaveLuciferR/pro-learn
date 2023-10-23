@@ -6,7 +6,7 @@ import axiosClient from "../axiosClient";//Клиент соединения с 
 const BlogPage = () => {
   useEffect(() => {//Проверка на то, работает ли бек
     axiosClient.post("/blog").then(({ data }) => {
-      console.log(data.allBlogs);
+      // console.log(data.allBlogs);
     });
   }, []);
   
