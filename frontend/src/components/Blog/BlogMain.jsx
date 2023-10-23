@@ -9,7 +9,7 @@ const AllArticles = () => {
 
   useEffect(() => {
     axiosClient.post("/blog").then(({ data }) => {
-      console.log(setItems(data.allBlogs));
+      // console.log(setItems(data.allBlogs));
       setItems(data.allBlogs);
     });
   }, []);

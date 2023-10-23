@@ -7,7 +7,7 @@ import ProjectAddPage from "./pages/ProjectAddPage";
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: '/:lang?',
         element: <MainLayout activeSidebar={true}/>,
         children: [
             {

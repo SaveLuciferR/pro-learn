@@ -6,7 +6,7 @@ import axiosClient from "../axiosClient";
 const BlogPage = () => {
   useEffect(() => {
     axiosClient.post("/blog").then(({ data }) => {
-      console.log(data.allBlogs);
+      // console.log(data.allBlogs);
     });
   }, []);
   

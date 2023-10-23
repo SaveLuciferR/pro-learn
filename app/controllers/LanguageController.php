@@ -4,12 +4,26 @@
 namespace app\controllers;
 
 use core\App;
-
+use core\Language;
+use RedUNIT\Base\Indexes;
 
 /** Котроллер, который отвечает за смену языка */
 
 class LanguageController extends AppController
 {
+
+    public function indexAction()
+    {
+        $layoutWords = Language::$langLayout;
+
+        echo json_encode(
+            array(
+                'language' => App::$app->getProperty('language'), 
+                'languages' => App::$app->getProperty('languages'), 
+                'layoutWords' => $layoutWords
+            ), JSON_UNESCAPED_SLASHES
+        );
+    }
 
 
     /** Функция вызывается, когда идет запрос на смену языка.
@@ -48,5 +62,4 @@ class LanguageController extends AppController
         }
         redirect();
     }
-
 }

@@ -1,16 +1,8 @@
 .project {
-    position: absolute;
     background-color: #0d1117;
     width: 100%;
-    max-width: 100vw;
-    // height: 100%;
-    min-height: 100vh;
-}
 
-.project__container {
-    margin: 0 auto;
-    margin-top: 160px;
-    max-width: 1080px;
+    margin-top: 60px;
 }
 
 .project__inner {
@@ -237,5 +229,45 @@
         display: flex;
         column-gap: 20px;
         align-items: center;
+    }
+
+    &_desc {
+        margin-top: 28px;
+
+        &-files {
+            margin-top: 12px;
+
+            font-size: 14px;
+            font-weight: 300;
+            color: #fff;
+            opacity: 0.7;
+        }
+    }
+
+    &_files {
+        margin: 28px 0;
+
+        display: flex;
+        flex-direction: column;
+
+        row-gap: 12px;
+
+        justify-content: left;
+
+        &-item {
+            position: relative;
+            width: 203px;
+
+            display: flex;
+            justify-content: left;
+
+            &>button {
+                text-decoration: underline;
+            }
+
+            &>svg {
+                margin-right: 12px;
+            }
+        }
     }
 }

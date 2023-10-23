@@ -26,7 +26,7 @@ class Language
     /** Функция, которая собирает данные о языках из базы данных */
     public static function getLanguages(): array
     {
-        return R::getAssoc("SELECT Code, Title, Base, ID FROM Language ORDER BY base DESC");
+        return R::getAssoc("SELECT code, title, base, id FROM Language ORDER BY base DESC");
     }
 
 
@@ -49,7 +49,7 @@ class Language
         }
 
         $lang_info = $languages[$key];
-        $lang_info['Code'] = $key;
+        $lang_info['code'] = $key;
         return $lang_info;
     }
 

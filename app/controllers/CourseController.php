@@ -15,7 +15,7 @@ class CourseController extends AppController
             $currentUser = $_SESSION['user'];
 
             $currentCourse = null;
-            $finishedCourse = $this->model->getFinishedCourse(App::$app->getProperty('language')['ID'], $currentUser);
+            $finishedCourse = $this->model->getFinishedCourse(App::$app->getProperty('language')['id'], $currentUser);
             debug($finishedCourse, 1);
         } else {
             $finishedCourse = null;
@@ -26,9 +26,9 @@ class CourseController extends AppController
             $category = get('category');
             $user = get('user');
             $progLang = get('proglang');
-            $courses = $this->model->getAllCourses(App::$app->getProperty('language')['ID'], $category, $user, $progLang);
+            $courses = $this->model->getAllCourses(App::$app->getProperty('language')['id'], $category, $user, $progLang);
         } else {
-            $courses = $this->model->getAllCourses(App::$app->getProperty('language')['ID']);
+            $courses = $this->model->getAllCourses(App::$app->getProperty('language')['id']);
             debug($courses, 1);
         }
 

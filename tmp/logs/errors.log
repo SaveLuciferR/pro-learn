@@ -1254,3 +1254,45 @@
 =================
 [2023-10-21 13:27:23] Текст ошибки: Undefined array key "secondaryPath" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 45
 =================
+[2023-10-22 12:30:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-22 12:30:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-22 12:30:55] Текст ошибки: Not Found language 'language' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-22 12:31:20] Текст ошибки: Not Found language 'language' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-22 12:34:14] Текст ошибки: Not Found language 'language' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-22 12:34:59] Текст ошибки: Not Found language 'language' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-22 12:38:00] Текст ошибки: json_decode(): Argument #1 ($json) must be of type string, array given | Файл: C:\OSPanel\domains\pro-learn\app\controllers\LanguageController.php | Строка: 16
+=================
+[2023-10-22 12:38:27] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/Language/index.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-10-22 12:44:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-22 12:44:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-22 12:57:10] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\BlogController.php | Строка: 21
+=================
+[2023-10-22 12:57:10] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\BlogController.php | Строка: 21
+=================
+[2023-10-22 12:57:10] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\BlogController.php | Строка: 21
+=================
+[2023-10-22 12:57:10] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\BlogController.php | Строка: 21
+=================
+[2023-10-22 12:57:39] Текст ошибки: Undefined array key "ID" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\BlogController.php | Строка: 21
+=================
+[2023-10-22 13:05:12] Текст ошибки: Not Found language 'languag' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-22 13:30:18] Текст ошибки: Undefined array key "Code" | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Language.php | Строка: 19
+=================
+[2023-10-22 13:30:18] Текст ошибки: Undefined array key "Code" | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Language.php | Строка: 19
+=================
+[2023-10-22 13:30:31] Текст ошибки: Undefined array key "Code" | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Language.php | Строка: 19
+=================
+[2023-10-22 16:06:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-22 20:29:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================

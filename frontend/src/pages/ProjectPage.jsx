@@ -9,8 +9,8 @@ import ProjectReadme from "../components/Project/ProjectReadme";
 
 const ProjectPage = ({ activeSidebar }) => {
 
-  const [setActiveSidebar] = useOutletContext(activeSidebar);
-  setActiveSidebar(activeSidebar);
+  // const [setActiveSidebar] = useOutletContext(activeSidebar);
+  // setActiveSidebar(activeSidebar);
 
   const { project, username } = useParams();
   const [filesProject, setFilesProject] = useState([]);
@@ -37,51 +37,48 @@ const ProjectPage = ({ activeSidebar }) => {
         <div>Loading....</div>
         :
         <div className="project">
-          <div className="project__container">
+          <div className="project__inner">
 
-            <div className="project__inner">
+            <ProjectMain projectInfo={projectInfo} />
 
-              <ProjectMain projectInfo={projectInfo} />
-
-              {"language" in filesProject ?
-                <ProjectFile beforeFolder={beforeFolder} obj={filesProject} setSecondaryPath={(path) => setSecondaryPathProject(path)} setBeforeFolder={(folder) => setBeforeFolder(folder)} />
-                :
-                <>
-                  <ProjectTable
-                    setBeforeFolder={(folder) => setBeforeFolder(folder)}
-                    beforeFolder={beforeFolder}
-                    isMainFolder={isMainFolder}
-                    obj={filesProject}
-                    secondaryPath={secondaryPathProject}
-                    setSecondaryPath={(path) => setSecondaryPathProject(path)}
-                  />
-                  <div className="project__action">
-                    <div className="project__action-center">
-                      <button className="btn  primary  big center">Открыть в компиляторе</button>
-                      <div className="project__action-links center">
-                        <div className="project__action-links-item">
-                          <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2.625 13.125C2.625 15.5999 2.625 16.8373 3.39384 17.6062C4.16269 18.375 5.40013 18.375 7.875 18.375H13.125C15.5999 18.375 16.8373 18.375 17.6062 17.6062C18.375 16.8373 18.375 15.5999 18.375 13.125" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M10.5 2.625V14M10.5 14L14 10.1719M10.5 14L7 10.1719" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                          <Link>Скачать</Link>
-                        </div>
-                        <div className="project__action-links-item">
-                          <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="10.5" cy="10.5" r="8.75" stroke="#DB5B42" />
-                            <path d="M12.6875 8.31249L8.3125 12.6875M8.31248 8.31247L12.6875 12.6875" stroke="#DB5B42" strokeLinecap="round" />
-                          </svg>
-                          <Link>Удалить</Link>
-                        </div>
+            {"language" in filesProject ?
+              <ProjectFile beforeFolder={beforeFolder} obj={filesProject} setSecondaryPath={(path) => setSecondaryPathProject(path)} setBeforeFolder={(folder) => setBeforeFolder(folder)} />
+              :
+              <>
+                <ProjectTable
+                  setBeforeFolder={(folder) => setBeforeFolder(folder)}
+                  beforeFolder={beforeFolder}
+                  isMainFolder={isMainFolder}
+                  obj={filesProject}
+                  secondaryPath={secondaryPathProject}
+                  setSecondaryPath={(path) => setSecondaryPathProject(path)}
+                />
+                <div className="project__action">
+                  <div className="project__action-center">
+                    <button className="btn  primary  big center">Открыть в компиляторе</button>
+                    <div className="project__action-links center">
+                      <div className="project__action-links-item">
+                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M2.625 13.125C2.625 15.5999 2.625 16.8373 3.39384 17.6062C4.16269 18.375 5.40013 18.375 7.875 18.375H13.125C15.5999 18.375 16.8373 18.375 17.6062 17.6062C18.375 16.8373 18.375 15.5999 18.375 13.125" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M10.5 2.625V14M10.5 14L14 10.1719M10.5 14L7 10.1719" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <Link>Скачать</Link>
+                      </div>
+                      <div className="project__action-links-item">
+                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="10.5" cy="10.5" r="8.75" stroke="#DB5B42" />
+                          <path d="M12.6875 8.31249L8.3125 12.6875M8.31248 8.31247L12.6875 12.6875" stroke="#DB5B42" strokeLinecap="round" />
+                        </svg>
+                        <Link>Удалить</Link>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  {/* {console.log(readmeFile)} */}
-                  <ProjectReadme markdownFile={readmeFile}></ProjectReadme>
-                </>
-              }
-            </div>
+                {/* {console.log(readmeFile)} */}
+                <ProjectReadme markdownFile={readmeFile}></ProjectReadme>
+              </>
+            }
           </div>
         </div>
       }

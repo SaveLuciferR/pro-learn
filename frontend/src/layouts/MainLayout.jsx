@@ -1,17 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 
-const MainLayout = ({isActiveSidebar}) => {
+import axiosClient from "../axiosClient";
 
+const MainLayout = ({ isActiveSidebar }) => {
+
+    const { lang } = useParams();
+
+    const [language, setLanguage] = useState({});
+    const [languages, setLanguages] = useState({});
+    const [layoutWords, setLayoutWords] = useState({});
     const [activeSidebar, setActiveSidebar] = useState(isActiveSidebar);
 
-    return(
+    useEffect(() => {
+        axiosClient.post(`${lang === undefined ? "/" : '/' + lang + '/'}language`)
+            .then(({ data }) => {
+                setLanguage(data.language);
+                setLanguages(data.languages);
+                setLayoutWords(data.layoutWords);
+            });
+    }, [lang]);
+
+    return (
         <>
-            <Header/>
-            {activeSidebar ? <Sidebar/> : <></>}
-            <Outlet context={[setActiveSidebar]}/>
+            {Object.keys(languages).length === 0 ?
+                <div>Loading....</div>
+                :
+                <>
+                    <Header language={language} languages={languages} layoutWords={layoutWords}/>
+                    {/* {activeSidebar ? <Sidebar/> : <></>} */}
+                    <Sidebar />
+                    <div className="main">
+                        <div className="container">
+                            <Outlet context={activeSidebar} />
+                        </div>
+                    </div>
+                </>
+            }
         </>
     );
 }
