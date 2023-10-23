@@ -15,6 +15,8 @@ Router::add('^(?P<lang>[a-z]+)?/?blog/(?P<slug>[a-z0-9-]+)/?$', ['controller' =>
 Router::add('^(?P<lang>[a-z]+)?/?course/?$', ['controller' => 'Course', 'action' => 'index']); // Главная страница с кусами
 Router::add('^(?P<lang>[a-z]+)?/?course/(?P<slug>[a-z0-9-]+)/?$', ['controller' => 'Course', 'action' => 'view']); // Страница курса
 
+Router::add('^(?P<lang>[a-z]+)?/?project/add/?$', ['controller' => 'User', 'action' => 'add']); // Страница с добавлением проекта
+
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project/(?P<slug>[a-z-0-9A-Z]+)/(?P<secondaryPath>[a-z-0-9A-Z/.]+)/?$', ['controller' => 'User', 'action' => 'project']); // Страница с проектом пользователя
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project/(?P<slug>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'project']); // Страница с файлом или директорией
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project/?$', ['controller' => 'User', 'action' => 'projectList']); // Страница со всеми проектами пользователя

@@ -1,5 +1,5 @@
-import { useOutletContext } from "react-router-dom";
-import { useRef, useState, useCallback } from "react";
+import { useOutletContext, useParams } from "react-router-dom";
+import { useRef, useState, useCallback, useEffect } from "react";
 
 import axiosClient from "../axiosClient";
 import ProjectAddTable from "../components/Project/ProjectAddTable";
@@ -9,30 +9,57 @@ const ProjectAddPage = () => {
     // setActiveSidebar(activeSidebar);
 
     let baseURL = axiosClient.defaults.baseURL;
+    const { username } = useParams();
 
     const [dropdownMenuActive, setDropdownMenuActive] = useState(false);
     const [filesAdded, setFilesAdded] = useState(false);
-    const [uploadFiles, setUploadFiles] = useState({});
+    const [uploadInfoFiles, setUploadInfoFiles] = useState({});
+    const [uploadFiles, setUploadFiles] = useState(new FormData());
     const [isMainFolder, setIsMainFolder] = useState(false);
     const [beforeFolder, setBeforeFolder] = useState("");
     const [secondaryPath, setSecondaryPath] = useState("");
+    const [mainFolderProject, setMainFolderProject] = useState("");
+    const [newProject, setNewProject] = useState(true);
 
     const dropdownClick = () => dropdownMenuActive ? setDropdownMenuActive(false) : setDropdownMenuActive(true);
 
     const setNewPrivate = (e) => {
         e.persist();
-
-
     }
+
+    const axiosAsync = async () => {
+        await axiosClient.post(
+            `/project/add`,
+            {
+                uploadInfoFiles,
+                uploadFiles,
+                mainFolderProject,
+                newProject
+            },
+            {
+                headers: {
+                    // 'Content-Type': 'multipart/form-data'
+                }
+            }
+        )
+            .then(({ data }) => {
+                console.log(data);
+            });
+        setFilesAdded(false);
+    }
+
+    useEffect(() => {
+        if (filesAdded) {
+            console.log(uploadInfoFiles);
+            axiosAsync();
+        }
+    }, [filesAdded]);
 
     const handleFileSelected = (e) => {
         const currentFiles = Array.from(e.target.files);
-        console.log("files:", currentFiles);
 
-        
-
-        setUploadFiles(getStructureUploadFiles(currentFiles));
-        setFilesAdded(true);
+        setMainFolderProject(currentFiles[0].webkitRelativePath.split('/')[0]);
+        setUploadInfoFiles(getStructureUploadFiles(currentFiles));
     }
 
     const getStructureUploadFiles = (files) => {
@@ -40,6 +67,7 @@ const ProjectAddPage = () => {
         files.map((item, i) => {
             successFiles[i] = {};
             successFiles[i]['fileName'] = item.name;
+            successFiles[i]['content'] = "";
 
             // console.log(item.webkitRelativePath);
             let path = item.webkitRelativePath;
@@ -47,7 +75,13 @@ const ProjectAddPage = () => {
             path.splice(path.length - 1, 1);
             successFiles[i]['path'] = path;
             successFiles[i]['path'][0] = '/';
-            console.log(successFiles[i]);
+
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(item);
+            fileReader.onload = () => {
+                successFiles[i]['content'] = fileReader.result; // Buffer.from(fileReader.result).toString('base64');
+                setFilesAdded(true);
+            }
         });
 
         return successFiles;
@@ -92,7 +126,7 @@ const ProjectAddPage = () => {
                             <ProjectAddTable
                                 isMainFolder={isMainFolder}
                                 beforeFolder={beforeFolder}
-                                obj={uploadFiles}
+                                obj={uploadInfoFiles}
                                 setBeforeFolder={(folder) => setBeforeFolder(folder)}
                                 secondaryPath={secondaryPath}
                                 setSecondaryPath={(path) => setSecondaryPath(path)}
