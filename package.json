@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "@monaco-editor/react": "^4.6.0"
+    "@monaco-editor/react": "^4.6.0",
+    "monaco-themes": "^0.4.4",
+    "react-monaco-editor": "^0.54.0"
   }
 }

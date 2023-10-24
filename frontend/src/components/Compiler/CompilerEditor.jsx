@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import {ControlledEditor, monaco} from "@monaco-editor/react";
+import { Editor, loader } from "@monaco-editor/react";
 
 const CompilerEditor = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -11,17 +10,17 @@ const CompilerEditor = () => {
     setActiveTab(index);
   };
 
-  // useEffect(() => {
-  //   monaco
-  //     .init()
-  //     .then((monaco) => {
-  //       import("monaco-themes/themes/Blackboard.json").then((data) => {
-  //         monaco.editor.defineTheme("Blackboard", data);
-  //       });
-  //     })
-  //     .catch((error) =>
-  //       console.error("error"));
-  // }, []);
+  useEffect(() => {
+    loader
+      .init()
+      .then((monaco) => {
+        import("monaco-themes/themes/Blackboard.json").then((data) => {
+          monaco.editor.defineTheme("Blackboard", data);
+        });
+      })
+      .catch((error) =>
+        console.error("error"));
+  }, []);
 
   return (
     <>
@@ -41,10 +40,9 @@ const CompilerEditor = () => {
         </div>
         <div className="editor-workspace">
           <div className="editor-container">
-            <ControlledEditor
-              height="300px"
+            <Editor
               defaultLanguage="html"
-              // theme = "Blackboard"
+              theme="Blackboard"
             />
           </div>
         </div>
