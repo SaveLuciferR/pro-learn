@@ -94,6 +94,7 @@
     &__content{
       font-size: 16px;
       font-weight: 400;
+      max-width: 349px;
     }
   }
 
@@ -141,7 +142,7 @@
       position: relative;
       border-radius: 12px;
       height: 512px;
-      width: 379px;
+      object-fit: cover;
 
       &::after{
         content: "";
