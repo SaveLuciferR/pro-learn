@@ -16,8 +16,8 @@ class Language
 
     public static function loadWords($lang, $route)
     {
-        $langLayout = APP . "/languages/{$lang['Code']}.php";
-        $langView = APP . "/languages/{$lang['Code']}/{$route['controller']}/{$route['action']}.php";
+        $langLayout = APP . "/languages/{$lang['code']}.php";
+        $langView = APP . "/languages/{$lang['code']}/{$route['controller']}/{$route['action']}.php";
 
         if (file_exists($langLayout)) {
             self::$langLayout = require_once $langLayout;
@@ -29,7 +29,7 @@ class Language
 
         self::$langData = array_merge(self::$langLayout, self::$langView);
     }
-
+    
 
     /** Функция для получения текста на текущем языке сайта по ключу шаблона
      * @param string $key Ключ текста из шаблона

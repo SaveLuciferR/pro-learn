@@ -72,7 +72,7 @@ class User extends AppModel
                                 WHERE plp.project_id = ?", [$id]);
     }
 
-    public function getFilesProject($project, $secondaryPath = "")
+    public function getFilesProject($project, &$path, $secondaryPath = "")
     {
         $path = USER_PROJECT . '/' . $project['username'] . '/' . $project['slug'] . '/' . $secondaryPath;
 
@@ -89,16 +89,35 @@ class User extends AppModel
 
             $fileInfo['language'] = substr(strrchr( $fileInfo['fileName'], '.'), 1);
             $fileInfo['body'] = file_get_contents($path); // h(file_get_contents($path))
-//            debug($fileInfo, 1);
+        //    debug($fileInfo, 1);
             return $fileInfo;
         }
         else {
             $directoryInfo = scandir($path);
+
             array_shift($directoryInfo);
             array_shift($directoryInfo);
+
+            $directoryData = [];
+
+            foreach ($directoryInfo as $k => $v) {
+                $temp = [];
+
+                if (str_contains($v, '.')) {
+                    $temp['type'] = substr(strrchr($v, '.'), 1);
+                }
+                else {
+                    $temp['type'] = "directory";
+                }
+
+                $temp['lastCommit'] = date("d F Y", filemtime($path . '/' . $v));
+                $temp['fileName'] = $v;
+
+                $directoryData[$k] = $temp;
+            }
         }
 
-        return $directoryInfo;
+        return $directoryData;
     }
 
 }

@@ -9,6 +9,7 @@ const APP = ROOT . '/app';
 const CORE = ROOT . '/vendor/core';
 const HELPERS = ROOT . '/vendor/core/helpers';
 const CACHE = ROOT . '/tmp/cache';
+const PROJECT_CACHE = ROOT . '/tmp/project';
 const LOGS = ROOT . '/tmp/logs';
 const CONFIG = ROOT . '/config';
 define("PROGRAMMING_LANGUAGES", json_decode(file_get_contents(CONFIG . "/compilerInfo.json"), true));

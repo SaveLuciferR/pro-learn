@@ -1,6 +1,6 @@
-import ClampLines from "react-clamp-lines";
+import ClampLines from "react-clamp-lines";//Подключение библиотеки для работы с сокращениями
 
-const AllArticlesItem = (obj) => {
+const BlogCard = (obj) => {//Карточка статьи
   //Передача объекта с базы
   return (
     <>
@@ -11,33 +11,28 @@ const AllArticlesItem = (obj) => {
               {/* Инфо о статье */}
               <p className="mc_ba__date">26.08.2023</p>
               <p className="mc_ba_from">
-                {obj.role === "admin" ? "От админа" : "От пользователя"}
+                {obj.role === "admin" ? "От админа" : "От пользователя" /* Отображение типа пользователя словами */}
               </p>
-              <p className="mc_ba_nickname">{obj.username}</p>
+              <p className="mc_ba_nickname">{obj.username}</p>{/* Имя пользователя */}
             </div>
-            {/* <p className="maincontent_bestarticle__title"> */}
-              <ClampLines
-                text={obj.title}
-                id="all-card-title"
-                buttons= {false}
-                lines={3}
-                ellipsis="..."
-                className="maincontent_bestarticle__title"
-                innerElement="p"
-              />
-            {/* </p> */}
-            {/* <p className="maincontent_bestarticle__content"> */}
-            {/* <ClampLines
-                text={obj.content}
-                id="all-card-text"
-                lines={4}
-                buttons= {false}
-                ellipsis="..."
-                className="maincontent_bestarticle__content"
-                innerElement="p"
-              /> */}
-            {/* </p> */}
-
+            <ClampLines
+              text={obj.title}
+              id="all-card-title"
+              buttons={false}
+              lines={3}
+              ellipsis="..."
+              className="maincontent_bestarticle__title"
+              innerElement="p"
+            />
+            <ClampLines
+              text={obj.excerpt}
+              id="all-card-text"
+              lines={4}
+              buttons={false}
+              ellipsis="..."
+              className="maincontent_bestarticle__content"
+              innerElement="p"
+            />
             <div className="maincontent_bestarticle__stat">
               {/* Часть с лайками, комментами и просмотрами */}
               <div className="maincontent_bestarticle__lac">
@@ -57,7 +52,7 @@ const AllArticlesItem = (obj) => {
                       />
                     </svg>
                   </div>
-                  <p className="mc_ba_text">{obj.like}</p>
+                  <p className="mc_ba_text">{obj.like}</p>{/* Количество лайков */}
                 </div>
                 <div className="maincontent_bestarticle__statblock">
                   {/* Comment */}
@@ -82,7 +77,7 @@ const AllArticlesItem = (obj) => {
                       </defs>
                     </svg>
                   </div>
-                  <p className="mc_ba_text">{obj.comments}</p>
+                  <p className="mc_ba_text">{obj.comments}</p>{/* Количество комментариев */}
                 </div>
               </div>
               <div className="maincontent_bestarticle__statblock">
@@ -105,16 +100,17 @@ const AllArticlesItem = (obj) => {
                     strokeOpacity="0.8"
                   />
                 </svg>
-                <p className="mc_ba_viewtext">{obj.views}</p>
+                <p className="mc_ba_viewtext">{obj.views}</p>{/* Количество просмотров */}
               </div>
             </div>
           </div>
         </div>
+        {/* <img className="maincontent_allarticle__photo" src={`http://pro-learn${obj.img}`} alt={obj.title} /> */}
         <div className="maincontent_allarticle__photo"></div>
-        {/* <img className="maincontent_bestarticle__photo" src="img/image 4.png" /> */}
+        <img className="maincontent_bestarticle__photo" src={`http://pro-learn/${obj.img}`} alt={obj.title} />
       </div>
     </>
   );
 };
 
-export default AllArticlesItem;
+export default BlogCard;

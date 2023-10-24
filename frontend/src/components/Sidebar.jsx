@@ -1,7 +1,7 @@
 function Sidebar() {
   return (
     <nav className="sidebar">
-      <div className="container">
+      <div className="sidebar__container">
         <div className="sidebar_btngroup">
           {/* Часть с кнопками навигации */}
           <div className="sidebar_btn">
