@@ -8,3 +8,17 @@
 =================
 [2023-10-23 21:05:17] Текст ошибки: file_put_contents(C:\OSPanel\domains\pro-learn/tmp/project/24c9e15e52afc47c225b757e7bee1f9d/df0f618935ffd36b7ba2971c5a8c0fff/vendor/vendor/wfm/App.php): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 171
 =================
+[2023-10-24 10:22:49] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-24 10:24:54] Текст ошибки: Undefined array key 1 | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 171
+=================
+[2023-10-24 11:20:37] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-24 11:21:50] Текст ошибки: Not Found language 'login' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-24 11:21:50] Текст ошибки: Not Found language 'login' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-24 13:07:53] Текст ошибки: Undefined array key "uploadInfoFiles" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 90
+=================
+[2023-10-24 13:08:32] Текст ошибки: Undefined array key "uploadInfoFiles" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 90
+=================
