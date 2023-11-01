@@ -5,7 +5,7 @@ import { Outlet, useParams } from 'react-router-dom';
 
 import axiosClient from "../axiosClient";
 
-const MainLayout = ({ isActiveSidebar }) => {
+const MainLayout = ({ isActiveSidebar, isCompiler }) => {
 
     const { lang } = useParams();
 
@@ -13,6 +13,7 @@ const MainLayout = ({ isActiveSidebar }) => {
     const [languages, setLanguages] = useState({});
     const [layoutWords, setLayoutWords] = useState({});
     const [activeSidebar, setActiveSidebar] = useState(isActiveSidebar);
+    const [activeCompiler, setActiveCompiler] = useState(isCompiler);
 
     useEffect(() => {
         axiosClient.post(`${lang === undefined ? "/" : '/' + lang + '/'}language`)
@@ -29,13 +30,24 @@ const MainLayout = ({ isActiveSidebar }) => {
                 <div>Loading....</div>
                 :
                 <>
-                    <Header language={language} languages={languages} layoutWords={layoutWords}/>
-                    {/* {activeSidebar ? <Sidebar/> : <></>} */}
-                    <Sidebar />
-                    <div className="main">
-                        <div className="container">
-                            <Outlet context={activeSidebar} />
-                        </div>
+                    <Header language={language} languages={languages} layoutWords={layoutWords} />
+                    {activeSidebar ? <Sidebar /> : <></>}
+                    <div className={`main ${activeSidebar ? 'active-sidebar' : ''} ${activeCompiler ? 'active-compiler' : ''}`}>
+                        <>
+                            {activeCompiler ?
+                                <Outlet context={
+                                    {
+                                        activeSidebar: [(v) => setActiveSidebar(v)],
+                                        activeCompiler: [(v) => setActiveCompiler(v)]
+                                    }} />
+                                :
+                                <div className="container">
+                                    <Outlet context={{
+                                        activeSidebar: [(v) => setActiveSidebar(v)],
+                                        activeCompiler: [(v) => setActiveCompiler(v)]
+                                    }} />
+                                </div>}
+                        </>
                     </div>
                 </>
             }

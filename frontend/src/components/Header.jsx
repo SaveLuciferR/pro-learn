@@ -12,7 +12,7 @@ const Header = ({ language, languages, layoutWords }) => {
 
   const [dropdownActive, setDropdownActive] = useState(false);
 
-  const dropdownClick = () => dropdownActive ? setDropdownActive(false) : setDropdownActive(true);
+  const dropdownClick = () => setDropdownActive(!dropdownActive);
 
   const setNewLanguage = (e) => {
     e.persist();

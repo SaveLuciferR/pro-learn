@@ -8,6 +8,7 @@ use core\Router;
 Router::add('^(?P<lang>[a-z]+)?/?language/?$', ['controller' => 'Language', 'action' => 'index']);
 
 Router::add('^compiler/@(?P<username>[a-z-0-9A-Z]+)/(?P<slug>[a-z-0-9A-Z]+)/?$', ['controller' => 'Compiler', 'action' => 'index']);
+Router::add('^compiler/@(?P<username>[a-z-0-9A-Z]+)/(?P<slug>[a-z-0-9A-Z]+)/(?P<action>[a-z-]+)/?$', ['controller' => 'Compiler']);
 
 Router::add('^(?P<lang>[a-z]+)?/?blog/?$', ['controller' => 'Blog', 'action' => 'index']); // Главная страница со статьями
 Router::add('^(?P<lang>[a-z]+)?/?blog/(?P<slug>[a-z0-9-]+)/?$', ['controller' => 'Blog', 'action' => 'view']); // Страница статьи

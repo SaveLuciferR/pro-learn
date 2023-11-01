@@ -1,5 +1,5 @@
-import { logger } from "../../../../../../frontend/src";
+// import { logger } from "../../../../../../frontend/src";
 
-logger();
+// logger();
 
-console.log("КУК");
+console.log("КУfdfdsК");

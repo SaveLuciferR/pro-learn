@@ -31,7 +31,7 @@ class User extends AppModel
         $password = $userParam['password'];
 
         if ($email && $password) {
-            $user = R::findOne('user', 'email = ?', [$email]);
+            $user = R::findOne('user', 'mail = ?', [$email]);
 
             if ($user) {
                 if ($password == $user->password) { // password_verify($password, $user->password)

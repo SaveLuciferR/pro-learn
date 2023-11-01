@@ -7,10 +7,10 @@ import ProjectFile from "../components/Project/ProjectFile";
 import ProjectMain from "../components/Project/ProjectMain";
 import ProjectReadme from "../components/Project/ProjectReadme";
 
-const ProjectPage = ({ activeSidebar }) => {
+const ProjectPage = ({ isActiveSidebar }) => {
 
-  // const [setActiveSidebar] = useOutletContext(activeSidebar);
-  // setActiveSidebar(activeSidebar);
+  const {activeSidebar} = useOutletContext();
+  activeSidebar[0](isActiveSidebar);
 
   const { project, username } = useParams();
   const [filesProject, setFilesProject] = useState([]);
@@ -27,7 +27,7 @@ const ProjectPage = ({ activeSidebar }) => {
         setReadmeFile(data.readmeFile);
         setProjectInfo(data.projectInfo);
         setFilesProject(data.filesInfo);
-        setIsMainFolder(secondaryPathProject === undefined ? false : true);
+        setIsMainFolder(secondaryPathProject !== undefined);
       });
   }, [secondaryPathProject, username, project]);
 

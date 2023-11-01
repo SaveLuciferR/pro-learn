@@ -1,28 +1,39 @@
 import axiosClient from "../../axiosClient";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const [mail, setMail] = useState('');
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleOnClickLogin = () => {
-        axiosClient.post(`/project/add`, { mail, password },)
+
+        if (email <= 0 || password <= 0) {
+            console.log("Введите значение");
+            return;
+        }
+
+        axiosClient.post(`/user/login`, { email, password },)
             .then(({ data }) => {
                 console.log(data);
+                // navigate();
+            })
+            .catch((res) => {
+                console.log(res.response.data);
             });
     }
 
     return (
-        <form className="modal_form" onSubmit={handleOnClickLogin}>
+        <div className="modal_form">
             <h2 className="modal_form-h2">Вход</h2>
             <div className="form_input">
                 <div className="form_input-item">
-                    <input type="email" name="email" id="email" required="required" value={mail} onChange={(e) => setMail(e.target.value)} />
+                    <input placeholder=" " type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <span>Почта</span>
                 </div>
                 <div className="form_input-item">
-                    <input type="password" name="password" id="password" required="required" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input placeholder=" " type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <span>Пароль</span>
                 </div>
             </div>
@@ -33,7 +44,7 @@ const Login = () => {
                 <p>Запомнить меня</p>
             </label>
             <button onClick={() => handleOnClickLogin()} className="btn big primary" type="submit">Войти</button>
-        </form>
+        </div>
     );
 }
 

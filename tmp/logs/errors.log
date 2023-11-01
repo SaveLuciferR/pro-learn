@@ -1,0 +1,326 @@
+[2023-10-24 13:27:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-24 13:55:39] Текст ошибки: Undefined array key "uploadInfoFiles" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 90
+=================
+[2023-10-24 13:58:30] Текст ошибки: Undefined array key "uploadInfoFiles" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 90
+=================
+[2023-10-24 14:00:59] Текст ошибки: Undefined array key "uploadInfoFiles" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 90
+=================
+[2023-10-24 14:09:49] Текст ошибки: Undefined array key "uploadInfoFiles" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 90
+=================
+[2023-10-24 14:09:49] Текст ошибки: Undefined array key "uploadInfoFiles" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 90
+=================
+[2023-10-24 14:14:05] Текст ошибки: Undefined array key "uploadInfoFiles" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\UserController.php | Строка: 90
+=================
+[2023-10-24 14:14:28] Текст ошибки: Undefined array key "email" | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 30
+=================
+[2023-10-24 14:15:25] Текст ошибки: Undefined array key "email" | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 30
+=================
+[2023-10-24 14:15:44] Текст ошибки: Undefined array key "email" | Файл: C:\OSPanel\domains\pro-learn\app\models\User.php | Строка: 30
+=================
+[2023-10-24 14:16:37] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'email' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2023-10-24 17:02:09] Текст ошибки: Not Found language 'compiler' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-24 17:02:09] Текст ошибки: Not Found language 'compiler' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-24 18:52:42] Текст ошибки: Not Found language 'compi' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-24 18:57:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-24 18:57:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-24 18:57:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-24 18:57:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-24 18:57:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-24 18:57:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-25 20:21:49] Текст ошибки: Not Found language 'cblog' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-25 20:21:49] Текст ошибки: Not Found language 'cblog' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-25 20:21:57] Текст ошибки: Not Found language 'login' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-25 20:21:57] Текст ошибки: Not Found language 'login' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-25 20:32:54] Текст ошибки: Unsupported operand types: string + string | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 26
+=================
+[2023-10-25 20:32:54] Текст ошибки: Unsupported operand types: string + string | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 26
+=================
+[2023-10-25 20:32:54] Текст ошибки: Unsupported operand types: string + string | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 26
+=================
+[2023-10-25 20:32:54] Текст ошибки: Unsupported operand types: string + string | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 26
+=================
+[2023-10-26 16:50:50] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-26 16:54:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-26 17:04:20] Текст ошибки: Not Found language 'compiler' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-26 17:04:20] Текст ошибки: Not Found language 'compiler' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-26 20:15:33] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-26 20:15:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-26 20:15:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-26 20:21:54] Текст ошибки: Call to undefined function app\models\getPathProject() | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 53
+=================
+[2023-10-26 20:23:39] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 55
+=================
+[2023-10-26 20:23:39] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 55
+=================
+[2023-10-26 20:23:41] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 55
+=================
+[2023-10-26 20:23:41] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 55
+=================
+[2023-10-26 20:23:41] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 55
+=================
+[2023-10-26 20:23:41] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 55
+=================
+[2023-10-26 21:39:41] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-26 21:44:15] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 19:15:41] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 22:15:27] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:19:36] Текст ошибки: Not Found language 'compiler' | Файл: C:\OSPanel\domains\pro-learn\app\languages\Language.php | Строка: 48
+=================
+[2023-10-27 23:21:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:21:35] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:21:48] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:21:54] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:24:49] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:24:49] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:24:49] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:24:49] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:25:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:26:08] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:26:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:26:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:26:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:26:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:26:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:26:32] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:28:05] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:28:05] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:28:05] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:28:05] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:28:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:28:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-27 23:28:53] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\app\models\Compiler.php | Строка: 55
+=================
+[2023-10-27 23:29:10] Текст ошибки: Метод app\controllers\CompilerController::renameAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-27 23:33:36] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-27 23:34:48] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-27 23:35:40] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-27 23:35:59] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-27 23:36:28] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-27 23:36:32] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-27 23:37:25] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-27 23:38:24] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-27 23:38:43] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-27 23:38:51] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-27 23:40:23] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-27 23:40:42] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-28 12:02:25] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 13:00:35] Текст ошибки: Метод app\controllers\CompilerController::deleteAction не найден | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 95
+=================
+[2023-10-28 14:27:30] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:30] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:30] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:30] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:30] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:30] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:30] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:30] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:30] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:30] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:43] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:43] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:43] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:43] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:43] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:43] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:43] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:43] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:43] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:43] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:43] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:27:43] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:28:10] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:28:10] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:28:10] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:28:10] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:28:10] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:28:10] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:28:10] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:28:10] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:28:10] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:28:10] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:28:10] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:28:10] Текст ошибки: syntax error, unexpected token "return" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:29:18] Текст ошибки: syntax error, unexpected token ";" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 22
+=================
+[2023-10-28 14:29:18] Текст ошибки: syntax error, unexpected token ";" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 22
+=================
+[2023-10-28 14:29:18] Текст ошибки: syntax error, unexpected token ";" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 22
+=================
+[2023-10-28 14:29:18] Текст ошибки: syntax error, unexpected token ";" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 22
+=================
+[2023-10-28 14:29:18] Текст ошибки: syntax error, unexpected token ";" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 22
+=================
+[2023-10-28 14:29:18] Текст ошибки: syntax error, unexpected token ";" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 22
+=================
+[2023-10-28 14:29:18] Текст ошибки: syntax error, unexpected token ";" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 22
+=================
+[2023-10-28 14:29:18] Текст ошибки: syntax error, unexpected token ";" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 22
+=================
+[2023-10-28 14:29:18] Текст ошибки: syntax error, unexpected token ";" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 22
+=================
+[2023-10-28 14:29:18] Текст ошибки: syntax error, unexpected token ";" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 22
+=================
+[2023-10-28 14:29:18] Текст ошибки: syntax error, unexpected token ";" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 22
+=================
+[2023-10-28 14:29:18] Текст ошибки: syntax error, unexpected token ";" | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 22
+=================
+[2023-10-28 14:32:23] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/Compiler/save.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-10-28 14:33:47] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/Compiler/save.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-10-28 14:34:38] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/Compiler/save.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-10-28 14:36:50] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/Compiler/save.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-10-28 14:37:15] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/Compiler/save.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-10-28 14:37:43] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/Compiler/save.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-10-28 14:38:43] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 21
+=================
+[2023-10-28 14:39:30] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/Compiler/save.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-10-28 14:39:56] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/Compiler/save.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-10-28 14:44:23] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:44:23] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:44:34] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:44:34] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:44:42] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:44:42] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:45:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:45:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:45:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:45:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:45:32] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:45:32] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:45:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:45:46] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-28 14:47:04] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn/app/views/Compiler/save.php | Файл: C:\OSPanel\domains\pro-learn\vendor\core\View.php | Строка: 35
+=================
+[2023-10-28 14:53:06] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 28
+=================
+[2023-10-28 14:53:08] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 28
+=================
+[2023-10-28 14:53:23] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 28
+=================
+[2023-10-28 14:53:25] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\app\controllers\CompilerController.php | Строка: 28
+=================
+[2023-10-28 16:46:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-29 01:11:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-10-29 10:36:51] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
+[2023-11-01 16:21:19] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\vendor\core\Router.php | Строка: 101
+=================
