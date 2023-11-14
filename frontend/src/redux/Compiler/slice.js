@@ -16,9 +16,23 @@ const initialState = {
     activeTab: "",
     actionContext: {
         action: "",
-        file: {}
+        file: {
+            save: {
+                path: "",
+            },
+            delete: {
+
+            },
+            rename: {
+                path: "",
+                newName: "",
+            }
+        }
     },
-    typeContextMenu: 'file'
+    typeContextMenu: 'file',
+    canRenameFile: false,
+    saveRenameFile: false,
+    updateFiles: true,
 }
 
 
@@ -47,8 +61,7 @@ export const compilerSlice = createSlice({
                     return tempFiles;
                 }
 
-                state.files = onChangeBodyFile()
-                // console.log(state.files)
+                state.files = onChangeBodyFile();
             },
             setCompilerCurrentFileName(state, action) {
                 state.currentFile.name = action.payload;
@@ -78,11 +91,29 @@ export const compilerSlice = createSlice({
                 state.actionContext.action = action.payload;
             }
             ,
-            setFileInActionContext(state, action) {
-                state.actionContext.file = action.payload;
+            setFileSavingInActionContext(state, action) {
+                state.actionContext.file.save = action.payload;
+            },
+            setFileDeletingInActionContext(state, action) {
+                state.actionContext.file.delete = action.payload;
+            },
+            setFileRenamingPathInActionContext(state, action) {
+                state.actionContext.file.rename.path = action.payload;
+            },
+            setFileRenamingNameInActionContext (state, action) {
+                state.actionContext.file.rename.newName = action.payload;
             },
             setTypeContextMenu(state, action) {
                 state.typeContextMenu = action.payload;
+            },
+            setCanRenameFile(state, action) {
+                state.canRenameFile = action.payload;
+            },
+            setSaveRenameFile(state, action) {
+                state.saveRenameFile = action.payload;
+            },
+            setUpdateFiles(state, action) {
+                state.updateFiles = action.payload;
             }
         }
     })
@@ -98,8 +129,14 @@ export const {
     deleteCompilerTab,
     setActiveTab,
     setActionInActionContext,
-    setFileInActionContext,
+    setFileSavingInActionContext,
+    setFileDeletingInActionContext,
+    setFileRenamingPathInActionContext,
+    setFileRenamingNameInActionContext,
     setTypeContextMenu,
+    setCanRenameFile,
+    setSaveRenameFile,
+    setUpdateFiles,
 } = compilerSlice.actions;
 
 export default compilerSlice.reducer;

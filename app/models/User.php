@@ -17,6 +17,7 @@ class User extends AppModel
     public function checkAuth()
     {
         return isset($_SESSION['user']);
+        // return isset($_COOKIE['user_token']);
     }
 
 
@@ -27,6 +28,8 @@ class User extends AppModel
 
     public function login($userParam): bool
     {
+        // var_dump($userParam['email']);
+
         $email = $userParam['email'];
         $password = $userParam['password'];
 
@@ -40,6 +43,22 @@ class User extends AppModel
                             $_SESSION['user'][$k] = $v;
                         }
                     }
+
+                    // echo session_id();
+
+                    // if (isset($_COOKIE['user_token'])) {
+                    //     setcookie('user_token', '', 0, "/");
+                    // }
+
+                    // $userToken = md5($email);
+
+                    // $timeCookie = 2592000;
+                    // setcookie('user_token', $userToken, time() + $timeCookie, '/', 'pro-learn', false, false);
+
+                    // echo $_COOKIE['user_token'];
+
+                    // $lastLoginTime = time();
+                    // $lastLoginIP = $_SERVER['REMOTE_ADDR'];
 
                     return true;
                 }

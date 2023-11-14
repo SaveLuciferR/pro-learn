@@ -1,7 +1,9 @@
 import { useEffect } from "react";//Подключение хука для соединения с беком
 import BlogMain from "../components/Blog/BlogMain";//Подключение компонента со всеми статьями
-import BestBlogCard from "../components/Blog/BestBlogCard";//Подключение компонента с лучшими статьями
-import axiosClient from "../axiosClient";//Клиент соединения с беком
+import BestBlogCard from "../components/Blog/BestBlogSlider/BestBlogCard";//Подключение компонента с лучшими статьями
+import axiosClient from "../axiosClient";
+import BestBlogSlider from "../components/Blog/BestBlogSlider/BestBlogSlider";
+//Клиент соединения с беком
 
 const BlogPage = () => {
   useEffect(() => {//Проверка на то, работает ли бек
@@ -20,7 +22,7 @@ const BlogPage = () => {
               &gt; Лучшие статьи на этой неделе
             </h4>
           </div>
-          <BestBlogCard />{/* Вызов компонента с лучшими статьями */}
+          <BestBlogSlider autoPlay={true} autoPlayTime={10000}/> {/* Вызов компонента с лучшими статьями */}
         </div>
         <BlogMain />{/* Вызов компонента со всеми статьями */}
       </div>

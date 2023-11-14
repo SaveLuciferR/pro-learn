@@ -14,19 +14,32 @@ class UserController extends AppController
 {
     public function authAction()
     {
-        echo json_encode(array('auth' => $this->model->checkAuth()));
+        $userParam = json_decode(file_get_contents("php://input"), true);
+        if (isset($userParam['client']) && $userParam['client'] !== 'undefined') {
+            session_write_close();
+            session_id($userParam['client']);
+            session_start();
+        }
+
+        var_dump($_SESSION);
+        echo json_encode(array('auth' => $this->model->checkAuth(), 'client' => session_id()));
     }
 
     public function loginAction()
     {
         $userParam = json_decode(file_get_contents("php://input"), true);
+        if (isset($userParam['client']) && $userParam['client'] !== 'undefined') {
+            session_write_close();
+            session_id($userParam['client']);
+            session_start();
+        }
 
         if ($userParam) {
             if ($this->model->login($userParam)) {
-                $this->authAction();
-            } else {
-                echo json_encode(array('auth' => false));
+                // $_SESSION['success'] = "успешно";
             }
+
+            $this->authAction();
         }
     }
 

@@ -38,7 +38,7 @@ const CompilerOutput = () => {
                 {/*))}*/}
             </div>
             <div className="output-mainspace">
-                <iframe className="output-container" width="100%" height="100%" src={"http://localhost:8080"}></iframe>
+                <iframe className="output-container" width="100%" height="100%" src={"http://localhost:9876"}></iframe>
             </div>
         </div>
     );

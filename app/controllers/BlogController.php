@@ -45,6 +45,6 @@ class BlogController extends AppController
 
 //        debug($blogresponse, 1);
 
-        echo json_encode(array('blog' => $blog, 'blogResponse' => $blogResponse));
+        echo json_encode(array('blog' => $blog, 'blogResponse' => $blogResponse), JSON_UNESCAPED_SLASHES);
     }
 }

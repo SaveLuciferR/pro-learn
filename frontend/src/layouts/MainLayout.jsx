@@ -4,10 +4,14 @@ import Sidebar from "../components/Sidebar";
 import { Outlet, useParams } from 'react-router-dom';
 
 import axiosClient from "../axiosClient";
+import {useDispatch} from "react-redux";
+import {setUserAuth} from "../redux/MainLayout/slice";
 
 const MainLayout = ({ isActiveSidebar, isCompiler }) => {
 
     const { lang } = useParams();
+
+    const dispatch = useDispatch();
 
     const [language, setLanguage] = useState({});
     const [languages, setLanguages] = useState({});
@@ -23,6 +27,14 @@ const MainLayout = ({ isActiveSidebar, isCompiler }) => {
                 setLayoutWords(data.layoutWords);
             });
     }, [lang]);
+
+    useEffect(() => {
+        axiosClient.post(`user/auth`, {client: localStorage.getItem('client')})
+            .then(({data}) => {
+                dispatch(setUserAuth(data.auth));
+                console.log(data);
+            })
+    }, [])
 
     return (
         <>

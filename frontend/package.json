@@ -28,6 +28,7 @@
     "react-table": "^7.8.0",
     "rehype-lodash-template": "^0.2.1",
     "sass": "^1.66.1",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

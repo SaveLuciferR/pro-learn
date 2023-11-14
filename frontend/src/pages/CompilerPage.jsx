@@ -8,7 +8,7 @@ import CompilerOutput from "../components/Compiler/CompilerOutput";
 import CompilerConsole from "../components/Compiler/CompilerConsole";
 import CompilerSidebar from "../components/Compiler/CompilerSidebar";
 
-import {setCompilerFiles} from "../redux/Compiler/slice";
+import {setCompilerFiles, setUpdateFiles} from "../redux/Compiler/slice";
 
 const Compiler = ({isActiveSidebar, isCompiler}) => {
 
@@ -19,13 +19,17 @@ const Compiler = ({isActiveSidebar, isCompiler}) => {
     const username = 'user1';
     const {project} = useParams();
     const dispatch = useDispatch();
+    const updateFiles = useSelector(state => state.compiler.updateFiles);
 
     useEffect(() => {
-        axiosClient.post(`/compiler/@${username}/${project}`)
-            .then(({data}) => {
-                dispatch(setCompilerFiles(data.fileStructure));
-            });
-    }, []);
+        if (updateFiles) {
+            axiosClient.post(`/compiler/@${username}/${project}`)
+                .then(({data}) => {
+                    dispatch(setCompilerFiles(data.fileStructure));
+                    dispatch(setUpdateFiles(false));
+                });
+        }
+    }, [updateFiles]);
 
     return (
         <div className="compiler-main">

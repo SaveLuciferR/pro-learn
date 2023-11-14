@@ -60,6 +60,6 @@ class Compiler extends AppModel
     }
 
     public function getPathProject($user, $project) {
-        return USER_PROJECT . '/' . $user . '/' . $project;
+        return USER_PROJECT . '/' . $user . '/' . $project . '/src';
     }
 }

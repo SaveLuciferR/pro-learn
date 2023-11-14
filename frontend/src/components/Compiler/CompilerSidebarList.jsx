@@ -24,10 +24,10 @@ const CompilerSidebarList = ({ folder, compilerFiles, tab, localPath, showNav })
                 compilerFiles={compilerFiles[key].children}
                 tab={tab + 8}
                 localPath={localPath + '/' + folder}
-                showNav={(e, path, type) => showNav(e, path, type)}
+                showNav={(e, path, type, key) => showNav(e, path, type, key)}
             />
             :
-            <div key={compilerFiles[key].path} onContextMenu={(e) => showNav(e, compilerFiles[key].path, 'file')} onClick={() => handleOnClickFile(key, compilerFiles[key])} style={{ paddingLeft: `${tab + 8}px` }}>
+            <div key={compilerFiles[key].path} onContextMenu={(e) => showNav(e, compilerFiles[key].path, 'file', key)} onClick={() => handleOnClickFile(key, compilerFiles[key])} style={{ paddingLeft: `${tab + 8}px` }}>
                 <ProjectSvg type={"file"} />
                 {key}
             </div>
@@ -55,7 +55,7 @@ const CompilerSidebarList = ({ folder, compilerFiles, tab, localPath, showNav })
     return (
         <>
             <div
-                onContextMenu={(e) => showNav(e, localPath + '/' + folder, 'dir')}
+                onContextMenu={(e) => showNav(e, localPath + '/' + folder, 'dir', folder)}
                 onClick={() => handleOnClickFolder()} className="compiler__folder-main has-file" style={{ paddingLeft: `${tab}px` }}>
                 <ProjectSvg type={"dir"} />
                 {folder}

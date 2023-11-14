@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setActionInActionContext} from "../../redux/Compiler/slice";
+import {setActionInActionContext, setCanRenameFile} from "../../redux/Compiler/slice";
 
 const CompilerContextMenu = ({context, xyPos}) => {
 
@@ -10,6 +10,8 @@ const CompilerContextMenu = ({context, xyPos}) => {
 
     const initMenu = (chosen) => {
         dispatch(setActionInActionContext(chosen));
+
+        if (chosen === "rename") dispatch(setCanRenameFile(true));
     };
 
 
