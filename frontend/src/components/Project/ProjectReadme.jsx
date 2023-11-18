@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Prism as SyntaxHithLighter } from 'react-syntax-highlighter';
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import rehypeLodashTemplate from "rehype-lodash-template"
-import emojione from 'emojione'
+// import emojione from 'emojione'
 
 const ProjectReadme = ({ markdownFile }) => {
 

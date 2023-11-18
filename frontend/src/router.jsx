@@ -4,12 +4,19 @@ import MainLayout from "./layouts/MainLayout"
 import BlogPage from "./pages/BlogPage"
 import ProjectPage from "./pages/ProjectPage";
 import ProjectAddPage from "./pages/ProjectAddPage";
+import Login from "./components/Forms/Login";
+import CompilerPage from "./pages/CompilerPage";
+
 
 const router = createBrowserRouter([
     {
         path: '/:lang?',
         element: <MainLayout activeSidebar={true}/>,
         children: [
+            {
+                path: 'user/login',
+                element: <Login />
+            },
             {
                 path: 'blog',
                 element: <BlogPage/>
@@ -21,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path: ':username/project/add',
                 element: <ProjectAddPage activeSidebar={false}/>
+            },
+            {
+                path: 'compiler',
+                element: <CompilerPage />
             }
         ]
     }
