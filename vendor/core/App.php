@@ -14,10 +14,17 @@ class App
         $query = trim(urldecode($_SERVER['QUERY_STRING']), '/');
         new ErrorHandler();
 
+        // debug(session_id(), 1);
+        // ini_set('session.cookie_secure', 'true');
         session_start();
-        
+        // session_regenerate_id();
 
-        // echo json_encode(array('query' => $query));
+        // $userParam = json_decode(file_get_contents("php://input"), true);
+        // if (isset($userParam['client']) && $userParam['client'] !== 'undefined') {
+        //     session_write_close();
+        //     session_id($userParam['client']);
+        //     session_start();
+        // }
 
         self::$app = Registry::getInstance();
         $this->getParams();

@@ -98,7 +98,7 @@ const CompilerSidebar = () => {
                 typeContextMenu
             })
                 .then(({data}) => {
-                    console.log(data);
+                    // console.log(data);
                     dispatch(setFileSavingInActionContext({body: "", path: ""}));
                     dispatch(setActionInActionContext(""));
                     dispatch(setFileRenamingNameInActionContext(""));
@@ -110,7 +110,7 @@ const CompilerSidebar = () => {
                     dispatch(setFileSavingInActionContext({body: "", path: ""}));
                     dispatch(setActionInActionContext(""));
                     // setContext(false);
-                    console.log(res);
+                    // console.log(res);
                 })
         }
     }, [actionContext.action, saveRenameFile, canRenameFile]);

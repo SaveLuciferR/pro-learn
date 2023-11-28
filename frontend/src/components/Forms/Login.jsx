@@ -1,13 +1,17 @@
 import axiosClient from "../../axiosClient";
 import {useEffect, useRef, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {setUserAuth} from "../../redux/MainLayout/slice";
+import {useDispatch, useSelector} from "react-redux";
+import {setNeedReloadPage, setUserAuth} from "../../redux/MainLayout/slice";
 
 const Login = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const userAuth = useSelector(state => state.mainLayout.userAuth);
+
+    if (userAuth) navigate('/');
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -19,14 +23,15 @@ const Login = () => {
             return;
         }
 
-        console.log(localStorage.getItem('userTokenSession'));
-        axiosClient.post(`/user/login`, {email, password, client: localStorage.getItem('userTokenSession')})
+        // console.log(localStorage.getItem('client'));
+        axiosClient.post(`/user/login`, {email, password, client: localStorage.getItem('client')})
             .then(({data}) => {
-                localStorage.setItem('client', data.client);
-                localStorage.getItem('client')
+                // console.log(localStorage.getItem('client'));
+                // localStorage.setItem('client', data.client);
                 dispatch(setUserAuth(data.auth));
-                console.log(data);
-                // navigate();
+
+                dispatch(setNeedReloadPage(true));
+                navigate('/');
             })
             .catch((res) => {
                 console.log(res);

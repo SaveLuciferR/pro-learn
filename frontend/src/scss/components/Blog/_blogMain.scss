@@ -12,6 +12,14 @@
     //margin-right: 50vw;
     //width: 100vw;
 
+    &__content {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+
     &__items {
       display: flex;
       max-height: 512px;
@@ -20,7 +28,7 @@
     }
 
     &__item {
-      position: absolute;
+      //position: absolute;
       margin-top: 314px;
       margin-left: 20px;
 
@@ -51,7 +59,7 @@
     }
 
     &__text {
-      position: absolute;
+      //position: absolute;
     }
 
     &__title {
@@ -84,6 +92,7 @@
 
     &__info {
       display: flex;
+      justify-content: space-between;
       column-gap: 16px;
 
       padding-bottom: 4px;
@@ -125,8 +134,15 @@
       z-index: 1;
     }
 
+    &__flex {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
     &__text {
-      position: absolute;
+      //position: absolute;
+
     }
 
     &__info {
@@ -178,7 +194,7 @@
   }
 
   &_maintext {
-    position: relative;
+    //position: relative;
     margin-top: 4px;
 
     text-align: center;
@@ -278,8 +294,8 @@
         border: 1px solid #ffffff;
         border-radius: 50%;
 
-        width: 20px;
-        height: 20px;
+        width: 10px;
+        height: 10px;
 
         transition: all 0.5s ease-in-out;
 

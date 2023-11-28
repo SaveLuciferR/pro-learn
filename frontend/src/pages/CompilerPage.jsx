@@ -1,5 +1,5 @@
-import {Link, useOutletContext, useParams} from "react-router-dom"
-import {useEffect, useState} from "react";
+import {useOutletContext, useParams} from "react-router-dom"
+import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import axiosClient from '../axiosClient';
 
@@ -8,7 +8,7 @@ import CompilerOutput from "../components/Compiler/CompilerOutput";
 import CompilerConsole from "../components/Compiler/CompilerConsole";
 import CompilerSidebar from "../components/Compiler/CompilerSidebar";
 
-import {setCompilerFiles, setUpdateFiles} from "../redux/Compiler/slice";
+import {setCompilerFiles, setNeedReloadFrameCompiler, setUpdateFiles} from "../redux/Compiler/slice";
 
 const Compiler = ({isActiveSidebar, isCompiler}) => {
 
@@ -16,8 +16,8 @@ const Compiler = ({isActiveSidebar, isCompiler}) => {
     activeSidebar[0](isActiveSidebar);
     activeCompiler[0](isCompiler);
 
-    const username = 'user1';
-    const {project} = useParams();
+    // const username = 'user1';
+    const {project, username} = useParams();
     const dispatch = useDispatch();
     const updateFiles = useSelector(state => state.compiler.updateFiles);
 
@@ -27,6 +27,7 @@ const Compiler = ({isActiveSidebar, isCompiler}) => {
                 .then(({data}) => {
                     dispatch(setCompilerFiles(data.fileStructure));
                     dispatch(setUpdateFiles(false));
+                    dispatch(setNeedReloadFrameCompiler(true));
                 });
         }
     }, [updateFiles]);

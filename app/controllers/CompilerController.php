@@ -11,20 +11,10 @@ class CompilerController extends AppController
         $fileStructure = $this->model->getAllFileProject($this->route['username'], $this->route['slug']);
         $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
 
-        $retval = null;
-        $output = array();
-        $commandPathProject = "cd " . $pathProject . " && cd..";
-        $commandDockerProject = '"C:\Program Files\Docker\Docker\resources\cli-plugins\docker-compose.exe" up --build -d';
+        $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']));
+        debug(mb_strlen(json_encode($fileStructure)), 1);
 
-        debug($commandPathProject . " && " . $commandDockerProject);
-
-        exec($commandPathProject . " && " . $commandDockerProject, $output, $retval); // . "; if($?) " . $commandDockerProject
-
-        // debug($retval);
-
-        print_r($output);
-
-        // echo json_encode(array('fileStructure' => $fileStructure, 'path' => $pathProject), JSON_UNESCAPED_SLASHES);
+        echo json_encode(array('fileStructure' => $fileStructure, 'path' => $pathProject), JSON_UNESCAPED_SLASHES);
     }
 
     public function saveAction()
@@ -41,13 +31,16 @@ class CompilerController extends AppController
         // debug($pathProject . $file['path'], 1);
 
         file_put_contents($pathProject . $file['path'], $file['body']);
+
+        // $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']));
     }
 
-    public function deleteAction() {
-        
+    public function deleteAction()
+    {
     }
 
-    public function renameAction() {
+    public function renameAction()
+    {
         $_POST = json_decode(file_get_contents("php://input"), true);
 
         if ((empty($_POST)) && empty($_POST['file'])) {
@@ -57,7 +50,7 @@ class CompilerController extends AppController
         $file = $_POST['file']['rename'];
         $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
         $newFilename = "";
-        
+
         $oldPath = explode('/', $file['path']);
         array_pop($oldPath);
         $newFilename = implode('/', $oldPath) . '/' . $file['newName'];

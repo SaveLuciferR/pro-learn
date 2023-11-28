@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use core\App;
+use core\Cache;
 use RedBeanPHP\R;
 
 
@@ -74,7 +76,7 @@ class User extends AppModel
     public function getProjectInfoBySlug($slug, $username)
     {
         if ($this->checkAuth() && $_SESSION['user']['username'] == $username) {
-            return R::getRow("SELECT p.title, p.description, p.private, p.slug, u.username, u.role, p.date_of_publication
+            return R::getRow("SELECT p.id, p.title, p.description, p.private, p.slug, u.username, u.role, p.date_of_publication
                                 FROM project p JOIN prolearn.user u ON p.user_id = u.id
                                 WHERE p.slug = ? AND u.username = ?", [$slug, $username]);
         }
@@ -93,25 +95,117 @@ class User extends AppModel
 
     public function getFilesProject($project, &$path, $secondaryPath = "")
     {
-        $path = USER_PROJECT . '/' . $project['username'] . '/' . $project['slug'] . '/' . $secondaryPath;
+        $path = USER_PROJECT . '/' . $project['username'] . '/' . $project['slug'] . '/src/' . $secondaryPath;
 
+        return $this->createProjectFileList($path);
+    }
+
+    public function getFilesProjectInCache($cacheKey, &$path, $secondaryPath = "")
+    {
+        $path = Cache::getInstance()->getCache($cacheKey) . '/' . $secondaryPath;
+
+        return $this->createProjectFileList($path);
+    }
+
+    public function saveNewProject($data, $pathProject, $username)
+    {
+        R::begin();
+        try {
+            $project = R::dispense('project');
+            // $project->user_id = $_SESSION['user']['id'];
+            $project->user_id = 2;
+            $project->title = $data['title'];
+            $project->private = $data['private'];
+            $project->description = $data['desc'];
+            $projectID = R::store($project);
+
+            // debug($data, 1);
+
+            $project->slug = AppModel::createSlug('project', 'slug', $data['title'], $projectID);
+
+            // debug($project->slug, 1);
+
+            $project->path_project = '/public/projects/' . $username . '/' . $project->slug;
+
+            R::store($project);
+
+            $distPath = USER_PROJECT . '/' . $username;
+            if (!file_exists($distPath)) {
+                mkdir($distPath);
+            }
+
+            $distPath .= '/' . $project->slug;
+            if (!file_exists($distPath)) {
+                mkdir($distPath);
+            }
+
+            $this->copyCacheProject($pathProject, $distPath . '/src');
+            
+            // $this->deleteCacheProjectDir($pathProject);
+
+            $slug = $project->slug;
+
+            R::commit();
+            return $slug;
+        } catch (\Exception $ex) {
+            debug($ex);
+            return false;
+        }
+    }
+
+    protected function copyCacheProject($src, $dist)
+    {
+        if (file_exists($dist)) {
+            $this->deleteCacheProjectDir($dist);
+        }
+        if (is_dir($src)) {
+            mkdir($dist);
+            $files = scandir($src);
+            foreach ($files as $file) {
+                if ($file != '.' && $file != '..') {
+                    $this->copyCacheProject($src . '/' . $file, $dist . '/' . $file);
+                }
+            }
+            rmdir($src);
+        } else if (file_exists($src)) {
+            copy($src, $dist);
+            unlink($src);
+        }
+    }
+
+    protected function deleteCacheProjectDir($dir)
+    {
+        if (is_dir($dir)) {
+            $files = scandir($dir);
+            foreach ($files as $file) {
+                if ($file != "." && $file != "..") {
+                    $this->deleteCacheProjectDir($dir . '/' . $file);
+                }
+            }
+            rmdir($dir);
+        } else if (file_exists($dir)) {
+            unlink($dir);
+        }
+    }
+
+    public function createProjectFileList($path)
+    {
         if (!file_exists($path)) throw new \Exception("Файл или директория не была найдена", 404);
         $directoryInfo = [];
-//        debug($path);
+        // debug($path, 1);
 
         if (str_contains($path, '.')) {
             $fileInfo['fileName'] = $path;
-            while(str_contains($fileInfo['fileName'], '/')) {
-                $fileInfo['fileName'] = strrchr( $fileInfo['fileName'], '/');
-                $fileInfo['fileName'] = substr( $fileInfo['fileName'], 1);
+            while (str_contains($fileInfo['fileName'], '/')) {
+                $fileInfo['fileName'] = strrchr($fileInfo['fileName'], '/');
+                $fileInfo['fileName'] = substr($fileInfo['fileName'], 1);
             }
 
-            $fileInfo['language'] = substr(strrchr( $fileInfo['fileName'], '.'), 1);
+            $fileInfo['language'] = substr(strrchr($fileInfo['fileName'], '.'), 1);
             $fileInfo['body'] = file_get_contents($path); // h(file_get_contents($path))
-        //    debug($fileInfo, 1);
+            //    debug($fileInfo, 1);
             return $fileInfo;
-        }
-        else {
+        } else {
             $directoryInfo = scandir($path);
 
             array_shift($directoryInfo);
@@ -124,8 +218,7 @@ class User extends AppModel
 
                 if (str_contains($v, '.')) {
                     $temp['type'] = substr(strrchr($v, '.'), 1);
-                }
-                else {
+                } else {
                     $temp['type'] = "directory";
                 }
 
@@ -138,5 +231,4 @@ class User extends AppModel
 
         return $directoryData;
     }
-
 }

@@ -3,12 +3,17 @@
 namespace app\models;
 
 use app\models\AppModel;
+use Spatie\Docker\DockerContainer;
 
 class Compiler extends AppModel
 {
+    private $containerInstance = null;
+
     protected function getInfoDirectory($path, $localPath = ""): array
     {
         $files = scandir($path);
+
+//        debug($files, 1);
         array_shift($files);
         array_shift($files);
 
@@ -45,6 +50,8 @@ class Compiler extends AppModel
 
         $tree = array_merge($tempDirectory, $tempFile);
 
+//        debug($tree, 1);
+
         return $tree;
     }
 
@@ -52,14 +59,33 @@ class Compiler extends AppModel
     {
         $path = $this->getPathProject($user, $project);
 
+//        debug($path, 1);
+
         if (!file_exists($path)) throw new \Exception("Файл или директория не была найдена", 404);
 
         $files = $this->getInfoDirectory($path);
 
+//        debug($files, 1);
+
         return $files;
     }
 
-    public function getPathProject($user, $project) {
+    public function getPathProject($user, $project): string
+    {
         return USER_PROJECT . '/' . $user . '/' . $project . '/src';
+    }
+
+    public function startOrUpdateDockerContainer($pathProject)
+    {
+        $retval = null;
+        $output = array();
+
+        $commandPathProject = "cd " . $pathProject . " && cd..";
+        $commandDockerProject = 'docker-compose up --build -d'; //"C:\Program Files\Docker\Docker\resources\cli-plugins\docker-compose.exe"
+        exec($commandPathProject . " && " . $commandDockerProject, $output, $retval);
+
+        exec("docker system prune -f");
+
+//        $imageDockerName = md5(session_id());
     }
 }

@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import axiosClient from "../../axiosClient";
-import {setCompilerFiles} from "../../redux/Compiler/slice";
+import {setCompilerFiles, setNeedReloadFrameCompiler, setOutputFrame} from "../../redux/Compiler/slice";
 import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
 const CompilerOutput = () => {
     const [activeTab, setActiveTab] = useState(0);
@@ -9,8 +10,11 @@ const CompilerOutput = () => {
     const username = 'user1';
     const {project} = useParams();
 
-    const [path, setPath] = useState("");
+    const dispatch = useDispatch();
 
+    const [path, setPath] = useState("");
+    const needReloadFrameCompiler = useSelector(state => state.compiler.needReloadFrameCompiler);
+    // const outputFrame = useSelector(state => state.compiler.outputFrame);
 
     const onClickTab = (index) => {
         setActiveTab(index);
@@ -23,6 +27,17 @@ const CompilerOutput = () => {
                 setPath(data.path);
             });
     }, []);
+
+    useEffect(() => {
+        if (needReloadFrameCompiler) {
+            // document.getElementById("reload_frame_compiler").contentWindow.location.reload();
+            dispatch(setNeedReloadFrameCompiler(false));
+        }
+    }, [needReloadFrameCompiler]);
+
+    const onUpdateFrame = (frame) => {
+        // setTimeout(frame.target.src = frame.target.src, 3000);
+    }
 
     return (
         <div className="output">
@@ -38,7 +53,7 @@ const CompilerOutput = () => {
                 {/*))}*/}
             </div>
             <div className="output-mainspace">
-                <iframe className="output-container" width="100%" height="100%" src={"http://localhost:9876"}></iframe>
+                <iframe id="reload_frame_compiler" onLoad={() => onUpdateFrame(this)} className="output-container" width="100%" height="100%" src={"http://localhost:9876"}></iframe>
             </div>
         </div>
     );

@@ -8,7 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'core\\' => array($vendorDir . '/core'),
     'app\\' => array($baseDir . '/app'),
-    'Valitron\\' => array($vendorDir . '/vlucas/valitron/src/Valitron'),
+    'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
+    'Spatie\\Macroable\\' => array($vendorDir . '/spatie/macroable/src'),
+    'Spatie\\Docker\\' => array($vendorDir . '/spatie/docker/src'),
     'RedBeanPHP\\' => array($vendorDir . '/gabordemooij/redbean/RedBeanPHP'),
-    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
 );

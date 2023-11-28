@@ -1,4 +1,3 @@
-import {number} from "react-table/src/sortTypes";
 import {useSelector} from "react-redux";
 
 
@@ -27,7 +26,7 @@ const BlogSliderUnder = ({goToSlide, changeSlide}) => {
     return (
         <div className={"under_element_slider"}>
             <div className={"arrow"} onClick={() => changeSlide(-1)}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
                     <circle cx="10" cy="10" r="10" transform="matrix(-1 0 0 1 22 2)" stroke="white" strokeWidth="1.5"/>
                     <path d="M13.5 9L10.5 12L13.5 15" stroke="white" strokeWidth="1.5" strokeLinecap="round"
                           strokeLinejoin="round"/>
@@ -37,7 +36,7 @@ const BlogSliderUnder = ({goToSlide, changeSlide}) => {
                 {renderDots()}
             </div>
             <div className={"arrow"} onClick={() => changeSlide(1)}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
                     <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1.5"/>
                     <path d="M10.5 9L13.5 12L10.5 15" stroke="white" strokeWidth="1.5" strokeLinecap="round"
                           strokeLinejoin="round"/>

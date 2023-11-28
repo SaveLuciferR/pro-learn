@@ -2,13 +2,17 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import axiosClient from "../axiosClient";
+import {useDispatch, useSelector} from "react-redux";
+import {setSidebarProfileActive} from "../redux/MainLayout/slice";
 
 const Header = ({ language, languages, layoutWords }) => {
 
-  console.log(layoutWords.tpl_footer_feedback_btn);
+  // console.log(layoutWords.tpl_footer_feedback_btn);
 
   let url = useLocation().pathname;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const sidebarProfileActive = useSelector(state => state.mainLayout.sidebarProfileActive);
 
   const [dropdownActive, setDropdownActive] = useState(false);
 
@@ -28,6 +32,10 @@ const Header = ({ language, languages, layoutWords }) => {
       url = url.replace(`/${language.code}`, `/${e.target.getAttribute('data-id')}`);
       navigate(url);
     }
+  }
+
+  const onClickActiveSidebar = () => {
+    dispatch(setSidebarProfileActive(!sidebarProfileActive));
   }
 
   return (
@@ -55,7 +63,8 @@ const Header = ({ language, languages, layoutWords }) => {
                 <input type="hidden" name="language_code" />
                 <ul className={`dropdown-menu  ${dropdownActive ? 'active' : ''}`}>
                   {Object.keys(languages).map((key) =>
-                    language.code === key ? <></> : <li key={key} onClick={(e) => setNewLanguage(e)} id={key} data-id={key}>{languages[key].title}</li>
+                    language.code === key ? <></> :
+                        <li key={key} onClick={(e) => setNewLanguage(e)} id={key} data-id={key}>{languages[key].title}</li>
                   )}
                 </ul>
               </div>
@@ -87,7 +96,7 @@ const Header = ({ language, languages, layoutWords }) => {
                   />
                 </svg>
               </div>
-              <div className="header_icons__icon">
+              <div onClick={() => onClickActiveSidebar()} className="header_icons__icon">
                 {/* Иконка аккаунта */}
                 <svg
                   width="28"

@@ -25,6 +25,8 @@ class BlogController extends AppController
             throw new \Exception("Статьи не найдены...", 404);
         }
 
+        // $allBlogItem['date_of_publication'] = date('d.m.Y', strtotime($allBlogItem['date_of_publication']));
+        // $popularBlogs['date_of_publication'] = date('d.m.Y', strtotime($popularBlogs['date_of_publication']));
         // debug($allBlogItem, 1);
 
         echo json_encode(array('allBlogs' => $allBlogItem, 'popularBlogs' => $popularBlogs), JSON_UNESCAPED_SLASHES);

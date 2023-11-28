@@ -1,17 +1,21 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import { Outlet, useParams } from 'react-router-dom';
+import {Outlet, useParams} from 'react-router-dom';
 
 import axiosClient from "../axiosClient";
-import {useDispatch} from "react-redux";
-import {setUserAuth} from "../redux/MainLayout/slice";
+import {useDispatch, useSelector} from "react-redux";
+import {setUserAuth, setUser, setNeedReloadPage} from "../redux/MainLayout/slice";
+import SidebarProfile from "../components/Profile/SidebarProfile";
+import axios from "axios";
 
-const MainLayout = ({ isActiveSidebar, isCompiler }) => {
+const MainLayout = ({isActiveSidebar, isCompiler}) => {
 
-    const { lang } = useParams();
+    const {lang} = useParams();
 
     const dispatch = useDispatch();
+    const sidebarProfileActive = useSelector(state => state.mainLayout.sidebarProfileActive);
+    const needReloadPage = useSelector(state => state.mainLayout.needReloadPage);
 
     const [language, setLanguage] = useState({});
     const [languages, setLanguages] = useState({});
@@ -21,7 +25,7 @@ const MainLayout = ({ isActiveSidebar, isCompiler }) => {
 
     useEffect(() => {
         axiosClient.post(`${lang === undefined ? "/" : '/' + lang + '/'}language`)
-            .then(({ data }) => {
+            .then(({data}) => {
                 setLanguage(data.language);
                 setLanguages(data.languages);
                 setLayoutWords(data.layoutWords);
@@ -29,12 +33,22 @@ const MainLayout = ({ isActiveSidebar, isCompiler }) => {
     }, [lang]);
 
     useEffect(() => {
-        axiosClient.post(`user/auth`, {client: localStorage.getItem('client')})
-            .then(({data}) => {
-                dispatch(setUserAuth(data.auth));
-                console.log(data);
-            })
-    }, [])
+        if (needReloadPage) {
+            axiosClient.post(`/user/auth`, {client2: localStorage.getItem('client'), })
+                .then(({data}) => {
+                    dispatch(setUserAuth(data.auth));
+                    dispatch(setUser(data.user));
+                    console.log(data.user);
+                });
+
+            // axiosClient.post('/user/get-session-id', {client: localStorage.getItem('client')})
+            //     .then(({data}) => {
+            //         localStorage.setItem('client', data.client);
+            //     })
+
+            dispatch(setNeedReloadPage(false));
+        }
+    }, [needReloadPage]);
 
     return (
         <>
@@ -42,23 +56,25 @@ const MainLayout = ({ isActiveSidebar, isCompiler }) => {
                 <div>Loading....</div>
                 :
                 <>
-                    <Header language={language} languages={languages} layoutWords={layoutWords} />
-                    {activeSidebar ? <Sidebar /> : <></>}
-                    <div className={`main ${activeSidebar ? 'active-sidebar' : ''} ${activeCompiler ? 'active-compiler' : ''}`}>
+                    <Header language={language} languages={languages} layoutWords={layoutWords}/>
+                    {activeSidebar ? <Sidebar/> : <></>}
+                    <div
+                        className={`main ${activeSidebar ? 'active-sidebar' : ''} ${activeCompiler ? 'active-compiler' : ''}`}>
                         <>
                             {activeCompiler ?
                                 <Outlet context={
                                     {
                                         activeSidebar: [(v) => setActiveSidebar(v)],
                                         activeCompiler: [(v) => setActiveCompiler(v)]
-                                    }} />
+                                    }}/>
                                 :
                                 <div className="container">
                                     <Outlet context={{
                                         activeSidebar: [(v) => setActiveSidebar(v)],
                                         activeCompiler: [(v) => setActiveCompiler(v)]
-                                    }} />
+                                    }}/>
                                 </div>}
+                            {sidebarProfileActive ? <SidebarProfile/> : <></>}
                         </>
                     </div>
                 </>

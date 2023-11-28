@@ -29,6 +29,8 @@ const initialState = {
             }
         }
     },
+    needReloadFrameCompiler: true,
+    // outputFrame: '',
     typeContextMenu: 'file',
     canRenameFile: false,
     saveRenameFile: false,
@@ -114,7 +116,10 @@ export const compilerSlice = createSlice({
             },
             setUpdateFiles(state, action) {
                 state.updateFiles = action.payload;
-            }
+            },
+            setNeedReloadFrameCompiler (state, action) {
+                state.needReloadFrameCompiler = action.payload;
+            },
         }
     })
 ;
@@ -137,6 +142,7 @@ export const {
     setCanRenameFile,
     setSaveRenameFile,
     setUpdateFiles,
+    setNeedReloadFrameCompiler,
 } = compilerSlice.actions;
 
 export default compilerSlice.reducer;

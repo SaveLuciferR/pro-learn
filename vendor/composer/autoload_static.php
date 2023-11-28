@@ -15,17 +15,15 @@ class ComposerStaticInit541083a105fda2bbcdd7728b0794a10e
         array (
             'app\\' => 4,
         ),
-        'V' => 
+        'S' => 
         array (
-            'Valitron\\' => 9,
+            'Symfony\\Component\\Process\\' => 26,
+            'Spatie\\Macroable\\' => 17,
+            'Spatie\\Docker\\' => 14,
         ),
         'R' => 
         array (
             'RedBeanPHP\\' => 11,
-        ),
-        'P' => 
-        array (
-            'PHPMailer\\PHPMailer\\' => 20,
         ),
     );
 
@@ -38,17 +36,21 @@ class ComposerStaticInit541083a105fda2bbcdd7728b0794a10e
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
-        'Valitron\\' => 
+        'Symfony\\Component\\Process\\' => 
         array (
-            0 => __DIR__ . '/..' . '/vlucas/valitron/src/Valitron',
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
+        'Spatie\\Macroable\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/macroable/src',
+        ),
+        'Spatie\\Docker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/docker/src',
         ),
         'RedBeanPHP\\' => 
         array (
             0 => __DIR__ . '/..' . '/gabordemooij/redbean/RedBeanPHP',
-        ),
-        'PHPMailer\\PHPMailer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
     );
 

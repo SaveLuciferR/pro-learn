@@ -74,7 +74,7 @@
         padding: 16px 24px;
 
         border: 1px solid #5f5f5f;
-        border-radius: 12px 12px 0px 0px;
+        border-radius: 12px 12px 0 0;
     }
 
     &-body {
@@ -271,5 +271,50 @@
                 margin-right: 12px;
             }
         }
+    }
+}
+
+.project__add-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project_files-body_addfile {
+    background-color: #232323;
+
+    border: 1px solid #5f5f5f;
+    border-radius: 0 0 12px 12px;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background-color: #1d2125;
+    }
+
+    &-inner {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+
+        padding: 15px 52px;
+
+        &:hover {
+            &>svg {
+                opacity: 1;
+            }
+        }
+
+        &>svg {
+            opacity: 0.6;
+
+            transition: all 0.2s ease-in-out;
+        }
+    }
+
+    &-text {
+        display: flex;
+        align-items: center;
+        gap: 12px;
     }
 }

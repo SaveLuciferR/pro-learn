@@ -30,7 +30,7 @@ const router = createBrowserRouter([
                 element: <ProjectAddPage isActiveSidebar={false}/>
             },
             {
-                path: 'compiler/:project',
+                path: 'compiler/:username/:project',
                 element: <CompilerPage isActiveSidebar={true} isCompiler={true}/>
             }
         ]
