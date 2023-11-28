@@ -18,8 +18,7 @@ const CompilerEditor = () => {
           monaco.editor.defineTheme("Blackboard", data);
         });
       })
-      .catch((error) =>
-        console.error("error"));
+      .catch((error) => console.error("error"));
   }, []);
 
   return (
@@ -40,10 +39,7 @@ const CompilerEditor = () => {
         </div>
         <div className="editor-workspace">
           <div className="editor-container">
-            <Editor
-              defaultLanguage="html"
-              theme="Blackboard"
-            />
+            <Editor height="100%" defaultLanguage="html" theme="Blackboard" />
           </div>
         </div>
       </div>

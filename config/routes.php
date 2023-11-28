@@ -23,6 +23,7 @@ Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project/?$', ['con
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'profile']); // Страница профиля пользователя
 
 Router::add('^user/(?P<action>[a-z-]+)/?$', ['controller' => 'User']); // Запрос проверки авторизации пользователя
+// Router::add('^user/feedback', ['controller' => 'User', 'action' => 'feedback']);//Запрос обратной связи
 
 Router::add('^(?P<lang>[a-z]+)?/?$', ['controller' => 'Main', 'action' => 'index']); // Главная страница
 

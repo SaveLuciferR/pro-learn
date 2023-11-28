@@ -30,6 +30,15 @@ class UserController extends AppController
         }
     }
 
+    public function feedbackAction()
+    {
+        $userParam = json_decode(file_get_contents("php://input"), true);
+
+        if ($userParam){
+            debug($userParam, 1);
+        }
+    }
+
     public function profileAction()
     {
         echo "Current Profile: " . $this->route['username'];

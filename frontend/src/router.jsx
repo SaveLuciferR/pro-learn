@@ -6,6 +6,7 @@ import ProjectPage from "./pages/ProjectPage";
 import ProjectAddPage from "./pages/ProjectAddPage";
 import Login from "./components/Forms/Login";
 import CompilerPage from "./pages/CompilerPage";
+import Feedback from "./components/Forms/Feedback";
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path: 'compiler',
                 element: <CompilerPage />
+            },
+            {
+                path: 'feedback',
+                element: <Feedback />
             }
         ]
     }
