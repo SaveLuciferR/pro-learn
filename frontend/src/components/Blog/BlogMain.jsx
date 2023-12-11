@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";//Подключение хуков
 import BlogCard from "./BlogCard";//Карточка статьи
 import BlogFilter from "./BlogFilter";//Фильтр для страницы со статьями
-import axiosClient from "../../axiosClient";//Соединение с беком
+import axiosClient from "../../axiosClient";
+import {useParams} from "react-router-dom";
+//Соединение с беком
 
 const BlogMain = () => {//Страница со всеми статьями
   const [items, setItems] = useState([]);//State для основного контента с бека
   const [activeFilter, setActiveFilter] = useState(false);//State для работы фильтра
 
+  const { lang } = useParams();
+
   useEffect(() => {//Effect, который получает данные с бека
-    axiosClient.post("/blog").then(({ data }) => {
+
+    axiosClient.post(`${lang === undefined ? "/" : '/' + lang + "/"}` + "blog").then(({ data }) => {
       // console.log(setItems(data.allBlogs));
       setItems(data.allBlogs);
+      console.log(data.allBlogs);
     });
-  }, []);
+  }, [lang]);
 
-  const blogs = items.map((item) => <BlogCard key={item.id} {...item} />);//Прогонка по каждому массиву данных
+  const blogs = items.map((item) => <BlogCard key={"blog_card_" + item.slug} {...item} />);//Прогонка по каждому массиву данных
 
   return (
     <>

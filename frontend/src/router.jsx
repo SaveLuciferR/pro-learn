@@ -11,11 +11,11 @@ import CompilerPage from "./pages/CompilerPage";
 const router = createBrowserRouter([
     {
         path: '/:lang?',
-        element: <MainLayout activeSidebar={true}/>,
+        element: <MainLayout isActiveSidebar={true} isCompiler={false}/>,
         children: [
             {
                 path: 'user/login',
-                element: <Login />
+                element: <Login isActiveSidebar={false}/>
             },
             {
                 path: 'blog',
@@ -23,18 +23,18 @@ const router = createBrowserRouter([
             },
             {
                 path: ':username/project/:project',
-                element: <ProjectPage activeSidebar={false}/>
+                element: <ProjectPage isActiveSidebar={false}/>
             },
             {
                 path: ':username/project/add',
-                element: <ProjectAddPage activeSidebar={false}/>
+                element: <ProjectAddPage isActiveSidebar={false}/>
             },
             {
-                path: 'compiler',
-                element: <CompilerPage />
+                path: 'compiler/:username/:project',
+                element: <CompilerPage isActiveSidebar={true} isCompiler={true}/>
             }
         ]
-    }
+    },
 ]);
 
 export default router;

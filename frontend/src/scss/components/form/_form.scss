@@ -81,7 +81,7 @@
                 box-shadow: none;
             }
 
-            &:valid,
+            &:not(:placeholder-shown),
             &:focus {
                 border: 1px solid #797ef9;
 
