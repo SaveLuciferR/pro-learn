@@ -3,7 +3,6 @@
 namespace app\models;
 
 use app\models\AppModel;
-use Spatie\Docker\DockerContainer;
 
 class Compiler extends AppModel
 {

@@ -13,8 +13,8 @@ const PROJECT_CACHE = ROOT . '/tmp/project';
 const LOGS = ROOT . '/tmp/logs';
 const CONFIG = ROOT . '/config';
 const LAYOUT = 'pro-learn';
-const PATH = 'http://pro-learn';
-const ADMIN = 'http://pro-learn';
+const PATH = 'http://api.pro-learn.my';
+const ADMIN = 'http://api.pro-learn.my/admin';
 //const NO_IMAGE = '/public/uploads/no_image.jpg';
 
 require_once ROOT . '/vendor/autoload.php';
