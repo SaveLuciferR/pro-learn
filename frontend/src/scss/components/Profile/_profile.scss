@@ -1,0 +1,49 @@
+.profile-sidebar-main-line{
+  display: block;
+  height: 1px;
+  width: 210px;
+  color: #242424;
+}
+
+.profile{
+
+  &-main{
+    padding: 46px 34px;
+    width: 278px;
+
+    &-sidebar{
+
+      &-tab{
+        padding: 16px 0;
+        border-bottom: 1px solid #242424;
+
+        transition: 0.3s ease-out;
+
+        &:last-child{
+          border-bottom: 0;
+        }
+
+        &:hover{
+          color: rgba($color: #FFFFFF, $alpha: 0.5);
+        }
+      }
+
+      &-nickname{
+        font-weight: 500;
+        font-size: 18px;
+      }
+
+      &-name{
+        font-weight: 400;
+        font-size: 16px;
+        color: rgba($color: #FFFFFF, $alpha: 0.8);
+      }
+    }
+  }
+
+
+
+  &-sidebar{
+    
+  }
+}

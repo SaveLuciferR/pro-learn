@@ -33,9 +33,9 @@ const MainLayout = ({ isActiveSidebar }) => {
                     {/* {activeSidebar ? <Sidebar/> : <></>} */}
                     <Sidebar />
                     <div className="main">
-                        <div className="container">
+                        {/* <div className="container"> */}
                             <Outlet context={activeSidebar} />
-                        </div>
+                        {/* </div> */}
                     </div>
                 </>
             }

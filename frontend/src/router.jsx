@@ -7,6 +7,7 @@ import ProjectAddPage from "./pages/ProjectAddPage";
 import Login from "./components/Forms/Login";
 import CompilerPage from "./pages/CompilerPage";
 import Feedback from "./components/Forms/Feedback";
+import ProfilePage from "./pages/ProfilePage";
 
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: 'feedback',
                 element: <Feedback />
+            },
+            {
+                path: 'profile',
+                element: <ProfilePage activeSidebar={false}/>
             }
         ]
     }
