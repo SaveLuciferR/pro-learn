@@ -1,62 +1,63 @@
-version: '3.7'
+version: '3.8'
 services:
 
   frontend:
     build:
       context: ./frontend
+    volumes:
+      - ./frontend:/app
     ports:
-      - "80:80"
+      - "3000:3000"
+    depends_on:
+      - backend
     networks:
-      - app-network
+      - app
 
   backend:
-    build:
-      context: ./backend
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USERNAME}
-    working_dir: /var/www
+    build: /backend/
     volumes:
-      - ./backend:/var/www
+      - ./backend:/var/www/html/
+      - ./apache2/apache2.conf:/etc/apache2/apache2.conf
+      - ./apache2/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
     ports:
-      - '8000:8000'
+      - '8000:80'
+    restart: always
+    depends_on:
+      - mysql
     networks:
-      - app-network
-      - db
+      - database
+      - app
 
-  appdb:
-    image: mariadb:10.8
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USERNAME}
+  mysql:
+    image: mysql
+#    command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - ./ProLearn:/docker-entrypoint-prolearn.d
-    ports:
-      - '3306:3306'
+#      - ./ProLearn.sql:/docker-entrypoint-initdb.d/prolearn.sql
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+#      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    restart: always
     networks:
-      - db
+      - database
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    restart: unless-stopped
-    environment:
-      PMA_HOST: appdb
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-    depends_on:
-      - appdb
+    image: phpmyadmin
     ports:
-      - '8443:80'
+      - '3306:80'
+    environment:
+      - PMA_HOST=mysql
+    restart: always
+    depends_on:
+      - mysql
     networks:
-      - db
+      - database
 
 networks:
-  app-network:
+  database:
+    name: database
+  app:
+    name: app
     driver: bridge
-    
-  db:
