@@ -6,18 +6,16 @@ import ProjectPage from "./pages/ProjectPage";
 import ProjectAddPage from "./pages/ProjectAddPage";
 import Login from "./components/Forms/Login";
 import CompilerPage from "./pages/CompilerPage";
-import Feedback from "./components/Forms/Feedback";
-import ProfilePage from "./pages/ProfilePage";
 
 
 const router = createBrowserRouter([
     {
         path: '/:lang?',
-        element: <MainLayout activeSidebar={true}/>,
+        element: <MainLayout isActiveSidebar={true} isCompiler={false}/>,
         children: [
             {
                 path: 'user/login',
-                element: <Login />
+                element: <Login isActiveSidebar={false}/>
             },
             {
                 path: 'blog',
@@ -25,26 +23,18 @@ const router = createBrowserRouter([
             },
             {
                 path: ':username/project/:project',
-                element: <ProjectPage activeSidebar={false}/>
+                element: <ProjectPage isActiveSidebar={false}/>
             },
             {
                 path: ':username/project/add',
-                element: <ProjectAddPage activeSidebar={false}/>
+                element: <ProjectAddPage isActiveSidebar={false}/>
             },
             {
-                path: 'compiler',
-                element: <CompilerPage />
-            },
-            {
-                path: 'feedback',
-                element: <Feedback />
-            },
-            {
-                path: 'profile',
-                element: <ProfilePage activeSidebar={false}/>
+                path: 'compiler/:username/:project',
+                element: <CompilerPage isActiveSidebar={true} isCompiler={true}/>
             }
         ]
-    }
+    },
 ]);
 
 export default router;

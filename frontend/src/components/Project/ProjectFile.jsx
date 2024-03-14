@@ -2,15 +2,19 @@ import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHithLighter } from 'react-syntax-highlighter';
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import rehypeLodashTemplate from "rehype-lodash-template"
+import {useDispatch, useSelector} from "react-redux";
+import {setNewTableAddProject} from "../../redux/Project/slice";
 
 const ProjectFile = ({ beforeFolder, obj, setSecondaryPath, setBeforeFolder }) => {
+
+    const dispatch = useDispatch();
 
     const returnInBeforeFolder = () => {
         setSecondaryPath(beforeFolder);
         let path = new String(beforeFolder);
         path = path.split('/');
-        console.log(path);
         setBeforeFolder(path.length - 2 < 0 ? undefined : path[path.length - 2]);
+        dispatch(setNewTableAddProject(true));
     }
 
     const md = "```" + obj.language + "\n" + obj.body + "\n```";
@@ -30,7 +34,7 @@ const ProjectFile = ({ beforeFolder, obj, setSecondaryPath, setBeforeFolder }) =
                 <span>{obj.fileName}</span>
             </div>
 
-            <ReactMarkdown className={"project__file-code"} children={md} rehypePlugins={[[rehypeLodashTemplate]]} components={{
+            <ReactMarkdown className={"project__file-code scroll"} children={md} rehypePlugins={[[rehypeLodashTemplate]]} components={{
                 code: function code({ node, inline, className, showInlineLineNumbers, children, ...props }) {
                     const match = /language-(\w+)/.exec(className || '');
                     return !inline && match ? (

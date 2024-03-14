@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import axiosClient from "../axiosClient";
 
 import ProjectTable from "../components/Project/ProjectTable";
-import { Link, useOutletContext, useParams } from "react-router-dom";
+import {Link, useNavigate, useOutletContext, useParams} from "react-router-dom";
 import ProjectFile from "../components/Project/ProjectFile";
 import ProjectMain from "../components/Project/ProjectMain";
 import ProjectReadme from "../components/Project/ProjectReadme";
 
-const ProjectPage = ({ activeSidebar }) => {
+const ProjectPage = ({ isActiveSidebar }) => {
 
-  // const [setActiveSidebar] = useOutletContext(activeSidebar);
-  // setActiveSidebar(activeSidebar);
+  const {activeSidebar} = useOutletContext();
+  activeSidebar[0](isActiveSidebar);
+
+  const navigate = useNavigate();
 
   const { project, username } = useParams();
   const [filesProject, setFilesProject] = useState([]);
@@ -27,9 +29,14 @@ const ProjectPage = ({ activeSidebar }) => {
         setReadmeFile(data.readmeFile);
         setProjectInfo(data.projectInfo);
         setFilesProject(data.filesInfo);
-        setIsMainFolder(secondaryPathProject === undefined ? false : true);
+        setIsMainFolder(secondaryPathProject === undefined);
+        console.log(data);
       });
   }, [secondaryPathProject, username, project]);
+
+  const onClickNavCompiler = () => {
+      navigate('/compiler/' + username + '/' + project);
+  }
 
   return (
     <>
@@ -55,7 +62,7 @@ const ProjectPage = ({ activeSidebar }) => {
                 />
                 <div className="project__action">
                   <div className="project__action-center">
-                    <button className="btn  primary  big center">Открыть в компиляторе</button>
+                    <button className="btn  primary  big center" onClick={() => onClickNavCompiler()}>Открыть в компиляторе</button>
                     <div className="project__action-links center">
                       <div className="project__action-links-item">
                         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
