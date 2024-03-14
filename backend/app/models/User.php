@@ -139,7 +139,7 @@ class User extends AppModel
             }
 
             $this->copyCacheProject($pathProject, $distPath . '/src');
-            
+
             // $this->deleteCacheProjectDir($pathProject);
 
             $slug = $project->slug;
@@ -229,5 +229,42 @@ class User extends AppModel
         }
 
         return $directoryData;
+    }
+
+    public function getUserInfo($username)
+    {
+        return R::getRow("SELECT u.username, u.role, u.last_name, 
+                                    u.first_name, u.country_address, 
+                                    u.date_of_registration, avatar_img, heading_img,
+                                    about_user, all_profile_private, personal_info_private,
+                                    look_current_course_private
+                            FROM user u
+                            WHERE u.username = ?", [$username]);
+    }
+
+    public function getUserProjects($username)
+    {
+        return R::getAll("SELECT p.id, p.slug, p.title, p.date_of_publication, p.private, p.description
+                               FROM project p JOIN user u ON u.id = p.user_id
+                               WHERE u.username = ?", [$username]);
+    }
+
+    public function getUserCourses($username, $lang)
+    {
+        return R::getAll("SELECT c.id, uc.success,
+                                    c.slug, c.icon, c.difficulty, cd.heading, uc.current_stage,
+                                    (SELECT COUNT(sc.id)
+                                    FROM stagecourse sc 
+                                    WHERE sc.course_id = c.id) AS 'amount_stage',
+                                    (SELECT COUNT(cm.user_id)
+                                    FROM course_mark cm
+                                    WHERE cm.course_id = c.id AND cm.mark = 1) AS 'like',
+                                    (SELECT COUNT(cm.user_id)
+                                    FROM course_mark cm
+                                    WHERE cm.course_id = c.id AND cm.mark = 0) AS 'dislike'
+                               FROM course c JOIN user_course uc ON uc.course_id = c.id
+                               JOIN user u ON u.id = uc.user_id
+                               JOIN course_description cd ON cd.course_id = c.id
+                               WHERE u.username = ? AND cd.language_id = ?", [$username, $lang]);
     }
 }

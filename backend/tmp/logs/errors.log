@@ -1260,3 +1260,44 @@
 =================
 [2023-12-11 16:57:31] Текст ошибки: No connection to DataBase | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\DataBase.php | Строка: 54
 =================
+[2024-03-09 12:53:09] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-03-09 13:04:31] Текст ошибки: Undefined constant "app\controllers\date_of_registration" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 46
+=================
+[2024-03-09 13:10:34] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.proejct' doesn't exist | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-09 13:19:08] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM course c JOIN user_course uc ON uc.id_course = c.id
+                   ...' at line 2 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-09 13:19:27] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM course c JOIN user_course uc ON uc.course_id = c.id
+                   ...' at line 2 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-09 13:19:39] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM course c JOIN user_course uc ON uc.course_id = c.id
+                   ...' at line 2 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-09 13:20:13] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cd.lang_id' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-09 13:23:05] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT sc.id FROM stagecourse sc JOIN sc.course_id = c.id) AS 'amount_stage'...' at line 3 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-09 13:23:32] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT sc.id FROM stagecourse sc WHERE sc.course_id = c.id) AS 'amount_stage'...' at line 3 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-09 13:23:57] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT sc.id FROM stagecourse sc JOIN course ON course.id = sc.course_id) AS ...' at line 3 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-09 13:24:31] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT sc.id 
+                                        FROM stagecourse sc 
+...' at line 3 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-09 13:27:09] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM course c JOIN user_course uc ON uc.course_id = c.id
+                   ...' at line 6 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-09 13:31:01] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM course c JOIN user_course uc ON uc.course_id = c.id
+                   ...' at line 13 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-09 13:55:17] Текст ошибки: Undefined array key "email" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 34
+=================
+[2024-03-09 13:55:24] Текст ошибки: Undefined array key "email" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 34
+=================
+[2024-03-09 14:00:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-03-09 14:00:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================

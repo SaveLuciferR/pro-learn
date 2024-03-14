@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\User;
+use core\App;
 use core\Cache;
 use DateTime;
 use IntlDateFormatter;
@@ -24,8 +25,7 @@ class UserController extends AppController
         if ($userParam) {
             if ($this->model->login($userParam)) {
                 $_SESSION['user']['success'] = true;
-            }
-            else $_SESSION['user']['success'] = false;
+            } else $_SESSION['user']['success'] = false;
 
             // $this->authAction();
             echo json_encode(array('auth' => $this->model->checkAuth()));
@@ -41,12 +41,63 @@ class UserController extends AppController
 
     public function profileAction()
     {
-        echo "Current Profile: " . $this->route['username'];
+        $profileInfo = $this->model->getUserInfo($this->route['username']);
+        $profileInfo['date_of_registration'] = date('d.m.Y', strtotime($profileInfo['date_of_registration']));
+        $profileInfo['projects'] = $this->model->getUserProjects($this->route['username']);
+
+        $userCourse = $this->model->getUserCourses($this->route['username'], App::$app->getProperty('language')['id']);
+
+        // Сортировка курсов на текущие и пройденнык
+        foreach ($userCourse as $k => $v) {
+            if ($v['success']) {
+                $profileInfo['completeCourse'][$k] = $v;
+            } else {
+                $profileInfo['currentCourse'][$k] = $v;
+            }
+        }
+
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+
+            // если весь профиль приватен, то сразу возвращает с базовой информацией массив
+            if ($profileInfo['all_profile_private']) {
+                unset($profileInfo['last_name']);
+                unset($profileInfo['first_name']);
+                unset($profileInfo['about_user']);
+                unset($profileInfo['projects']);
+                unset($profileInfo['country_address']);
+                unset($profileInfo['completeCourse']);
+                unset($profileInfo['currentCourse']);
+
+                echo json_encode(array('profileInfo' => $profileInfo), JSON_UNESCAPED_SLASHES);
+
+                return;
+            }
+
+            if (!$profileInfo['look_current_course_private']) {
+                unset($profileInfo['completeCourse']);
+                unset($profileInfo['currentCourse']);
+            }
+
+            if ($profileInfo['personal_info_private']) {
+                unset($profileInfo['last_name']);
+                unset($profileInfo['first_name']);
+                unset($profileInfo['about_user']);
+                unset($profileInfo['country_address']);
+            }
+
+            // Сортировка проектов
+            foreach ($profileInfo['projects'] as $k => $v) {
+                if ($v['private']) unset($profileInfo['projects'][$k]);
+            }
+        }
+
+
+        echo json_encode(array('profileInfo' => $profileInfo), JSON_UNESCAPED_SLASHES);
     }
 
     public function projectListAction()
     {
-        debug(PROGRAMMING_LANGUAGES, 1);
+//        debug(PROGRAMMING_LANGUAGES, 1);
     }
 
     public function projectAction()
