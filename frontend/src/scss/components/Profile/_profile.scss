@@ -1,49 +1,82 @@
-.profile-sidebar-main-line{
-  display: block;
-  height: 1px;
-  width: 210px;
-  color: #242424;
-}
+.profile {
 
-.profile{
 
-  &-main{
-    padding: 46px 34px;
-    width: 278px;
+  &-container{
+    margin: 0 auto;
 
-    &-sidebar{
+    }
 
-      &-tab{
+  &-section {
+    display: flex;
+    column-gap: 28px;
+    padding: 28px 28px;
+    width: 100%;
+
+    &-main {
+      width: 100%;
+      border: 1px solid #5F5F5F;
+      border-radius: 12px;
+
+      &-header {
+        width: 100%;
+        height: 194px;
+
+        &-background {
+          position: relative;
+          overflow: hidden;
+          max-width: 100%;
+          height: 194px;
+
+          & img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 194px;
+            object-fit: cover;
+            
+          }
+        }
+
+        &-settings {
+          padding: 4px;
+          background-color: rgba(166, 166, 166, 0.3);
+          border-radius: 4px;
+        }
+      }
+    }
+
+    &-sidebar {
+      width: 229px;
+
+      &-tab {
         padding: 16px 0;
         border-bottom: 1px solid #242424;
 
-        transition: 0.3s ease-out;
+        &-text{
+          transition: 0.3s ease-out;
 
-        &:last-child{
-          border-bottom: 0;
-        }
+          &:last-child {
+            border-bottom: 0;
+          }
 
-        &:hover{
-          color: rgba($color: #FFFFFF, $alpha: 0.5);
+          &:hover {
+            color: rgba($color: #FFFFFF, $alpha: 0.5);
+          }
         }
       }
 
-      &-nickname{
+      &-nickname {
         font-weight: 500;
         font-size: 18px;
       }
 
-      &-name{
+      &-name {
         font-weight: 400;
         font-size: 16px;
         color: rgba($color: #FFFFFF, $alpha: 0.8);
       }
     }
-  }
-
-
-
-  &-sidebar{
-    
   }
 }

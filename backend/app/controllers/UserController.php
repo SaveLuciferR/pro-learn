@@ -3,9 +3,8 @@
 namespace app\controllers;
 
 use app\models\User;
+use core\App;
 use core\Cache;
-use DateTime;
-use IntlDateFormatter;
 
 /** @property User $model */
 
@@ -24,8 +23,7 @@ class UserController extends AppController
         if ($userParam) {
             if ($this->model->login($userParam)) {
                 $_SESSION['user']['success'] = true;
-            }
-            else $_SESSION['user']['success'] = false;
+            } else $_SESSION['user']['success'] = false;
 
             // $this->authAction();
             echo json_encode(array('auth' => $this->model->checkAuth()));
@@ -43,7 +41,7 @@ class UserController extends AppController
     {
         $userParam = json_decode(file_get_contents("php://input"), true);
 
-        if ($userParam){
+        if ($userParam) {
             debug($userParam, 1);
         }
     }
@@ -156,6 +154,26 @@ class UserController extends AppController
             rmdir(PROJECT_CACHE . '/' . md5($_POST['username']));
 
             echo json_encode(array('slug' => $slug));
+        }
+    }
+
+    public function feedbackCategoryAction()
+    {
+        $categories = $this->model->getFeedbackCategory(App::$app->getProperty('language')['id']);
+        echo json_encode(array('categories' => $categories));
+    }
+
+    public function saveFeedbackAction()
+    {
+        $_POST = json_decode(file_get_contents("php://input"), true);
+//        debug($_POST, 1);
+        if (!empty($_POST)) {
+            $data['name'] = $_POST['name'];
+            $data['email'] = $_POST['email'];
+            $data['category'] = $_POST['currentFeedbackCategory']['id'];
+            $data['message'] = $_POST['message'];
+
+            $this->model->saveFeedback($data);
         }
     }
 

@@ -12,7 +12,7 @@ class CompilerController extends AppController
         $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
 
         $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']));
-        debug(mb_strlen(json_encode($fileStructure)), 1);
+//        debug(mb_strlen(json_encode($fileStructure)), 1);
 
         echo json_encode(array('fileStructure' => $fileStructure, 'path' => $pathProject), JSON_UNESCAPED_SLASHES);
     }

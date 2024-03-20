@@ -42,12 +42,10 @@ abstract class Model
         // debug($attributes, 1);
 
         foreach ($this->attributes as $name => $value) {
-            if ($value != '' ) {
+            if ($value != '') {
                 $tbl->$name = $value;
             }
         }
-
-        // debug($tbl, 1);
 
         // debug($tbl, 1);
 

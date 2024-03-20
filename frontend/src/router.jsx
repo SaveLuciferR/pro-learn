@@ -6,6 +6,8 @@ import ProjectPage from "./pages/ProjectPage";
 import ProjectAddPage from "./pages/ProjectAddPage";
 import Login from "./components/Forms/Login";
 import CompilerPage from "./pages/CompilerPage";
+import ProfilePage from "./pages/ProfilePage";
+import Feedback from "./components/Forms/Feedback";
 
 
 const router = createBrowserRouter([
@@ -16,6 +18,10 @@ const router = createBrowserRouter([
             {
                 path: 'user/login',
                 element: <Login isActiveSidebar={false}/>
+            },
+            {
+                path: 'user/feedback',
+                element: <Feedback />
             },
             {
                 path: 'blog',
@@ -32,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: 'compiler/:username/:project',
                 element: <CompilerPage isActiveSidebar={true} isCompiler={true}/>
+            },
+            {
+                path: 'profile',
+                element: <ProfilePage isActiveSidebar={false} isCompiler={false}/>
             }
         ]
     },

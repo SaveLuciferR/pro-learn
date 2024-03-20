@@ -5,6 +5,9 @@ const initialState = {
     user: [],
     sidebarProfileActive: false,
     needReloadPage: true,
+    activeSidebar: true,
+    activeContainer: true,
+    feedbackCategories: [],
     // userTokenSession: localStorage.getItem('userTokenSession'),
 }
 
@@ -25,6 +28,12 @@ export const mainLayout = createSlice({
             setNeedReloadPage (state, action) {
                 state.needReloadPage = action.payload;
             },
+            setActiveSidebar (state, action) {
+                state.activeSidebar = action.payload;
+            },
+            setFeedbackCategory (state, action) {
+                state.feedbackCategories = action.payload;
+            },
             // setUserSession(state, action) {
             //     state.userAuth = action.payload;
             // }
@@ -37,6 +46,8 @@ export const {
     setUser,
     setSidebarProfileActive,
     setNeedReloadPage,
+    setActiveSidebar,
+    setFeedbackCategory,
 } = mainLayout.actions;
 
 export default mainLayout.reducer;

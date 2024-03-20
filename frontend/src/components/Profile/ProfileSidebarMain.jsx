@@ -1,29 +1,27 @@
 const ProfileSidebarMain = () => {
   return (
-    <div className="profile-main-sidebar">
-      <div className="profile-main-sidebar-tabs">
-      <div className="profile-main-sidebar-tab">
-        <p className="profile-main-sidebar-nickname">John Johnson</p>
-        <p className="profile-main-sidebar-name">Джон Джонсон</p>
+    <div className="profile-section-sidebar">
+      <div className="profile-section-sidebar-tabs">
+      <div className="profile-section-sidebar-tab">
+        <p className="profile-section-sidebar-nickname">
+          <div className="profile-section-sidebar-tab-text">John Johnson</div>
+        </p>
+        <p className="profile-section-sidebar-name">Джон Джонсон</p>
       </div>
-        <div className="profile-main-sidebar-tab">
-          Созданные курсы
+        <div className="profile-section-sidebar-tab">
+          <div className="profile-section-sidebar-tab-text">Созданные курсы</div>
         </div>
-
-        <div className="profile-main-sidebar-tab">
-          Созданные задачи
+        <div className="profile-section-sidebar-tab">
+          <div className="profile-section-sidebar-tab-text">Созданные задачи</div>
         </div>
-
-        <div className="profile-main-sidebar-tab">
-          Пройденные задачи
+        <div className="profile-section-sidebar-tab">
+          <div className="profile-section-sidebar-tab-text">Пройденные задачи</div>
         </div>
-
-        <div className="profile-main-sidebar-tab">
-          Текущие задачи
+        <div className="profile-section-sidebar-tab">
+          <div className="profile-section-sidebar-tab-text">Текущие задачи</div>
         </div>
-
-        <div className="profile-main-sidebar-tab">
-          Создать вопрос
+        <div className="profile-section-sidebar-tab">
+          <div className="profile-section-sidebar-tab-text">Создать вопрос</div>
         </div>
       </div>
     </div>

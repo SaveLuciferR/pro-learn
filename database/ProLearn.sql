@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 11 2023 г., 16:47
+-- Время создания: Мар 20 2024 г., 10:12
 -- Версия сервера: 10.8.4-MariaDB
 -- Версия PHP: 8.1.9
 
@@ -550,12 +550,22 @@ INSERT INTO `documentation_description` (`language_id`, `documentation_id`, `hea
 
 CREATE TABLE `Feedback` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
   `feedbackcategory_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Не просмотрено'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `Feedback`
+--
+
+INSERT INTO `Feedback` (`id`, `user_id`, `feedbackcategory_id`, `name`, `email`, `text`, `status`) VALUES
+(3, NULL, 1, 'Вася', 'vasya@gmail.com', 'Пользователь Игорь оскорбил меня.', 'Не просмотрено'),
+(4, NULL, 2, 'Head', 'head@mail.ru', 'meessagee', 'Не просмотрено'),
+(5, NULL, 1, 'Jonh', 'jonh@gmail.com', 'IM', 'Не просмотрено');
 
 -- --------------------------------------------------------
 
@@ -568,6 +578,15 @@ CREATE TABLE `Feedbackcategory` (
   `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `Feedbackcategory`
+--
+
+INSERT INTO `Feedbackcategory` (`id`, `code`) VALUES
+(1, 'idea'),
+(2, 'bug'),
+(3, 'report');
+
 -- --------------------------------------------------------
 
 --
@@ -579,6 +598,18 @@ CREATE TABLE `Feedbackcategory_description` (
   `feedbackcategory_id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `Feedbackcategory_description`
+--
+
+INSERT INTO `Feedbackcategory_description` (`language_id`, `feedbackcategory_id`, `title`) VALUES
+(2, 1, 'I want to provide an idea'),
+(1, 1, 'Я хочу предоставить идею'),
+(2, 2, 'I found an error on the website'),
+(1, 2, 'Я нашел ошибку на сайте'),
+(2, 3, 'I want to complain'),
+(1, 3, 'Я хочу пожаловаться');
 
 -- --------------------------------------------------------
 
@@ -792,7 +823,8 @@ CREATE TABLE `project` (
 
 INSERT INTO `project` (`id`, `user_id`, `slug`, `title`, `path_project`, `date_of_publication`, `private`, `description`) VALUES
 (1, 2, 'find-square-triangle', 'Найти площадь треугольника', '/public/projects/user1/find-square-triangle', '2023-05-12', 0, 'Программа для поиска площади треугольника по основанию и его высоте.'),
-(44, 2, 'sayt-dlya-transportnoy-kompanii', 'Сайт для транспортной компании', '/public/projects/user1/sayt-dlya-transportnoy-kompanii', '2023-11-23', 0, 'Данный сайт был создан в момент практики над верстой, с использованием jquery для анимации и прочего');
+(44, 2, 'sayt-dlya-transportnoy-kompanii', 'Сайт для транспортной компании', '/public/projects/user1/sayt-dlya-transportnoy-kompanii', '2023-11-23', 0, 'Данный сайт был создан в момент практики над верстой, с использованием jquery для анимации и прочего'),
+(46, 2, 'new', 'new', '/public/projects/user1/new', '2024-03-08', 1, '');
 
 -- --------------------------------------------------------
 
@@ -1012,12 +1044,12 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `mail`, `second_mail`, `password`, `avatar_img`, `heading_img`, `about_user`, `last_name`, `first_name`, `country_address`, `date_of_registration`, `mb_for_project`, `consecutive_days`, `all_profile_private`, `personal_info_private`, `look_current_course_private`, `role`) VALUES
 (1, 'admin1', 'admin1@mail.ru', 'admin1@second.ru', '12345', '/public/uploads/ava1.jpg', '/public/uploads/head1.jpg', 'Первый админ', 'First', 'Admin', 'Россия', '2023-02-01', 50, 1, 1, 1, 1, 'admin'),
-(2, 'user1', 'user1@mail.ru', 'user1@second.ru', '12345', '/public/uploads/ava1.jpg', '/public/uploads/head1.jpg', 'Первый пользователь', 'First', 'User', 'Россия', '2023-05-10', 50, 1, 0, 0, 0, 'user'),
+(2, 'user1', 'user1@mail.ru', 'user1@second.ru', '12345', '/public/uploads/ava1.jpg', '/public/uploads/head1.jpg', 'Первый пользователь', 'First', 'User', 'Россия', '2023-05-10', 50, 1, 0, 1, 1, 'user'),
 (3, 'admin2', 'admin2@mail.ru', 'admin2@secondmail.ru', '12345', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это второй админ', 'второй', 'админ', 'Россия', '2023-05-17', 50, 5, 1, 1, 1, 'admin'),
 (4, 'admin3\r\n', 'admin3@mail.ru', 'admin3@secondmail.ru', '12345', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это третий админ\r\n', 'третий', 'админ', 'Россия', '2023-05-17', 50, 1, 1, 1, 1, 'admin'),
 (5, 'user2', 'user2@mail.ru', 'user2@secondmail.ru', '12345', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это второй пользователь', 'второй', 'пользователь', 'Россия', '2023-05-12', 50, 10, 1, 1, 0, 'user'),
 (6, 'user3', 'user3@mail.ru', 'user3@secondmail.ru', '12345', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это третий пользователь\r\n', 'третий', 'пользователь', 'Россия', '2023-05-15', 200, 2, 0, 1, 0, 'user'),
-(7, 'user4', 'user4@mail.ru', 'user4@secondmail.ru', '12345', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это четвертый пользователь', 'четвертый', 'пользователь', 'Россия', '2023-05-20', 50, 2, 0, 1, 0, 'user'),
+(7, 'user4', 'user4@mail.ru', 'user4@secondmail.ru', '12345', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это четвертый пользователь', 'четвертый', 'пользователь', 'Россия', '2023-05-20', 50, 2, 0, 0, 0, 'user'),
 (9, 's', 's@mail.ru', 's@mail.ru', 's', 's', NULL, 's', 's', 's', 's', '2023-06-21', 50, 1, 1, 0, 0, 'user');
 
 -- --------------------------------------------------------
@@ -1444,13 +1476,13 @@ ALTER TABLE `documentation`
 -- AUTO_INCREMENT для таблицы `Feedback`
 --
 ALTER TABLE `Feedback`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `Feedbackcategory`
 --
 ALTER TABLE `Feedbackcategory`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `forum`
@@ -1486,7 +1518,7 @@ ALTER TABLE `language`
 -- AUTO_INCREMENT для таблицы `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT для таблицы `session`

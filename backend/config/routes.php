@@ -28,7 +28,7 @@ Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project/(?P<slug>[
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project/?$', ['controller' => 'User', 'action' => 'projectList']); // Страница со всеми проектами пользователя
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'profile']); // Страница профиля пользователя
 
-Router::add('^user/(?P<action>[a-z-]+)?$', ['controller' => 'User']); // Запрос авторизации, регистрации и проверки на авторизацию пользователя
+Router::add('^(?P<lang>[a-z]+)?/?user/(?P<action>[a-z-]+)?$', ['controller' => 'User']); // Запрос авторизации, регистрации и проверки на авторизацию пользователя
 
 Router::add('^(?P<lang>[a-z]+)?/?$', ['controller' => 'Main', 'action' => 'index']); // Главная страница
 
