@@ -1,10 +1,10 @@
 import ProfileSidebarMain from '../components/Profile/ProfileSidebarMain';
-import ProfileInfo from '../components/Profile/MainPage/ProfileInfo';
-import CurrentCourse from '../components/Profile/MainPage/CurrentCourse';
-import ProfileProjects from '../components/Profile/MainPage/ProfileProjects';
-import CompleteCourse from '../components/Profile/MainPage/CompleteCourse';
+// import ProfileInfo from '../components/Profile/MainPage/ProfileInfo';
+// import CurrentCourse from '../components/Profile/MainPage/CurrentCourse';
+// import ProfileProjects from '../components/Profile/MainPage/ProfileProjects';
+// import CompleteCourse from '../components/Profile/MainPage/CompleteCourse';
 import img from '../header_bg.png';
-import { useOutletContext } from 'react-router-dom';
+import { Outlet, useOutletContext } from 'react-router-dom';
 
 const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
   const { activeSidebar, activeCompiler } = useOutletContext();
@@ -36,12 +36,7 @@ const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
             <img src={img} alt="background-image" />
           </div>
         </div>
-        <div className="profile-section-main-cards">
-          <ProfileInfo />
-          <CurrentCourse />
-          <ProfileProjects />
-          <CompleteCourse />
-        </div>
+        <Outlet />
       </div>
       {/*</div>*/}
     </div>

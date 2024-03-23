@@ -95,7 +95,35 @@
       }
     }
   }
+
+  &-difficulty {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+    padding-top: 12px;
+    font-size: 18px;
+    font-weight: 400;
+
+    &-range {
+      display: flex;
+      column-gap: 5px;
+
+      &-item {
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        border: 1px solid #ffffff;
+
+        &.active {
+          content: "";
+          background-color: #fff;
+        }
+      }
+    }
+  }
 }
+
+/* ГЛАВНАЯ СТРАНИЦА ПРОФИЛЯ */
 
 /* Карточка с информацией о пользователе */
 
@@ -231,31 +259,6 @@
       &-title {
         font-size: 24px;
         font-weight: 500;
-      }
-      &-difficulty {
-        display: flex;
-        align-items: center;
-        column-gap: 16px;
-        padding-top: 12px;
-        font-size: 18px;
-        font-weight: 500;
-
-        &-range {
-          display: flex;
-          column-gap: 5px;
-
-          &-item {
-            width: 10px;
-            height: 10px;
-            border-radius: 5px;
-            border: 1px solid #ffffff;
-
-            &.active {
-              content: "";
-              background-color: #fff;
-            }
-          }
-        }
       }
       &-rate {
         padding-top: 20px;
@@ -412,5 +415,245 @@
     justify-content: center;
     height: 28px;
     border: 1px solid #ffffff;
+  }
+}
+
+/* СТРАНИЦА С СОЗДАННЫМИ КУРСАМИ */
+
+/* Карточка со списком созданных курсов */
+
+.created {
+  &-course {
+    padding: 18px;
+    height: 564px;
+    width: calc(50% - 14px);
+    border-radius: 12px;
+    background-color: #0d1117;
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+
+      &-tags {
+        display: flex;
+        column-gap: 20px;
+      }
+
+      &-tag {
+        padding: 8px 12px;
+        border-radius: 100px;
+        background-color: rgba($color: #2d2d2d, $alpha: 0.6);
+      }
+    }
+
+    &-info {
+      padding-top: 24px;
+
+      &-title {
+        font-size: 20px;
+        font-weight: 500;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      &-desc {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-text {
+          padding-top: 17px;
+          font-size: 16px;
+          font-weight: 400;
+
+          &-img {
+            height: 100px;
+          }
+        }
+      }
+    }
+
+    &-cards {
+      display: flex;
+      column-gap: 12px;
+      padding-top: 20px;
+    }
+
+    &-card {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px 16px;
+      height: 124px;
+      background-color: rgba($color: #2d2d2d, $alpha: 0.6);
+      border-radius: 8px;
+
+      &-text {
+        font-size: 14px;
+      }
+
+      &-img {
+        height: 40px;
+        width: 40px;
+      }
+    }
+
+    &-stat {
+      padding-top: 18px;
+      display: flex;
+      column-gap: 18px;
+      font-size: 14px;
+      font-weight: 300;
+      &-rate {
+        display: flex;
+        column-gap: 14px;
+
+        &-like {
+          display: flex;
+          column-gap: 8px;
+          align-items: center;
+
+          &-text {
+            color: #2ea043;
+          }
+        }
+
+        &-dislike {
+          display: flex;
+          column-gap: 8px;
+          align-items: center;
+
+          &-text {
+            color: #db5b42;
+          }
+        }
+      }
+
+      &-view {
+        display: flex;
+        align-items: center;
+        column-gap: 6px;
+      }
+
+      &-ended {
+        display: flex;
+        align-items: center;
+        column-gap: 6px;
+      }
+    }
+
+    &-bottom {
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: rgba($color: #ffffff, $alpha: 0.6);
+    }
+  }
+
+  &-button {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 564px;
+    width: calc(50% - 14px);
+    border-radius: 12px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%235F5F5FFF' stroke-width='4' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+
+    &:hover {
+      content: "";
+      cursor: pointer;
+      background-color: rgba($color: #2d2d2d, $alpha: 0.1);
+    }
+
+    &-img {
+      height: 97px;
+      width: 97px;
+    }
+    &-text {
+      padding-top: 28px;
+      font-size: 24px;
+      font-weight: 400;
+      color: rgba($color: #ffffff, $alpha: 0.6);
+    }
+  }
+}
+
+/* СТРАНИЦА С ВОПРОСАМИ */
+
+.profile-questions {
+  padding: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.profile-question {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 110px;
+  width: calc(50% - 14px);
+  background-color: #0d1117;
+  border-radius: 12px;
+
+  &-ask {
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    height: 110px;
+    width: calc(50% - 14px);
+    border-radius: 12px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%235F5F5FFF' stroke-width='4' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+
+    &:hover {
+      content: "";
+      cursor: pointer;
+      background-color: rgba($color: #2d2d2d, $alpha: 0.1);
+    }
+
+    &-items {
+      display: flex;
+      align-items: center;
+      column-gap: 7px;
+      color: rgba($color: #ffffff, $alpha: 0.6);
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &-text {
+    &-title {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &-stat {
+      padding-top: 8px;
+      display: flex;
+      column-gap: 20px;
+      align-items: center;
+
+      &-comment {
+        display: flex;
+        column-gap: 3px;
+        align-items: center;
+
+        &-img {
+          height: 28px;
+          width: 28px;
+          padding: 4px;
+          background-color: rgba($color: #2d2d2d, $alpha: 0.5);
+          border-radius: 2px;
+        }
+      }
+    }
   }
 }

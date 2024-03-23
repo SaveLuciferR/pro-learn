@@ -7,14 +7,14 @@ const CurrentCourse = () => {
       <div className="currentcourse-course">
         <div className="currentcourse-course-info">
           <p className="currentcourse-course-info-title">_Web-разработчик</p>
-          <div className="currentcourse-course-info-difficulty">
+          <div className="profile-difficulty">
             <p>_Сложность: </p>
-            <ul className="currentcourse-course-info-difficulty-range">
-              <li className="currentcourse-course-info-difficulty-range-item active"></li>
-              <li className="currentcourse-course-info-difficulty-range-item active"></li>
-              <li className="currentcourse-course-info-difficulty-range-item active"></li>
-              <li className="currentcourse-course-info-difficulty-range-item"></li>
-              <li className="currentcourse-course-info-difficulty-range-item"></li>
+            <ul className="profile-difficulty-range">
+              <li className="profile-difficulty-range-item active"></li>
+              <li className="profile-difficulty-range-item active"></li>
+              <li className="profile-difficulty-range-item active"></li>
+              <li className="profile-difficulty-range-item"></li>
+              <li className="profile-difficulty-range-item"></li>
             </ul>
           </div>
           <div className="currentcourse-course-info-rate">
