@@ -4,7 +4,7 @@ import ProfileCreateCourseButton from './ProfileCreateCourseButton';
 const ProfileCreatedCourses = () => {
   return (
     <div className="profile-section-main-cards">
-      <ProfileCreateCourseButton />
+      <ProfileCreateCourseButton type="course" />
       <ProfileCreateCourse />
     </div>
   );

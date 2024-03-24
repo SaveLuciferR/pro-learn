@@ -1,5 +1,5 @@
-import CompleteCourse from './CompleteCourse';
-import CurrentCourse from './CurrentCourse';
+import CompleteCourseMain from './CompleteCourseMain';
+import CurrentCourseMain from './CurrentCourseMain';
 import ProfileInfo from './ProfileInfo';
 import ProfileProjects from './ProfileProjects';
 
@@ -7,9 +7,9 @@ const ProfileMainPage = () => {
   return (
     <div className="profile-section-main-cards">
       <ProfileInfo />
-      <CurrentCourse />
+      <CurrentCourseMain />
       <ProfileProjects />
-      <CompleteCourse />
+      <CompleteCourseMain />
     </div>
   );
 };

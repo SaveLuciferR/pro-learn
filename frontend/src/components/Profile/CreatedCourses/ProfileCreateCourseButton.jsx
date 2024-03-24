@@ -1,4 +1,5 @@
-const ProfileCreateCourseButton = () => {
+const ProfileCreateCourseButton = (type) => {
+  console.log(type);
   return (
     <div className="created-button">
       <div className="created-button-content">
@@ -16,7 +17,11 @@ const ProfileCreateCourseButton = () => {
             fillOpacity="0.6"
           />
         </svg>
-        <p className="created-button-text">Создать курс</p>
+        {type === 'course' ? (
+          <p className="created-button-text">Создать курс</p>
+        ) : (
+          <p className="created-button-text">Создать задачу</p>
+        )}
       </div>
     </div>
   );

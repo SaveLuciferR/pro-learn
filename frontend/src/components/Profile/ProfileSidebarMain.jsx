@@ -1,31 +1,50 @@
+import { Link } from 'react-router-dom';
+
 const ProfileSidebarMain = () => {
   return (
     <div className="profile-section-sidebar">
       <div className="profile-section-sidebar-tabs">
-      <div className="profile-section-sidebar-tab">
-        <p className="profile-section-sidebar-nickname">
-          <div className="profile-section-sidebar-tab-text">John Johnson</div>
-        </p>
-        <p className="profile-section-sidebar-name">Джон Джонсон</p>
-      </div>
         <div className="profile-section-sidebar-tab">
-          <div className="profile-section-sidebar-tab-text">Созданные курсы</div>
+          <p className="profile-section-sidebar-nickname">
+            <Link to="/profile" className="profile-section-sidebar-tab-text">
+              John Johnson
+            </Link>
+          </p>
+          <p className="profile-section-sidebar-name">Джон Джонсон</p>
         </div>
         <div className="profile-section-sidebar-tab">
-          <div className="profile-section-sidebar-tab-text">Созданные задачи</div>
+          <Link to="current-courses" className="profile-section-sidebar-tab-text">
+            Текущие курсы
+          </Link>
         </div>
         <div className="profile-section-sidebar-tab">
-          <div className="profile-section-sidebar-tab-text">Пройденные задачи</div>
+          <Link to="completed-courses" className="profile-section-sidebar-tab-text">
+            Пройденные курсы
+          </Link>
         </div>
         <div className="profile-section-sidebar-tab">
-          <div className="profile-section-sidebar-tab-text">Текущие задачи</div>
+          <Link to="created-courses" className="profile-section-sidebar-tab-text">
+            Созданные курсы
+          </Link>
         </div>
         <div className="profile-section-sidebar-tab">
-          <div className="profile-section-sidebar-tab-text">Создать вопрос</div>
+          <Link to="projects" className="profile-section-sidebar-tab-text">
+            Проекты
+          </Link>
+        </div>
+        <div className="profile-section-sidebar-tab">
+          <Link to="user-tasks" className="profile-section-sidebar-tab-text">
+            Созданные задачи
+          </Link>
+        </div>
+        <div className="profile-section-sidebar-tab">
+          <Link to="tasks" className="profile-section-sidebar-tab-text">
+            Задачи
+          </Link>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default ProfileSidebarMain;

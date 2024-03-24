@@ -1,6 +1,6 @@
 import imgcourse from '../../../image 7.png';
 
-const CurrentCourse = () => {
+const CurrentCourseMain = () => {
   return (
     <div className="currentcourse">
       <p className="currentcourse-title">Текущие курсы</p>
@@ -70,4 +70,4 @@ const CurrentCourse = () => {
   );
 };
 
-export default CurrentCourse;
+export default CurrentCourseMain;

@@ -585,6 +585,8 @@
 
 /* СТРАНИЦА С ВОПРОСАМИ */
 
+/* Класс для распределения всех карточек */
+
 .profile-questions {
   padding: 28px;
   display: flex;
@@ -654,6 +656,220 @@
           border-radius: 2px;
         }
       }
+    }
+  }
+}
+
+/* СТРАНИЦА С СОЗДАННЫМИ ЗАДАЧАМИ */
+
+/* Класс для распределения всех карточек */
+
+.profile-tasks {
+  padding: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 28px;
+
+  &-slider {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 100%;
+    border: 1px solid #ffffff;
+  }
+}
+
+.profile-task {
+  padding: 18px;
+  height: 564px;
+  width: calc(50% - 14px);
+  border-radius: 12px;
+  background-color: #0d1117;
+
+  &-title {
+    padding-top: 20px;
+    font-size: 28px;
+    font-weight: 500;
+  }
+
+  &-desc {
+    padding-top: 12px;
+  }
+
+  &-stat {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    display: flex;
+    column-gap: 18px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  &-complete {
+    padding: 18px;
+    height: 535px;
+    width: calc(50% - 14px);
+    border-radius: 12px;
+    background-color: #0d1117;
+
+    &-stat {
+      display: flex;
+      align-items: center;
+      column-gap: 16px;
+    }
+
+    &-solution {
+      font-size: 14px;
+      &.end {
+        display: flex;
+        align-items: center;
+        column-gap: 6px;
+        color: #2ea043;
+      }
+    }
+  }
+}
+
+/* СТРАНИЦА С ПРОЕКТАМИ */
+
+.profile-projects-page {
+  padding: 28px;
+  position: relative;
+
+  &-header {
+    display: flex;
+    padding-bottom: 28px;
+  }
+
+  &-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  &-title {
+    font-size: 28px;
+    text-align: center;
+    position: absolute;
+    left: 424.5px;
+  }
+
+  &-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+  }
+}
+
+.profile-projects-card {
+  padding: 20px;
+  height: 265px;
+  width: calc(50% - 14px);
+  background-color: #0d1117;
+  border-radius: 12px;
+
+  &:hover {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%235F5F5FFF' stroke-width='1' stroke-dasharray='0' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  }
+
+  &-desc {
+    padding-top: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    height: 140px;
+    color: rgba($color: #ffffff, $alpha: 0.8);
+  }
+}
+
+/* СТРАНИЦА С ПРОЙДЕННЫМИ КУРСАМИ */
+
+.profile-completed {
+  &-page {
+    &-title {
+      font-size: 28px;
+      text-align: center;
+      position: absolute;
+      left: 350px;
+    }
+
+    &-main {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 28px;
+    }
+  }
+
+  &-card {
+    padding: 20px;
+    height: 554px;
+    width: calc(50% - 14px);
+    background-color: #0d1117;
+    border-radius: 12px;
+
+    &-stat {
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 300;
+
+      &-lang {
+        color: rgba($color: #ffffff, $alpha: 0.6);
+      }
+    }
+
+    &-about {
+      padding-top: 14px;
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba($color: #ffffff, $alpha: 0.6);
+    }
+
+    &-progress {
+      padding-top: 14px;
+
+      &-bar {
+        width: 100%;
+        height: 4px;
+        background-color: #797ef9;
+        border-radius: 2px;
+      }
+
+      &-value {
+        padding-top: 2px;
+        font-size: 14px;
+        font-weight: 300;
+        color: rgba($color: #ffffff, $alpha: 0.6);
+        text-align: right;
+      }
+    }
+  }
+}
+
+/* СТРАНИЦА С ТЕКУЩИМИ КУРСАМИ */
+
+.profile-current {
+  &-page {
+    &-title {
+      font-size: 28px;
+      text-align: center;
+      position: absolute;
+      left: 375.14px;
+    }
+  }
+
+  &-card {
+    padding: 20px;
+    height: 623px;
+    width: calc(50% - 14px);
+    background-color: #0d1117;
+    border-radius: 12px;
+
+    &-button {
+      padding-top: 24px;
+      display: flex;
+      justify-content: center;
     }
   }
 }

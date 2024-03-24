@@ -10,6 +10,11 @@ import ProfileCreatedCourses from './components/Profile/CreatedCourses/CreatedCo
 import Feedback from './components/Forms/Feedback';
 import ProfileMainPage from './components/Profile/MainPage/MainPage';
 import ProfileQuestionsMain from './components/Profile/Questions/ProfileQuestionsMain';
+import ProfileUserTasks from './components/Profile/UserTasks/ProfileUserTasks';
+import ProfileTasks from './components/Profile/UserTasks/ProfileTasks';
+import ProfileProjects from './components/Profile/Projects/ProfileProjects';
+import ProfileCompletedCourses from './components/Profile/CompletedCourses/CompletedCourses';
+import ProfileCurrentCourses from './components/Profile/CurrentCourses/ProfileCurrentCourses';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +60,26 @@ const router = createBrowserRouter([
           {
             path: 'questions',
             element: <ProfileQuestionsMain />,
+          },
+          {
+            path: 'user-tasks',
+            element: <ProfileUserTasks />,
+          },
+          {
+            path: 'tasks',
+            element: <ProfileTasks />,
+          },
+          {
+            path: 'projects',
+            element: <ProfileProjects />,
+          },
+          {
+            path: 'completed-courses',
+            element: <ProfileCompletedCourses />,
+          },
+          {
+            path: 'current-courses',
+            element: <ProfileCurrentCourses />,
           },
         ],
       },
