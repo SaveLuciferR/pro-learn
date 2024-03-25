@@ -1301,3 +1301,204 @@
 =================
 [2024-03-09 14:00:12] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
 =================
+[2024-03-20 17:42:29] Текст ошибки: Not Found language 'profile' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-03-20 17:42:29] Текст ошибки: Not Found language 'profile' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-03-20 17:43:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-03-20 17:45:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-03-20 17:50:45] Текст ошибки: Call to undefined method app\models\User::getUserProject() | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 101
+=================
+[2024-03-20 17:56:40] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-03-20 17:56:49] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-03-20 17:57:22] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/User/courseList.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-20 17:57:23] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/User/courseList.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-20 17:57:46] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/User/courseList.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-20 17:57:47] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/User/courseList.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-20 18:20:33] Текст ошибки: Метод app\controllers\UserController::courseFromUserAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-03-20 18:20:33] Текст ошибки: Метод app\controllers\UserController::courseFromUserAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-03-20 18:21:01] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT COUNT(sc.id)
+                                    FROM stagecourse sc ...' at line 3 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-20 18:21:14] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sct.course_id' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-20 18:22:49] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'stc.stage_id' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-20 18:22:51] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'stc.stage_id' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-20 18:23:06] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'stc.stage_course_id' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-20 18:23:45] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sc.id' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-20 18:24:28] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'stc.stage_id' in 'on clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-20 18:24:41] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'stc.stage_course_id' in 'on clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-20 18:27:38] Текст ошибки: Undefined array key "date_of_publication" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 123
+=================
+[2024-03-20 18:29:53] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-03-20 18:31:32] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-03-21 17:35:03] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT COUNT(cm.user_id)
+                                  FROM challenge_ma...' at line 2 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-21 17:35:13] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.challenge_mark' doesn't exist | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-21 17:36:07] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '//                                  (SELECT COUNT(cm.user_id)
+//            ...' at line 2 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-21 17:36:41] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c.difficulty' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-21 17:40:04] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'uc.success' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-22 18:18:36] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-03-22 18:20:52] Текст ошибки: Cannot use [] for reading | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 117
+=================
+[2024-03-22 18:31:10] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-22 18:36:09] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 4 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-22 18:36:23] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cclp.langprog_id' in 'on clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-22 18:39:51] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.user_couse' doesn't exist | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-22 18:45:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-03-22 18:45:52] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-03-22 19:05:33] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 7 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-22 19:10:18] Текст ошибки: Call to undefined method app\models\Course::getCourseForUser() | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 17
+=================
+[2024-03-22 19:12:03] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cd.excerpt' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-22 19:12:44] Текст ошибки: Call to undefined method app\models\User::getCourseLangPrgByID() | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 118
+=================
+[2024-03-22 19:18:18] Текст ошибки: Undefined variable $username | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Course.php | Строка: 81
+=================
+[2024-03-22 19:20:12] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'u.username' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-23 17:39:42] Текст ошибки: Call to undefined method app\models\Course::getCourseBySlug() | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 40
+=================
+[2024-03-23 17:39:53] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/view.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-23 17:40:14] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/view.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-23 17:58:13] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.stagecourse_decription' doesn't exist | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-23 17:58:28] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sc.num' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-23 17:59:15] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 44
+=================
+[2024-03-23 17:59:22] Текст ошибки: Undefined array key 0 | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 44
+=================
+[2024-03-23 17:59:22] Текст ошибки: Undefined array key 0 | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 44
+=================
+[2024-03-23 18:02:22] Текст ошибки: Call to undefined method app\models\Course::getStepCourseByStage() | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 47
+=================
+[2024-03-23 18:02:31] Текст ошибки: Call to undefined method app\models\Course::getStepCourseByStage() | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 47
+=================
+[2024-03-23 18:02:53] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-03-23 18:03:04] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-03-23 18:04:19] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-03-23 18:04:56] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-03-23 18:04:56] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-03-23 18:04:57] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-03-23 18:05:05] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-03-23 18:05:35] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-03-23 18:05:53] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/view.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-23 18:07:36] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/view.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-24 15:36:53] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/study.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-24 15:37:08] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/study.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-24 15:39:34] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/study.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-24 15:41:03] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/study.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-24 15:45:59] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/study.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-24 15:47:07] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/study.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-24 15:57:44] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/study.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-24 15:58:03] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM typestepcourse tsc JOIN typestepcourse_description tscd ON tsc.id = tscd...' at line 2 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-24 15:59:30] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tscd.right_answer' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-24 15:59:52] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tscd.typestepcourse_description' in 'on clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-24 16:00:22] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/study.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-24 16:03:08] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/study.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-24 16:04:30] Текст ошибки: syntax error, unexpected token "if" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 109
+=================
+[2024-03-24 16:05:40] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/study.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-24 16:10:55] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'src.id' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-24 16:11:07] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'src.id' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-24 16:12:38] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'src.id' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-24 16:12:41] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'src.id' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-03-24 16:19:58] Текст ошибки: syntax error, unexpected token ")" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 111
+=================
+[2024-03-24 16:39:57] Текст ошибки: Undefined array key "current_stage_id" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 121
+=================
+[2024-03-24 16:41:20] Текст ошибки: Undefined array key "current_stage_id" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 122
+=================
+[2024-03-24 16:41:24] Текст ошибки: Undefined array key "current_stage_id" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 122
+=================
+[2024-03-25 15:25:34] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/studyCheck.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-25 15:25:36] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/studyCheck.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-25 15:35:26] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/studyCheck.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-25 15:35:32] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/studyCheck.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-25 15:35:33] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/studyCheck.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-25 15:37:51] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/studyCheck.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-25 15:37:54] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/studyCheck.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-25 15:42:43] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/studyCheck.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-25 15:42:44] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/studyCheck.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-25 15:43:01] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Course/studyCheck.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-03-25 15:54:53] Текст ошибки: Undefined array key "right_answer" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 161
+=================
+[2024-03-25 15:55:18] Текст ошибки: Undefined array key "right_answer" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 161
+=================
+[2024-03-25 16:04:22] Текст ошибки: syntax error, unexpected token "if" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 167
+=================
+[2024-03-25 16:08:19] Текст ошибки: Undefined array key "right_answer" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 156
+=================

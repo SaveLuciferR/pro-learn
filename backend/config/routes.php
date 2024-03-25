@@ -15,6 +15,8 @@ Router::add('^(?P<lang>[a-z]+)?/?blog/(?P<slug>[a-z0-9-]+)/?$', ['controller' =>
 
 Router::add('^(?P<lang>[a-z]+)?/?course/?$', ['controller' => 'Course', 'action' => 'index']); // Главная страница с кусами
 Router::add('^(?P<lang>[a-z]+)?/?course/(?P<slug>[a-z0-9-]+)/?$', ['controller' => 'Course', 'action' => 'view']); // Страница курса
+Router::add('^(?P<lang>[a-z]+)?/?course/(?P<slug>[a-z0-9-]+)/lessons/?$', ['controller' => 'Course', 'action' => 'study']); // Страница урока
+Router::add('^(?P<lang>[a-z]+)?/?course/(?P<slug>[a-z0-9-]+)/lessons/study-check?$', ['controller' => 'Course', 'action' => 'studyCheck']); // Проверка прохождения курса
 
 Router::add('^(?P<lang>[a-z]+)?/?project/add/?$', ['controller' => 'User', 'action' => 'add']); // Страница с добавлением проекта
 Router::add('^(?P<lang>[a-z]+)?/?project/save/?$', ['controller' => 'User', 'action' => 'save']);
@@ -25,7 +27,11 @@ Router::add('^(?P<lang>[a-z]+)?/?project/add/get-project-in-cache/?$', ['control
 
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project/(?P<slug>[a-z-0-9A-Z]+)/(?P<secondaryPath>[a-z-0-9A-Z/.]+)/?$', ['controller' => 'User', 'action' => 'project']); // Страница с проектом пользователя
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project/(?P<slug>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'project']); // Страница с файлом или директорией
-Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project/?$', ['controller' => 'User', 'action' => 'projectList']); // Страница со всеми проектами пользователя
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project-list/?$', ['controller' => 'User', 'action' => 'projectList']); // Страница со всеми проектами пользователя
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/course-list/?$', ['controller' => 'User', 'action' => 'courseList']); // Страница со всеми курсами пользователя
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/course-from-user/?$', ['controller' => 'User', 'action' => 'courseFromUser']); // Страница со всеми созданными курсами
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/task-from-user/?$', ['controller' => 'User', 'action' => 'taskFromUser']); // Страница со всеми задачами пользователя
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/task-list/?$', ['controller' => 'User', 'action' => 'taskList']); // Страница со всеми созданными задачами
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'profile']); // Страница профиля пользователя
 
 Router::add('^user/(?P<action>[a-z-]+)?$', ['controller' => 'User']); // Запрос авторизации, регистрации и проверки на авторизацию пользователя

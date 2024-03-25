@@ -95,10 +95,68 @@ class UserController extends AppController
         echo json_encode(array('profileInfo' => $profileInfo), JSON_UNESCAPED_SLASHES);
     }
 
+
     public function projectListAction()
     {
-//        debug(PROGRAMMING_LANGUAGES, 1);
+        $projects = $this->model->getUserProjects($this->route['username']);
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            foreach ($projects as $k => $v) {
+                if ($v['private']) unset($projects[$k]);
+            }
+        }
+
+        echo json_encode(array('projects' => $projects), JSON_UNESCAPED_SLASHES);
+
     }
+
+    public function courseListAction()
+    {
+        $courses = $this->model->getUserCourses($this->route['username'], App::$app->getProperty('language')['id']);
+        foreach ($courses as $k => $v) {
+            $courses[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            $courses[$k]['tags'] = $this->model->getCourseTagByID($k);
+            $courses[$k]['language'] = $this->model->getCourseLangProgByID($k);
+        }
+
+        echo json_encode(array('courses' => $courses), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function courseFromUserAction()
+    {
+        $courses = $this->model->getUserCoursesFromUser($this->route['username'], App::$app->getProperty('language')['id']);
+        foreach ($courses as $k => $v) {
+            $courses[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            $courses[$k]['tags'] = $this->model->getCourseTagByID($k);
+            $courses[$k]['language'] = $this->model->getCourseLangProgByID($k);
+        }
+
+        echo json_encode(array('courses' => $courses), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function taskFromUserAction()
+    {
+        $tasks = $this->model->getUserTasksFromUser($this->route['username'], App::$app->getProperty('language')['id']);
+        foreach ($tasks as $k => $v) {
+            $tasks[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            $tasks[$k]['tags'] = $this->model->getTaskTagByID($k);
+            $tasks[$k]['language'] = $this->model->getTaskLangProgByID($k);
+        }
+
+        echo json_encode(array('tasks' => $tasks), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function taskListAction()
+    {
+        $tasks = $this->model->getUserTasks($this->route['username'], App::$app->getProperty('language')['id']);
+        foreach ($tasks as $k => $v) {
+            $tasks[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            $tasks[$k]['tags'] = $this->model->getTaskTagByID($k);
+            $tasks[$k]['language'] = $this->model->getTaskLangProgByID($k);
+        }
+
+        echo json_encode(array('tasks' => $tasks), JSON_UNESCAPED_SLASHES);
+    }
+
 
     public function projectAction()
     {
