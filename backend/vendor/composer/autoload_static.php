@@ -15,15 +15,17 @@ class ComposerStaticInit541083a105fda2bbcdd7728b0794a10e
         array (
             'app\\' => 4,
         ),
-        'S' => 
-        array (
-            'Symfony\\Component\\Process\\' => 26,
-            'Spatie\\Macroable\\' => 17,
-            'Spatie\\Docker\\' => 14,
-        ),
         'R' => 
         array (
             'RedBeanPHP\\' => 11,
+        ),
+        'P' => 
+        array (
+            'Psr\\SimpleCache\\' => 16,
+        ),
+        'D' => 
+        array (
+            'Detection\\' => 10,
         ),
     );
 
@@ -36,26 +38,23 @@ class ComposerStaticInit541083a105fda2bbcdd7728b0794a10e
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
-        'Symfony\\Component\\Process\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/process',
-        ),
-        'Spatie\\Macroable\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/spatie/macroable/src',
-        ),
-        'Spatie\\Docker\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/spatie/docker/src',
-        ),
         'RedBeanPHP\\' => 
         array (
             0 => __DIR__ . '/..' . '/gabordemooij/redbean/RedBeanPHP',
+        ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
+        'Detection\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/src',
         ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'foroco\\BrowserDetection' => __DIR__ . '/..' . '/foroco/php-browser-detection/src/BrowserDetection.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

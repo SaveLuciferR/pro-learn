@@ -8,8 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'core\\' => array($vendorDir . '/core'),
     'app\\' => array($baseDir . '/app'),
-    'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
-    'Spatie\\Macroable\\' => array($vendorDir . '/spatie/macroable/src'),
-    'Spatie\\Docker\\' => array($vendorDir . '/spatie/docker/src'),
     'RedBeanPHP\\' => array($vendorDir . '/gabordemooij/redbean/RedBeanPHP'),
+    'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
+    'Detection\\' => array($vendorDir . '/mobiledetect/mobiledetectlib/src'),
 );

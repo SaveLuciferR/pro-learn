@@ -5,8 +5,7 @@ namespace app\controllers;
 use app\models\User;
 use core\App;
 use core\Cache;
-use DateTime;
-use IntlDateFormatter;
+use foroco\BrowserDetection;
 
 /** @property User $model */
 
@@ -21,13 +20,33 @@ class UserController extends AppController
     public function loginAction()
     {
         $userParam = json_decode(file_get_contents("php://input"), true);
+        $userDevice = [];
+        if (isset($_SERVER['REMOTE_ADDR'])) {
+            $json = json_decode(file_get_contents(GEOIP . "/200.0.3.1")); // . $_SERVER['REMOTE_ADDR']
+//            debug($json);
+            $userDevice['ip'] = $json->ip;
+            $userDevice['success'] = $json->success;
+            if ($userDevice['success']) {
+                $userDevice['city'] = $json->city;
+                $userDevice['country'] = $json->country;
+                $browser = new BrowserDetection();
+//                $result = $browser->getAll($_SERVER['HTTP_USER_AGENT']);
+                $userDevice['browser'] = $browser->getBrowser($_SERVER['HTTP_USER_AGENT']);
+                $userDevice['browser'] = $userDevice['browser']['browser_title'];
+                $userDevice['type'] = $browser->getDevice($_SERVER['HTTP_USER_AGENT']);
+                $userDevice['type'] = $userDevice['type']['device_type'];
+                $userDevice['OS'] = $browser->getOS($_SERVER['HTTP_USER_AGENT']);
+                $userDevice['OS'] = $userDevice['OS']['os_title'];
+//                debug($userDevice);
+            }
+        }
 
         if ($userParam) {
             if ($this->model->login($userParam)) {
                 $_SESSION['user']['success'] = true;
-            } else $_SESSION['user']['success'] = false;
+                $_SESSION['user']['sessionID'] = $this->model->saveSession($userDevice, $_SESSION['user']['username']);
+            }
 
-            // $this->authAction();
             echo json_encode(array('auth' => $this->model->checkAuth()));
         }
     }
@@ -95,10 +114,68 @@ class UserController extends AppController
         echo json_encode(array('profileInfo' => $profileInfo), JSON_UNESCAPED_SLASHES);
     }
 
+
     public function projectListAction()
     {
-//        debug(PROGRAMMING_LANGUAGES, 1);
+        $projects = $this->model->getUserProjects($this->route['username']);
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            foreach ($projects as $k => $v) {
+                if ($v['private']) unset($projects[$k]);
+            }
+        }
+
+        echo json_encode(array('projects' => $projects), JSON_UNESCAPED_SLASHES);
+
     }
+
+    public function courseListAction()
+    {
+        $courses = $this->model->getUserCourses($this->route['username'], App::$app->getProperty('language')['id']);
+        foreach ($courses as $k => $v) {
+            $courses[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            $courses[$k]['tags'] = $this->model->getCourseTagByID($k);
+            $courses[$k]['language'] = $this->model->getCourseLangProgByID($k);
+        }
+
+        echo json_encode(array('courses' => $courses), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function courseFromUserAction()
+    {
+        $courses = $this->model->getUserCoursesFromUser($this->route['username'], App::$app->getProperty('language')['id']);
+        foreach ($courses as $k => $v) {
+            $courses[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            $courses[$k]['tags'] = $this->model->getCourseTagByID($k);
+            $courses[$k]['language'] = $this->model->getCourseLangProgByID($k);
+        }
+
+        echo json_encode(array('courses' => $courses), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function taskFromUserAction()
+    {
+        $tasks = $this->model->getUserTasksFromUser($this->route['username'], App::$app->getProperty('language')['id']);
+        foreach ($tasks as $k => $v) {
+            $tasks[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            $tasks[$k]['tags'] = $this->model->getTaskTagByID($k);
+            $tasks[$k]['language'] = $this->model->getTaskLangProgByID($k);
+        }
+
+        echo json_encode(array('tasks' => $tasks), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function taskListAction()
+    {
+        $tasks = $this->model->getUserTasks($this->route['username'], App::$app->getProperty('language')['id']);
+        foreach ($tasks as $k => $v) {
+            $tasks[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            $tasks[$k]['tags'] = $this->model->getTaskTagByID($k);
+            $tasks[$k]['language'] = $this->model->getTaskLangProgByID($k);
+        }
+
+        echo json_encode(array('tasks' => $tasks), JSON_UNESCAPED_SLASHES);
+    }
+
 
     public function projectAction()
     {
@@ -266,6 +343,115 @@ class UserController extends AppController
 
             echo json_encode(array('filesInfo' => $filesProject), JSON_UNESCAPED_SLASHES);
         }
+    }
+
+    public function generalAction()
+    {
+        $profileGeneral['errorUpdate'] = "";
+        $profileGeneral['success'] = false;
+        if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $_POST = json_decode(file_get_contents("php://input"), true);
+                if (!empty($_POST)) {
+//                    debug($_POST, 1);
+                    $data['username'] = $_POST['username'];
+                    $data['avatar_img'] = $_POST['avatar_img'];
+                    $data['heading_img'] = $_POST['heading_img'];
+                    $data['about_user'] = $_POST['about_user'];
+                    $data['last_name'] = $_POST['last_name'];
+                    $data['first_name'] = $_POST['first_name'];
+                    $data['country_address'] = $_POST['country_address'];
+//                    debug($data);
+
+                    $updateTable = $this->model->updateNewGenericUserSettings($data, $_SESSION['user']['id']);
+                    if ($updateTable !== true && str_contains($updateTable, 'UniqueUsername')) {
+                        $profileGeneral['errorUpdate'] = "UniqueUsername";
+                    }
+                }
+            }
+
+            $profile = $this->model->getGeneralSettingsByUser($_SESSION['user']['username']);
+//            debug($profile, 1);
+            $profileGeneral = array_merge($profile, $profileGeneral);
+            $profileGeneral['success'] = true;
+        }
+
+        echo json_encode(array('profile_general' => $profileGeneral), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function securityAction()
+    {
+        $profileSecurity['errorUpdate'] = "";
+        $profileSecurity['success'] = false;
+        if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $_POST = json_decode(file_get_contents("php://input"), true);
+                if (!empty($_POST)) {
+                    if (isset($_POST['new_password'])) {
+                        $data['old_password'] = $_POST['old_password'];
+                        $data['new_password'] = $_POST['new_password'];
+
+                        $updateTable = $this->model->updatePasswordUserSettings($data, $_SESSION['user']['id']);
+                        debug($updateTable, 1);
+                    } else {
+                        $data['mail'] = $_POST['mail'];
+                        $data['second_mail'] = $_POST['second_mail'];
+                        $updateTable = $this->model->updateSecurityUserSettings($data, $_SESSION['user']['id']);
+
+                        if ($updateTable !== true && str_contains($updateTable, 'UniqueMail')) {
+                            $profileSecurity['errorUpdate'] = "UniqueMail";
+                        }
+                    }
+                }
+            }
+            $profile = $this->model->getSecuritySettingsByUser($_SESSION['user']['username']);
+            $profileSecurity = array_merge($profile, $profileSecurity);
+            $profileSecurity['success'] = true;
+        }
+
+        echo json_encode(array('profile_security' => $profileSecurity), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function sessionAction()
+    {
+        $profileSessions = [];
+        if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $_POST = json_decode(file_get_contents("php://input"), true);
+                if (!empty($_POST)) {
+                    $this->model->deleteSession($_POST['id']);
+                }
+            }
+
+            $profileSessions = $this->model->getSessions($_SESSION['user']['username']);
+//            debug($profileSessions, 1);
+        }
+        echo json_encode(array('profile_sessions' => $profileSessions), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function createdByUserAction()
+    {
+        $profileCreated = [];
+        if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
+            $type = 'course';
+            if (isset($_GET['type']))  {
+                $type = $_GET['type'];
+            }
+            $created = [];
+            if ($type == 'blog') {
+                $created = $this->model->getBlogCreatedUser($_SESSION['user']['username'], App::$app->getProperty('language')['id']);
+            }
+            else if ($type == 'task') {
+                $created = $this->model->getTaskCreatedUser($_SESSION['user']['username'], App::$app->getProperty('language')['id']);
+                debug($created, 1);
+            }
+            else {
+                $created = $this->model->getCourseCreatedUser($_SESSION['user']['username'], App::$app->getProperty('language')['id']);
+                debug($created, 1);
+            }
+        }
+
+        echo json_encode(array('profile_created' => $profileCreated), JSON_UNESCAPED_SLASHES);
     }
 
     protected function deleteAllCacheProject()
