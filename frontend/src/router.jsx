@@ -15,6 +15,8 @@ import ProfileTasks from './components/Profile/UserTasks/ProfileTasks';
 import ProfileProjects from './components/Profile/Projects/ProfileProjects';
 import ProfileCompletedCourses from './components/Profile/CompletedCourses/CompletedCourses';
 import ProfileCurrentCourses from './components/Profile/CurrentCourses/ProfileCurrentCourses';
+import CoursesPage from './pages/CoursesPage';
+import CoursePage from './pages/CoursePage';
 
 const router = createBrowserRouter([
   {
@@ -82,6 +84,14 @@ const router = createBrowserRouter([
             element: <ProfileCurrentCourses />,
           },
         ],
+      },
+      {
+        path: 'courses',
+        element: <CoursesPage />,
+      },
+      {
+        path: 'courses/name-course',
+        element: <CoursePage />,
       },
     ],
   },
