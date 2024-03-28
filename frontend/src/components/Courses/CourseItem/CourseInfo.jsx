@@ -1,4 +1,4 @@
-import img from '../../image_5.png';
+import img from '../../../image_5.png';
 
 const CourseInfo = () => {
   return (

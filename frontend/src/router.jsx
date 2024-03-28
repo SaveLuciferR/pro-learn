@@ -17,6 +17,11 @@ import ProfileCompletedCourses from './components/Profile/CompletedCourses/Compl
 import ProfileCurrentCourses from './components/Profile/CurrentCourses/ProfileCurrentCourses';
 import CoursesPage from './pages/CoursesPage';
 import CoursePage from './pages/CoursePage';
+import LessonOneOption from './components/CourseLessons/LessonOneOption';
+import CourseLessonPage from './pages/CourseLessonPage';
+import LessonSeveralOption from './components/CourseLessons/LessonSeveralOption';
+import LessonFillGaps from './components/CourseLessons/LessonFillGaps';
+import ProfileSettingsMain from './components/Profile/ProfileSettings/ProfileSettingsMain';
 
 const router = createBrowserRouter([
   {
@@ -86,12 +91,34 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: 'settings',
+        element: <ProfileSettingsMain />,
+      },
+      {
         path: 'courses',
         element: <CoursesPage />,
       },
       {
         path: 'courses/name-course',
         element: <CoursePage />,
+      },
+      {
+        path: 'courses/lessons',
+        element: <CourseLessonPage />,
+        children: [
+          {
+            path: 'one-option',
+            element: <LessonOneOption />,
+          },
+          {
+            path: 'several-option',
+            element: <LessonSeveralOption />,
+          },
+          {
+            path: 'fill-gaps',
+            element: <LessonFillGaps />,
+          },
+        ],
       },
     ],
   },

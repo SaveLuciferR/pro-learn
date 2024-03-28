@@ -1,5 +1,5 @@
-import CourseBlocks from '../components/CourseItem/CourseBlocks';
-import CourseInfo from '../components/CourseItem/CourseInfo';
+import CourseBlocks from '../components/Courses/CourseItem/CourseBlocks';
+import CourseInfo from '../components/Courses/CourseItem/CourseInfo';
 
 const CoursePage = () => {
   return (

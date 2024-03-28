@@ -327,3 +327,41 @@ label {
         transform: translate(-50%, -50%) scale(1);
     }
 }
+
+.radio-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+
+    & label.radio-list-label {
+        position: relative;
+
+        & input[type="radio"] {
+            appearance: none;
+            border: 1px solid #ffffff;
+            height: 16px;
+            width: 16px;
+            border-radius: 100%;
+            vertical-align: text-bottom;
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                margin: auto;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                overflow: hidden;
+            }
+
+            &:checked::before {
+                border: 1px solid transparent;
+                border-radius: 100%;
+                background: #ffffff;
+                margin: 3px;
+            }
+        }
+    }
+}
