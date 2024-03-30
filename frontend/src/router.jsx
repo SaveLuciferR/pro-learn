@@ -21,7 +21,9 @@ import LessonOneOption from './components/CourseLessons/LessonOneOption';
 import CourseLessonPage from './pages/CourseLessonPage';
 import LessonSeveralOption from './components/CourseLessons/LessonSeveralOption';
 import LessonFillGaps from './components/CourseLessons/LessonFillGaps';
-import ProfileSettingsMain from './components/Profile/ProfileSettings/ProfileSettingsMain';
+import ProfileSettingsUserPage from './pages/ProfileSettingsUserPage';
+import ProfileSettingsPage from './pages/ProfileSettingsPage';
+import ProfileSettingsSecurity from './components/Profile/ProfileSettings/ProfileSettingsSecurity';
 
 const router = createBrowserRouter([
   {
@@ -91,8 +93,18 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: 'settings',
-        element: <ProfileSettingsMain />,
+        path: 'profile/settings/user',
+        element: <ProfileSettingsUserPage />,
+      },
+      {
+        path: 'profile/settings',
+        element: <ProfileSettingsPage />,
+        children: [
+          {
+            path: 'security',
+            element: <ProfileSettingsSecurity />,
+          },
+        ],
       },
       {
         path: 'courses',
