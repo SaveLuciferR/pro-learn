@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'foroco\\BrowserDetection' => $vendorDir . '/foroco/php-browser-detection/src/BrowserDetection.php',
 );
