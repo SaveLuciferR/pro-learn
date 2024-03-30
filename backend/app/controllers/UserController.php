@@ -415,6 +415,7 @@ class UserController extends AppController
     public function sessionAction()
     {
         $profileSessions = [];
+        $profileSessions['success'] = false;
         if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST = json_decode(file_get_contents("php://input"), true);
@@ -424,6 +425,7 @@ class UserController extends AppController
             }
 
             $profileSessions = $this->model->getSessions($_SESSION['user']['username']);
+            $profileSessions['success'] = true;
 //            debug($profileSessions, 1);
         }
         echo json_encode(array('profile_sessions' => $profileSessions), JSON_UNESCAPED_SLASHES);
@@ -432,26 +434,51 @@ class UserController extends AppController
     public function createdByUserAction()
     {
         $profileCreated = [];
+        $profileCreated['success'] = false;
+        $profileCreated['created'] = [];
         if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
             $type = 'course';
-            if (isset($_GET['type']))  {
+            if (isset($_GET['type'])) {
                 $type = $_GET['type'];
             }
             $created = [];
             if ($type == 'blog') {
                 $created = $this->model->getBlogCreatedUser($_SESSION['user']['username'], App::$app->getProperty('language')['id']);
-            }
-            else if ($type == 'task') {
+            } else if ($type == 'task') {
                 $created = $this->model->getTaskCreatedUser($_SESSION['user']['username'], App::$app->getProperty('language')['id']);
-                debug($created, 1);
-            }
-            else {
+            } else {
                 $created = $this->model->getCourseCreatedUser($_SESSION['user']['username'], App::$app->getProperty('language')['id']);
-                debug($created, 1);
             }
+
+            $profileCreated['success'] = true;
+            $profileCreated['created'] = $created;
         }
 
         echo json_encode(array('profile_created' => $profileCreated), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function privacyAction()
+    {
+        $profilePrivacy = [];
+        $profilePrivacy['success'] = false;
+        $profilePrivacy['privacy'] = [];
+        if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $_POST = json_decode(file_get_contents("php://input"), true);
+                if (!empty($_POST)) {
+                    $data['all_profile_private'] = $_POST['all_profile_private'];
+                    $data['personal_info_private'] = $_POST['personal_info_private'];
+                    $data['look_current_course_private'] = $_POST['look_current_course_private'];
+                    $updateTable = $this->model->savePrivacySettingUser($data, $_SESSION['user']['id']);
+                }
+            }
+
+            $privacy = $this->model->getUserPrivacy($_SESSION['user']['username']);
+            $profilePrivacy['success'] = true;
+            $profilePrivacy['privacy'] = $privacy;
+        }
+
+        echo json_encode(array('profile_privacy' => $profilePrivacy), JSON_UNESCAPED_SLASHES);
     }
 
     protected function deleteAllCacheProject()

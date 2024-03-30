@@ -24,7 +24,7 @@ const Login = () => {
         }
 
         // console.log(localStorage.getItem('client'));
-        axiosClient.post(`/user/login`, {email, password, client: localStorage.getItem('client')})
+        axiosClient.post(`/user/login`, {email, password})
             .then(({data}) => {
                 // console.log(localStorage.getItem('client'));
                 // localStorage.setItem('client', data.client);
