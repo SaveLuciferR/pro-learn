@@ -15,6 +15,7 @@ const CONFIG = ROOT . '/config';
 const LAYOUT = 'pro-learn';
 const PATH = 'http://api.pro-learn.my';
 const ADMIN = 'http://api.pro-learn.my/admin';
-//const NO_IMAGE = '/public/uploads/no_image.jpg';
+
+const GEOIP = "https://ipwho.is/";
 
 require_once ROOT . '/vendor/autoload.php';

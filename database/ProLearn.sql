@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 20 2024 г., 10:12
+-- Время создания: Мар 30 2024 г., 16:17
 -- Версия сервера: 10.8.4-MariaDB
 -- Версия PHP: 8.1.9
 
@@ -342,9 +342,11 @@ CREATE TABLE `challenge` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `path_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `difficulty` int(10) UNSIGNED NOT NULL,
   `num_of_input_data` int(10) UNSIGNED NOT NULL,
   `date_of_publication` date NOT NULL,
   `Status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `views` int(10) UNSIGNED NOT NULL,
   `for_course` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -352,8 +354,26 @@ CREATE TABLE `challenge` (
 -- Дамп данных таблицы `challenge`
 --
 
-INSERT INTO `challenge` (`id`, `user_id`, `slug`, `path_code`, `num_of_input_data`, `date_of_publication`, `Status`, `for_course`) VALUES
-(1, 1, 'find-the-area-of-the-triangle', '/public/project/challenge/find-the-area-of-the-triangle', 2, '2023-05-10', 'Опубликован', 0);
+INSERT INTO `challenge` (`id`, `user_id`, `slug`, `path_code`, `difficulty`, `num_of_input_data`, `date_of_publication`, `Status`, `views`, `for_course`) VALUES
+(1, 1, 'find-the-area-of-the-triangle', '/public/project/challenge/find-the-area-of-the-triangle', 0, 2, '2023-05-10', 'Опубликован', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `challengetag`
+--
+
+CREATE TABLE `challengetag` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `challengetag`
+--
+
+INSERT INTO `challengetag` (`id`, `title`) VALUES
+(1, 'Python');
 
 -- --------------------------------------------------------
 
@@ -373,6 +393,24 @@ CREATE TABLE `challenge_categorylangprog` (
 
 INSERT INTO `challenge_categorylangprog` (`category_prog_ID`, `lang_prog_id`, `challenge_id`) VALUES
 (3, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `challenge_challengetag`
+--
+
+CREATE TABLE `challenge_challengetag` (
+  `challenge_id` int(10) UNSIGNED NOT NULL,
+  `challengetag_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `challenge_challengetag`
+--
+
+INSERT INTO `challenge_challengetag` (`challenge_id`, `challengetag_id`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -401,6 +439,27 @@ INSERT INTO `challenge_description` (`language_id`, `challenge_id`, `heading`, `
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `challenge_mark`
+--
+
+CREATE TABLE `challenge_mark` (
+  `challenge_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `mark` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `challenge_mark`
+--
+
+INSERT INTO `challenge_mark` (`challenge_id`, `user_id`, `mark`) VALUES
+(1, 1, 1),
+(1, 3, 1),
+(1, 5, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `course`
 --
 
@@ -411,15 +470,35 @@ CREATE TABLE `course` (
   `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `difficulty` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_of_publication` date DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `views` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `course`
 --
 
-INSERT INTO `course` (`id`, `user_id`, `slug`, `icon`, `difficulty`, `date_of_publication`, `status`) VALUES
-(1, 1, 'getting-started-in-javascript', '/public/uploads/course/getting-started-in-javascript.svg', 'junior', '2023-05-12', 'Опубликован');
+INSERT INTO `course` (`id`, `user_id`, `slug`, `icon`, `difficulty`, `date_of_publication`, `status`, `views`) VALUES
+(1, 1, 'getting-started-in-javascript', '/public/uploads/course/getting-started-in-javascript.svg', 'junior', '2023-05-12', 'Опубликован', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `coursetag`
+--
+
+CREATE TABLE `coursetag` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `coursetag`
+--
+
+INSERT INTO `coursetag` (`id`, `title`) VALUES
+(1, 'Python'),
+(2, 'Начинающим');
 
 -- --------------------------------------------------------
 
@@ -457,6 +536,25 @@ CREATE TABLE `course_challenge` (
 
 INSERT INTO `course_challenge` (`course_id`, `challenge_id`) VALUES
 (1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `course_coursetag`
+--
+
+CREATE TABLE `course_coursetag` (
+  `course_id` int(10) UNSIGNED NOT NULL,
+  `coursetag_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `course_coursetag`
+--
+
+INSERT INTO `course_coursetag` (`course_id`, `coursetag_id`) VALUES
+(1, 1),
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -858,15 +956,16 @@ CREATE TABLE `session` (
   `country_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `city_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_of_last_session` date NOT NULL,
-  `ip-address` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL
+  `ip_address` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `session`
 --
 
-INSERT INTO `session` (`id`, `user_id`, `type_device`, `country_address`, `city_address`, `date_of_last_session`, `ip-address`) VALUES
-(1, 2, 'Opera GX, Laptop', 'Russia', 'Moskow', '2023-05-12', '20.100.26.200');
+INSERT INTO `session` (`id`, `user_id`, `type_device`, `country_address`, `city_address`, `date_of_last_session`, `ip_address`) VALUES
+(2, 1, 'unknown', 'Colombia', 'Cartagena', '2024-03-30', '200.0.3.1'),
+(3, 2, 'unknown', 'Colombia', 'Cartagena', '2024-03-29', '200.0.3.1');
 
 -- --------------------------------------------------------
 
@@ -1043,13 +1142,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `mail`, `second_mail`, `password`, `avatar_img`, `heading_img`, `about_user`, `last_name`, `first_name`, `country_address`, `date_of_registration`, `mb_for_project`, `consecutive_days`, `all_profile_private`, `personal_info_private`, `look_current_course_private`, `role`) VALUES
-(1, 'admin1', 'admin1@mail.ru', 'admin1@second.ru', '12345', '/public/uploads/ava1.jpg', '/public/uploads/head1.jpg', 'Первый админ', 'First', 'Admin', 'Россия', '2023-02-01', 50, 1, 1, 1, 1, 'admin'),
-(2, 'user1', 'user1@mail.ru', 'user1@second.ru', '12345', '/public/uploads/ava1.jpg', '/public/uploads/head1.jpg', 'Первый пользователь', 'First', 'User', 'Россия', '2023-05-10', 50, 1, 0, 1, 1, 'user'),
-(3, 'admin2', 'admin2@mail.ru', 'admin2@secondmail.ru', '12345', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это второй админ', 'второй', 'админ', 'Россия', '2023-05-17', 50, 5, 1, 1, 1, 'admin'),
-(4, 'admin3\r\n', 'admin3@mail.ru', 'admin3@secondmail.ru', '12345', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это третий админ\r\n', 'третий', 'админ', 'Россия', '2023-05-17', 50, 1, 1, 1, 1, 'admin'),
-(5, 'user2', 'user2@mail.ru', 'user2@secondmail.ru', '12345', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это второй пользователь', 'второй', 'пользователь', 'Россия', '2023-05-12', 50, 10, 1, 1, 0, 'user'),
-(6, 'user3', 'user3@mail.ru', 'user3@secondmail.ru', '12345', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это третий пользователь\r\n', 'третий', 'пользователь', 'Россия', '2023-05-15', 200, 2, 0, 1, 0, 'user'),
-(7, 'user4', 'user4@mail.ru', 'user4@secondmail.ru', '12345', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это четвертый пользователь', 'четвертый', 'пользователь', 'Россия', '2023-05-20', 50, 2, 0, 0, 0, 'user'),
+(1, 'admin1', 'admin1@mail.ru', 'admin@second.ru', '$2y$10$fPCaXAY0gqN.hxkzIl8OT.9CdqaSQ2eEkXxCB90uwlBqjYthHdXUu', '/public/uploads/ava5.jpg', '/public/uploads/head1.jpg', 'Первый админ на сайте', 'First', 'Admin', 'Россия', '2023-02-01', 50, 1, 1, 1, 1, 'admin'),
+(2, 'user1', 'user1@mail.ru', 'user1@second.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava1.jpg', '/public/uploads/head1.jpg', 'Первый пользователь', 'First', 'User', 'Россия', '2023-05-10', 50, 1, 0, 1, 1, 'user'),
+(3, 'admin2', 'admin2@mail.ru', 'admin2@secondmail.ru', '$2y$10$l5LGx0FR2SIMPZca8fjfquZSRjGDS1Dc/BAmqmYWoQTAvqImhF.p6', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это второй админ', 'второй', 'админ', 'Россия', '2023-05-17', 50, 5, 1, 1, 1, 'admin'),
+(4, 'admin3\r\n', 'admin3@mail.ru', 'admin3@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это третий админ\r\n', 'третий', 'админ', 'Россия', '2023-05-17', 50, 1, 1, 1, 1, 'admin'),
+(5, 'user2', 'user2@mail.ru', 'user2@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это второй пользователь', 'второй', 'пользователь', 'Россия', '2023-05-12', 50, 10, 1, 1, 0, 'user'),
+(6, 'user3', 'user3@mail.ru', 'user3@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это третий пользователь\r\n', 'третий', 'пользователь', 'Россия', '2023-05-15', 200, 2, 0, 1, 0, 'user'),
+(7, 'user4', 'user4@mail.ru', 'user4@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это четвертый пользователь', 'четвертый', 'пользователь', 'Россия', '2023-05-20', 50, 2, 0, 0, 0, 'user'),
 (9, 's', 's@mail.ru', 's@mail.ru', 's', 's', NULL, 's', 's', 's', 's', '2023-06-21', 50, 1, 1, 0, 0, 'user');
 
 -- --------------------------------------------------------
@@ -1187,12 +1286,25 @@ ALTER TABLE `challenge`
   ADD KEY `User_ID` (`user_id`);
 
 --
+-- Индексы таблицы `challengetag`
+--
+ALTER TABLE `challengetag`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `challenge_categorylangprog`
 --
 ALTER TABLE `challenge_categorylangprog`
   ADD PRIMARY KEY (`category_prog_ID`,`lang_prog_id`,`challenge_id`),
   ADD KEY `Challenge_ID` (`challenge_id`),
   ADD KEY `LangProg_ID` (`lang_prog_id`);
+
+--
+-- Индексы таблицы `challenge_challengetag`
+--
+ALTER TABLE `challenge_challengetag`
+  ADD KEY `challenge_id` (`challenge_id`),
+  ADD KEY `challengetag_id` (`challengetag_id`);
 
 --
 -- Индексы таблицы `challenge_description`
@@ -1202,11 +1314,24 @@ ALTER TABLE `challenge_description`
   ADD KEY `Challenge_ID` (`challenge_id`);
 
 --
+-- Индексы таблицы `challenge_mark`
+--
+ALTER TABLE `challenge_mark`
+  ADD KEY `challenge_id` (`challenge_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Индексы таблицы `course`
 --
 ALTER TABLE `course`
   ADD PRIMARY KEY (`id`),
   ADD KEY `User_ID` (`user_id`);
+
+--
+-- Индексы таблицы `coursetag`
+--
+ALTER TABLE `coursetag`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `course_categorylangprog`
@@ -1222,6 +1347,13 @@ ALTER TABLE `course_categorylangprog`
 ALTER TABLE `course_challenge`
   ADD PRIMARY KEY (`course_id`,`challenge_id`),
   ADD KEY `Challenge_ID` (`challenge_id`);
+
+--
+-- Индексы таблицы `course_coursetag`
+--
+ALTER TABLE `course_coursetag`
+  ADD KEY `course_id` (`course_id`),
+  ADD KEY `coursetag_id` (`coursetag_id`);
 
 --
 -- Индексы таблицы `course_description`
@@ -1353,6 +1485,7 @@ ALTER TABLE `project_langprog`
 --
 ALTER TABLE `session`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id_2` (`user_id`,`ip_address`),
   ADD KEY `User_ID` (`user_id`);
 
 --
@@ -1404,7 +1537,8 @@ ALTER TABLE `typestepcourse_description`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UniqueMail` (`mail`) USING BTREE;
+  ADD UNIQUE KEY `UniqueMail` (`mail`) USING BTREE,
+  ADD UNIQUE KEY `UniqueUsername` (`username`);
 
 --
 -- Индексы таблицы `user_challenge`
@@ -1461,10 +1595,22 @@ ALTER TABLE `challenge`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT для таблицы `challengetag`
+--
+ALTER TABLE `challengetag`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT для таблицы `course`
 --
 ALTER TABLE `course`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `coursetag`
+--
+ALTER TABLE `coursetag`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `documentation`
@@ -1524,7 +1670,7 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT для таблицы `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `stagecourse`
@@ -1632,11 +1778,25 @@ ALTER TABLE `challenge_categorylangprog`
   ADD CONSTRAINT `challenge_categorylangprog_ibfk_3` FOREIGN KEY (`lang_prog_id`) REFERENCES `langprog` (`id`);
 
 --
+-- Ограничения внешнего ключа таблицы `challenge_challengetag`
+--
+ALTER TABLE `challenge_challengetag`
+  ADD CONSTRAINT `challenge_challengetag_ibfk_1` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `challenge_challengetag_ibfk_2` FOREIGN KEY (`challengetag_id`) REFERENCES `challengetag` (`id`);
+
+--
 -- Ограничения внешнего ключа таблицы `challenge_description`
 --
 ALTER TABLE `challenge_description`
   ADD CONSTRAINT `challenge_description_ibfk_1` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`),
   ADD CONSTRAINT `challenge_description_ibfk_2` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `challenge_mark`
+--
+ALTER TABLE `challenge_mark`
+  ADD CONSTRAINT `challenge_id` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `course`
@@ -1658,6 +1818,13 @@ ALTER TABLE `course_categorylangprog`
 ALTER TABLE `course_challenge`
   ADD CONSTRAINT `course_challenge_ibfk_1` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`),
   ADD CONSTRAINT `course_challenge_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `course_coursetag`
+--
+ALTER TABLE `course_coursetag`
+  ADD CONSTRAINT `course_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `coursetag_id` FOREIGN KEY (`coursetag_id`) REFERENCES `coursetag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `course_description`
