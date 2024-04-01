@@ -337,6 +337,30 @@ class User extends AppModel
         return $directoryData;
     }
 
+    public function getFeedbackCategory($lang)
+    {
+        return R::getAll("SELECT fc.id, fc.code, fcd.title
+                              FROM feedbackcategory fc JOIN feedbackcategory_description fcd ON fc.id=fcd.feedbackcategory_id
+                              WHERE fcd.language_id = ?", [$lang]);
+    }
+
+    public function saveFeedback($data)
+    {
+        R::begin();
+        try {
+            $feedback = R::dispense('feedback');
+            $feedback->feedbackcategory_id = $data['category'];
+            $feedback->name = $data['name'];
+            $feedback->email = $data['email'];
+            $feedback->text = $data['message'];
+            $feedbackID = R::store($feedback);
+            R::commit();
+        } catch (\Exception $ex) {
+            debug($ex);
+            return false;
+        }
+    }
+
     public function getUserInfo($username)
     {
         return R::getRow("SELECT u.username, u.role, u.last_name, 

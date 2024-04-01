@@ -1,0 +1,64 @@
+.lessons {
+  margin-top: 49px;
+
+  &-header {
+    position: relative;
+
+    &-back {
+      position: absolute;
+      top: 13px;
+      left: 0;
+      display: flex;
+      align-items: center;
+      column-gap: 4px;
+    }
+    &-title {
+      text-align: center;
+      font-size: 36px;
+      font-weight: 500;
+    }
+  }
+
+  &-stage {
+    padding-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+    color: rgba($color: #ffffff, $alpha: 0.6);
+  }
+
+  &-btn {
+    padding-top: 28px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &-main {
+    padding-top: 44px;
+  }
+}
+
+.lessons-checkbox {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.lessons-fill {
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+
+  &-title {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &-main {
+    padding: 48px;
+    width: 100%;
+    background-color: #161b22;
+    border-radius: 12px;
+  }
+}

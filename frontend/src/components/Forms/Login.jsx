@@ -43,12 +43,12 @@ const Login = () => {
             <h2 className="modal_form-h2">Вход</h2>
             <div className="form_input">
                 <div className="form_input-item">
-                    <input placeholder=" " type="email" name="email" id="email" value={email}
+                    <input placeholder=" " type="email" name="email" id="email" required="required" value={email}
                            onChange={(e) => setEmail(e.target.value)}/>
                     <span>Почта</span>
                 </div>
                 <div className="form_input-item">
-                    <input placeholder=" " type="password" name="password" id="password" value={password}
+                    <input placeholder=" " type="password" name="password" id="password" required="required" value={password}
                            onChange={(e) => setPassword(e.target.value)}/>
                     <span>Пароль</span>
                 </div>
