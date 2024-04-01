@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use app\models\User;
 use core\App;
-use core\App;
 use core\Cache;
 use foroco\BrowserDetection;
 

@@ -1830,3 +1830,7 @@
 =================
 [2024-03-16 18:00:52] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/User/feedback.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
 =================
+[2024-04-01 16:14:07] Текст ошибки: Cannot use core\App as App because the name is already in use | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 7
+=================
+[2024-04-01 16:14:07] Текст ошибки: Cannot use core\App as App because the name is already in use | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 7
+=================
