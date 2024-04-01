@@ -156,6 +156,26 @@ class User extends AppModel
                                 WHERE u.username = ? AND cd.language_id = ?", [$username, $lang]);
     }
 
+    public function getUserPrivacy($username)
+    {
+        return R::getRow("SELECT u.all_profile_private, u.personal_info_private, u.look_current_course_private FROM user u WHERE u.username = ?", [$username]);
+    }
+
+    public function savePrivacySettingUser($data, $id)
+    {
+        try {
+            $user = R::load('user', $id);
+            $user->all_profile_private = $data['all_profile_private'] ? 1 : 0;
+            $user->personal_info_private = $data['personal_info_private'] ? 1 : 0;
+            $user->look_current_course_private = $data['look_current_course_private'] ? 1 : 0;
+            R::store($user);
+            return true;
+        } catch (\Exception $ex) {
+            debug($ex);
+            return false;
+        }
+    }
+
     /** Получение из базы данных информации о проекте */
 
     public function getProjectInfoBySlug($slug, $username)

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 30 2024 г., 16:17
+-- Время создания: Апр 01 2024 г., 16:03
 -- Версия сервера: 10.8.4-MariaDB
 -- Версия PHP: 8.1.9
 
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `blog` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
+  `status_id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '/public/uploads/no_image.jpg',
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `popular` tinyint(1) NOT NULL DEFAULT 0,
   `date_of_publication` date DEFAULT NULL,
   `views` int(10) UNSIGNED NOT NULL
@@ -42,19 +42,19 @@ CREATE TABLE `blog` (
 -- Дамп данных таблицы `blog`
 --
 
-INSERT INTO `blog` (`id`, `user_id`, `slug`, `img`, `status`, `popular`, `date_of_publication`, `views`) VALUES
-(1, 1, 'hello-world', '/public/assets/img/blog/plug_img_blog.jpg', 'Опубликован', 0, '2023-06-23', 0),
-(2, 1, 'hello-var', '/public/assets/img/blog/plug_img_blog.jpg', 'Опубликован', 0, '2023-08-27', 0),
-(3, 1, 'hello-func', '/public/assets/img/blog/plug_img_blog.jpg', 'Опубликован', 1, '2023-06-20', 0),
-(4, 2, 'hello-proc', '/public/assets/img/blog/plug_img_blog.jpg', 'В обработке', 0, NULL, 0),
-(5, 3, 'admin2blog-1', '/public/assets/img/blog/plug_img_blog.jpg', 'Опубликован', 1, '2023-06-20', 0),
-(6, 4, 'admin3blog-1', '/public/assets/img/blog/plug_img_blog.jpg', 'В обработке', 0, NULL, 0),
-(7, 3, 'admin2blog-2', '/public/assets/img/blog/plug_img_blog.jpg', 'В обработке', 0, NULL, 0),
-(8, 1, 'admin1blog-1', '/public/assets/img/blog/plug_img_blog.jpg', 'В обработке', 0, NULL, 0),
-(9, 1, 'testdelete', '/public/assets/img/blog/plug_img_blog.jpg', 'В обработке', 0, NULL, 0),
-(21, 1, 'dsadsaf', '/public/assets/img/blog/plug_img_blog.jpg', 'Опубликован', 1, '2023-06-22', 0),
-(22, 1, 'peremennye-v-c', '/public/assets/img/blog/plug_img_blog.jpg', 'Опубликован', 0, '2023-06-24', 0),
-(23, 1, 'konsol-nyy-vvod-vyvod-v-c', '/public/assets/img/blog/plug_img_blog.jpg', 'Опубликован', 1, '2023-06-24', 0);
+INSERT INTO `blog` (`id`, `user_id`, `status_id`, `slug`, `img`, `popular`, `date_of_publication`, `views`) VALUES
+(1, 1, 1, 'hello-world', '/public/assets/img/blog/plug_img_blog.jpg', 0, '2023-06-23', 0),
+(2, 1, 1, 'hello-var', '/public/assets/img/blog/plug_img_blog.jpg', 1, '2023-08-27', 0),
+(3, 1, 1, 'hello-func', '/public/assets/img/blog/plug_img_blog.jpg', 1, '2023-06-20', 0),
+(4, 2, 4, 'hello-proc', '/public/assets/img/blog/plug_img_blog.jpg', 0, NULL, 0),
+(5, 3, 1, 'admin2blog-1', '/public/assets/img/blog/plug_img_blog.jpg', 1, '2023-06-20', 0),
+(6, 4, 4, 'admin3blog-1', '/public/assets/img/blog/plug_img_blog.jpg', 0, NULL, 0),
+(7, 3, 3, 'admin2blog-2', '/public/assets/img/blog/plug_img_blog.jpg', 0, NULL, 0),
+(8, 1, 4, 'admin1blog-1', '/public/assets/img/blog/plug_img_blog.jpg', 0, NULL, 0),
+(9, 1, 2, 'testdelete', '/public/assets/img/blog/plug_img_blog.jpg', 0, NULL, 0),
+(21, 1, 1, 'dsadsaf', '/public/assets/img/blog/plug_img_blog.jpg', 1, '2023-06-22', 0),
+(22, 1, 2, 'peremennye-v-c', '/public/assets/img/blog/plug_img_blog.jpg', 0, '2023-06-24', 0),
+(23, 1, 1, 'konsol-nyy-vvod-vyvod-v-c', '/public/assets/img/blog/plug_img_blog.jpg', 1, '2023-06-24', 0);
 
 --
 -- Триггеры `blog`
@@ -340,12 +340,14 @@ INSERT INTO `categoryprog_description` (`language_id`, `category_prog_id`, `titl
 CREATE TABLE `challenge` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
+  `project_id` int(10) UNSIGNED DEFAULT NULL,
+  `template_id` int(10) UNSIGNED DEFAULT NULL,
+  `status_id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `path_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `difficulty` int(10) UNSIGNED NOT NULL,
   `num_of_input_data` int(10) UNSIGNED NOT NULL,
   `date_of_publication` date NOT NULL,
-  `Status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `views` int(10) UNSIGNED NOT NULL,
   `for_course` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -354,8 +356,8 @@ CREATE TABLE `challenge` (
 -- Дамп данных таблицы `challenge`
 --
 
-INSERT INTO `challenge` (`id`, `user_id`, `slug`, `path_code`, `difficulty`, `num_of_input_data`, `date_of_publication`, `Status`, `views`, `for_course`) VALUES
-(1, 1, 'find-the-area-of-the-triangle', '/public/project/challenge/find-the-area-of-the-triangle', 0, 2, '2023-05-10', 'Опубликован', 0, 0);
+INSERT INTO `challenge` (`id`, `user_id`, `project_id`, `template_id`, `status_id`, `slug`, `path_code`, `difficulty`, `num_of_input_data`, `date_of_publication`, `views`, `for_course`) VALUES
+(1, 1, NULL, NULL, 1, 'find-the-area-of-the-triangle', '/public/project/challenge/find-the-area-of-the-triangle', 0, 2, '2023-05-10', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -466,11 +468,11 @@ INSERT INTO `challenge_mark` (`challenge_id`, `user_id`, `mark`) VALUES
 CREATE TABLE `course` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
+  `status_id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `difficulty` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_of_publication` date DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `views` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -478,8 +480,8 @@ CREATE TABLE `course` (
 -- Дамп данных таблицы `course`
 --
 
-INSERT INTO `course` (`id`, `user_id`, `slug`, `icon`, `difficulty`, `date_of_publication`, `status`, `views`) VALUES
-(1, 1, 'getting-started-in-javascript', '/public/uploads/course/getting-started-in-javascript.svg', 'junior', '2023-05-12', 'Опубликован', 0);
+INSERT INTO `course` (`id`, `user_id`, `status_id`, `slug`, `icon`, `difficulty`, `date_of_publication`, `views`) VALUES
+(1, 1, 1, 'getting-started-in-javascript', '/public/uploads/course/getting-started-in-javascript.svg', 'junior', '2023-05-12', 0);
 
 -- --------------------------------------------------------
 
@@ -927,6 +929,34 @@ INSERT INTO `project` (`id`, `user_id`, `slug`, `title`, `path_project`, `date_o
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `projecttemplate`
+--
+
+CREATE TABLE `projecttemplate` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path_to_template` int(11) NOT NULL,
+  `private` tinyint(1) NOT NULL,
+  `for_project` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `projecttemplate_description`
+--
+
+CREATE TABLE `projecttemplate_description` (
+  `language_id` int(10) UNSIGNED NOT NULL,
+  `projecttemplate_id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `project_langprog`
 --
 
@@ -964,8 +994,8 @@ CREATE TABLE `session` (
 --
 
 INSERT INTO `session` (`id`, `user_id`, `type_device`, `country_address`, `city_address`, `date_of_last_session`, `ip_address`) VALUES
-(2, 1, 'unknown', 'Colombia', 'Cartagena', '2024-03-30', '200.0.3.1'),
-(3, 2, 'unknown', 'Colombia', 'Cartagena', '2024-03-29', '200.0.3.1');
+(2, 1, 'unknown', 'Colombia', 'Cartagena', '2024-03-31', '200.0.3.1'),
+(3, 2, 'unknown', 'Colombia', 'Cartagena', '2024-03-31', '200.0.3.1');
 
 -- --------------------------------------------------------
 
@@ -1013,12 +1043,61 @@ INSERT INTO `stagecourse_description` (`language_id`, `stage_course_id`, `title`
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `status`
+--
+
+CREATE TABLE `status` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `status`
+--
+
+INSERT INTO `status` (`id`, `code`) VALUES
+(1, 'public'),
+(2, 'reject'),
+(3, 'draft'),
+(4, 'moderation');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `status_description`
+--
+
+CREATE TABLE `status_description` (
+  `language_id` int(10) UNSIGNED NOT NULL,
+  `status_id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `status_description`
+--
+
+INSERT INTO `status_description` (`language_id`, `status_id`, `title`) VALUES
+(1, 1, 'Опубликовано'),
+(2, 1, 'Published'),
+(1, 2, 'Отклонено'),
+(2, 2, 'Rejected'),
+(1, 3, 'Черновик'),
+(2, 3, 'Draft'),
+(1, 4, 'На модерации'),
+(2, 4, 'On moderation');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `stepcourse`
 --
 
 CREATE TABLE `stepcourse` (
   `id` int(10) UNSIGNED NOT NULL,
   `stage_course_id` int(10) UNSIGNED NOT NULL,
+  `typestepcourse_id` int(10) UNSIGNED NOT NULL,
+  `challenge_id` int(10) UNSIGNED DEFAULT NULL,
   `num_step` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1026,11 +1105,13 @@ CREATE TABLE `stepcourse` (
 -- Дамп данных таблицы `stepcourse`
 --
 
-INSERT INTO `stepcourse` (`id`, `stage_course_id`, `num_step`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 2, 1),
-(4, 2, 2);
+INSERT INTO `stepcourse` (`id`, `stage_course_id`, `typestepcourse_id`, `challenge_id`, `num_step`) VALUES
+(1, 1, 1, NULL, 1),
+(2, 1, 4, NULL, 2),
+(3, 2, 1, NULL, 1),
+(4, 2, 3, NULL, 2),
+(5, 1, 2, NULL, 3),
+(6, 1, 5, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -1041,22 +1122,29 @@ INSERT INTO `stepcourse` (`id`, `stage_course_id`, `num_step`) VALUES
 CREATE TABLE `stepcourse_description` (
   `language_id` int(10) UNSIGNED NOT NULL,
   `step_course_id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `answer_option` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `rigth_answer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `stepcourse_description`
 --
 
-INSERT INTO `stepcourse_description` (`language_id`, `step_course_id`, `title`) VALUES
-(1, 1, 'Чем является JavaScript?'),
-(1, 2, 'Чем является JavaScript?'),
-(1, 3, 'Переменные в js'),
-(1, 4, 'Какие переменные в JavaScript?'),
-(2, 1, 'What is JavaScript?'),
-(2, 2, 'What is JavaScript?'),
-(2, 3, 'Variables in js'),
-(2, 4, 'Variables in JSK What variables in JavaScript?');
+INSERT INTO `stepcourse_description` (`language_id`, `step_course_id`, `title`, `description`, `answer_option`, `rigth_answer`) VALUES
+(1, 1, 'Чем является JavaScript?', 'JavaScript - это язык программирования, который в первую очередь применяют в вебе. С его помощью сайты делают интерактивными: добавляют всплывающие окна, анимацию, кнопки лайков и формы для отправки информации. Его ещё называют главным языком фронтенда — «лицевой» стороны сайта, с которой взаимодействуют пользователи.', NULL, NULL),
+(1, 2, 'Чем является JavaScript?', NULL, '{\"1\": \"Скриптовый язык\",\"2\": \"Язык программирования\",\"3\": \"Язык разметки\"}', '2'),
+(1, 3, 'Переменные в js', 'В JavaScript переменные создаются через ключевое слово let или var. В нынешнем времени и стандарте ES6 используется let, так как var имеет несколько недочетов.', '', ''),
+(1, 4, 'Какие переменные в JavaScript?', '', '{\"1\": \"let a = 8\",\"2\": \"var b = 10\",\"3\": \"b int = 20\",\"4\": \"js var = 4\"}', '1,2'),
+(1, 5, 'Вставь пропущенные символы', 'let a ```block=``` 10;<br/>let b = 50;<br/>let c = a * b;<br/>console.```blocklog```(c);', '', ''),
+(1, 6, 'Реши простую задачу', 'Найти площадь треугольника', '', ''),
+(2, 1, 'What is JavaScript?', 'JavaScript is a programming language that is primarily used on the web. With its help, websites are made interactive: pop-ups, animations, like buttons and forms for sending information are added. It is also called the main language of the frontend — the \"front\" side of the site with which users interact.', '', ''),
+(2, 2, 'What is JavaScript?', NULL, '{\"1\": \"Scripting language\",\"2\": \"Programming Language\",\"3\": \"Markup Language\"}', '2'),
+(2, 3, 'Variables in js', 'In JavaScript, variables are created using the let or var keyword. In the current time and the ES6 standard, let is used, since var has several shortcomings.', '', ''),
+(2, 4, 'Variables in JSK What variables in JavaScript?', '', '{\"1\": \"let a = 8\",\"2\": \"var b = 10\",\"3\": \"b int = 20\",\"4\": \"js var = 4\"}', '1,2'),
+(2, 5, 'Insert the missing characters', 'let a ```block=``` 10;<br />let b = 50;<br/>let c = a * b;<br/>console.```blocklog```(c);', '', ''),
+(2, 6, 'Solve a simple task', 'Find the area of the triangle', '', '');
 
 -- --------------------------------------------------------
 
@@ -1078,37 +1166,8 @@ INSERT INTO `typestepcourse` (`id`, `title`, `code`) VALUES
 (1, 'Теория', 'theory'),
 (2, 'Ввод данных', 'input-data'),
 (3, 'Несколько правильных ответов из многих', 'few-answer'),
-(4, 'Один правильный ответ из многих', 'one-answer');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `typestepcourse_description`
---
-
-CREATE TABLE `typestepcourse_description` (
-  `type_step_course_id` int(10) UNSIGNED NOT NULL,
-  `language_id` int(10) UNSIGNED NOT NULL,
-  `course_id` int(10) UNSIGNED NOT NULL,
-  `stage_course_id` int(10) UNSIGNED NOT NULL,
-  `step_course_id` int(10) UNSIGNED NOT NULL,
-  `answer_option` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `rigth_answer` text COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп данных таблицы `typestepcourse_description`
---
-
-INSERT INTO `typestepcourse_description` (`type_step_course_id`, `language_id`, `course_id`, `stage_course_id`, `step_course_id`, `answer_option`, `rigth_answer`) VALUES
-(1, 1, 1, 1, 1, NULL, 'JavaScript - это язык программирования, который в первую очередь применяют в вебе. С его помощью сайты делают интерактивными: добавляют всплывающие окна, анимацию, кнопки лайков и формы для отправки информации. Его ещё называют главным языком фронтенда — «лицевой» стороны сайта, с которой взаимодействуют пользователи.'),
-(4, 1, 1, 1, 2, '{\"1\": \"Скриптовый язык\",\"2\": \"Язык программирования\",\"3\": \"Язык разметки\"}', '2'),
-(1, 1, 1, 2, 3, NULL, 'В JavaScript переменные создаются через ключевое слово let или var. В нынешнем времени и стандарте ES6 используется let, так как var имеет несколько недочетов.'),
-(3, 1, 1, 2, 4, '{\"1\": \"let a = 8\",\"2\": \"var b = 10\",\"3\": \"b int = 20\",\"4\": \"js var = 4\"}', '1,2'),
-(1, 2, 1, 1, 1, NULL, 'JavaScript is a programming language that is primarily used on the web. With its help, websites are made interactive: pop-ups, animations, like buttons and forms for sending information are added. It is also called the main language of the frontend — the \"front\" side of the site with which users interact.'),
-(4, 2, 1, 1, 2, '{\"1\": \"Scripting language\",\"2\": \"Programming Language\",\"3\": \"Markup Language\"}', '2'),
-(1, 2, 1, 2, 3, NULL, 'In JavaScript, variables are created using the let or var keyword. In the current time and the ES6 standard, let is used, since var has several shortcomings.'),
-(3, 2, 1, 2, 4, '{\"1\": \"let a = 8\",\"2\": \"var b = 10\",\"3\": \"b int = 20\",\"4\": \"js var = 4\"}', '1,2');
+(4, 'Один правильный ответ из многих', 'one-answer'),
+(5, 'Задача', 'task');
 
 -- --------------------------------------------------------
 
@@ -1142,7 +1201,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `mail`, `second_mail`, `password`, `avatar_img`, `heading_img`, `about_user`, `last_name`, `first_name`, `country_address`, `date_of_registration`, `mb_for_project`, `consecutive_days`, `all_profile_private`, `personal_info_private`, `look_current_course_private`, `role`) VALUES
-(1, 'admin1', 'admin1@mail.ru', 'admin@second.ru', '$2y$10$fPCaXAY0gqN.hxkzIl8OT.9CdqaSQ2eEkXxCB90uwlBqjYthHdXUu', '/public/uploads/ava5.jpg', '/public/uploads/head1.jpg', 'Первый админ на сайте', 'First', 'Admin', 'Россия', '2023-02-01', 50, 1, 1, 1, 1, 'admin'),
+(1, 'admin1', 'admin1@mail.ru', 'admin@second.ru', '$2y$10$fPCaXAY0gqN.hxkzIl8OT.9CdqaSQ2eEkXxCB90uwlBqjYthHdXUu', '/public/uploads/ava5.jpg', '/public/uploads/head1.jpg', 'Первый админ на сайте', 'First', 'Admin', 'Россия', '2023-02-01', 50, 1, 0, 0, 1, 'admin'),
 (2, 'user1', 'user1@mail.ru', 'user1@second.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava1.jpg', '/public/uploads/head1.jpg', 'Первый пользователь', 'First', 'User', 'Россия', '2023-05-10', 50, 1, 0, 1, 1, 'user'),
 (3, 'admin2', 'admin2@mail.ru', 'admin2@secondmail.ru', '$2y$10$l5LGx0FR2SIMPZca8fjfquZSRjGDS1Dc/BAmqmYWoQTAvqImhF.p6', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это второй админ', 'второй', 'админ', 'Россия', '2023-05-17', 50, 5, 1, 1, 1, 'admin'),
 (4, 'admin3\r\n', 'admin3@mail.ru', 'admin3@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это третий админ\r\n', 'третий', 'админ', 'Россия', '2023-05-17', 50, 1, 1, 1, 1, 'admin'),
@@ -1201,7 +1260,8 @@ INSERT INTO `user_course` (`user_id`, `course_id`, `success`, `current_step`, `c
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UniqueSlug` (`slug`),
-  ADD KEY `blog_user` (`user_id`);
+  ADD KEY `blog_user` (`user_id`),
+  ADD KEY `status_id` (`status_id`);
 
 --
 -- Индексы таблицы `blogcategory`
@@ -1283,7 +1343,10 @@ ALTER TABLE `categoryprog_description`
 --
 ALTER TABLE `challenge`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `User_ID` (`user_id`);
+  ADD KEY `User_ID` (`user_id`),
+  ADD KEY `challenge_ibfk_2` (`project_id`),
+  ADD KEY `status_id` (`status_id`),
+  ADD KEY `template_id` (`template_id`);
 
 --
 -- Индексы таблицы `challengetag`
@@ -1325,7 +1388,8 @@ ALTER TABLE `challenge_mark`
 --
 ALTER TABLE `course`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `User_ID` (`user_id`);
+  ADD KEY `User_ID` (`user_id`),
+  ADD KEY `status_id` (`status_id`);
 
 --
 -- Индексы таблицы `coursetag`
@@ -1346,7 +1410,7 @@ ALTER TABLE `course_categorylangprog`
 --
 ALTER TABLE `course_challenge`
   ADD PRIMARY KEY (`course_id`,`challenge_id`),
-  ADD KEY `Challenge_ID` (`challenge_id`);
+  ADD KEY `challenge_id` (`challenge_id`);
 
 --
 -- Индексы таблицы `course_coursetag`
@@ -1474,6 +1538,19 @@ ALTER TABLE `project`
   ADD KEY `User_ID` (`user_id`);
 
 --
+-- Индексы таблицы `projecttemplate`
+--
+ALTER TABLE `projecttemplate`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `projecttemplate_description`
+--
+ALTER TABLE `projecttemplate_description`
+  ADD PRIMARY KEY (`language_id`,`projecttemplate_id`),
+  ADD KEY `projecttemplate_id` (`projecttemplate_id`);
+
+--
 -- Индексы таблицы `project_langprog`
 --
 ALTER TABLE `project_langprog`
@@ -1503,11 +1580,26 @@ ALTER TABLE `stagecourse_description`
   ADD KEY `StageCourse_ID` (`stage_course_id`);
 
 --
+-- Индексы таблицы `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `status_description`
+--
+ALTER TABLE `status_description`
+  ADD KEY `language_id` (`language_id`),
+  ADD KEY `status_id` (`status_id`);
+
+--
 -- Индексы таблицы `stepcourse`
 --
 ALTER TABLE `stepcourse`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `StageCourse_ID` (`stage_course_id`);
+  ADD KEY `StageCourse_ID` (`stage_course_id`),
+  ADD KEY `typestepcourse_id` (`typestepcourse_id`),
+  ADD KEY `challenge_id` (`challenge_id`);
 
 --
 -- Индексы таблицы `stepcourse_description`
@@ -1521,16 +1613,6 @@ ALTER TABLE `stepcourse_description`
 --
 ALTER TABLE `typestepcourse`
   ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `typestepcourse_description`
---
-ALTER TABLE `typestepcourse_description`
-  ADD PRIMARY KEY (`language_id`,`course_id`,`stage_course_id`,`step_course_id`),
-  ADD KEY `Course_ID` (`course_id`),
-  ADD KEY `StageCourse_ID` (`stage_course_id`),
-  ADD KEY `StepCourse_ID` (`step_course_id`),
-  ADD KEY `typestepcourse_description_ibfk_5` (`type_step_course_id`);
 
 --
 -- Индексы таблицы `user`
@@ -1667,6 +1749,12 @@ ALTER TABLE `project`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
+-- AUTO_INCREMENT для таблицы `projecttemplate`
+--
+ALTER TABLE `projecttemplate`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `session`
 --
 ALTER TABLE `session`
@@ -1679,16 +1767,22 @@ ALTER TABLE `stagecourse`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT для таблицы `status`
+--
+ALTER TABLE `status`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT для таблицы `stepcourse`
 --
 ALTER TABLE `stepcourse`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `typestepcourse`
 --
 ALTER TABLE `typestepcourse`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
@@ -1705,6 +1799,7 @@ ALTER TABLE `user`
 --
 ALTER TABLE `blog`
   ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `blog_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `blog_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
@@ -1767,7 +1862,10 @@ ALTER TABLE `categoryprog_description`
 -- Ограничения внешнего ключа таблицы `challenge`
 --
 ALTER TABLE `challenge`
-  ADD CONSTRAINT `challenge_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `challenge_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `challenge_ibfk_2` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `challenge_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `challenge_ibfk_4` FOREIGN KEY (`template_id`) REFERENCES `projecttemplate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `challenge_categorylangprog`
@@ -1802,7 +1900,8 @@ ALTER TABLE `challenge_mark`
 -- Ограничения внешнего ключа таблицы `course`
 --
 ALTER TABLE `course`
-  ADD CONSTRAINT `course_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `course_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `course_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `course_categorylangprog`
@@ -1816,8 +1915,8 @@ ALTER TABLE `course_categorylangprog`
 -- Ограничения внешнего ключа таблицы `course_challenge`
 --
 ALTER TABLE `course_challenge`
-  ADD CONSTRAINT `course_challenge_ibfk_1` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`),
-  ADD CONSTRAINT `course_challenge_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`);
+  ADD CONSTRAINT `course_challenge_ibfk_1` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_challenge_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `course_coursetag`
@@ -1914,6 +2013,13 @@ ALTER TABLE `project`
   ADD CONSTRAINT `project_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
+-- Ограничения внешнего ключа таблицы `projecttemplate_description`
+--
+ALTER TABLE `projecttemplate_description`
+  ADD CONSTRAINT `projecttemplate_description_ibfk_1` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `projecttemplate_description_ibfk_2` FOREIGN KEY (`projecttemplate_id`) REFERENCES `typestepcourse` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Ограничения внешнего ключа таблицы `project_langprog`
 --
 ALTER TABLE `project_langprog`
@@ -1940,10 +2046,19 @@ ALTER TABLE `stagecourse_description`
   ADD CONSTRAINT `stagecourse_description_ibfk_2` FOREIGN KEY (`stage_course_id`) REFERENCES `stagecourse` (`id`);
 
 --
+-- Ограничения внешнего ключа таблицы `status_description`
+--
+ALTER TABLE `status_description`
+  ADD CONSTRAINT `status_description_ibfk_1` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `status_description_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Ограничения внешнего ключа таблицы `stepcourse`
 --
 ALTER TABLE `stepcourse`
-  ADD CONSTRAINT `stepcourse_ibfk_1` FOREIGN KEY (`stage_course_id`) REFERENCES `stagecourse` (`id`);
+  ADD CONSTRAINT `stepcourse_ibfk_1` FOREIGN KEY (`stage_course_id`) REFERENCES `stagecourse` (`id`),
+  ADD CONSTRAINT `stepcourse_ibfk_2` FOREIGN KEY (`typestepcourse_id`) REFERENCES `typestepcourse` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `stepcourse_ibfk_3` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `stepcourse_description`
@@ -1951,16 +2066,6 @@ ALTER TABLE `stepcourse`
 ALTER TABLE `stepcourse_description`
   ADD CONSTRAINT `stepcourse_description_ibfk_1` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`),
   ADD CONSTRAINT `stepcourse_description_ibfk_2` FOREIGN KEY (`step_course_id`) REFERENCES `stepcourse` (`id`);
-
---
--- Ограничения внешнего ключа таблицы `typestepcourse_description`
---
-ALTER TABLE `typestepcourse_description`
-  ADD CONSTRAINT `typestepcourse_description_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
-  ADD CONSTRAINT `typestepcourse_description_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`),
-  ADD CONSTRAINT `typestepcourse_description_ibfk_3` FOREIGN KEY (`stage_course_id`) REFERENCES `stagecourse` (`id`),
-  ADD CONSTRAINT `typestepcourse_description_ibfk_4` FOREIGN KEY (`step_course_id`) REFERENCES `stepcourse` (`id`),
-  ADD CONSTRAINT `typestepcourse_description_ibfk_5` FOREIGN KEY (`type_step_course_id`) REFERENCES `typestepcourse` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `user_challenge`

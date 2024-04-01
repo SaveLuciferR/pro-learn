@@ -36,6 +36,7 @@ Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/settings/general?$
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/settings/security?$', ['controller' => 'User', 'action' => 'security']); // Страница со всеми созданными задачами
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/settings/session?$', ['controller' => 'User', 'action' => 'session']); // Страница со всеми созданными задачами
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/settings/created-by-user?$', ['controller' => 'User', 'action' => 'createdByUser']); // Страница со всеми созданными задачами
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/settings/privacy?$', ['controller' => 'User', 'action' => 'privacy']); // Страница со всеми созданными задачами
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'profile']); // Страница профиля пользователя
 
 Router::add('^user/(?P<action>[a-z-]+)?$', ['controller' => 'User']); // Запрос авторизации, регистрации и проверки на авторизацию пользователя

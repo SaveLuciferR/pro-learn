@@ -106,14 +106,15 @@ class Course extends AppModel
                                FROM course c JOIN user_course uc ON uc.course_id = c.id
                                JOIN user u ON u.id = uc.user_id
                                JOIN course_description cd ON cd.course_id = c.id
-                               WHERE cd.language_id = ? AND c.slug = ?", [$lang, $slug]);
+                               WHERE cd.language_id = ? AND c.slug = ? AND c.status_id = 1", [$lang, $slug]);
     }
 
     public function getStageCourseBySlug($lang, $id)
     {
         return R::getAssoc("SELECT sc.id, sc.num_stage, sc.icon, scd.title
                                 FROM stagecourse sc JOIN stagecourse_description scd ON scd.stage_course_id = sc.id
-                                WHERE sc.course_id = ? AND scd.language_id = ?", [$id, $lang]);
+                                JOIN course c ON c.id = sc.course_id
+                                WHERE sc.course_id = ? AND scd.language_id = ? AND c.status_id = 1", [$id, $lang]);
     }
 
     public function getStepCourseByStageID($lang, $id)
@@ -133,19 +134,19 @@ class Course extends AppModel
     public function getCourseIDBySlug($slug)
     {
         return R::getRow("SELECT c.id
-                                FROM course c
-                                WHERE c.slug = ?", [$slug]);
+                                FROM course c JOIN status s ON s.id = c.status_id
+                                WHERE status_id = 1 AND c.slug = ?", [$slug]);
     }
 
     public function getLessonFromCourse($lang, $courseID, $blockNum, $lessonNum)
     {
-        return R::getRow("SELECT tsc.id, scr.id AS 'current_stage_id', tsc.code, scd.title, tscd.answer_option, tscd.rigth_answer
-                            FROM typestepcourse tsc JOIN typestepcourse_description tscd ON tsc.id = tscd.type_step_course_id
-                            JOIN stepcourse sc ON sc.id = tscd.step_course_id
+        return R::getRow("SELECT sc.id, scr.id AS 'current_stage_id', tsc.code, scd.title, scd.description, scd.answer_option, scd.rigth_answer
+                            FROM typestepcourse tsc JOIN stepcourse sc ON tsc.id = sc.typestepcourse_id
                             JOIN stagecourse scr ON scr.id = sc.stage_course_id
                             JOIN stepcourse_description scd ON scd.step_course_id = sc.id
-                            WHERE tscd.language_id = ? AND scd.language_id = ? AND sc.num_step = ? AND scr.num_stage = ?
-                            ", [$lang, $lang, $blockNum, $lessonNum]);
+                            JOIN course c ON scr.course_id = c.id
+                            WHERE scd.language_id = ? AND scr.num_stage = ? AND sc.num_step = ? AND c.id = ?
+                            ", [$lang, $blockNum, $lessonNum, $courseID]);
     }
 
     public function getAmountStepInStageCourse($id)
@@ -153,6 +154,13 @@ class Course extends AppModel
         return R::getRow("SELECT COUNT(sc.id) AS 'amount_steps'
                             FROM stepcourse sc JOIN stagecourse scr ON scr.id = sc.stage_course_id
                             WHERE scr.id = ?", [$id]);
+    }
+
+    public function getTaskForStepCourse($step, $lang)
+    {
+        $stepCourse = R::load("stepcourse", $step);
+        $task = R::load("challenge", $stepCourse->challenge_id);
+        $taskCourse = R::getRow("SELECT c.id, cd.title, ");
     }
 
 }

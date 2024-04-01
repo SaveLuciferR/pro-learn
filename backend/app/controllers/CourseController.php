@@ -118,8 +118,7 @@ class CourseController extends AppController
                     $lesson = $this->model->getLessonFromCourse(
                         App::$app->getProperty('language')['id'], $course['id'],
                         $_GET['block'], $_GET['lesson']);
-
-//                    $lesson['current_step'] = $userCourse['current_step'];
+//                    debug($lesson, 1);
                     $lesson['current_step'] = $_GET['lesson'];
                     $lesson = array_merge($lesson, $this->model->getAmountStepInStageCourse($lesson['current_stage_id']));
                     unset($lesson['current_stage_id']);
@@ -127,9 +126,16 @@ class CourseController extends AppController
                     $lesson = $this->model->getLessonFromCourse(
                         App::$app->getProperty('language')['id'], $course['id'],
                         $userCourse['current_stage'], $userCourse['current_step']);
+//                    debug($lesson, 1);
                     $lesson['current_step'] = $userCourse['current_step'];
                     $lesson = array_merge($lesson, $this->model->getAmountStepInStageCourse($lesson['current_stage_id']));
                     unset($lesson['current_stage_id']);
+                }
+            }
+
+            if ($lesson) {
+                if ($lesson['code'] == 'task') {
+                    $taskForStepCourse = $this->model->getTaskForStepCourse($lesson['id'], App::$app->getProperty('language')['id']);
                 }
             }
         }
