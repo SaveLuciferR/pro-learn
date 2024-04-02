@@ -510,6 +510,28 @@ class UserController extends AppController
         echo json_encode(array('profile_privacy' => $profilePrivacy), JSON_UNESCAPED_SLASHES);
     }
 
+    public function createCourseAction()
+    {
+        $result = [];
+        $result['success'] = false;
+        if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username'] && $_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = json_decode(file_get_contents("php://input"), true);
+            if (!empty($_POST)) {
+                //TODO: Icon from cache
+                $data['icon'] = $_POST['icon'];
+                $data['difficulty'] = $_POST['difficulty'];
+                $data['lang-prog'] = $_POST['lang-prog'];
+                $data['category-prog'] = $_POST['category-prog'];
+                $data['status'] = $_POST['status'];
+                $data['main'] = $_POST['main'];
+
+                $res = $this->model->saveCourse($data, $_SESSION['user']['id']);
+            }
+        }
+
+        echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
+    }
+
     protected function deleteAllCacheProject()
     {
     }

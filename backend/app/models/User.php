@@ -4,6 +4,7 @@ namespace app\models;
 
 use core\App;
 use core\Cache;
+use http\Exception;
 use RedBeanPHP\R;
 
 
@@ -569,7 +570,25 @@ class User extends AppModel
             }
         }
 
-        return "нет";
+        return "";
+    }
+
+    public function saveCourse($data, $userID)
+    {
+//        debug($data, 1);
+        R::begin();
+        try {
+            $status = R::findOne("status", "code = ?", [$data['status']]);
+            if (!$status) throw new \Exception("Not status");
+
+            $course = R::dispense('course');
+//            $course =
+
+            return true;
+        } catch (\Exception $ex) {
+            debug($ex);
+            return false;
+        }
     }
 
 }

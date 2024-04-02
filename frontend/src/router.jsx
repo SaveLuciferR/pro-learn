@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import {createBrowserRouter} from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import BlogPage from './pages/BlogPage';
 import ProjectPage from './pages/ProjectPage';
@@ -25,6 +25,7 @@ import ProfileSettingsUserPage from './pages/ProfileSettingsUserPage';
 import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ProfileSettingsSecurity from './components/Profile/ProfileSettings/ProfileSettingsSecurity';
 import AdminLayout from "./layouts/AdminLayout";
+import CourseCreate from "./pages/CourseCreate";
 
 
 const router = createBrowserRouter([
@@ -40,107 +41,111 @@ const router = createBrowserRouter([
     },
     {
         path: '/:lang?',
-        element: <MainLayout isActiveSidebar={true} isCompiler={false} />,
+        element: <MainLayout isActiveSidebar={true} isCompiler={false}/>,
         children: [
             {
                 path: 'user/login',
-                element: <Login isActiveSidebar={false} />,
+                element: <Login isActiveSidebar={false}/>,
             },
             {
                 path: 'user/feedback',
-                element: <Feedback />,
+                element: <Feedback/>,
             },
             {
                 path: 'blog',
-                element: <BlogPage />,
+                element: <BlogPage/>,
             },
             {
                 path: ':username/project/:project',
-                element: <ProjectPage isActiveSidebar={false} />,
+                element: <ProjectPage isActiveSidebar={false}/>,
             },
             {
                 path: ':username/project/add',
-                element: <ProjectAddPage isActiveSidebar={false} />,
+                element: <ProjectAddPage isActiveSidebar={false}/>,
             },
             {
                 path: 'compiler/:username/:project',
-                element: <CompilerPage isActiveSidebar={true} isCompiler={true} />,
+                element: <CompilerPage isActiveSidebar={true} isCompiler={true}/>,
             },
             {
                 path: 'profile',
-                element: <ProfilePage isActiveSidebar={false} isCompiler={false} />,
+                element: <ProfilePage isActiveSidebar={false} isCompiler={false}/>,
                 children: [
                     {
                         path: '',
-                        element: <ProfileMainPage />,
+                        element: <ProfileMainPage/>,
                     },
                     {
                         path: 'created-courses',
-                        element: <ProfileCreatedCourses />,
+                        element: <ProfileCreatedCourses/>,
                     },
                     {
                         path: 'questions',
-                        element: <ProfileQuestionsMain />,
+                        element: <ProfileQuestionsMain/>,
                     },
                     {
                         path: 'user-tasks',
-                        element: <ProfileUserTasks />,
+                        element: <ProfileUserTasks/>,
                     },
                     {
                         path: 'tasks',
-                        element: <ProfileTasks />,
+                        element: <ProfileTasks/>,
                     },
                     {
                         path: 'projects',
-                        element: <ProfileProjects />,
+                        element: <ProfileProjects/>,
                     },
                     {
                         path: 'completed-courses',
-                        element: <ProfileCompletedCourses />,
+                        element: <ProfileCompletedCourses/>,
                     },
                     {
                         path: 'current-courses',
-                        element: <ProfileCurrentCourses />,
+                        element: <ProfileCurrentCourses/>,
                     },
                 ],
             },
             {
+                path: 'profile/course-create',
+                element: <CourseCreate/>
+            },
+            {
                 path: 'profile/settings/user',
-                element: <ProfileSettingsUserPage />,
+                element: <ProfileSettingsUserPage/>,
             },
             {
                 path: 'profile/settings',
-                element: <ProfileSettingsPage />,
+                element: <ProfileSettingsPage/>,
                 children: [
                     {
                         path: 'security',
-                        element: <ProfileSettingsSecurity />,
+                        element: <ProfileSettingsSecurity/>,
                     },
                 ],
             },
             {
                 path: 'courses',
-                element: <CoursesPage />,
+                element: <CoursesPage/>,
             },
             {
                 path: 'courses/name-course',
-                element: <CoursePage />,
+                element: <CoursePage/>,
             },
             {
                 path: 'courses/lessons',
-                element: <CourseLessonPage />,
+                element: <CourseLessonPage/>,
                 children: [
                     {
                         path: 'one-option',
-                        element: <LessonOneOption />,
+                        element: <LessonOneOption/>,
                     },
                     {
                         path: 'several-option',
-                        element: <LessonSeveralOption />,
+                        element: <LessonSeveralOption/>,
                     },
                     {
                         path: 'fill-gaps',
-                        element: <LessonFillGaps />,
+                        element: <LessonFillGaps/>,
                     },
                 ],
             },

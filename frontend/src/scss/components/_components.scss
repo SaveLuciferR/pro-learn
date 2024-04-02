@@ -365,3 +365,17 @@ label {
         }
     }
 }
+
+.text-center-create {
+    padding-top: 28px;
+  padding-bottom: 40px;
+   text-align: center;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

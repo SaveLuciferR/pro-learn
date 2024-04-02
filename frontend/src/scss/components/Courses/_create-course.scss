@@ -1,0 +1,13 @@
+.course-create {
+  &-header {
+    padding: 0 28px;
+
+    display: flex;
+    justify-content: left;
+    gap: 28px;
+  }
+
+  &-icon {
+    width: 110px;
+  }
+}
