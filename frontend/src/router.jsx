@@ -24,6 +24,8 @@ import LessonFillGaps from './components/CourseLessons/LessonFillGaps';
 import ProfileSettingsUserPage from './pages/ProfileSettingsUserPage';
 import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ProfileSettingsSecurity from './components/Profile/ProfileSettings/ProfileSettingsSecurity';
+import ProfileSettingsSessions from './components/Profile/ProfileSettings/ProfileSettingsSessions';
+import ProfileSettingsPrivacy from './components/Profile/ProfileSettings/ProfileSettingsPrivacy';
 
 const router = createBrowserRouter([
   {
@@ -55,7 +57,7 @@ const router = createBrowserRouter([
         element: <CompilerPage isActiveSidebar={true} isCompiler={true} />,
       },
       {
-        path: 'profile',
+        path: 'profile/:username',
         element: <ProfilePage isActiveSidebar={false} isCompiler={false} />,
         children: [
           {
@@ -103,6 +105,14 @@ const router = createBrowserRouter([
           {
             path: 'security',
             element: <ProfileSettingsSecurity />,
+          },
+          {
+            path: 'sessions',
+            element: <ProfileSettingsSessions />,
+          },
+          {
+            path: 'privacy',
+            element: <ProfileSettingsPrivacy />,
           },
         ],
       },

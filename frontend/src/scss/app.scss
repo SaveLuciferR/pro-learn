@@ -1,13 +1,13 @@
 @use "scss-reset/reset";
 
 body {
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   color: #ffffff;
   line-height: normal;
 }
 
 .main {
-  padding: 100px 0 260px 0px;
+  padding: 109px 28px 28px 28px;
   background-color: #0d1117;
 
   width: 100%;
@@ -16,7 +16,7 @@ body {
   min-height: 100vh;
 
   &.active-sidebar {
-    padding: 100px 0 260px 64px;
+    padding: 109px 28px 28px 92px;
   }
 
   &.active-compiler {
@@ -28,7 +28,6 @@ body {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 100px;
 }
 
-@import './components/all';
+@import "./components/all";
