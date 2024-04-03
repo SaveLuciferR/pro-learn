@@ -8,13 +8,13 @@ const ProfileCurrentCoursesItem = () => {
         <li className="created-course-header-tag">#Начинающим</li>
       </ul>
       <div className="created-course-info">
-        <p className="created-course-info-title">Frontend-разработчик</p>
+        <h1 className="created-course-info-title">Frontend-разработчик</h1>
         <div className="created-course-info-desc">
           <p className="created-course-info-desc-text">
             // Python просто выучить, даже если вы никогда не программировали. В этом курсе Вы
             разработаете 3 проекта для портфолио. Много полезной информации
           </p>
-          <img src={img} className="created-course-info-desc-img"></img>
+          <img src={img} className="created-course-info-desc-img" />
         </div>
       </div>
       <div className="profile-difficulty">

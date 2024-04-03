@@ -107,7 +107,7 @@
 
     &-range {
       display: flex;
-      column-gap: 5px;
+      column-gap: 8px;
 
       &-item {
         width: 10px;
@@ -147,14 +147,16 @@
       }
 
       &-nameblock {
+        max-width: 200px;
+        width: 200px;
         &-nickname {
-          font-size: 20px;
+          font-size: 24px;
           font-weight: 500;
         }
 
         &-realname {
           font-size: 16px;
-          font-weight: 300;
+          font-weight: 400;
           color: rgba($color: #ffffff, $alpha: 0.8);
         }
       }
@@ -162,8 +164,9 @@
       &-status {
         padding-top: 10px;
         font-size: 16px;
-        font-weight: 300;
+        font-weight: 400;
         color: rgba($color: #ffffff, $alpha: 0.8);
+        user-select: none;
       }
 
       &-edit {
@@ -188,6 +191,7 @@
         align-items: center;
         position: relative;
         border-radius: 34px;
+        user-select: none;
 
         & img {
           height: 68px;
@@ -201,13 +205,13 @@
 
       &-title {
         font-size: 18px;
-        font-weight: 400;
+        font-weight: 500;
+        user-select: none;
       }
 
       &-text {
         padding-top: 4px;
-        font-size: 16px;
-        font-weight: 400;
+        height: 105px;
         color: rgba($color: #ffffff, $alpha: 0.8);
       }
     }
@@ -217,7 +221,6 @@
       justify-content: space-between;
       padding-top: 20px;
       font-size: 14px;
-      font-weight: 400;
       color: rgba($color: #ffffff, $alpha: 0.6);
     }
   }
@@ -379,6 +382,7 @@
 
   &-desc {
     padding-top: 15px;
+    height: 84px;
     font-size: 16px;
     font-weight: 400;
     color: rgba($color: #ffffff, $alpha: 0.8);
@@ -441,7 +445,7 @@
       }
 
       &-tag {
-        padding: 8px 12px;
+        padding: 8px 16px;
         border-radius: 100px;
         background-color: rgba($color: #2d2d2d, $alpha: 0.6);
       }
@@ -451,7 +455,7 @@
       padding-top: 24px;
 
       &-title {
-        font-size: 20px;
+        font-size: 28px;
         font-weight: 500;
 
         &:hover {
@@ -487,13 +491,9 @@
       justify-content: center;
       text-align: center;
       padding: 12px 16px;
-      height: 124px;
+      height: 134px;
       background-color: rgba($color: #2d2d2d, $alpha: 0.6);
       border-radius: 8px;
-
-      &-text {
-        font-size: 14px;
-      }
 
       &-img {
         height: 40px;
@@ -812,10 +812,9 @@
       padding-top: 18px;
       display: flex;
       justify-content: space-between;
-      font-size: 14px;
-      font-weight: 300;
 
       &-lang {
+        font-size: 14px;
         color: rgba($color: #ffffff, $alpha: 0.6);
       }
     }
@@ -823,12 +822,11 @@
     &-about {
       padding-top: 14px;
       font-size: 14px;
-      font-weight: 300;
       color: rgba($color: #ffffff, $alpha: 0.6);
     }
 
     &-progress {
-      padding-top: 14px;
+      padding-top: 20px;
 
       &-bar {
         width: 100%;
@@ -838,7 +836,7 @@
       }
 
       &-value {
-        padding-top: 2px;
+        padding-top: 12px;
         font-size: 14px;
         font-weight: 300;
         color: rgba($color: #ffffff, $alpha: 0.6);

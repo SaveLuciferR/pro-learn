@@ -4,7 +4,7 @@ a {
     color: #fff;
 
     &:hover {
-        color: rgba($color: transparent, $alpha: 0.6);
+        color: rgba($color: #ffffff, $alpha: 0.6);
     }
 }
 
@@ -359,6 +359,39 @@ label {
                 background: #ffffff;
                 margin: 3px;
             }
+        }
+    }
+}
+
+.slider {
+    &-under-element {
+        margin-top: 4px;
+        display: flex;
+        align-items: center;
+        column-gap: 6px;
+        justify-content: center;
+    }
+
+    &-arrow {
+        height: 30px;
+        width: 30px;
+    }
+
+    &-list {
+    }
+
+    &-digits {
+        display: inline-block;
+        user-select: none;
+    }
+
+    &-digit {
+        display: inline-block;
+        margin: 0 6px;
+        color: rgba($color: #ffffff, $alpha: 0.6);
+
+        &.active {
+            color: #fff;
         }
     }
 }

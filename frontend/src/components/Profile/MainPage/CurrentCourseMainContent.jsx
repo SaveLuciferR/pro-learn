@@ -1,10 +1,8 @@
 import imgcourse from '../../../image 7.png';
-import Slider from 'react-slick';
-/* Переделать названия классов, сделать карточку рабочей */
-const CompleteCourseMain = () => {
+
+const CurrentCourseMainContent = (obj) => {
   return (
-    <div className="currentcourse">
-      <p className="currentcourse-title">Пройденные курсы</p>
+    <>
       <div className="currentcourse-course">
         <div className="currentcourse-course-info">
           <p className="currentcourse-course-info-title">_Web-разработчик</p>
@@ -64,11 +62,10 @@ const CompleteCourseMain = () => {
       </div>
       <div className="currentcourse-progress">
         <div className="currentcourse-progress-bar"></div>
-        <p className="currentcourse-progress-text">10/10</p>
+        <p className="currentcourse-progress-text">5/10</p>
       </div>
-      <div className="currentcourse-slider">(слайдер)</div>
-    </div>
+    </>
   );
 };
 
-export default CompleteCourseMain;
+export default CurrentCourseMainContent;

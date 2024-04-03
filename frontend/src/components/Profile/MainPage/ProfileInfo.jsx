@@ -11,7 +11,9 @@ const ProfileInfo = () => {
     axiosClient
       .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
       .then(({ data }) => {
-        setUserData(data.ProfileInfo);
+        setUserData(data.profileInfo);
+        console.log(userData + ' data');
+        console.log(userData.username);
       });
   }, [lang, username]);
 
@@ -20,15 +22,21 @@ const ProfileInfo = () => {
       <div className="info-about-name">
         <div className="info-about-name-leftside">
           <div className="info-about-name-photo">
-            <img src={img} alt="profile-avatar" />
+            <img src={`api.pro-learn.my` + userData.avatar_img} alt="profile-avatar" />
             {/* настроить стили, чтобы изображение не искажалось */}
           </div>
           <div className="info-about-name-nameblock">
-            <p className="info-about-name-nameblock-nickname">John Johnson</p>
-            <p className="info-about-name-nameblock-realname">Джон Джонсон</p>
+            <p className="info-about-name-nameblock-nickname">{userData.username}</p>
+            <p className="info-about-name-nameblock-realname">
+              {userData.last_name | (userData.first_name === undefined)
+                ? '*Реальное имя скрыто'
+                : userData.first_name + ' ' + userData.last_name}
+            </p>
           </div>
         </div>
-        <p className="info-about-name-status">Администрация</p>
+        <p className="info-about-name-status">
+          {userData.role === 'user' ? 'Пользователь' : 'Администратор'}
+        </p>
         <svg
           className="info-about-name-edit"
           width="16"
@@ -53,17 +61,20 @@ const ProfileInfo = () => {
       <div className="info-about-bio">
         <p className="info-about-bio-title">&gt; О себе</p>
         <p className="info-about-bio-text">
-          // Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
-          hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur,
-          ultrices mauris. ..
+          //{' '}
+          {userData.about_user === undefined
+            ? 'Пользователь предпочел скрыть информацию'
+            : userData.about_user}
         </p>
       </div>
       <div className="info-about-bottom">
         <div className="info-about-bottom-dor">
-          <p>// Дата регистрации: 24.01.2023</p>
+          <p>// Дата регистрации: {userData.date_of_registration}</p>
         </div>
         <div className="info-about-bottom-country">
-          <p> Страна: Россия</p>
+          <p>
+            Страна: {userData.country_address === undefined ? '######' : userData.country_address}
+          </p>
         </div>
       </div>
     </div>

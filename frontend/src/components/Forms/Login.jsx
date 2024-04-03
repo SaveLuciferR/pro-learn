@@ -28,7 +28,6 @@ const Login = () => {
         // console.log(localStorage.getItem('client'));
         // localStorage.setItem('client', data.client);
         dispatch(setUserAuth(data.auth));
-
         dispatch(setNeedReloadPage(true));
         navigate('/');
       })

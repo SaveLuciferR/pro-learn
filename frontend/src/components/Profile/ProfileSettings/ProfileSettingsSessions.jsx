@@ -1,7 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Table from '../../Table';
+import { useEffect, useState } from 'react';
+import axiosClient from '../../../axiosClient';
 
 const ProfileSettingsSessions = () => {
+  const { lang, username } = useParams();
+  const [sessions, setSessions] = useState([]);
+
+  useEffect(() => {
+    axiosClient
+      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}/settings/session?`)
+      .then(({ data }) => {
+        setSessions(data);
+      });
+  }, [lang, username]);
+
   return (
     <div className="profile-settings-sessions">
       <div className="profile-settings-main-main-title">
