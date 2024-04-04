@@ -1,6 +1,6 @@
-const ProfileProjectsContent = (obj) => {
+const ProfileProjectsContent = ({ obj }) => {
   return (
-    <>
+    <div className="profile-projects-content">
       <div className="profile-projects-info">
         <div className="profile-projects-info-text">
           <p className="profile-projects-info-text-name">_{obj.title}</p>
@@ -51,7 +51,7 @@ const ProfileProjectsContent = (obj) => {
         </div>
         <div className="profile-projects-bottom-lang">// Язык: Python</div>
       </div>
-    </>
+    </div>
   );
 };
 export default ProfileProjectsContent;

@@ -1,19 +1,21 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { setSliderItems, setSlideIndex, setTouchPosition } from '../../redux/Slider/slice';
+import { useEffect, useState } from 'react';
 import SliderUnder from './SliderUnder';
 import SliderList from './SliderList';
 
-const SliderMain = ({ data, sliderType }) => {
-  const dispatch = useDispatch();
-  dispatch(setSliderItems(data));
+const SliderMain = ({ obj, sliderType, countSlide }) => {
+  const [sliderItems, setSliderItems] = useState([]);
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [touchPosition, setTouchPosition] = useState(null);
+  const [countSlidePerPage, setCountSlidePerPage] = useState(0);
 
-  const sliderItems = useSelector((state) => state.slider.sliderItems);
-  const slideIndex = useSelector((state) => state.slider.slideIndex);
-  const touchPosition = useSelector((state) => state.slider.touchPosition);
-  const countSlidePerPage = 1;
+  console.log(obj + ' main');
+
+  useEffect(() => {
+    setSliderItems(obj);
+    setCountSlidePerPage(countSlide);
+  }, [obj]);
 
   const changeSlide = (direction = 1) => {
-    // console.log(direction);
     let slideNumber = 0;
 
     if (slideIndex + direction < 0) {
@@ -22,17 +24,17 @@ const SliderMain = ({ data, sliderType }) => {
       slideNumber = (slideIndex + direction) % (sliderItems.length / countSlidePerPage);
     }
 
-    dispatch(setSlideIndex(slideNumber));
+    setSlideIndex(slideNumber);
   };
 
   const goToSlide = (number) => {
-    dispatch(setSlideIndex(number % (sliderItems.length / countSlidePerPage)));
+    setSlideIndex(number % (sliderItems.length / countSlidePerPage));
   };
 
   const handleTouchStart = (e) => {
     const touchDown = e.touches[0].clientX;
 
-    dispatch(setTouchPosition(touchDown));
+    setTouchPosition(touchDown);
   };
 
   const handleTouchMove = (e) => {
@@ -51,16 +53,19 @@ const SliderMain = ({ data, sliderType }) => {
       changeSlide(-1);
     }
 
-    dispatch(setTouchPosition(null));
+    setTouchPosition(null);
   };
 
   return (
     <div className={'slider'} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
-      <SliderList type={sliderType} />
+      <SliderList obj={obj} type={sliderType} items={sliderItems} index={slideIndex} />
       <SliderUnder
         changeSlide={(e) => changeSlide(e)}
         goToSlide={(e) => goToSlide(e)}
         pagesType="digits"
+        items={sliderItems}
+        index={slideIndex}
+        countSlide={countSlidePerPage}
       />
     </div>
   );

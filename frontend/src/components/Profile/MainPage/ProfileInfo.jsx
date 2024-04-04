@@ -1,41 +1,26 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axiosClient from '../../../axiosClient';
 import img from '../../../header_bg.png';
 
-const ProfileInfo = () => {
-  const { lang, username } = useParams();
-  const [userData, setUserData] = useState([]);
-
-  useEffect(() => {
-    axiosClient
-      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
-      .then(({ data }) => {
-        setUserData(data.profileInfo);
-        console.log(userData + ' data');
-        console.log(userData.username);
-      });
-  }, [lang, username]);
-
+const ProfileInfo = ({ data }) => {
+  console.log(data);
   return (
     <div className="info-about">
       <div className="info-about-name">
         <div className="info-about-name-leftside">
           <div className="info-about-name-photo">
-            <img src={`api.pro-learn.my` + userData.avatar_img} alt="profile-avatar" />
+            <img src={`api.pro-learn.my` + data.avatar_img} alt="profile-avatar" />
             {/* настроить стили, чтобы изображение не искажалось */}
           </div>
           <div className="info-about-name-nameblock">
-            <p className="info-about-name-nameblock-nickname">{userData.username}</p>
+            <p className="info-about-name-nameblock-nickname">{data.username}</p>
             <p className="info-about-name-nameblock-realname">
-              {userData.last_name | (userData.first_name === undefined)
+              {data.last_name | (data.first_name === undefined)
                 ? '*Реальное имя скрыто'
-                : userData.first_name + ' ' + userData.last_name}
+                : data.first_name + ' ' + data.last_name}
             </p>
           </div>
         </div>
         <p className="info-about-name-status">
-          {userData.role === 'user' ? 'Пользователь' : 'Администратор'}
+          {data.role === 'user' ? 'Пользователь' : 'Администратор'}
         </p>
         <svg
           className="info-about-name-edit"
@@ -62,19 +47,17 @@ const ProfileInfo = () => {
         <p className="info-about-bio-title">&gt; О себе</p>
         <p className="info-about-bio-text">
           //{' '}
-          {userData.about_user === undefined
+          {data.about_user === undefined
             ? 'Пользователь предпочел скрыть информацию'
-            : userData.about_user}
+            : data.about_user}
         </p>
       </div>
       <div className="info-about-bottom">
         <div className="info-about-bottom-dor">
-          <p>// Дата регистрации: {userData.date_of_registration}</p>
+          <p>// Дата регистрации: {data.date_of_registration}</p>
         </div>
         <div className="info-about-bottom-country">
-          <p>
-            Страна: {userData.country_address === undefined ? '######' : userData.country_address}
-          </p>
+          <p>Страна: {data.country_address === undefined ? '######' : data.country_address}</p>
         </div>
       </div>
     </div>

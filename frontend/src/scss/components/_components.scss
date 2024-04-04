@@ -364,6 +364,9 @@ label {
 }
 
 .slider {
+    overflow: hidden;
+    position: relative;
+
     &-under-element {
         margin-top: 4px;
         display: flex;
@@ -378,6 +381,11 @@ label {
     }
 
     &-list {
+        display: flex;
+        gap: 28px;
+        height: 100%;
+        transition: transform 1s ease-in-out;
+        width: 100%;
     }
 
     &-digits {

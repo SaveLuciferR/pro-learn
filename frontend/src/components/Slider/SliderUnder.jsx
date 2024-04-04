@@ -1,18 +1,12 @@
-import { useSelector } from 'react-redux';
-
-const SliderUnder = ({ goToSlide, changeSlide, pagesType }) => {
-  const items = useSelector((state) => state.slider.sliderItems);
-  const slideIndex = useSelector((state) => state.slider.slideIndex);
-  const countSlidePerPage = 1;
-  console.log(items);
+const SliderUnder = ({ goToSlide, changeSlide, pagesType, items, index, countSlide }) => {
   const renderDots = () => {
     const dots = [];
 
-    for (let i = 0; i < items.length / countSlidePerPage; i++) {
+    for (let i = 0; i < items.length / countSlide; i++) {
       dots.push(
         <div
           key={`dot-${i}`}
-          className={`slider-dot ${slideIndex === i ? 'active' : ''}`}
+          className={`slider-dot ${index === i ? 'active' : ''}`}
           onClick={() => goToSlide(i)}
         ></div>,
       );
@@ -23,9 +17,9 @@ const SliderUnder = ({ goToSlide, changeSlide, pagesType }) => {
   const renderDigits = () => {
     const digits = [];
 
-    for (let i = 0; i < items.length / countSlidePerPage; i++) {
+    for (let i = 0; i < items.length / countSlide; i++) {
       digits.push(
-        <div key={`digit-${i}`} className={`slider-digit ${slideIndex === i ? 'active' : ''}`}>
+        <div key={`digit-${i}`} className={`slider-digit ${index === i ? 'active' : ''}`}>
           {i + 1}
         </div>,
       );

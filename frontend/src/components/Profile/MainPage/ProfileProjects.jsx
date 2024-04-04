@@ -1,22 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axiosClient from '../../../axiosClient';
 import { Link } from 'react-router-dom';
 import SliderMain from '../../Slider/SliderMain';
 
-const ProfileProjects = () => {
-  const { lang, username } = useParams();
-  const [userCurrentProjectData, setUserCurrentProjectData] = useState([]);
-
-  useEffect(() => {
-    axiosClient
-      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
-      .then(({ data }) => {
-        setUserCurrentProjectData(data.profileInfo.projects);
-        // console.log(userCurrentProjectData + ' data');
-      });
-  }, [lang, username]);
-
+const ProfileProjects = ({ data }) => {
+  console.log(data + ' profile');
   return (
     <div className="profile-projects">
       <div className="profile-projects-header">
@@ -39,9 +25,7 @@ const ProfileProjects = () => {
           </svg>
         </Link>
       </div>
-
-      <SliderMain data={userCurrentProjectData} sliderType="profileProjects" />
-      <div className="profile-projects-slider">(слайдер)</div>
+      <SliderMain data={data} sliderType="profileProjects" countSlide={1} />
     </div>
   );
 };
