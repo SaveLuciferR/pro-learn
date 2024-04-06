@@ -1,24 +1,59 @@
 import CurrentCourseMainContent from '../Profile/MainPage/CurrentCourseMainContent';
 import ProfileProjectsContent from '../Profile/MainPage/ProfileProjectsContent';
+import CompleteCourseMainContent from '../Profile/MainPage/CompleteCourseMainContent';
+import ProfileCurrentCoursesItem from '../Profile/CurrentCourses/ProfileCurrentCourseItem';
+import ProfileProjectItem from '../Profile/Projects/ProfileProjectItem';
+import ProfileTask from '../Profile/UserTasks/ProfileTask';
 
-const SliderList = ({ items, type, index }) => {
-  console.log(items);
-  const cards = items.map((slide, index) => {
+const SliderList = ({ type, items, index }) => {
+  // const cards = items.map((slide, index) => {
+  //   switch (type) {
+  //     case 'profileCurrentCourse':
+  //       return <CurrentCourseMainContent key={index} data={slide} />;
+  //     case 'profileProjects':
+  //       return <ProfileProjectsContent key={index} data={slide} />;
+  //     case 'profileCompleteCourse':
+  //       return <CompleteCourseMainContent />;
+  //     case 'currentCourse':
+  //       return <ProfileCurrentCoursesItem key={index} data={slide} />;
+  //     default:
+  //       return 'нету';
+  //   }
+  // });
+
+  // console.log(items);
+
+  const cards = () => {
     switch (type) {
       case 'profileCurrentCourse':
-        return <CurrentCourseMainContent key={index} data={slide} />;
+        return items.map((slide, index) => <CurrentCourseMainContent key={index} data={slide} />);
+
       case 'profileProjects':
-        return <ProfileProjectsContent key={index} data={slide} />;
+        return items.map((slide, index) => <ProfileProjectsContent key={index} data={slide} />);
+
+      case 'profileCompleteCourse':
+        return items.map((slide, index) => <CompleteCourseMainContent />);
+
+      case 'profileProjectsPage':
+        return items.map((slide, index) => <ProfileProjectItem key={index} data={slide} />);
+
+      case 'currentCourse':
+        return Object.keys(items).map((slide, index) => (
+          <ProfileCurrentCoursesItem key={index} data={items} index={slide} />
+        ));
+
+      case 'profileTasks':
+        return Object.keys(items).map((slide, index) => (
+          <ProfileTask key={index} data={items} index={slide} />
+        ));
       default:
         return 'нету';
     }
-  });
-
-  // console.log(slideIndex + ' ТИП');
+  };
 
   return (
     <div className={'slider-list'} style={{ transform: `translateX(-${index * 100}%)` }}>
-      {cards}
+      {cards()}
     </div>
   );
 };

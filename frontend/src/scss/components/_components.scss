@@ -366,6 +366,7 @@ label {
 .slider {
     overflow: hidden;
     position: relative;
+    width: 100%;
 
     &-under-element {
         margin-top: 4px;
@@ -382,7 +383,6 @@ label {
 
     &-list {
         display: flex;
-        gap: 28px;
         height: 100%;
         transition: transform 1s ease-in-out;
         width: 100%;

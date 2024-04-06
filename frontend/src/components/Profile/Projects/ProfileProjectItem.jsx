@@ -1,10 +1,12 @@
-const ProfileProjectItem = () => {
+const ProfileProjectItem = ({ data }) => {
   return (
     <div className="profile-projects-card">
-      <div className="profile-projects-info">
-        <div className="profile-projects-info-text">
-          <p className="profile-projects-info-text-name">_Название проекта</p>
-          <p className="profile-projects-info-text-access">Публичный</p>
+      <div className="profile-projects-page-info">
+        <div className="profile-projects-page-info-text">
+          <p className="profile-projects-info-text-name">_{data.title}</p>
+          <p className="profile-projects-info-text-access">
+            {data.private === 0 ? 'Публичный' : 'Приватный'}
+          </p>
         </div>
         <svg
           className="info-about-name-edit"
@@ -27,12 +29,9 @@ const ProfileProjectItem = () => {
           </defs>
         </svg>
       </div>
-      <p className="profile-projects-card-desc">
-        // Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
-        hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ..
-      </p>
+      <p className="profile-projects-card-desc">// {data.description}</p>
       <div className="profile-projects-bottom">
-        <p className="profile-projects-bottom-date">24.01.2023</p>
+        <p className="profile-projects-bottom-date">{data.date_of_publication}</p>
         <div className="profile-projects-bottom-delete">
           <svg
             width="18"

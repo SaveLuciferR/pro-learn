@@ -1,11 +1,11 @@
-const ProfileProjectsContent = ({ obj }) => {
+const ProfileProjectsContent = ({ data }) => {
   return (
     <div className="profile-projects-content">
       <div className="profile-projects-info">
         <div className="profile-projects-info-text">
-          <p className="profile-projects-info-text-name">_{obj.title}</p>
+          <p className="profile-projects-info-text-name">_{data.title}</p>
           <p className="profile-projects-info-text-access">
-            {obj.private === '0' ? 'Публичный' : 'Приватный'}
+            {data.private === '0' ? 'Публичный' : 'Приватный'}
           </p>
         </div>
         <svg
@@ -29,9 +29,9 @@ const ProfileProjectsContent = ({ obj }) => {
           </defs>
         </svg>
       </div>
-      <p className="profile-projects-desc">// {obj.description}</p>
+      <p className="profile-projects-desc">// {data.description}</p>
       <div className="profile-projects-bottom">
-        <p className="profile-projects-bottom-date">{obj.date_of_publication}</p>
+        <p className="profile-projects-bottom-date">{data.date_of_publication}</p>
         <div className="profile-projects-bottom-delete">
           <svg
             width="18"

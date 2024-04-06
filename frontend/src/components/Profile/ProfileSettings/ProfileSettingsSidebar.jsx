@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-const ProfileSettingsSidebar = () => {
+const ProfileSettingsSidebar = ({ data }) => {
+  const { username } = useParams();
   return (
     <div className="profile-section-sidebar">
       <div className="profile-section-sidebar-tabs">

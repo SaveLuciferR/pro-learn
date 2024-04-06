@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react';
 import SliderUnder from './SliderUnder';
 import SliderList from './SliderList';
 
-const SliderMain = ({ obj, sliderType, countSlide }) => {
+const SliderMain = ({ data, sliderType, countSlide, styling }) => {
   const [sliderItems, setSliderItems] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
   const [touchPosition, setTouchPosition] = useState(null);
   const [countSlidePerPage, setCountSlidePerPage] = useState(0);
 
-  console.log(obj + ' main');
+  // console.log(data);
 
   useEffect(() => {
-    setSliderItems(obj);
+    setSliderItems(data);
     setCountSlidePerPage(countSlide);
-  }, [obj]);
+  }, [data]);
 
   const changeSlide = (direction = 1) => {
     let slideNumber = 0;
@@ -58,13 +58,13 @@ const SliderMain = ({ obj, sliderType, countSlide }) => {
 
   return (
     <div className={'slider'} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
-      <SliderList obj={obj} type={sliderType} items={sliderItems} index={slideIndex} />
+      <SliderList type={sliderType} items={sliderItems} index={slideIndex} style />
       <SliderUnder
         changeSlide={(e) => changeSlide(e)}
         goToSlide={(e) => goToSlide(e)}
         pagesType="digits"
         items={sliderItems}
-        index={slideIndex}
+        indx={slideIndex}
         countSlide={countSlidePerPage}
       />
     </div>

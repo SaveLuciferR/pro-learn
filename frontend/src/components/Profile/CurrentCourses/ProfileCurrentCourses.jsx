@@ -1,7 +1,22 @@
-import { Link } from 'react-router-dom';
-import ProfileCurrentCoursesItem from './ProfileCurrentCourseItem';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axiosClient from '../../../axiosClient';
+import SliderMain from '../../Slider/SliderMain';
 
 const ProfileCurrentCourses = () => {
+  const { lang, username } = useParams();
+  const [currentCourses, setCurrentCourses] = useState([]);
+
+  useEffect(() => {
+    axiosClient
+      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
+      .then(({ data }) => {
+        setCurrentCourses(data.profileInfo.currentCourse);
+      });
+  }, [lang, username]);
+
+  console.log(currentCourses);
+
   return (
     <div className="profile-projects-page">
       <div className="profile-projects-page-header">
@@ -25,10 +40,8 @@ const ProfileCurrentCourses = () => {
         <p className="profile-current-page-title">Текущие курсы</p>
       </div>
       <div className="profile-completed-page-main">
-        <ProfileCurrentCoursesItem />
-        <ProfileCurrentCoursesItem />
+        <SliderMain data={currentCourses} sliderType="currentCourse" countSlide={2} />
       </div>
-      <div className="profile-tasks-slider">(слайдер)</div>
     </div>
   );
 };

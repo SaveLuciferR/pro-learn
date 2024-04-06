@@ -1,10 +1,17 @@
+import { useState, useEffect } from 'react';
 import SliderMain from '../../Slider/SliderMain';
 
 const CurrentCourseMain = ({ data }) => {
+  const [currentCourse, setCurrentCourse] = useState([]);
+
+  useEffect(() => {
+    setCurrentCourse(data.projects);
+  }, [data]);
+
   return (
     <div className="currentcourse">
       <p className="currentcourse-title">Текущие курсы</p>
-      <SliderMain data={data} sliderType="profileCurrentCourse" countSlide={1} />
+      <SliderMain data={currentCourse} sliderType="profileCurrentCourse" countSlide={1} />
     </div>
   );
 };

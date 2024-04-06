@@ -1,4 +1,4 @@
-const SliderUnder = ({ goToSlide, changeSlide, pagesType, items, index, countSlide }) => {
+const SliderUnder = ({ goToSlide, changeSlide, pagesType, items, indx, countSlide }) => {
   const renderDots = () => {
     const dots = [];
 
@@ -6,7 +6,7 @@ const SliderUnder = ({ goToSlide, changeSlide, pagesType, items, index, countSli
       dots.push(
         <div
           key={`dot-${i}`}
-          className={`slider-dot ${index === i ? 'active' : ''}`}
+          className={`slider-dot ${indx === i ? 'active' : ''}`}
           onClick={() => goToSlide(i)}
         ></div>,
       );
@@ -19,7 +19,7 @@ const SliderUnder = ({ goToSlide, changeSlide, pagesType, items, index, countSli
 
     for (let i = 0; i < items.length / countSlide; i++) {
       digits.push(
-        <div key={`digit-${i}`} className={`slider-digit ${index === i ? 'active' : ''}`}>
+        <div key={`digit-${i}`} className={`slider-digit ${indx === i ? 'active' : ''}`}>
           {i + 1}
         </div>,
       );
@@ -27,57 +27,71 @@ const SliderUnder = ({ goToSlide, changeSlide, pagesType, items, index, countSli
     return digits;
   };
 
+  const countItems = () => {
+    let count = 0;
+    Object.keys(items).map(() => {
+      count = count + 1;
+    });
+    return count;
+  };
+
   return (
-    <div className={'slider-under-element'}>
-      <div className={'slider-arrow'} onClick={() => changeSlide(-1)}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <circle
-            cx="10"
-            cy="10"
-            r="10"
-            transform="matrix(-1 0 0 1 22 2)"
-            stroke="white"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M13.5 9L10.5 12L13.5 15"
-            stroke="white"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
-      {pagesType === 'digits' ? (
-        <div className={'slider-digits'}>{renderDigits()}</div>
+    <>
+      {countItems() < 2 ? (
+        <></>
       ) : (
-        <div className={'slider-dots'}>{renderDots()}</div>
+        <div className={'slider-under-element'}>
+          <div className={'slider-arrow'} onClick={() => changeSlide(-1)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <circle
+                cx="10"
+                cy="10"
+                r="10"
+                transform="matrix(-1 0 0 1 22 2)"
+                stroke="white"
+                strokeWidth="1.5"
+              />
+              <path
+                d="M13.5 9L10.5 12L13.5 15"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          {pagesType === 'digits' ? (
+            <div className={'slider-digits'}>{renderDigits()}</div>
+          ) : (
+            <div className={'slider-dots'}>{renderDots()}</div>
+          )}
+          <div className={'slider-arrow'} onClick={() => changeSlide(1)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1.5" />
+              <path
+                d="M10.5 9L13.5 12L10.5 15"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
       )}
-      <div className={'slider-arrow'} onClick={() => changeSlide(1)}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1.5" />
-          <path
-            d="M10.5 9L13.5 12L10.5 15"
-            stroke="white"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
-    </div>
+    </>
   );
 };
 

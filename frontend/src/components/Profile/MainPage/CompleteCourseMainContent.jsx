@@ -1,6 +1,6 @@
 import imgcourse from '../../../image 7.png';
 
-const CurrentCourseMainContent = (data) => {
+const CompleteCourseMainContent = (data) => {
   return (
     <div className="currentcourse-course-content">
       <div className="currentcourse-course">
@@ -62,10 +62,10 @@ const CurrentCourseMainContent = (data) => {
       </div>
       <div className="currentcourse-progress">
         <div className="currentcourse-progress-bar"></div>
-        <p className="currentcourse-progress-text">5/10</p>
+        <p className="currentcourse-progress-text">10/10</p>
       </div>
     </div>
   );
 };
 
-export default CurrentCourseMainContent;
+export default CompleteCourseMainContent;

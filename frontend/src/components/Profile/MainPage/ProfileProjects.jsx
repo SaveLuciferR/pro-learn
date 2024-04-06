@@ -1,8 +1,15 @@
 import { Link } from 'react-router-dom';
 import SliderMain from '../../Slider/SliderMain';
+import { useEffect, useState } from 'react';
 
 const ProfileProjects = ({ data }) => {
-  console.log(data + ' profile');
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    setProjects(data.projects);
+  }, [data]);
+
+  console.log(data);
   return (
     <div className="profile-projects">
       <div className="profile-projects-header">
@@ -25,7 +32,7 @@ const ProfileProjects = ({ data }) => {
           </svg>
         </Link>
       </div>
-      <SliderMain data={data} sliderType="profileProjects" countSlide={1} />
+      <SliderMain data={projects} sliderType="profileProjects" countSlide={1} />
     </div>
   );
 };

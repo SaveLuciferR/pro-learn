@@ -21,12 +21,18 @@ const ProfileMainPage = () => {
   console.log(userData);
 
   return (
-    <div className="profile-section-main-cards">
-      <ProfileInfo data={userData} />
-      <CurrentCourseMain data={userData.projects} />
-      <ProfileProjects data={userData.projects} />
-      <CompleteCourseMain />
-    </div>
+    <>
+      {Object.keys(userData).length === 0 ? (
+        <div>Loading..."</div>
+      ) : (
+        <div className="profile-section-main-cards">
+          <ProfileInfo data={userData} />
+          <CurrentCourseMain data={userData} />
+          <ProfileProjects data={userData} />
+          <CompleteCourseMain data={userData} />
+        </div>
+      )}
+    </>
   );
 };
 

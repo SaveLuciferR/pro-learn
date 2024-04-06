@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import img from '../../../avatar.png';
 
-const ProfileSettingsUserMain = () => {
+const ProfileSettingsUserMain = ({ data }) => {
+  const { username } = useParams();
   return (
     <div className="profile-settings-main">
       <div className="profile-settings-main-header">
@@ -59,7 +60,7 @@ const ProfileSettingsUserMain = () => {
                 stroke-linejoin="round"
               />
             </svg>
-            <Link to="">Профиль</Link>
+            <Link to={`/profile/${username}`}>Профиль</Link>
           </div>
           <p className="profile-settings-main-main-text">Настройки профиля</p>
         </div>

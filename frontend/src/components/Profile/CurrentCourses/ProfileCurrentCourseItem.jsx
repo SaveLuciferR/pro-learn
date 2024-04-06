@@ -1,6 +1,7 @@
 import img from '../../../image 7.png';
 
-const ProfileCurrentCoursesItem = () => {
+const ProfileCurrentCoursesItem = ({ data, index }) => {
+  // console.log(index);
   return (
     <div className="profile-current-card">
       <ul className="created-course-header-tags">
@@ -8,12 +9,9 @@ const ProfileCurrentCoursesItem = () => {
         <li className="created-course-header-tag">#Начинающим</li>
       </ul>
       <div className="created-course-info">
-        <h1 className="created-course-info-title">Frontend-разработчик</h1>
+        <h1 className="created-course-info-title">{data[index].heading}</h1>
         <div className="created-course-info-desc">
-          <p className="created-course-info-desc-text">
-            // Python просто выучить, даже если вы никогда не программировали. В этом курсе Вы
-            разработаете 3 проекта для портфолио. Много полезной информации
-          </p>
+          <p className="created-course-info-desc-text">// {data[index].excerpt}</p>
           <img src={img} className="created-course-info-desc-img" />
         </div>
       </div>
@@ -52,7 +50,7 @@ const ProfileCurrentCoursesItem = () => {
               fill="white"
             />
           </svg>
-          <p className="created-course-card-text">Количество блоков: 3</p>
+          <p className="created-course-card-text">Количество блоков: {data[index].amount_stage}</p>
         </div>
         <div className="created-course-card">
           <svg
@@ -82,7 +80,7 @@ const ProfileCurrentCoursesItem = () => {
               fill="white"
             />
           </svg>
-          <p className="created-course-card-text">Количество уроков: 8</p>
+          <p className="created-course-card-text">Количество уроков: {data[index].amount_step}</p>
         </div>
         <div className="created-course-card">
           <svg
@@ -112,7 +110,9 @@ const ProfileCurrentCoursesItem = () => {
               fill="white"
             />
           </svg>
-          <p className="created-course-card-text">3 финальных проекта</p>
+          <p className="created-course-card-text">
+            Финальных проектов: {data[index].final_projects}
+          </p>
         </div>
       </div>
       <div className="profile-completed-card-stat">
@@ -133,7 +133,7 @@ const ProfileCurrentCoursesItem = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <p className="currentcourse-course-info-rate-like-text">12</p>
+            <p className="currentcourse-course-info-rate-like-text">{data[index].like}</p>
           </div>
           <div className="created-course-stat-rate-dislike">
             <svg
@@ -151,13 +151,17 @@ const ProfileCurrentCoursesItem = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <p className="currentcourse-course-info-rate-dislike-text">2</p>
+            <p className="currentcourse-course-info-rate-dislike-text">{data[index].dislike}</p>
           </div>
         </div>
         <p className="profile-completed-card-stat-lang">// Язык: Python</p>
       </div>
       <div className="profile-completed-card-about">
-        <p>&gt; John Johnson, Администрация, 28.06.2023</p>
+        <p>
+          &gt; {data[index].username},{' '}
+          {data[index].role === 'user' ? 'Пользователь' : 'Администратор'},{' '}
+          {data[index].date_of_publication}
+        </p>
       </div>
       <div className="profile-completed-card-progress">
         <div className="profile-completed-card-progress-bar"></div>

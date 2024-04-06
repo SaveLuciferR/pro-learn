@@ -1,12 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ProfileSidebarMain = () => {
+  const { username } = useParams();
+
   return (
     <div className="profile-section-sidebar">
       <div className="profile-section-sidebar-tabs">
         <div className="profile-section-sidebar-tab">
           <p className="profile-section-sidebar-nickname">
-            <Link to="/profile" className="profile-section-sidebar-tab-text">
+            <Link to={`/profile/${username}`} className="profile-section-sidebar-tab-text">
               John Johnson
             </Link>
           </p>
