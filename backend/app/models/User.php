@@ -400,7 +400,7 @@ class User extends AppModel
                                     WHERE sc.course_id = c.id) AS 'amount_step',
                                     (SELECT COUNT(cc.challenge_id)
                                     FROM course_challenge cc
-                                    WHERE cc.course_id = c) AS 'final_projects',
+                                    WHERE cc.course_id = c.id) AS 'final_projects',
                                     (SELECT COUNT(uc.user_id)
                                     FROM user_course uc
                                     WHERE uc.success = 1 AND uc.course_id = c.id) AS 'finish_users',

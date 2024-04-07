@@ -16,8 +16,6 @@ const ProfileSettingsUserPage = () => {
       });
   }, [lang, username]);
 
-  console.log(userSettings);
-
   return (
     <div className="profile-settings">
       <ProfileSettingsSidebar />

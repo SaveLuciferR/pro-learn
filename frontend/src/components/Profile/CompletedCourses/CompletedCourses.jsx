@@ -1,7 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ProfileCompletedCoursesItem from './CompletedCoursesItem';
+import { useEffect, useState } from 'react';
+import axiosClient from '../../../axiosClient';
+import SliderMain from '../../Slider/SliderMain';
 
 const ProfileCompletedCourses = () => {
+  const { lang, username } = useParams();
+  const [completedCourses, setCompletedCourses] = useState([]);
+
+  useEffect(() => {
+    axiosClient
+      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
+      .then(({ data }) => {
+        setCompletedCourses(data);
+      });
+  }, [lang, username]);
+
   return (
     <div className="profile-projects-page">
       <div className="profile-projects-page-header">
@@ -20,11 +35,12 @@ const ProfileCompletedCourses = () => {
               strokeLinejoin="round"
             />
           </svg>
-          <Link to="">Профиль</Link>
+          <Link to={`../../profile/${username}`}>Профиль</Link>
         </div>
         <p className="profile-completed-page-title">Пройденные курсы</p>
       </div>
       <div className="profile-completed-page-main">
+        <SliderMain data={completedCourses} sliderType="profileCompletedCourses" countSlide={2} />
         <ProfileCompletedCoursesItem />
         <ProfileCompletedCoursesItem />
       </div>

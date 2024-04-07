@@ -4,6 +4,7 @@ import CompleteCourseMainContent from '../Profile/MainPage/CompleteCourseMainCon
 import ProfileCurrentCoursesItem from '../Profile/CurrentCourses/ProfileCurrentCourseItem';
 import ProfileProjectItem from '../Profile/Projects/ProfileProjectItem';
 import ProfileTask from '../Profile/UserTasks/ProfileTask';
+import ProfileCreateCourseSliderContent from '../Profile/CreatedCourses/ProfileCreateCourseSliderContent';
 
 const SliderList = ({ type, items, index }) => {
   // const cards = items.map((slide, index) => {
@@ -40,6 +41,11 @@ const SliderList = ({ type, items, index }) => {
       case 'currentCourse':
         return Object.keys(items).map((slide, index) => (
           <ProfileCurrentCoursesItem key={index} data={items} index={slide} />
+        ));
+
+      case 'createdCourses':
+        return Object.keys(items).map((slide, index) => (
+          <ProfileCreateCourseSliderContent key={index} data={items} index={slide} />
         ));
 
       case 'profileTasks':

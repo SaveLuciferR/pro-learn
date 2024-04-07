@@ -19,6 +19,7 @@ const ProfileMainPage = () => {
   }, [lang, username]);
 
   console.log(userData);
+  console.log(username);
 
   return (
     <>

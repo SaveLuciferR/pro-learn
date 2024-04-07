@@ -1,6 +1,7 @@
+import { useSelector } from 'react-redux';
+import { Outlet, useOutletContext, useNavigate, useParams } from 'react-router-dom';
 import ProfileSidebarMain from '../components/Profile/ProfileSidebarMain';
 import img from '../header_bg.png';
-import { Outlet, useOutletContext, useNavigate } from 'react-router-dom';
 
 const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
   const navigate = useNavigate();
@@ -9,6 +10,9 @@ const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
   activeSidebar[0](isActiveSidebar);
   activeCompiler[0](isCompiler);
 
+  const currentUser = useSelector((state) => state.mainLayout.user);
+  const { username } = useParams();
+
   return (
     <div className="profile-section">
       <ProfileSidebarMain />
@@ -16,7 +20,10 @@ const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
       <div className="profile-section-main">
         <div className="profile-section-main-header">
           <div className="profile-section-main-header-background">
-            <button onClick={() => navigate('../profile/settings/user')}>
+            <button
+              onClick={() => navigate('../profile/:username/settings/general')}
+              style={currentUser.username !== username ? { display: 'none' } : {}}
+            >
               <svg
                 className="profile-section-main-header-settings"
                 xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +40,6 @@ const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
                 />
               </svg>
             </button>
-
             <img src={img} alt="background-image" />
           </div>
         </div>

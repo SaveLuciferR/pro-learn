@@ -1,10 +1,12 @@
 import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import axiosClient from '../../../axiosClient';
 import SliderMain from '../../Slider/SliderMain';
 
 const ProfileCurrentCourses = () => {
   const { lang, username } = useParams();
+  const currentUser = useSelector((state) => state.mainLayout.user);
   const [currentCourses, setCurrentCourses] = useState([]);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const ProfileCurrentCourses = () => {
               strokeLinejoin="round"
             />
           </svg>
-          <Link to="">Профиль</Link>
+          <Link to={`../../profile/${currentUser.username}`}>Профиль</Link>
         </div>
         <p className="profile-current-page-title">Текущие курсы</p>
       </div>
