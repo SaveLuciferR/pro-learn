@@ -34,6 +34,7 @@ const CompilerSidebarList = ({ folder, compilerFiles, tab, localPath, showNav })
           display: 'flex',
           columnGap: '4px',
           alignItems: 'center',
+          margin: '2px 0',
         }}
       >
         <ProjectSvg type={'file'} />
@@ -67,7 +68,13 @@ const CompilerSidebarList = ({ folder, compilerFiles, tab, localPath, showNav })
         onContextMenu={(e) => showNav(e, localPath + '/' + folder, 'dir', folder)}
         onClick={() => handleOnClickFolder()}
         className="compiler__folder-main has-file"
-        style={{ paddingLeft: `${tab}px`, display: 'flex', columnGap: '4px', alignItems: 'center' }}
+        style={{
+          paddingLeft: `${tab}px`,
+          display: 'flex',
+          columnGap: '4px',
+          alignItems: 'center',
+          margin: '2px 0',
+        }}
       >
         <ProjectSvg type={'dir'} />
         {folder}

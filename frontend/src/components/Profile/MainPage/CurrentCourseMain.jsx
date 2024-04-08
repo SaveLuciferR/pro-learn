@@ -5,7 +5,7 @@ const CurrentCourseMain = ({ data }) => {
   const [currentCourse, setCurrentCourse] = useState([]);
 
   useEffect(() => {
-    setCurrentCourse(data.projects);
+    setCurrentCourse(data.currentCourse);
   }, [data]);
 
   return (

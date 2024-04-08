@@ -3,11 +3,13 @@ import SliderMain from '../../Slider/SliderMain';
 
 /* Переделать названия классов, сделать карточку рабочей */
 const CompleteCourseMain = ({ data }) => {
-  const [completeCourse, setCurrentCourse] = useState([]);
+  const [completeCourse, setCompleteCourse] = useState([]);
 
   useEffect(() => {
-    setCurrentCourse(data.projects);
+    setCompleteCourse(data.projects);
   }, [data]);
+
+  // console.log(completeCourse)
 
   return (
     <div className="currentcourse">

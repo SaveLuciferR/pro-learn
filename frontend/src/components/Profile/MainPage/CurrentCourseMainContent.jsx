@@ -1,11 +1,11 @@
 import imgcourse from '../../../image 7.png';
 
-const CurrentCourseMainContent = (data) => {
+const CurrentCourseMainContent = ({ data, index }) => {
   return (
     <div className="currentcourse-course-content">
       <div className="currentcourse-course">
         <div className="currentcourse-course-info">
-          <p className="currentcourse-course-info-title">_Web-разработчик</p>
+          <p className="currentcourse-course-info-title">_{data[index].heading}</p>
           <div className="profile-section-main-difficulty">
             <p>_Сложность: </p>
             <ul className="profile-difficulty-range">
@@ -33,7 +33,7 @@ const CurrentCourseMainContent = (data) => {
                   strokeLinejoin="round"
                 />
               </svg>
-              <p className="currentcourse-course-info-rate-like-text">12</p>
+              <p className="currentcourse-course-info-rate-like-text">{data[index].like}</p>
             </div>
             <div className="currentcourse-course-info-rate-dislike">
               <svg
@@ -52,7 +52,7 @@ const CurrentCourseMainContent = (data) => {
                 />
               </svg>
 
-              <p className="currentcourse-course-info-rate-dislike-text">2</p>
+              <p className="currentcourse-course-info-rate-dislike-text">{data[index].dislike}</p>
             </div>
           </div>
         </div>

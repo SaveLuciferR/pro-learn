@@ -27,7 +27,9 @@ const SliderList = ({ type, items, index }) => {
   const cards = () => {
     switch (type) {
       case 'profileCurrentCourse':
-        return items.map((slide, index) => <CurrentCourseMainContent key={index} data={slide} />);
+        return Object.keys(items).map((slide, index) => (
+          <CurrentCourseMainContent key={index} data={items} index={slide} />
+        ));
 
       case 'profileProjects':
         return items.map((slide, index) => <ProfileProjectsContent key={index} data={slide} />);
