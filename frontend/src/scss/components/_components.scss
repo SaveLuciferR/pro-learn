@@ -383,6 +383,7 @@ label {
 
     &-list {
         display: flex;
+        gap: 20px;
         height: 100%;
         transition: transform 1s ease-in-out;
         width: 100%;
