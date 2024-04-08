@@ -60,7 +60,7 @@ const SliderList = ({ type, items, index }) => {
   };
 
   return (
-    <div className={'slider-list'} style={{ transform: `translateX(-${index * 100}%)` }}>
+    <div className={'slider-list'} style={{ transform: `translateX(calc(-${index * 100}% - ${(index) * 20}px))` }}>
       {cards()}
     </div>
   );
