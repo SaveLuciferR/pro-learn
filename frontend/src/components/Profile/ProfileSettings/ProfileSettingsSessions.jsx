@@ -33,7 +33,7 @@ const ProfileSettingsSessions = () => {
               stroke-linejoin="round"
             />
           </svg>
-          <Link to="">Профиль</Link>
+          <Link to={`../../profile/${username}`}>Профиль</Link>
         </div>
         <p className="profile-settings-title big">Текущие сессии</p>
       </div>

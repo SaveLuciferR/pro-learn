@@ -14,7 +14,7 @@ const ProfileProjects = ({ data }) => {
     <div className="profile-projects">
       <div className="profile-projects-header">
         <p className="profile-projects-header-title">Проекты</p>
-        <Link to="" className="profile-projects-header-linkall">
+        <Link to={`projects`} className="profile-projects-header-linkall">
           Посмотреть все
           <svg
             width="21"

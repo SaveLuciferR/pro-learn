@@ -9,7 +9,6 @@ const ProfileTask = ({ data, index }) => {
     );
   });
 
-  console.log(data[index].success);
   return (
     <div className="profile-task-complete">
       <ul className="created-course-header-tags">

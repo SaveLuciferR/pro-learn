@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axiosClient from '../../../axiosClient';
 import SliderMain from '../../Slider/SliderMain';
@@ -16,8 +16,30 @@ const ProfileTasks = () => {
   }, [lang, username]);
 
   return (
-    <div className="profile-tasks">
-      <SliderMain data={tasks} sliderType="profileTasks" countSlide={2} />
+    <div>
+      <div className="created-courses-header">
+        <div className="lessons-header-back">
+          <svg
+            width="21"
+            height="21"
+            viewBox="0 0 21 21"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.125 4.375L7.875 10.5L13.125 16.625"
+              stroke="white"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <Link to={`../../profile/${username}`}>Профиль</Link>
+        </div>
+        <h1>Задачи</h1>
+      </div>
+      <div className="profile-tasks">
+        <SliderMain data={tasks} sliderType="profileTasks" countSlide={2} />
+      </div>
     </div>
   );
 };

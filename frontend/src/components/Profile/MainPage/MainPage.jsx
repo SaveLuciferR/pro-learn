@@ -9,12 +9,19 @@ import ProfileProjects from './ProfileProjects';
 const ProfileMainPage = () => {
   const { lang, username } = useParams();
   const [userData, setUserData] = useState([]);
+  const [completedCourse, setCompletedCourse] = useState([]);
 
   useEffect(() => {
     axiosClient
       .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
       .then(({ data }) => {
         setUserData(data.profileInfo);
+      });
+
+    axiosClient
+      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
+      .then(({ data }) => {
+        setCompletedCourse(data);
       });
   }, [lang, username]);
 

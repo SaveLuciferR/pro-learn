@@ -21,7 +21,7 @@ const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
         <div className="profile-section-main-header">
           <div className="profile-section-main-header-background">
             <button
-              onClick={() => navigate('../profile/:username/settings/general')}
+              onClick={() => navigate(`../profile/${username}/settings/general`)}
               style={currentUser.username !== username ? { display: 'none' } : {}}
             >
               <svg

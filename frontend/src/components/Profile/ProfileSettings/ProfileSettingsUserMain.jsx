@@ -155,7 +155,7 @@ const ProfileSettingsUserMain = ({ data }) => {
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
-            <button className="btn big primary">Сохранить изменения</button>
+            <button className="btn big secondary-blue">Сохранить изменения</button>
           </div>
         </div>
       </div>

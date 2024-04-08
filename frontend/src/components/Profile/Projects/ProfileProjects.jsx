@@ -17,9 +17,9 @@ const ProfileProjects = () => {
   }, [lang, username]);
 
   return (
-    <div className="profile-projects-page">
-      <div className="profile-projects-page-header">
-        <div className="profile-projects-page-nav">
+    <div>
+      <div className="created-courses-header">
+        <div className="lessons-header-back">
           <svg
             width="21"
             height="21"
@@ -30,18 +30,19 @@ const ProfileProjects = () => {
             <path
               d="M13.125 4.375L7.875 10.5L13.125 16.625"
               stroke="white"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             />
           </svg>
-          <Link to="">Профиль</Link>
+          <Link to={`../../profile/${username}`}>Профиль</Link>
         </div>
-        <p className="profile-projects-page-title">Проекты</p>
+        <h1>Проекты</h1>
       </div>
-      <div className="profile-projects-page-main">
-        <SliderMain data={projectsData} sliderType="profileProjectsPage" countSlide={4} />
+      <div className="profile-projects-page">
+        <div className="profile-projects-page-main">
+          <SliderMain data={projectsData} sliderType="profileProjectsPage" countSlide={4} />
+        </div>
       </div>
-      <div className="profile-tasks-slider">(слайдер)</div>
     </div>
   );
 };

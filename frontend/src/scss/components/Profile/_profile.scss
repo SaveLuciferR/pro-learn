@@ -76,11 +76,16 @@
       padding-top: 30px;
       width: 229px;
 
+      &-tabs {
+        width: 210px;
+      }
+
       &-tab {
         padding: 16px 0;
         border-bottom: 1px solid #242424;
 
         &-text {
+          padding-left: 8px;
           transition: 0.3s ease-out;
 
           &:hover {
@@ -100,6 +105,7 @@
       }
 
       &-name {
+        padding-left: 8px;
         font-weight: 400;
         font-size: 16px;
         color: rgba($color: #ffffff, $alpha: 0.8);
@@ -467,6 +473,7 @@
       &-tags {
         display: flex;
         column-gap: 20px;
+        width: 485px;
       }
 
       &-tag {
@@ -574,6 +581,22 @@
       justify-content: space-between;
       font-size: 14px;
       color: rgba($color: #ffffff, $alpha: 0.6);
+    }
+  }
+
+  &-courses {
+    &-header {
+      position: relative;
+      padding: 28px 28px 0 28px;
+      text-align: center;
+
+      & h1 {
+        font-size: 36px;
+      }
+      & .lessons-header-back {
+        top: 41.5px;
+        left: 28px;
+      }
     }
   }
 
@@ -778,6 +801,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 485px;
 
     &-text {
       display: flex;
@@ -910,4 +934,15 @@
       justify-content: center;
     }
   }
+}
+
+.profile-none {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 28px;
+  text-align: center;
+  color: rgba($color: #ffffff, $alpha: 0.6);
 }

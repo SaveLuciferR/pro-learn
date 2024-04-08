@@ -32,12 +32,14 @@ const SliderUnder = ({ goToSlide, changeSlide, pagesType, items, indx, countSlid
     Object.keys(items).map(() => {
       count = count + 1;
     });
+    console.log(count);
     return count;
   };
+  console.log(countSlide);
 
   return (
     <>
-      {countItems() < 2 ? (
+      {countItems() <= countSlide ? (
         <></>
       ) : (
         <div className={'slider-under-element'}>
