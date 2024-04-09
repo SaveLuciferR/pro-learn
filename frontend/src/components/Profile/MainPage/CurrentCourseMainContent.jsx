@@ -5,7 +5,7 @@ const CurrentCourseMainContent = ({ data, index }) => {
     <div className="currentcourse-course-content">
       <div className="currentcourse-course">
         <div className="currentcourse-course-info">
-          <p className="currentcourse-course-info-title">_{data[index].heading}</p>
+          <p className="currentcourse-course-info-title">_{data[index].title}</p>
           <div className="profile-section-main-difficulty">
             <p>_Сложность: </p>
             <ul className="profile-difficulty-range">

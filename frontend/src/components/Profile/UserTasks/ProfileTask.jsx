@@ -16,7 +16,7 @@ const ProfileTask = ({ data, index }) => {
           return <li className="created-course-header-tag">#{item.title}</li>;
         })}
       </ul>
-      <p className="profile-task-title">_{data[index].heading}</p>
+      <p className="profile-task-title">_{data[index].title}</p>
       <p className="profile-task-desc">// {data[index].content}</p>
       <div className="profile-difficulty">
         <p>_Сложность: </p>
