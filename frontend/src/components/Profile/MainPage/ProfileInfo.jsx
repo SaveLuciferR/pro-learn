@@ -1,34 +1,27 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axiosClient from '../../../axiosClient';
 import img from '../../../header_bg.png';
 
-const ProfileInfo = () => {
-  const { lang, username } = useParams();
-  const [userData, setUserData] = useState([]);
-
-  useEffect(() => {
-    axiosClient
-      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
-      .then(({ data }) => {
-        setUserData(data.ProfileInfo);
-      });
-  }, [lang, username]);
-
+const ProfileInfo = ({ data }) => {
+  console.log(data);
   return (
     <div className="info-about">
       <div className="info-about-name">
         <div className="info-about-name-leftside">
           <div className="info-about-name-photo">
-            <img src={img} alt="profile-avatar" />
+            <img src={`api.pro-learn.my` + data.avatar_img} alt="profile-avatar" />
             {/* настроить стили, чтобы изображение не искажалось */}
           </div>
           <div className="info-about-name-nameblock">
-            <p className="info-about-name-nameblock-nickname">John Johnson</p>
-            <p className="info-about-name-nameblock-realname">Джон Джонсон</p>
+            <p className="info-about-name-nameblock-nickname">{data.username}</p>
+            <p className="info-about-name-nameblock-realname">
+              {data.last_name | (data.first_name === undefined)
+                ? '*Реальное имя скрыто'
+                : data.first_name + ' ' + data.last_name}
+            </p>
           </div>
         </div>
-        <p className="info-about-name-status">Администрация</p>
+        <p className="info-about-name-status">
+          {data.role === 'user' ? 'Пользователь' : 'Администратор'}
+        </p>
         <svg
           className="info-about-name-edit"
           width="16"
@@ -53,17 +46,18 @@ const ProfileInfo = () => {
       <div className="info-about-bio">
         <p className="info-about-bio-title">&gt; О себе</p>
         <p className="info-about-bio-text">
-          // Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
-          hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur,
-          ultrices mauris. ..
+          //{' '}
+          {data.about_user === undefined
+            ? 'Пользователь предпочел скрыть информацию'
+            : data.about_user}
         </p>
       </div>
       <div className="info-about-bottom">
         <div className="info-about-bottom-dor">
-          <p>// Дата регистрации: 24.01.2023</p>
+          <p>// Дата регистрации: {data.date_of_registration}</p>
         </div>
         <div className="info-about-bottom-country">
-          <p> Страна: Россия</p>
+          <p>Страна: {data.country_address === undefined ? '######' : data.country_address}</p>
         </div>
       </div>
     </div>

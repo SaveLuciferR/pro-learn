@@ -1,41 +1,38 @@
-import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setActionInActionContext, setCanRenameFile} from "../../redux/Compiler/slice";
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActionInActionContext, setCanRenameFile } from '../../redux/Compiler/slice';
+const CompilerContextMenu = ({ context, xyPos }) => {
+  const dispatch = useDispatch();
 
-const CompilerContextMenu = ({context, xyPos}) => {
+  const typeContextMenu = useSelector((state) => state.compiler.typeContextMenu);
 
-    const dispatch = useDispatch();
+  const initMenu = (chosen) => {
+    dispatch(setActionInActionContext(chosen));
 
-    const typeContextMenu = useSelector(state => state.compiler.typeContextMenu);
+    if (chosen === 'rename') dispatch(setCanRenameFile(true));
+  };
 
-    const initMenu = (chosen) => {
-        dispatch(setActionInActionContext(chosen));
-
-        if (chosen === "rename") dispatch(setCanRenameFile(true));
-    };
-
-
-    return (
-        <>
-            {context && (
-                <div style={{top: xyPos.x, left: xyPos.y}}>
-                    {typeContextMenu === 'file' ?
-                        <div onClick={() => initMenu("save")}>
-                            save
-                        </div>
-                        :
-                        <></>
-                    }
-                    <div onClick={() => initMenu("rename")}>
-                        rename
-                    </div>
-                    <div onClick={() => initMenu("delete")}>
-                        delete
-                    </div>
-                </div>
-            )}
-        </>
-    );
-}
+  return (
+    <>
+      {context && (
+        <div className="compiler-context-menu" style={{ top: xyPos.x, left: xyPos.y }}>
+          {typeContextMenu === 'file' ? (
+            <div className="compiler-context-menu_item" onClick={() => initMenu('save')}>
+              Сохранить
+            </div>
+          ) : (
+            <></>
+          )}
+          <div className="compiler-context-menu_item" onClick={() => initMenu('rename')}>
+            Переименовать
+          </div>
+          <div className="compiler-context-menu_item" onClick={() => initMenu('delete')}>
+            Удалить
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 export default CompilerContextMenu;

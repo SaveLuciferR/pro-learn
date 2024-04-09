@@ -1,27 +1,26 @@
-const ProfileTask = () => {
+const ProfileTask = ({ data, index }) => {
+  const countDifficulty = [1, 2, 3, 4, 5];
+
+  const listDifficulty = countDifficulty.map((i) => {
+    return (
+      <li
+        className={`profile-difficulty-range-item${i <= data[index].difficulty ? ' active' : ''}`}
+      ></li>
+    );
+  });
+
   return (
     <div className="profile-task-complete">
       <ul className="created-course-header-tags">
-        <li className="created-course-header-tag">#Python</li>
-        <li className="created-course-header-tag">#Начинающим</li>
+        {data[index].tags.map((item) => {
+          return <li className="created-course-header-tag">#{item.title}</li>;
+        })}
       </ul>
-      <p className="profile-task-title">_Самописный калькулятор</p>
-      <p className="profile-task-desc">
-        // Напишите программу, которая считывает с клавиатуры два целых числа и строку. Если эта
-        строка является обозначением одной из четырёх математических операций (+, -, *, /), то
-        выведите результат применения этой операции к введённым ранее числам, в противном случае
-        выведите «Неверная операция». Если пользователь захочет поделить на ноль, выведите текст «На
-        ноль делить нельзя!».
-      </p>
+      <p className="profile-task-title">_{data[index].heading}</p>
+      <p className="profile-task-desc">// {data[index].content}</p>
       <div className="profile-difficulty">
         <p>_Сложность: </p>
-        <ul className="profile-difficulty-range">
-          <li className="profile-difficulty-range-item active"></li>
-          <li className="profile-difficulty-range-item active"></li>
-          <li className="profile-difficulty-range-item active"></li>
-          <li className="profile-difficulty-range-item"></li>
-          <li className="profile-difficulty-range-item"></li>
-        </ul>
+        <ul className="profile-difficulty-range">{listDifficulty}</ul>
       </div>
       <div className="profile-task-stat">
         <div className="created-course-stat-rate">
@@ -41,7 +40,7 @@ const ProfileTask = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <p className="currentcourse-course-info-rate-like-text">12</p>
+            <p className="currentcourse-course-info-rate-like-text">{data[index].like}</p>
           </div>
           <div className="created-course-stat-rate-dislike">
             <svg
@@ -59,7 +58,7 @@ const ProfileTask = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <p className="currentcourse-course-info-rate-dislike-text">2</p>
+            <p className="currentcourse-course-info-rate-dislike-text">{data[index].dislike}</p>
           </div>
         </div>
         <div className="created-course-stat-view">
@@ -79,7 +78,7 @@ const ProfileTask = () => {
               stroke="white"
             />
           </svg>
-          <p>Просмотры: 1k</p>
+          <p>Просмотры: {data[index].views}</p>
         </div>
         <div className="created-course-stat-ended">
           <svg
@@ -100,34 +99,39 @@ const ProfileTask = () => {
               strokeLinecap="round"
             />
           </svg>
-          <p>Решили: 64</p>
+          <p>Решили: {data[index].finish_users}</p>
         </div>
       </div>
       <div className="profile-task-complete-stat">
         <button className="btn big primary">Решить задачу</button>
-        <div className="profile-task-complete-solution end">
-          <svg
-            width="21"
-            height="21"
-            viewBox="0 0 21 21"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="10.5" cy="10.5" r="8.75" stroke="#2EA043" />
-            <path
-              d="M7.4375 10.9375L9.1875 12.6875L13.5625 8.3125"
-              stroke="#2EA043"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <p>Задача решена</p>
-        </div>
-        {/* <div className="profile-task-complete-solution">Задача не решена</div> */}
+        {data[index].success === '0' ? (
+          <div className="profile-task-complete-solution">Задача не решена</div>
+        ) : (
+          <div className="profile-task-complete-solution end">
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="10.5" cy="10.5" r="8.75" stroke="#2EA043" />
+              <path
+                d="M7.4375 10.9375L9.1875 12.6875L13.5625 8.3125"
+                stroke="#2EA043"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <p>Задача решена</p>
+          </div>
+        )}
       </div>
       <div className="created-course-bottom">
-        <p className="created-course-bottom-date">28.06.2023</p>
-        <p className="created-course-bottom-lang">// Язык: Python</p>
+        <p className="created-course-bottom-date">{data[index].date_of_publication}</p>
+        <p className="created-course-bottom-lang">
+          {/* // Язык: {data[index].language.map((key) => {})} */}
+        </p>
       </div>
     </div>
   );

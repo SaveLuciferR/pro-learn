@@ -108,19 +108,11 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: 'profile/:username/course-create',
-        element: <CourseCreatePage/>
-      },
-      {
-        path: 'profile/:username/course-edit/:slug',
-        element: <CourseCreatePage type={'edit'}/>
-      },
-      {
-        path: 'profile/settings/user',
+        path: 'profile/:username/settings/general',
         element: <ProfileSettingsUserPage />,
       },
       {
-        path: 'profile/settings',
+        path: 'profile/:username/settings',
         element: <ProfileSettingsPage />,
         children: [
           {

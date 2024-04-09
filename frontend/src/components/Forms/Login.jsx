@@ -23,17 +23,18 @@ const Login = () => {
             return;
         }
 
-        axiosClient.post(`/user/login`, { email, password })
-            .then(({data}) => {
-                dispatch(setUserAuth(data.auth));
+    axiosClient
+      .post(`/user/login`, { email, password })
+      .then(({ data }) => {
 
-                dispatch(setNeedReloadPage(true));
-                navigate('/');
-            })
-            .catch((res) => {
-                console.log(res);
-            });
-    }
+        dispatch(setUserAuth(data.auth));
+        dispatch(setNeedReloadPage(true));
+        navigate(-1);
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  };
 
     return (
         <div className="modal_form">

@@ -1,11 +1,11 @@
-const ProfileProjectItem = ({ data }) => {
+const ProfileProjectsContent = ({ data }) => {
   return (
-    <div className="profile-projects-card">
-      <div className="profile-projects-page-info">
-        <div className="profile-projects-page-info-text">
+    <div className="profile-projects-content">
+      <div className="profile-projects-info">
+        <div className="profile-projects-info-text">
           <p className="profile-projects-info-text-name">_{data.title}</p>
           <p className="profile-projects-info-text-access">
-            {data.private === 0 ? 'Публичный' : 'Приватный'}
+            {data.private === '0' ? 'Публичный' : 'Приватный'}
           </p>
         </div>
         <svg
@@ -29,7 +29,7 @@ const ProfileProjectItem = ({ data }) => {
           </defs>
         </svg>
       </div>
-      <p className="profile-projects-card-desc">// {data.description}</p>
+      <p className="profile-projects-desc">// {data.description}</p>
       <div className="profile-projects-bottom">
         <p className="profile-projects-bottom-date">{data.date_of_publication}</p>
         <div className="profile-projects-bottom-delete">
@@ -54,4 +54,4 @@ const ProfileProjectItem = ({ data }) => {
     </div>
   );
 };
-export default ProfileProjectItem;
+export default ProfileProjectsContent;

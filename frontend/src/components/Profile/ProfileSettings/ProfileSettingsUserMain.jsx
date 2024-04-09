@@ -1,7 +1,23 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import img from '../../../avatar.png';
+import { useEffect, useState } from 'react';
 
-const ProfileSettingsUserMain = () => {
+const ProfileSettingsUserMain = ({ data }) => {
+  const [nickname, setNickname] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [infoAbout, setInfoAbout] = useState('');
+  const [country, setCountry] = useState('');
+
+  useEffect(() => {
+    setNickname(data.username);
+    setLastName(data.last_name);
+    setFirstName(data.first_name);
+    setInfoAbout(data.about_user);
+    setCountry(data.country_address);
+  }, []);
+
+  const { username } = useParams();
   return (
     <div className="profile-settings-main">
       <div className="profile-settings-main-header">
@@ -55,11 +71,11 @@ const ProfileSettingsUserMain = () => {
               <path
                 d="M13.125 4.375L7.875 10.5L13.125 16.625"
                 stroke="white"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
-            <Link to="">Профиль</Link>
+            <Link to={`/profile/${username}`}>Профиль</Link>
           </div>
           <p className="profile-settings-main-main-text">Настройки профиля</p>
         </div>
@@ -93,24 +109,54 @@ const ProfileSettingsUserMain = () => {
               <p className="profile-settings-main-main-title-part">_Сменить ник</p>
               <p className="profile-settings-main-main-nick-desc">Ник должен быть уникальным</p>
             </div>
-            <input type="text" className="input width100" name="nickname" />
+            <input
+              type="text"
+              className="input width100"
+              name="nickname"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
           </div>
           <div className="profile-settings-main-main-name_item">
             <p className="profile-settings-main-main-title-part">_Имя</p>
-            <input type="text" className="input width100" name="name" />
+            <input
+              type="text"
+              className="input width100"
+              name="name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
           </div>
           <div className="profile-settings-main-main-name_item">
             <p className="profile-settings-main-main-title-part">_Фамилия</p>
-            <input type="text" className="input width100" name="surname" />
+            <input
+              type="text"
+              className="input width100"
+              name="surname"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
           </div>
         </div>
         <div className="profile-settings-main-main-bio">
           <p className="profile-settings-main-main-title-part">_О себе</p>
-          <textarea className="input textarea" />
+          <textarea
+            className="input textarea"
+            value={infoAbout}
+            onChange={(e) => setInfoAbout(e.target.value)}
+          />
         </div>
         <div className="profile-settings-main-main-country">
           <p className="profile-settings-main-main-title-part">_Страна</p>
-          <input type="search" className="input w531" />
+          <div className="profile-settings-main-main-bottom">
+            <input
+              type="search"
+              className="input w531"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+            />
+            <button className="btn big secondary-blue">Сохранить изменения</button>
+          </div>
         </div>
       </div>
     </div>

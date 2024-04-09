@@ -1,11 +1,26 @@
-import { Link } from 'react-router-dom';
-import ProfileCurrentCoursesItem from './ProfileCurrentCourseItem';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axiosClient from '../../../axiosClient';
+import SliderMain from '../../Slider/SliderMain';
 
 const ProfileCurrentCourses = () => {
+  const { lang, username } = useParams();
+  const [currentCourses, setCurrentCourses] = useState([]);
+
+  useEffect(() => {
+    axiosClient
+      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
+      .then(({ data }) => {
+        setCurrentCourses(data.profileInfo.currentCourse);
+      });
+  }, [lang, username]);
+
+  console.log(currentCourses);
+
   return (
-    <div className="profile-projects-page">
-      <div className="profile-projects-page-header">
-        <div className="profile-projects-page-nav">
+    <div>
+      <div className="created-courses-header">
+        <div className="lessons-header-back">
           <svg
             width="21"
             height="21"
@@ -16,19 +31,19 @@ const ProfileCurrentCourses = () => {
             <path
               d="M13.125 4.375L7.875 10.5L13.125 16.625"
               stroke="white"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             />
           </svg>
-          <Link to="">Профиль</Link>
+          <Link to={`../../profile/${username}`}>Профиль</Link>
         </div>
-        <p className="profile-current-page-title">Текущие курсы</p>
+        <h1>Текущие курсы</h1>
       </div>
-      <div className="profile-completed-page-main">
-        <ProfileCurrentCoursesItem />
-        <ProfileCurrentCoursesItem />
+      <div className="profile-projects-page">
+        <div className="profile-completed-page-main">
+          <SliderMain data={currentCourses} sliderType="currentCourse" countSlide={2} />
+        </div>
       </div>
-      <div className="profile-tasks-slider">(слайдер)</div>
     </div>
   );
 };

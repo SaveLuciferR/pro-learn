@@ -1,5 +1,4 @@
-const ProfileCreateCourseButton = (type) => {
-  console.log(type);
+const ProfileCreateCourseButton = ({ type }) => {
   return (
     <div className="created-button">
       <div className="created-button-content">

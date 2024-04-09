@@ -3,6 +3,7 @@ import img from '../../header_bg.png';
 import { setNeedReloadPage, setSidebarProfileActive } from '../../redux/MainLayout/slice';
 import axiosClient from '../../axiosClient';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SidebarProfile = () => {
   const dispatch = useDispatch();
@@ -98,9 +99,9 @@ const SidebarProfile = () => {
               <div className="sidebar_profile-body_img">
                 <img src={img} alt="" />
               </div>
-              <button type="button" className="btn primary big">
+              <Link to={'profile/' + currentUser.username} className="btn primary big">
                 Перейти в профиль
-              </button>
+              </Link>
               <button onClick={() => onClickLogout()} type="button" className="btn">
                 Выйти
               </button>
