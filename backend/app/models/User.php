@@ -383,7 +383,7 @@ class User extends AppModel
     public function getUserCourses($username, $lang)
     {
         return R::getAssoc("SELECT c.id, uc.success,
-                                    c.slug, c.icon, c.difficulty, cd.heading, cd.excerpt, uc.current_stage, u.username,
+                                    c.slug, c.icon, c.difficulty, cd.title, cd.excerpt, uc.current_stage, u.username,
                                     u.role, c.date_of_publication, c.views,
                                     (SELECT COUNT(sc.id)
                                     FROM stagecourse sc 
@@ -412,7 +412,7 @@ class User extends AppModel
     public function getUserCoursesFromUser($username, $lang)
     {
         return R::getAll("SELECT c.id,
-                                    c.slug, c.icon, c.difficulty, cd.heading, cd.excerpt,c.date_of_publication, c.views,
+                                    c.slug, c.icon, c.difficulty, cd.title, cd.excerpt,c.date_of_publication, c.views,
                                     (SELECT COUNT(sc.id)
                                     FROM stagecourse sc 
                                     WHERE sc.course_id = c.id) AS 'amount_stage',
@@ -421,7 +421,7 @@ class User extends AppModel
                                     WHERE sc.course_id = c.id) AS 'amount_step',
                                     (SELECT COUNT(cc.challenge_id)
                                     FROM course_challenge cc
-                                    WHERE cc.course_id = c) AS 'final_projects',
+                                    WHERE cc.course_id = c.id) AS 'final_projects',
                                     (SELECT COUNT(uc.user_id)
                                     FROM user_course uc
                                     WHERE uc.success = 1 AND uc.course_id = c.id) AS 'finish_users',
@@ -453,7 +453,7 @@ class User extends AppModel
 
     public function getUserTasks($username, $lang)
     {
-        return R::getAssoc("SELECT c.id, uc.success, c.slug, c.difficulty, cd.heading, cd.content, c.date_of_publication, c.views,
+        return R::getAssoc("SELECT c.id, uc.success, c.slug, c.difficulty, cd.title, cd.content, c.date_of_publication, c.views,
                                 (SELECT COUNT(uc.user_id)
                                     FROM user_challenge uc
                                     WHERE uc.success = 1 AND uc.challenge_id = c.id) AS 'finish_users',
@@ -471,7 +471,7 @@ class User extends AppModel
 
     public function getUserTasksFromUser($username, $lang)
     {
-        return R::getAll("SELECT c.id, c.slug, c.difficulty, cd.heading, cd.content, c.date_of_publication, views,
+        return R::getAll("SELECT c.id, c.slug, c.difficulty, cd.title, cd.content, c.date_of_publication, views,
                                  (SELECT COUNT(uc.user_id)
                                     FROM user_challenge uc
                                     WHERE uc.success = 1 AND uc.challenge_id = c.id) AS 'finish_users',
@@ -490,7 +490,7 @@ class User extends AppModel
     public function getTaskLangProgByID($id)
     {
         return R::getAssoc("SELECT lp.id, lp.title
-                                FROM challenge c JOIN challenge_categorylangprog cclp ON c.id = cclp.challenge_id
+                                FROM challenge c JOIN challsaenge_categorylangprog cclp ON c.id = cclp.challenge_id
                                 JOIN langprog lp ON lp.id = cclp.lang_prog_id
                                 WHERE c.id = ?", [$id]);
     }
@@ -573,22 +573,338 @@ class User extends AppModel
         return "";
     }
 
-    public function saveCourse($data, $userID)
+    public function getTypeLesson($lang)
     {
-//        debug($data, 1);
+        return R::getAll("SELECT t.id, t.code, td.title 
+                                FROM typestepcourse t JOIN typestepcourse_description td ON td.typestepcourse_id = t.id
+                                WHERE td.language_id = ?", [$lang]);
+    }
+
+    public function saveCourse($userID, &$slug)
+    {
+        $lang = App::$app->getProperty('language')['id'];
+        $data = $_POST['course'];
+
         R::begin();
         try {
+
             $status = R::findOne("status", "code = ?", [$data['status']]);
-            if (!$status) throw new \Exception("Not status");
 
-            $course = R::dispense('course');
-//            $course =
+            if ($data['slug'] === '') {
+                if (!$status) throw new \Exception("Not status");
 
-            return true;
+                $course = R::dispense('course');
+
+                $course->user_id = $userID;
+                $course->views = 0;
+                $course->status_id = $status->id;
+                $course->icon = $data['icon'];
+                $course->difficulty = $data['difficulty'];
+
+                $courseID = R::store($course);
+
+                $course->slug = AppModel::createSlug('course', 'slug', $data['main'][$lang]['title'], $courseID);
+            } else {
+                $course = R::findOne('course', 'slug = ?', [$data['slug']]);
+
+                $course->status_id = $status->id;
+                $course->icon = $data['icon'];
+                $course->difficulty = $data['difficulty'];
+            }
+
+            $slug = $course->slug;
+
+            $courseID = R::store($course);
+            R::commit();
+
+            return $this->saveCourseDescription($courseID, $data);
         } catch (\Exception $ex) {
+            R::rollback();
             debug($ex);
             return false;
         }
     }
 
+    public function getCourseForEdit($username, $slug)
+    {
+        //TODO: категория и язык
+        $course = R::getRow("SELECT c.id, c.slug, u.username, c.difficulty, c.icon, s.code AS 'status' 
+                                FROM course c JOIN status s ON s.id = c.status_id
+                                JOIN user u ON u.id = c.user_id
+                                WHERE c.slug = ? AND u.username = ?", [$slug, $username]);
+
+        if (!$course) {
+            return $course;
+        }
+
+        $course['main'] = R::getAssoc("SELECT cd.language_id, cd.title, cd.excerpt, cd.description, cd.keywords
+                                            FROM course_description cd 
+                                            WHERE cd.course_id = ?", [$course['id']]);
+
+        foreach ($course['main'] as $lang => &$desc) {
+            $course['main'][$lang]['block'] = R::getAssoc("SELECT s.num_stage, s.id, sd.title 
+                                                                FROM stagecourse s JOIN stagecourse_description sd ON sd.stage_course_id = s.id
+                                                                WHERE s.course_id = ? AND sd.language_id = ?", [$course['id'], $lang]);
+
+            foreach ($course['main'][$lang]['block'] as $numStage => &$blockDesc) {
+                $course['main'][$lang]['block'][$numStage]['lesson'] = R::getAssoc("SELECT s.num_step, t.code, sd.title, 
+                                                                                            sd.description, sd.answer_option, 
+                                                                                            sd.right_answer
+                                                                                         FROM stepcourse s JOIN stepcourse_description sd ON s.id = sd.step_course_id
+                                                                                         JOIN typestepcourse t ON t.id = s.typestepcourse_id
+                                                                                         WHERE s.stage_course_id = ? AND sd.language_id = ?", [$blockDesc['id'], $lang]);
+                foreach ($blockDesc['lesson'] as $numStep => &$stepDesc) {
+//                    debug($blockDesc, 1);
+                    $stepDesc['answer_option'] = json_decode($stepDesc['answer_option'], true);
+                }
+                unset($course['main'][$lang]['block'][$numStage]['id']);
+            }
+        }
+
+        $course['lang_prog'] = R::getAll("SELECT l.lang_prog_id FROM course_categorylangprog l WHERE l.course_id = ? ", [$course['id']]);
+        $course['category_prog'] = R::getAll("SELECT c.category_prog_id FROM course_categorylangprog c WHERE c.course_id = ?", [$course['id']]);
+
+        unset($course['id'], $course['username']);
+//        debug($course, 1);
+        return $course;
+    }
+
+    public function getCategoryLang($lang)
+    {
+        return R::getAll("SELECT c.id, cd.title, c.code 
+                                FROM categoryprog c JOIN categoryprog_description cd ON c.id = cd.category_prog_id 
+                                WHERE cd.language_id = ? ", [$lang]);
+    }
+
+    public function getLangProg()
+    {
+        return R::getAll("SELECT l.id, l.title, l.code FROM langprog l");
+    }
+
+    protected function saveCourseDescription($courseID, $data)
+    {
+//        debug($data, 1);
+        R::begin();
+        try {
+            $flag = true;
+            if (isset($data['main'])) {
+                foreach ($data['main'] as $langID => $item) {
+                    if ($data['slug'] === '') {
+                        R::exec("INSERT INTO course_description (language_id, course_id, title, excerpt, description, keywords) VALUES (?, ?, ?, ?, ?, ?)", [
+                            $langID,
+                            $courseID,
+                            $item['title'],
+                            $item['excerpt'],
+                            $item['description'],
+                            $item['keywords'],
+                        ]);
+                    } else {
+                        R::exec("UPDATE course_description SET title = ?, description = ?, keywords = ?, excerpt = ? WHERE language_id = ? AND course_id = ?", [
+                            $item['title'],
+                            $item['description'],
+                            $item['keywords'],
+                            $item['excerpt'],
+                            $langID,
+                            $courseID
+                        ]);
+                    }
+                }
+                R::commit();
+                $flag = $this->saveStageCourse($courseID, $data['slug'], $data['main']);
+            } else {
+                R::commit();
+            }
+            return $flag;
+        } catch (\Exception $ex) {
+            R::rollback();
+            debug($ex);
+            return false;
+        }
+    }
+
+    protected function saveStageCourse($courseID, $slug, $data)
+    {
+        $flag = true;
+        $amountStage = R::getAll("SELECT s.num_stage FROM stagecourse s WHERE s.course_id = ?", [$courseID]);
+
+        foreach ($data as $langID => $item) {
+            if (isset($item['block'])) {
+                foreach ($item['block'] as $numStage => $block) {
+                    R::begin();
+                    try {
+                        $stageCurrent = R::findOne("stagecourse", "course_id = ? AND num_stage = ?", [$courseID, $numStage]);
+                        if (!$stageCurrent) {
+                            $stage = R::dispense("stagecourse");
+                            $stage->course_id = $courseID;
+                            $stage->num_stage = $numStage;
+                            $stage->icon = "/tmp/";
+                            $stageID = R::store($stage);
+                        } else {
+                            $stageID = $stageCurrent->id;
+                        }
+
+                        R::commit();
+                        if (!$this->saveStageDescriptionCourse($block, $slug, $stageID, $langID)) $flag = false;
+                    } catch (\Exception $ex) {
+                        R::rollback();
+                        debug($ex);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        if (count($data[array_key_first($data)]['block']) < count($amountStage)) {
+            foreach ($amountStage as $v) {
+                if ($v['num_stage'] > count($data[array_key_first($data)]['block'])) {
+                    R::begin();
+                    try {
+//                        debug($v['num_stage'], 1);
+                        $stage = R::findOne('stagecourse', 'num_stage = ? AND course_id = ?', [$v['num_stage'], $courseID]);
+                        R::trash($stage);
+                        R::commit();
+                    } catch (\Exception $ex) {
+                        R::rollback();
+                        debug($ex);
+                        return false;
+                    }
+                }
+            }
+        }
+        return $flag;
+    }
+
+    protected function saveStageDescriptionCourse($block, $slug, $stageID, $langID)
+    {
+        R::begin();
+        try {
+            if ($slug === '') {
+                R::exec("INSERT INTO stagecourse_description (language_id, stage_course_id, title) VALUES (?, ?, ?)", [
+                    $langID,
+                    $stageID,
+                    $block['title'],
+                ]);
+            } else {
+                R::exec("UPDATE stagecourse_description SET title = ? WHERE language_id = ? AND stage_course_id = ?", [
+                    $block['title'],
+                    $langID,
+                    $stageID
+                ]);
+            }
+            R::commit();
+
+            return $this->saveStepCourse($block, $slug, $langID, $stageID);
+        } catch (\Exception $ex) {
+            R::rollback();
+            debug($ex);
+            return false;
+        }
+    }
+
+    protected function saveStepCourse($block, $slug, $langID, $stageID)
+    {
+//        debug($block);
+        $flag = true;
+        $amountStep = R::getAll("SELECT s.num_step FROM stepcourse s WHERE s.stage_course_id = ?", [$stageID]);
+
+        if (isset($block['lesson'])) {
+            foreach ($block['lesson'] as $numStep => $lesson) {
+                R::begin();
+                try {
+                    $type = R::findOne("typestepcourse", "code = ?", [$lesson['code']]);
+
+                    $stepCurrent = R::findOne("stepcourse", "num_step = ? AND stage_course_id = ?", [$numStep, $stageID]);
+                    if (!$stepCurrent) {
+                        $step = R::dispense("stepcourse");
+                        $step->stage_course_id = $stageID;
+                        $step->typestepcourse_id = $type->id;
+                        //TODO: Запись id задачи
+                        $step->num_step = $numStep;
+                        $stepID = R::store($step);
+                    } else {
+                        $stepID = $stepCurrent->id;
+
+                        if ($slug !== '') {
+                            $step = R::load('stepcourse', $stepID);
+                            $step->typestepcourse_id = $type->id;
+                            R::store($step);
+                        }
+                    }
+                    R::commit();
+                    if (!$this->saveStepDescriptionCourse($langID, $slug, $stepID, $lesson)) $flag = false;
+                } catch (\Exception $ex) {
+                    R::rollback();
+                    debug($ex);
+                    return false;
+                }
+            }
+
+
+            if (count($block['lesson']) < count($amountStep)) {
+//                debug($block, 1);
+                foreach ($amountStep as $v) {
+                    if ($v['num_step'] > count($block['lesson'])) {
+                        R::begin();
+                        try {
+                            $step = R::findOne('stepcourse', 'num_step = ? AND stage_course_id = ?', [$v['num_step'], $stageID]);
+                            R::trash($step);
+                            R::commit();
+                        } catch (\Exception $ex) {
+                            R::rollback();
+                            debug($ex);
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $flag;
+    }
+
+    protected function saveStepDescriptionCourse($langID, $slug, $stepID, $lesson)
+    {
+//        debug($lesson, 1);
+        R::begin();
+        try {
+            R::exec("INSERT INTO stepcourse_description (language_id, step_course_id, title, description, answer_option, right_answer) VALUES (?, ?, ?, ?, ?, ?)", [
+                $langID,
+                $stepID,
+                $lesson['title'],
+                $lesson['description'],
+                json_encode($lesson['answer_option'], JSON_UNESCAPED_SLASHES) ?: null,
+                $lesson['right_answer']
+            ]);
+
+            R::commit();
+            return true;
+        } catch (\Exception $ex) {
+            R::rollback();
+
+//            debug($ex->getMessage(), 1);
+
+            if (str_contains($ex->getMessage(), 'PRIMARY')) {
+                R::begin();
+                try {
+                    R::exec("UPDATE stepcourse_description SET title = ?, description = ?, answer_option = ?, right_answer = ? WHERE language_id = ? AND step_course_id = ?", [
+                        $lesson['title'],
+                        $lesson['description'],
+                        json_encode($lesson['answer_option'], JSON_UNESCAPED_SLASHES) ?: null,
+                        $lesson['right_answer'],
+                        $langID,
+                        $stepID
+
+                    ]);
+                    R::commit();
+                    return true;
+                } catch (\Exception $ex2) {
+                    R::rollback();
+                    debug($ex . $ex2);
+                    return false;
+                }
+            }
+
+            return false;
+        }
+    }
 }

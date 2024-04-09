@@ -510,6 +510,21 @@ class UserController extends AppController
         echo json_encode(array('profile_privacy' => $profilePrivacy), JSON_UNESCAPED_SLASHES);
     }
 
+    public function typeLessonAction()
+    {
+        $type = $this->model->getTypeLesson(App::$app->getProperty('language')['id']);
+
+        echo json_encode(array('type_course' => $type), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function categoryLangProgAction()
+    {
+        $categoryLang = $this->model->getCategoryLang(App::$app->getProperty('language')['id']);
+        $langProg = $this->model->getLangProg();
+
+        echo json_encode(array('category_lang' => $categoryLang, 'lang_prog' => $langProg), JSON_UNESCAPED_SLASHES);
+    }
+
     public function createCourseAction()
     {
         $result = [];
@@ -518,18 +533,55 @@ class UserController extends AppController
             $_POST = json_decode(file_get_contents("php://input"), true);
             if (!empty($_POST)) {
                 //TODO: Icon from cache
-                $data['icon'] = $_POST['icon'];
-                $data['difficulty'] = $_POST['difficulty'];
-                $data['lang-prog'] = $_POST['lang-prog'];
-                $data['category-prog'] = $_POST['category-prog'];
-                $data['status'] = $_POST['status'];
-                $data['main'] = $_POST['main'];
-
-                $res = $this->model->saveCourse($data, $_SESSION['user']['id']);
+                $result['slug'] = '';
+                $result['success'] = $this->model->saveCourse($_SESSION['user']['id'],  $result['slug']);
             }
         }
 
         echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function editCourseAction()
+    {
+        $result = [];
+        $result['success'] = false;
+        if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
+            $result['course'] = $this->model->getCourseForEdit($_SESSION['user']['username'], $this->route['slug']);
+            $result['success'] = (bool)$result['course'];
+        }
+
+        echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function saveIconAction()
+    {
+//        debug($_FILES, 1);
+        if (isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'] && isset($_FILES['icon']) &&
+            file_exists($_FILES['icon']['tmp_name'][0]) && is_uploaded_file($_FILES['icon']['tmp_name'][0])) {
+            $fileExt = explode("/", $_FILES['icon']['type'][0])[1];
+            $fileExt = explode("+", $fileExt)[0];
+            $fileName = md5($_SESSION['user']['username']) . '.' . $fileExt;
+
+            $path = WWW . '/uploads/course/creation';
+            if (!is_dir($path)) {
+                mkdir($path);
+            }
+
+            $path .= '/' . date("Y", time());
+            if (!is_dir($path)) {
+                mkdir($path);
+            }
+
+            $path .= '/' . date("m", time());
+            if (!is_dir($path)) {
+                mkdir($path);
+            }
+
+            move_uploaded_file($_FILES['icon']['tmp_name'][0], $path . '/' . $fileName);
+            $pathClient = UPLOADS . '/course/creation/' . date("Y", time()) . '/' . date('m', time()) . '/' . $fileName;
+
+            echo json_encode(array('icon' => $pathClient), JSON_UNESCAPED_SLASHES);
+        }
     }
 
     protected function deleteAllCacheProject()

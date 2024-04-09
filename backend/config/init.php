@@ -18,4 +18,6 @@ const ADMIN = 'http://api.pro-learn.my/admin';
 
 const GEOIP = "https://ipwho.is/";
 
+const UPLOADS = PATH . '/public/uploads';
+
 require_once ROOT . '/vendor/autoload.php';

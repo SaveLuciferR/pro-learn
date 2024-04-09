@@ -131,6 +131,7 @@ class CourseController extends AppController
                     $lesson = array_merge($lesson, $this->model->getAmountStepInStageCourse($lesson['current_stage_id']));
                     unset($lesson['current_stage_id']);
                 }
+                $lesson['answer_option'] = json_decode($lesson['answer_option'], true);
             }
 
             if ($lesson) {

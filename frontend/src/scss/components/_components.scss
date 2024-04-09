@@ -20,6 +20,10 @@ a {
     }
 }
 
+.hover {
+    cursor: pointer;
+}
+
 .underline-hover {
     &::before {
         content: "";
@@ -46,6 +50,14 @@ a {
     font-size: 16px;
 
     color: #fff;
+
+    &-red {
+        color: #db5b42;
+
+        &::before {
+            background-color: #db5b42;
+        }
+    }
 
     &.primary {
         background-color: #797ef9;
@@ -126,10 +138,20 @@ a {
     font-size: 16px;
     font-weight: 400;
 
+    &.border-dashed {
+        border: 1px dashed #5f5f5f;
+    }
+
     &.width100 {
         display: block;
         width: 100%;
         max-width: 750px;
+    }
+
+    &.width1200 {
+        display: block;
+        width: 100%;
+        max-width: 1200px;
     }
 
     &.textarea {
@@ -378,4 +400,13 @@ label {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.vertical-line {
+    border-left: 1px solid #5f5f5f;
+    padding-left: 16px;
 }

@@ -25,7 +25,7 @@ import ProfileSettingsUserPage from './pages/ProfileSettingsUserPage';
 import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ProfileSettingsSecurity from './components/Profile/ProfileSettings/ProfileSettingsSecurity';
 import AdminLayout from "./layouts/AdminLayout";
-import CourseCreate from "./pages/CourseCreate";
+import CourseCreatePage from "./pages/CourseCreatePage";
 
 
 const router = createBrowserRouter([
@@ -106,8 +106,12 @@ const router = createBrowserRouter([
                 ],
             },
             {
-                path: 'profile/course-create',
-                element: <CourseCreate/>
+                path: 'profile/:username/course-create',
+                element: <CourseCreatePage/>
+            },
+            {
+                path: 'profile/:username/course-edit/:slug',
+                element: <CourseCreatePage type={'edit'}/>
             },
             {
                 path: 'profile/settings/user',

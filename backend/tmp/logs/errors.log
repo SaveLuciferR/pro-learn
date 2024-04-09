@@ -1894,3 +1894,242 @@
 =================
 [2024-04-02 15:48:13] Текст ошибки: Call to undefined method app\models\User::saveCourse() | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 528
 =================
+[2024-04-02 18:47:10] Текст ошибки: Undefined array key "heading" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 594
+=================
+[2024-04-02 18:57:15] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-02 20:47:36] Текст ошибки: Undefined array key "title" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 670
+=================
+[2024-04-02 20:48:51] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-02 20:50:28] Текст ошибки: Undefined array key "title" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 670
+=================
+[2024-04-02 20:51:11] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-04-02 20:55:10] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-04-02 21:07:32] Текст ошибки: Undefined array key "title" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 670
+=================
+[2024-04-02 21:08:24] Текст ошибки: Undefined array key "title" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 670
+=================
+[2024-04-02 21:12:30] Текст ошибки: Undefined array key "title" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 671
+=================
+[2024-04-02 21:19:50] Текст ошибки: Undefined array key "title" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 671
+=================
+[2024-04-02 21:20:18] Текст ошибки: Undefined array key "title" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 671
+=================
+[2024-04-02 21:21:21] Текст ошибки: Undefined array key "title" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 671
+=================
+[2024-04-04 15:03:13] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cd.heading' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-05 13:56:21] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cd.heading' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-05 15:36:38] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-05 15:37:23] Текст ошибки: Not Found language 'creation' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-04-05 15:37:24] Текст ошибки: Not Found language 'creation' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-04-05 15:37:25] Текст ошибки: Not Found language 'creation' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-04-05 15:37:32] Текст ошибки: Not Found language 'creation' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-04-05 15:37:36] Текст ошибки: Not Found language 'creation' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-04-05 15:37:36] Текст ошибки: Not Found language 'creation' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-04-05 15:39:09] Текст ошибки: Not Found language 'creation' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-04-05 15:39:09] Текст ошибки: Not Found language 'creation' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-04-05 15:39:17] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-05 15:39:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-05 15:39:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-05 15:39:29] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-04-05 15:39:31] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-04-05 15:39:31] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-04-06 16:32:11] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-06 16:36:23] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-06 16:37:23] Текст ошибки: strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 156
+=================
+[2024-04-06 17:40:03] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-06 17:41:18] Текст ошибки: Undefined array key "answer-option" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 737
+=================
+[2024-04-07 13:11:36] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'sd.language_id = 1' at line 3 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-07 13:15:56] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 631
+=================
+[2024-04-07 13:16:41] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.title 
+                                                                FROM...' at line 1 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-07 13:21:54] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sd.right_answer' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-07 13:30:29] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 623
+=================
+[2024-04-07 13:31:13] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 621
+=================
+[2024-04-07 15:12:14] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 645
+=================
+[2024-04-07 17:15:00] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-07 17:18:50] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-07 17:24:33] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-07 17:31:17] Текст ошибки: session_start(): Session cannot be started after headers have already been sent | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 17
+=================
+[2024-04-07 17:32:56] Текст ошибки: session_start(): Session cannot be started after headers have already been sent | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 17
+=================
+[2024-04-07 17:48:46] Текст ошибки: file_exists(): Argument #1 ($filename) must be of type string, array given | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 551
+=================
+[2024-04-07 17:48:58] Текст ошибки: Undefined array key "icon" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 551
+=================
+[2024-04-07 17:48:58] Текст ошибки: Undefined array key "icon" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 551
+=================
+[2024-04-07 17:49:50] Текст ошибки: file_exists(): Argument #1 ($filename) must be of type string, array given | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 551
+=================
+[2024-04-07 17:52:49] Текст ошибки: file_exists(): Argument #1 ($filename) must be of type string, array given | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 551
+=================
+[2024-04-07 17:54:13] Текст ошибки: mkdir(): No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 557
+=================
+[2024-04-07 18:00:16] Текст ошибки: Undefined array key "image" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 553
+=================
+[2024-04-07 18:11:00] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-07 18:11:11] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-07 18:11:11] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-07 18:25:19] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-07 18:25:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-07 18:25:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-07 18:36:37] Текст ошибки: move_uploaded_file(http://api.pro-learn.my/public/uploads/course/creation/2024/04/24c9e15e52afc47c225b757e7bee1f9d.jpeg): Failed to open stream: HTTP wrapper does not support writeable connections | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 571
+=================
+[2024-04-07 18:55:07] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-07 19:01:53] Текст ошибки: Метод app\controllers\UserController::categoryLangProgAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-07 19:01:58] Текст ошибки: Метод app\controllers\UserController::categoryLangProgAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-07 19:02:06] Текст ошибки: Метод app\controllers\UserController::categoryLangProgAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-07 19:02:37] Текст ошибки: Метод app\controllers\UserController::categoryLangProgAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-07 19:02:37] Текст ошибки: Метод app\controllers\UserController::categoryLangProgAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-07 19:02:50] Текст ошибки: Метод app\controllers\UserController::categoryLangProgAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-07 19:02:50] Текст ошибки: Метод app\controllers\UserController::categoryLangProgAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-07 19:03:07] Текст ошибки: Метод app\controllers\UserController::categoryLangProgAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-07 19:03:16] Текст ошибки: Метод app\controllers\UserController::categoryLangProgAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-07 19:03:16] Текст ошибки: Метод app\controllers\UserController::categoryLangProgAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-07 19:03:51] Текст ошибки: Метод app\controllers\UserController::categoryLangProgAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-07 19:04:25] Текст ошибки: strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 156
+=================
+[2024-04-07 19:04:31] Текст ошибки: Метод app\controllers\UserController::categoryLangProgAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-07 19:04:54] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'l.title' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-07 19:07:30] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.title, l.code FROM langprog l' at line 1 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-08 13:10:21] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'l.id' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-08 13:10:39] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'l.id' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-08 13:10:50] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'l.id' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-08 13:11:10] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'l.id' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-08 13:11:13] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'l.id' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-08 13:11:13] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'l.id' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-08 13:50:09] Текст ошибки: Undefined variable $courseID | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 618
+=================
+[2024-04-08 13:51:02] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2024-04-08 13:52:10] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2024-04-08 13:56:59] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2024-04-08 14:00:39] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2024-04-08 14:01:50] Текст ошибки: Undefined variable $coureID | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 685
+=================
+[2024-04-08 14:02:34] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2024-04-08 14:03:01] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2024-04-08 14:12:25] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 537
+=================
+[2024-04-08 14:14:14] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 537
+=================
+[2024-04-08 14:16:58] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 537
+=================
+[2024-04-08 14:38:57] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 14:42:11] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 14:43:30] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 14:44:58] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 14:50:30] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 14:50:47] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 14:52:54] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 14:55:05] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 14:55:53] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 831
+=================
+[2024-04-08 14:56:34] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 831
+=================
+[2024-04-08 14:58:25] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 831
+=================
+[2024-04-08 15:25:23] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 831
+=================
+[2024-04-08 15:27:49] Текст ошибки: Cannot access offset of type string on string | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 834
+=================
+[2024-04-08 16:20:52] Текст ошибки: Trying to access array offset on value of type null | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 819
+=================
+[2024-04-08 16:52:40] Текст ошибки: Undefined variable $step | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 819
+=================
+[2024-04-08 16:54:58] Текст ошибки: syntax error, unexpected token ";", expecting ")" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 821
+=================
+[2024-04-08 16:55:01] Текст ошибки: syntax error, unexpected token ";", expecting ")" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 821
+=================
+[2024-04-08 17:02:15] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 17:02:25] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 17:02:55] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 17:03:04] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 17:06:59] Текст ошибки: Attempt to read property "id" on null | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 821
+=================
+[2024-04-08 17:17:28] Текст ошибки: str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 890
+=================
+[2024-04-08 18:03:09] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-08 18:04:32] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================

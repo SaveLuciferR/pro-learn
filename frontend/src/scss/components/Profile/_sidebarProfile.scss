@@ -76,6 +76,36 @@
 
     transition: all 0.3s ease-in-out;
 
+    &.create-lesson {
+      margin: 28px 0;
+
+      flex-direction: row;
+      gap: 8px;
+      padding: 20px 0;
+
+      & span {
+        color: rgba(255, 255, 255, 0.6);
+
+        transition: all 0.3s ease-in-out;
+      }
+
+      & svg {
+        transform: scale(0.5);
+      }
+    }
+
+    &.create-block {
+      flex-direction: row;
+      gap: 16px;
+      padding: 40px 0;
+
+      & span {
+        color: rgba(255, 255, 255, 0.6);
+
+        transition: all 0.3s ease-in-out;
+      }
+    }
+
     & svg {
       fill: rgba(255, 255, 255, 0.50);
 
@@ -84,6 +114,19 @@
 
     &:hover {
       border: 1.5px solid #5f5f5f;
+
+      &.create-block {
+        & span {
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+
+      &.create-lesson {
+
+        & span {
+          color: rgba(255, 255, 255, 1);
+        }
+      }
 
       & svg {
         fill: #fff;

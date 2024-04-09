@@ -4,6 +4,7 @@ import compiler from './Compiler/slice'
 import blog from './Blog/slice';
 import mainLayout from "./MainLayout/slice";
 import project from "./Project/slice";
+import course from "./Course/slice";
 
 export const store = configureStore({
     reducer:{
@@ -12,6 +13,7 @@ export const store = configureStore({
         blog,
         mainLayout,
         project,
+        course
     },
 })
 

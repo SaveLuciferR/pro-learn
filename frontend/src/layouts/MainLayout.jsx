@@ -5,9 +5,8 @@ import {Outlet, useParams} from 'react-router-dom';
 
 import axiosClient from "../axiosClient";
 import {useDispatch, useSelector} from "react-redux";
-import {setUserAuth, setUser, setNeedReloadPage, setActiveSidebar} from "../redux/MainLayout/slice";
+import {setUserAuth, setUser, setNeedReloadPage, setActiveSidebar, setLanguages} from "../redux/MainLayout/slice";
 import SidebarProfile from "../components/Profile/SidebarProfile";
-import axios from "axios";
 
 const MainLayout = ({isActiveSidebar, isCompiler}) => {
 
@@ -17,8 +16,10 @@ const MainLayout = ({isActiveSidebar, isCompiler}) => {
     const sidebarProfileActive = useSelector(state => state.mainLayout.sidebarProfileActive);
     const needReloadPage = useSelector(state => state.mainLayout.needReloadPage);
 
+    const languages = useSelector(state => state.mainLayout.languages);
     const [language, setLanguage] = useState({});
-    const [languages, setLanguages] = useState({});
+    // const [languages, setLanguages] = useState({});
+
     const [layoutWords, setLayoutWords] = useState({});
     // const [activeSidebar, setActiveSidebar] = useState(isActiveSidebar);
     const [activeCompiler, setActiveCompiler] = useState(isCompiler);
@@ -32,7 +33,7 @@ const MainLayout = ({isActiveSidebar, isCompiler}) => {
         axiosClient.post(`${lang === undefined ? "/" : '/' + lang + '/'}language`)
             .then(({data}) => {
                 setLanguage(data.language);
-                setLanguages(data.languages);
+                dispatch(setLanguages(data.languages));
                 setLayoutWords(data.layoutWords);
                 console.log(isActiveSidebar);
                 console.log(isCompiler);
@@ -47,11 +48,6 @@ const MainLayout = ({isActiveSidebar, isCompiler}) => {
                     dispatch(setUser(data.user));
                     console.log(data.user);
                 });
-
-            // axiosClient.post('/user/get-session-id', {client: localStorage.getItem('client')})
-            //     .then(({data}) => {
-            //         localStorage.setItem('client', data.client);
-            //     })
 
             dispatch(setNeedReloadPage(false));
         }

@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Credentials: true');
 header('Set-Cookie; SameSite=Strict; Secure', true);
 
-session_set_cookie_params(0, '/', '.localhost', false, false);
+session_set_cookie_params(0, '/', '.api.pro-learn.my', false, false);
 ini_set('session.cookie_samesite', 'Strict');
 
 if (PHP_MAJOR_VERSION < 8) {

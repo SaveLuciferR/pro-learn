@@ -8,6 +8,7 @@ const initialState = {
     activeSidebar: true,
     activeContainer: true,
     feedbackCategories: [],
+    languages: {}
     // userTokenSession: localStorage.getItem('userTokenSession'),
 }
 
@@ -34,6 +35,9 @@ export const mainLayout = createSlice({
             setFeedbackCategory (state, action) {
                 state.feedbackCategories = action.payload;
             },
+            setLanguages(state, action) {
+              state.languages = action.payload;
+            }
             // setUserSession(state, action) {
             //     state.userAuth = action.payload;
             // }
@@ -48,6 +52,7 @@ export const {
     setNeedReloadPage,
     setActiveSidebar,
     setFeedbackCategory,
+    setLanguages
 } = mainLayout.actions;
 
 export default mainLayout.reducer;
