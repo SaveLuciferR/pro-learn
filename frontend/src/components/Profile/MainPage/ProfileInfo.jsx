@@ -1,6 +1,20 @@
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axiosClient from '../../../axiosClient';
 import img from '../../../header_bg.png';
 
 const ProfileInfo = () => {
+  const { lang, username } = useParams();
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    axiosClient
+      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
+      .then(({ data }) => {
+        setUserData(data.ProfileInfo);
+      });
+  }, [lang, username]);
+
   return (
     <div className="info-about">
       <div className="info-about-name">

@@ -23,11 +23,8 @@ const Login = () => {
             return;
         }
 
-        // console.log(localStorage.getItem('client'));
-        axiosClient.post(`/user/login`, {email, password})
+        axiosClient.post(`/user/login`, { email, password })
             .then(({data}) => {
-                // console.log(localStorage.getItem('client'));
-                // localStorage.setItem('client', data.client);
                 dispatch(setUserAuth(data.auth));
 
                 dispatch(setNeedReloadPage(true));

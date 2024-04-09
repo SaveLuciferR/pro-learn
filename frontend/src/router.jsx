@@ -1,4 +1,4 @@
-import {createBrowserRouter} from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import BlogPage from './pages/BlogPage';
 import ProjectPage from './pages/ProjectPage';
@@ -24,137 +24,147 @@ import LessonFillGaps from './components/CourseLessons/LessonFillGaps';
 import ProfileSettingsUserPage from './pages/ProfileSettingsUserPage';
 import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ProfileSettingsSecurity from './components/Profile/ProfileSettings/ProfileSettingsSecurity';
+import ProfileSettingsSessions from './components/Profile/ProfileSettings/ProfileSettingsSessions';
+import ProfileSettingsPrivacy from './components/Profile/ProfileSettings/ProfileSettingsPrivacy';
 import AdminLayout from "./layouts/AdminLayout";
 import CourseCreatePage from "./pages/CourseCreatePage";
 
 
 const router = createBrowserRouter([
-    {
-        path: '/admin-panel',
-        element: <AdminLayout/>,
+  {
+    path: '/admin-panel',
+    element: <AdminLayout/>,
+    children: [
+      {
+        path: 'login',
+        element: <Login/>
+      }
+    ]
+  },
+  {
+    path: '/:lang?',
+    element: <MainLayout isActiveSidebar={true} isCompiler={false} />,
+    children: [
+      {
+        path: 'user/login',
+        element: <Login isActiveSidebar={false} />,
+      },
+      {
+        path: 'user/feedback',
+        element: <Feedback />,
+      },
+      {
+        path: 'blog',
+        element: <BlogPage />,
+      },
+      {
+        path: 'profile/:username/project/:project',
+        element: <ProjectPage isActiveSidebar={false} />,
+      },
+      {
+        path: 'profile/:username/project/add',
+        element: <ProjectAddPage isActiveSidebar={false} />,
+      },
+      {
+        path: 'compiler/:username/:project',
+        element: <CompilerPage isActiveSidebar={true} isCompiler={true} />,
+      },
+      {
+        path: 'profile/:username',
+        element: <ProfilePage isActiveSidebar={false} isCompiler={false} />,
         children: [
-            {
-                path: 'login',
-                element: <Login/>
-            }
-        ]
-    },
-    {
-        path: '/:lang?',
-        element: <MainLayout isActiveSidebar={true} isCompiler={false}/>,
-        children: [
-            {
-                path: 'user/login',
-                element: <Login isActiveSidebar={false}/>,
-            },
-            {
-                path: 'user/feedback',
-                element: <Feedback/>,
-            },
-            {
-                path: 'blog',
-                element: <BlogPage/>,
-            },
-            {
-                path: ':username/project/:project',
-                element: <ProjectPage isActiveSidebar={false}/>,
-            },
-            {
-                path: ':username/project/add',
-                element: <ProjectAddPage isActiveSidebar={false}/>,
-            },
-            {
-                path: 'compiler/:username/:project',
-                element: <CompilerPage isActiveSidebar={true} isCompiler={true}/>,
-            },
-            {
-                path: 'profile',
-                element: <ProfilePage isActiveSidebar={false} isCompiler={false}/>,
-                children: [
-                    {
-                        path: '',
-                        element: <ProfileMainPage/>,
-                    },
-                    {
-                        path: 'created-courses',
-                        element: <ProfileCreatedCourses/>,
-                    },
-                    {
-                        path: 'questions',
-                        element: <ProfileQuestionsMain/>,
-                    },
-                    {
-                        path: 'user-tasks',
-                        element: <ProfileUserTasks/>,
-                    },
-                    {
-                        path: 'tasks',
-                        element: <ProfileTasks/>,
-                    },
-                    {
-                        path: 'projects',
-                        element: <ProfileProjects/>,
-                    },
-                    {
-                        path: 'completed-courses',
-                        element: <ProfileCompletedCourses/>,
-                    },
-                    {
-                        path: 'current-courses',
-                        element: <ProfileCurrentCourses/>,
-                    },
-                ],
-            },
-            {
-                path: 'profile/:username/course-create',
-                element: <CourseCreatePage/>
-            },
-            {
-                path: 'profile/:username/course-edit/:slug',
-                element: <CourseCreatePage type={'edit'}/>
-            },
-            {
-                path: 'profile/settings/user',
-                element: <ProfileSettingsUserPage/>,
-            },
-            {
-                path: 'profile/settings',
-                element: <ProfileSettingsPage/>,
-                children: [
-                    {
-                        path: 'security',
-                        element: <ProfileSettingsSecurity/>,
-                    },
-                ],
-            },
-            {
-                path: 'courses',
-                element: <CoursesPage/>,
-            },
-            {
-                path: 'courses/name-course',
-                element: <CoursePage/>,
-            },
-            {
-                path: 'courses/lessons',
-                element: <CourseLessonPage/>,
-                children: [
-                    {
-                        path: 'one-option',
-                        element: <LessonOneOption/>,
-                    },
-                    {
-                        path: 'several-option',
-                        element: <LessonSeveralOption/>,
-                    },
-                    {
-                        path: 'fill-gaps',
-                        element: <LessonFillGaps/>,
-                    },
-                ],
-            },
+          {
+            path: '',
+            element: <ProfileMainPage />,
+          },
+          {
+            path: 'created-courses',
+            element: <ProfileCreatedCourses />,
+          },
+          {
+            path: 'questions',
+            element: <ProfileQuestionsMain />,
+          },
+          {
+            path: 'user-tasks',
+            element: <ProfileUserTasks />,
+          },
+          {
+            path: 'tasks',
+            element: <ProfileTasks />,
+          },
+          {
+            path: 'projects',
+            element: <ProfileProjects />,
+          },
+          {
+            path: 'completed-courses',
+            element: <ProfileCompletedCourses />,
+          },
+          {
+            path: 'current-courses',
+            element: <ProfileCurrentCourses />,
+          },
         ],
-    },
+      },
+      {
+        path: 'profile/:username/course-create',
+        element: <CourseCreatePage/>
+      },
+      {
+        path: 'profile/:username/course-edit/:slug',
+        element: <CourseCreatePage type={'edit'}/>
+      },
+      {
+        path: 'profile/settings/user',
+        element: <ProfileSettingsUserPage />,
+      },
+      {
+        path: 'profile/settings',
+        element: <ProfileSettingsPage />,
+        children: [
+          {
+            path: 'security',
+            element: <ProfileSettingsSecurity />,
+          },
+          {
+            path: 'sessions',
+            element: <ProfileSettingsSessions />,
+          },
+          {
+            path: 'privacy',
+            element: <ProfileSettingsPrivacy />,
+          },
+        ],
+      },
+      {
+        path: 'courses',
+        element: <CoursesPage />,
+      },
+      {
+        path: 'courses/name-course',
+        element: <CoursePage />,
+      },
+      {
+        path: 'courses/lessons',
+        element: <CourseLessonPage />,
+        children: [
+          {
+            path: 'one-option',
+            element: <LessonOneOption />,
+          },
+          {
+            path: 'several-option',
+            element: <LessonSeveralOption />,
+          },
+          {
+            path: 'fill-gaps',
+            element: <LessonFillGaps />,
+          },
+        ],
+      },
+    ],
+  },
 ]);
 
 export default router;
