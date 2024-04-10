@@ -5,7 +5,7 @@ import {Outlet, useParams} from 'react-router-dom';
 
 import axiosClient from "../axiosClient";
 import {useDispatch, useSelector} from "react-redux";
-import {setUserAuth, setUser, setNeedReloadPage, setActiveSidebar} from "../redux/MainLayout/slice";
+import {setUserAuth, setUser, setNeedReloadPage, setActiveSidebar, setLanguages} from "../redux/MainLayout/slice";
 import SidebarProfile from "../components/Profile/SidebarProfile";
 
 const MainLayout = ({isActiveSidebar, isCompiler}) => {

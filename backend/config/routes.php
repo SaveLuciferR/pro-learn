@@ -18,8 +18,8 @@ Router::add('^(?P<lang>[a-z]+)?/?course/(?P<slug>[a-z0-9-]+)/?$', ['controller' 
 Router::add('^(?P<lang>[a-z]+)?/?course/(?P<slug>[a-z0-9-]+)/lessons/?$', ['controller' => 'Course', 'action' => 'study']); // Страница урока
 Router::add('^(?P<lang>[a-z]+)?/?course/(?P<slug>[a-z0-9-]+)/lessons/study-check?$', ['controller' => 'Course', 'action' => 'studyCheck']); // Проверка прохождения курса
 
-Router::add('^(?P<lang>[a-z]+)?/?project/add/?$', ['controller' => 'User', 'action' => 'add']); // Страница с добавлением проекта
-Router::add('^(?P<lang>[a-z]+)?/?project/save/?$', ['controller' => 'User', 'action' => 'save']);
+Router::add('^(?P<lang>[a-z]+)?/?project/add/?$', ['controller' => 'User', 'action' => 'addProject']); // Страница с добавлением проекта
+Router::add('^(?P<lang>[a-z]+)?/?project/save/?$', ['controller' => 'User', 'action' => 'saveProject']);
 
 Router::add('^(?P<lang>[a-z]+)?/?project/add/new-files/?$', ['controller' => 'User', 'action' => 'addNewFiles']);
 

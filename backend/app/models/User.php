@@ -210,6 +210,8 @@ class User extends AppModel
     {
         $path = Cache::getInstance()->getCache($cacheKey) . '/' . $secondaryPath;
 
+//        debug($path);
+
         return $this->createProjectFileList($path);
     }
 
@@ -490,7 +492,7 @@ class User extends AppModel
     public function getTaskLangProgByID($id)
     {
         return R::getAssoc("SELECT lp.id, lp.title
-                                FROM challenge c JOIN challsaenge_categorylangprog cclp ON c.id = cclp.challenge_id
+                                FROM challenge c JOIN challenge_categorylangprog cclp ON c.id = cclp.challenge_id
                                 JOIN langprog lp ON lp.id = cclp.lang_prog_id
                                 WHERE c.id = ?", [$id]);
     }
@@ -565,8 +567,11 @@ class User extends AppModel
                     return true;
                 } catch (\Exception $ex) {
                     debug($ex->getMessage());
-
+                    return false;
                 }
+            }
+            else {
+                return 'InCorrectPassword';
             }
         }
 
