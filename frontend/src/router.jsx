@@ -26,20 +26,19 @@ import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ProfileSettingsSecurity from './components/Profile/ProfileSettings/ProfileSettingsSecurity';
 import ProfileSettingsSessions from './components/Profile/ProfileSettings/ProfileSettingsSessions';
 import ProfileSettingsPrivacy from './components/Profile/ProfileSettings/ProfileSettingsPrivacy';
-import AdminLayout from "./layouts/AdminLayout";
-import CourseCreatePage from "./pages/CourseCreatePage";
-
+import AdminLayout from './layouts/AdminLayout';
+import CourseCreatePage from './pages/CourseCreatePage';
 
 const router = createBrowserRouter([
   {
     path: '/admin-panel',
-    element: <AdminLayout/>,
+    element: <AdminLayout />,
     children: [
       {
         path: 'login',
-        element: <Login/>
-      }
-    ]
+        element: <Login />,
+      },
+    ],
   },
   {
     path: '/:lang?',

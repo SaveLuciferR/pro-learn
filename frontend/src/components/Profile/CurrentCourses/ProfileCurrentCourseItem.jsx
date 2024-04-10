@@ -9,7 +9,7 @@ const ProfileCurrentCoursesItem = ({ data, index }) => {
         <li className="created-course-header-tag">#Начинающим</li>
       </ul>
       <div className="created-course-info">
-        <h1 className="created-course-info-title">{data[index].heading}</h1>
+        <h1 className="created-course-info-title">{data[index].title}</h1>
         <div className="created-course-info-desc">
           <p className="created-course-info-desc-text">// {data[index].excerpt}</p>
           <img src={img} className="created-course-info-desc-img" />
