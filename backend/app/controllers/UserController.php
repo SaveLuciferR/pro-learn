@@ -20,30 +20,32 @@ class UserController extends AppController
     public function loginAction()
     {
         $userParam = json_decode(file_get_contents("php://input"), true);
-        $userDevice = [];
-        if (isset($_SERVER['REMOTE_ADDR'])) {
-            $json = json_decode(file_get_contents(GEOIP . "/200.0.3.1")); // . $_SERVER['REMOTE_ADDR']
-//            debug($json);
-            $userDevice['ip'] = $json->ip;
-            $userDevice['success'] = $json->success;
-            if ($userDevice['success']) {
-                $userDevice['city'] = $json->city;
-                $userDevice['country'] = $json->country;
-                $browser = new BrowserDetection();
-//                $result = $browser->getAll($_SERVER['HTTP_USER_AGENT']);
-                $userDevice['browser'] = $browser->getBrowser($_SERVER['HTTP_USER_AGENT']);
-                $userDevice['browser'] = $userDevice['browser']['browser_title'];
-                $userDevice['type'] = $browser->getDevice($_SERVER['HTTP_USER_AGENT']);
-                $userDevice['type'] = $userDevice['type']['device_type'];
-                $userDevice['OS'] = $browser->getOS($_SERVER['HTTP_USER_AGENT']);
-                $userDevice['OS'] = $userDevice['OS']['os_title'];
-//                debug($userDevice);
-            }
-        }
 
         if ($userParam) {
             if ($this->model->login($userParam)) {
                 $_SESSION['user']['success'] = true;
+
+                $userDevice = [];
+                if (isset($_SERVER['REMOTE_ADDR'])) {
+                    $json = json_decode(file_get_contents(GEOIP . "/132.3.200.1")); // . $_SERVER['REMOTE_ADDR']
+//            debug($json);
+                    $userDevice['ip'] = $json->ip;
+                    $userDevice['success'] = $json->success;
+                    if ($userDevice['success']) {
+                        $userDevice['city'] = $json->city;
+                        $userDevice['country'] = $json->country;
+                        $browser = new BrowserDetection();
+//                $result = $browser->getAll($_SERVER['HTTP_USER_AGENT']);
+                        $userDevice['browser'] = $browser->getBrowser($_SERVER['HTTP_USER_AGENT']);
+                        $userDevice['browser'] = $userDevice['browser']['browser_title'];
+                        $userDevice['type'] = $browser->getDevice($_SERVER['HTTP_USER_AGENT']);
+                        $userDevice['type'] = $userDevice['type']['device_type'];
+                        $userDevice['OS'] = $browser->getOS($_SERVER['HTTP_USER_AGENT']);
+                        $userDevice['OS'] = $userDevice['OS']['os_title'];
+//                debug($userDevice);
+                    }
+                }
+
                 $_SESSION['user']['sessionID'] = $this->model->saveSession($userDevice, $_SESSION['user']['username']);
             }
 
@@ -153,7 +155,9 @@ class UserController extends AppController
     {
         $courses = $this->model->getUserCoursesFromUser($this->route['username'], App::$app->getProperty('language')['id']);
         foreach ($courses as $k => $v) {
-            $courses[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            if ($v['date_of_publication']) {
+                $courses[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            }
             $courses[$k]['tags'] = $this->model->getCourseTagByID($k);
             $courses[$k]['language'] = $this->model->getCourseLangProgByID($k);
         }
@@ -222,7 +226,7 @@ class UserController extends AppController
         echo json_encode(array('projectInfo' => $projectInfo, 'filesInfo' => $filesProject, 'readmeFile' => $readmeFile), JSON_UNESCAPED_SLASHES);
     }
 
-    public function addAction()
+    public function addProjectAction()
     {
         $this->deleteAllCacheProject();
 
@@ -267,7 +271,7 @@ class UserController extends AppController
         }
     }
 
-    public function saveAction()
+    public function saveProjectAction()
     {
         $_POST = json_decode(file_get_contents("php://input"), true);
         if (!empty($_POST)) {
@@ -316,19 +320,20 @@ class UserController extends AppController
             $pathProject = $cache->getCache($_POST['username'] . '/' . $_POST['mainFolderProject']);
 
             foreach ($_POST['newFilesInfo'] as $k => $v) {
+                if ($v['path'] !== 'undefined') {
+                    foreach ($v['path'] as $key => $folder) {
+                        if ($folder === 'undefined') {
+                            continue;
+                        }
 
-                foreach ($v['path'] as $key => $folder) {
-                    if ($folder === 'undefined') {
-                        continue;
-                    }
-
-                    if (is_dir($pathProject . '/' . $folder)) {
-                        $pathProject = $pathProject . '/' . $folder;
+                        if (is_dir($pathProject . '/' . $folder)) {
+                            $pathProject = $pathProject . '/' . $folder;
+                        }
                     }
                 }
 
                 $v_parts = explode(";base64,", $v['content']);
-                debug($v_parts[1]);
+//                debug($v_parts[1]);
 
                 file_put_contents($pathProject . '/' . $v['fileName'], base64_decode($v_parts[1]));
             }
@@ -376,7 +381,7 @@ class UserController extends AppController
 
     public function generalAction()
     {
-        $profileGeneral['errorUpdate'] = "";
+        $fGeneral['errorUpdate'] = "";
         $profileGeneral['success'] = false;
         if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -410,8 +415,8 @@ class UserController extends AppController
 
     public function securityAction()
     {
+        $flag = true;
         $profileSecurity['errorUpdate'] = "";
-        $profileSecurity['success'] = false;
         if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST = json_decode(file_get_contents("php://input"), true);
@@ -421,7 +426,10 @@ class UserController extends AppController
                         $data['new_password'] = $_POST['new_password'];
 
                         $updateTable = $this->model->updatePasswordUserSettings($data, $_SESSION['user']['id']);
-                        debug($updateTable, 1);
+                        if ($updateTable === 'InCorrectPassword') {
+                            $profileSecurity['errorUpdate'] = $updateTable;
+                            $flag = false;
+                        }
                     } else {
                         $data['mail'] = $_POST['mail'];
                         $data['second_mail'] = $_POST['second_mail'];
@@ -429,13 +437,17 @@ class UserController extends AppController
 
                         if ($updateTable !== true && str_contains($updateTable, 'UniqueMail')) {
                             $profileSecurity['errorUpdate'] = "UniqueMail";
+                            $flag = false;
                         }
                     }
                 }
             }
             $profile = $this->model->getSecuritySettingsByUser($_SESSION['user']['username']);
             $profileSecurity = array_merge($profile, $profileSecurity);
-            $profileSecurity['success'] = true;
+            $profileSecurity['success'] = $flag;
+        }
+        else {
+            $profileSecurity['success'] = false;
         }
 
         echo json_encode(array('profile_security' => $profileSecurity), JSON_UNESCAPED_SLASHES);
@@ -534,7 +546,7 @@ class UserController extends AppController
             if (!empty($_POST)) {
                 //TODO: Icon from cache
                 $result['slug'] = '';
-                $result['success'] = $this->model->saveCourse($_SESSION['user']['id'],  $result['slug']);
+                $result['success'] = $this->model->saveCourse($_SESSION['user']['id'], $result['slug']);
             }
         }
 

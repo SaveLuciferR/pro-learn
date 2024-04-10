@@ -167,7 +167,7 @@ const CourseCreatePage = ({type = 'create'}) => {
                                          style={{maxWidth: "300px", width: "100%"}}
                                          onClick={() => dropdownClick1()}>
                                         <div className="select  small">
-                                            <span className="small unselectable">Язык программирования</span>
+                                            <span className="small unselectable">Категория</span>
                                             <svg className="arrow" width="9" height="5" viewBox="0 0 9 5" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M4.5 5L8.39711 0.5H0.602886L4.5 5Z" fill="white"/>
@@ -199,7 +199,7 @@ const CourseCreatePage = ({type = 'create'}) => {
                                          style={{maxWidth: "300px", width: "100%"}}
                                          onClick={() => dropdownClick2()}>
                                         <div className="select  small">
-                                            <span className="small unselectable">Категория</span>
+                                            <span className="small unselectable">Язык программирования</span>
                                             <svg className="arrow" width="9" height="5" viewBox="0 0 9 5" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M4.5 5L8.39711 0.5H0.602886L4.5 5Z" fill="white"/>

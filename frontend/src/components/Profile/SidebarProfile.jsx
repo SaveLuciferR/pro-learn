@@ -106,7 +106,7 @@ const SidebarProfile = () => {
                 Выйти
               </button>
 
-              <div className="sidebar_profile-create">
+              <Link to={`/profile/${currentUser.username}/course-creation`} className="sidebar_profile-create">
                 <div className="sidebar_profile-create_item">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +129,7 @@ const SidebarProfile = () => {
                   >
                     <path d="M21.4979 0V15.7724H37V21.3462H21.4979V37H15.3049V21.3462H0V15.7724H15.3049V0H21.4979Z" />
                   </svg>
-                  <span>Создать курс</span>
+                  <span>Создать задачу</span>
                 </div>
                 <div className="sidebar_profile-create_item">
                   <svg
@@ -141,9 +141,9 @@ const SidebarProfile = () => {
                   >
                     <path d="M21.4979 0V15.7724H37V21.3462H21.4979V37H15.3049V21.3462H0V15.7724H15.3049V0H21.4979Z" />
                   </svg>
-                  <span>Создать курс</span>
+                  <span>Создать блог</span>
                 </div>
-              </div>
+              </Link>
             </div>
           </>
         )}

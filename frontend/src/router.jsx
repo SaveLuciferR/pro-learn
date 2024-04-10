@@ -108,6 +108,14 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: 'profile/:username/course-creation',
+        element: <CourseCreatePage/>
+      },
+      {
+        path: 'profile/:username/course-edit/:slug',
+        element: <CourseCreatePage type={'edit'}/>
+      },
+      {
         path: 'profile/:username/settings/general',
         element: <ProfileSettingsUserPage />,
       },
