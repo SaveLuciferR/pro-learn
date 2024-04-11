@@ -513,6 +513,7 @@ class User extends AppModel
 
     public function updateNewGenericUserSettings($data, $id)
     {
+        R::begin();
         try {
             $user = R::load('user', $id);
             $user->username = $data['username'];
@@ -522,11 +523,12 @@ class User extends AppModel
             $user->last_name = $data['last_name'];
             $user->first_name = $data['first_name'];
             $user->country_address = $data['country_address'];
-//            debug($user);
             $userID = R::store($user);
+            R::commit();
             return true;
         } catch (\Exception $ex) {
 //            debug($ex->getMessage());
+            R::rollback();
             return $ex->getMessage();
         }
     }

@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import img from '../../../avatar.png';
 import { useEffect, useState } from 'react';
+import axiosClient from "../../../axiosClient";
 
 const ProfileSettingsUserMain = ({ data }) => {
   const [nickname, setNickname] = useState('');
@@ -10,12 +11,31 @@ const ProfileSettingsUserMain = ({ data }) => {
   const [country, setCountry] = useState('');
 
   useEffect(() => {
+    console.log(data);
     setNickname(data.username);
     setLastName(data.last_name);
     setFirstName(data.first_name);
     setInfoAbout(data.about_user);
     setCountry(data.country_address);
   }, []);
+
+  const onClickSaveMainProfileSettings = () => {
+    axiosClient.post(`/@${username}/settings/general`, {
+      username: nickname,
+      avatar_img: '',
+      heading_img: '',
+      about_user: infoAbout,
+      last_name: lastName,
+      first_name: firstName,
+      country_address: country
+    })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch(({response}) => {
+          console.log(response);
+        })
+  }
 
   const { username } = useParams();
   return (
@@ -155,7 +175,7 @@ const ProfileSettingsUserMain = ({ data }) => {
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
-            <button className="btn big secondary-blue">Сохранить изменения</button>
+            <button onClick={() => onClickSaveMainProfileSettings() } className="btn big secondary-blue">Сохранить изменения</button>
           </div>
         </div>
       </div>

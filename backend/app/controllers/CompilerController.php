@@ -32,7 +32,7 @@ class CompilerController extends AppController
 
         file_put_contents($pathProject . $file['path'], $file['body']);
 
-        // $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']));
+         $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']));
     }
 
     public function deleteAction()

@@ -59,7 +59,7 @@ const SliderList = ({ type, items, index }) => {
           <ProfileTask key={index} data={items} index={slide} />
         ));
       default:
-        return 'нету';
+        return null;
     }
   };
 

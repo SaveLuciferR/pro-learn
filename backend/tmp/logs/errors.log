@@ -2203,3 +2203,61 @@
 =================
 [2024-04-10 00:21:46] Текст ошибки: Проект не найден | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 197
 =================
+[2024-04-10 12:41:54] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 12:41:54] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 12:41:54] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 12:41:54] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 12:41:54] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 12:41:54] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 12:41:54] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 12:41:54] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 12:41:54] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 12:41:54] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 12:41:54] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 12:41:54] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 15:05:12] Текст ошибки: Not Found language 'compiler' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-04-10 15:05:12] Текст ошибки: Not Found language 'compiler' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-04-10 15:05:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 15:05:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 15:05:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 15:05:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 15:05:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 15:05:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 15:05:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 15:05:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 15:05:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 15:05:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 15:05:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-10 15:05:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 63
+=================
+[2024-04-11 13:39:02] Текст ошибки: header() expects at most 3 arguments, 4 given | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 52
+=================
+[2024-04-11 13:39:22] Текст ошибки: header() expects at most 3 arguments, 4 given | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 52
+=================
+[2024-04-11 14:13:07] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================

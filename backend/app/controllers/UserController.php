@@ -28,26 +28,27 @@ class UserController extends AppController
                 $userDevice = [];
                 if (isset($_SERVER['REMOTE_ADDR'])) {
                     $json = json_decode(file_get_contents(GEOIP . "/132.3.200.1")); // . $_SERVER['REMOTE_ADDR']
-//            debug($json);
                     $userDevice['ip'] = $json->ip;
                     $userDevice['success'] = $json->success;
                     if ($userDevice['success']) {
                         $userDevice['city'] = $json->city;
                         $userDevice['country'] = $json->country;
                         $browser = new BrowserDetection();
-//                $result = $browser->getAll($_SERVER['HTTP_USER_AGENT']);
                         $userDevice['browser'] = $browser->getBrowser($_SERVER['HTTP_USER_AGENT']);
                         $userDevice['browser'] = $userDevice['browser']['browser_title'];
                         $userDevice['type'] = $browser->getDevice($_SERVER['HTTP_USER_AGENT']);
                         $userDevice['type'] = $userDevice['type']['device_type'];
                         $userDevice['OS'] = $browser->getOS($_SERVER['HTTP_USER_AGENT']);
                         $userDevice['OS'] = $userDevice['OS']['os_title'];
-//                debug($userDevice);
                     }
                 }
 
                 $_SESSION['user']['sessionID'] = $this->model->saveSession($userDevice, $_SESSION['user']['username']);
+            } else {
+                header($_SERVER['SERVER_PROTOCOL'] . ' 401 Incorrect data', true, 401);
+                die;
             }
+
 
             echo json_encode(array('auth' => $this->model->checkAuth()));
         }
@@ -395,22 +396,29 @@ class UserController extends AppController
                     $data['last_name'] = $_POST['last_name'];
                     $data['first_name'] = $_POST['first_name'];
                     $data['country_address'] = $_POST['country_address'];
-//                    debug($data);
+//                    debug($data, 1);
 
                     $updateTable = $this->model->updateNewGenericUserSettings($data, $_SESSION['user']['id']);
+//                    debug($updateTable, 1);
                     if ($updateTable !== true && str_contains($updateTable, 'UniqueUsername')) {
                         $profileGeneral['errorUpdate'] = "UniqueUsername";
+
+                        $profile = $this->model->getGeneralSettingsByUser($_SESSION['user']['username']);
+                        $profileGeneral = array_merge($profile, $profileGeneral);
+                        $profileGeneral['success'] = true;
                     }
                 }
             }
 
             $profile = $this->model->getGeneralSettingsByUser($_SESSION['user']['username']);
-//            debug($profile, 1);
             $profileGeneral = array_merge($profile, $profileGeneral);
             $profileGeneral['success'] = true;
-        }
 
-        echo json_encode(array('profile_general' => $profileGeneral), JSON_UNESCAPED_SLASHES);
+            echo json_encode(array('profile_general' => $profileGeneral), JSON_UNESCAPED_SLASHES);
+        } else {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            die;
+        }
     }
 
     public function securityAction()
@@ -445,8 +453,7 @@ class UserController extends AppController
             $profile = $this->model->getSecuritySettingsByUser($_SESSION['user']['username']);
             $profileSecurity = array_merge($profile, $profileSecurity);
             $profileSecurity['success'] = $flag;
-        }
-        else {
+        } else {
             $profileSecurity['success'] = false;
         }
 

@@ -26,11 +26,14 @@ const Login = () => {
       .then(({ data }) => {
         dispatch(setUserAuth(data.auth));
         dispatch(setNeedReloadPage(true));
-        navigate(-1);
+        if (data.auth) {
+            navigate(-1);
+        }
+
         data.auth === true ? console.log('Успешный вход!') : console.log('Вход не был произведен');
       })
-      .catch((res) => {
-        console.log(res);
+      .catch(({response}) => {
+        console.log(response);
       });
   };
 

@@ -19,7 +19,7 @@ const CourseCreatePage = ({type = 'create'}) => {
 
     const dispatch = useDispatch();
 
-    const {slug, username} = useParams();
+    const {slug, username, lang} = useParams();
 
     const course = useSelector(state => state.course.currentCourseEdit);
 
@@ -72,7 +72,7 @@ const CourseCreatePage = ({type = 'create'}) => {
         }
 
         axiosClient
-            .get(`@${username}/creation/course/category-lang-prog`)
+            .get(`${lang === undefined ? "/" : '/' + lang + '/'}@${username}/creation/course/category-lang-prog`)
             .then(({data}) => {
                 console.log(data);
                 setAllCategoryProg(data.category_lang);
