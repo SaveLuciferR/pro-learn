@@ -38,6 +38,10 @@ class CourseController extends AppController
     public function viewAction()
     {
         $course = $this->model->getCourseBySlug(App::$app->getProperty('language')['id'], $this->route['slug']);
+        if (!$course) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
         $course['stage_course'] = [];
         if (isset($_SESSION['user'])) {
             $stageCourse = $this->model->getStageCourseBySlug(App::$app->getProperty('language')['id'], $course['id']);

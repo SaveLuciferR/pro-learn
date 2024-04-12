@@ -63,7 +63,7 @@ const ProjectAddPage = () => {
 
     const axiosAddProject = async () => {
         await axiosClient.post(
-            `/project/add`,
+            `/@${username}/project-add`,
             {
                 uploadInfoFiles,
                 mainFolderProject,
@@ -86,7 +86,7 @@ const ProjectAddPage = () => {
 
     const axiosNewFiles = async () => {
         console.log(newFilesInfo);
-        await axiosClient.post("/project/add/new-files", {
+        await axiosClient.post(`/@${username}/project-add/new-files`, {
             newFilesInfo,
             mainFolderProject,
             username
@@ -121,7 +121,7 @@ const ProjectAddPage = () => {
 
     useEffect(() => {
         if (newTableAddProject) {
-            axiosClient.post("/project/add/get-project-in-cache" + "/", {
+            axiosClient.post(`/@${username}/project-add/get-project-in-cache` + "/", {
                 username,
                 mainFolderProject,
                 secondaryPathProject: secondaryPathProject === undefined ? '' : secondaryPathProject
@@ -132,6 +132,9 @@ const ProjectAddPage = () => {
                     setIsMainFolder(secondaryPathProject === undefined);
                     dispatch(setNewTableAddProject(false));
                     // console.log(data.filesInfo);
+                })
+                .catch((err) => {
+                    console.log(err);
                 });
         }
     }, [secondaryPathProject, username, newTableAddProject]);
@@ -181,7 +184,7 @@ const ProjectAddPage = () => {
             return;
         }
 
-        axiosClient.post('/project/save', {mainFolderProject, username, nameProject, descProject, privacyProject})
+        axiosClient.post(`/@${username}/project-save`, {mainFolderProject, username, nameProject, descProject, privacyProject})
             .then(({data}) => {
                 // console.log(data);
                 navigate('/' + username + '/project/' + data.slug);

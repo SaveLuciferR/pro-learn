@@ -60,7 +60,7 @@ class Compiler extends AppModel
 
 //        debug($path, 1);
 
-        if (!file_exists($path)) throw new \Exception("Файл или директория не была найдена", 404);
+        if (!file_exists($path)) return false;
 
         $files = $this->getInfoDirectory($path);
 

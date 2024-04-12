@@ -2261,3 +2261,33 @@
 =================
 [2024-04-11 14:13:07] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
 =================
+[2024-04-11 14:38:16] Текст ошибки: Undefined array key "date_of_registration" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 76
+=================
+[2024-04-11 14:40:28] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-11 14:42:42] Текст ошибки: Проект не найден | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 231
+=================
+[2024-04-11 15:02:31] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-11 15:02:31] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-11 15:42:13] Текст ошибки: filemtime(): stat failed for //3815389D-697E-45D2-8185-C9CA53509BB6 | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 333
+=================
+[2024-04-11 15:57:35] Текст ошибки: filemtime(): stat failed for //3815389D-697E-45D2-8185-C9CA53509BB6 | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 333
+=================
+[2024-04-11 15:58:06] Текст ошибки: filemtime(): stat failed for //3815389D-697E-45D2-8185-C9CA53509BB6 | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 333
+=================
+[2024-04-11 16:01:15] Текст ошибки: filemtime(): stat failed for //3815389D-697E-45D2-8185-C9CA53509BB6 | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 333
+=================
+[2024-04-11 16:01:42] Текст ошибки: filemtime(): stat failed for //3815389D-697E-45D2-8185-C9CA53509BB6 | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 333
+=================
+[2024-04-11 17:24:12] Текст ошибки: Не найден вид C:\OSPanel\domains\pro-learn\backend/app/views/Language/userLogin.php | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\View.php | Строка: 35
+=================
+[2024-04-11 17:28:20] Текст ошибки: Метод app\controllers\LanguageController::userLoginAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-11 17:28:34] Текст ошибки: Метод app\controllers\UserController::logiAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-11 17:49:42] Текст ошибки: Метод app\controllers\CompilerController::saytDlyaTransportnoyKompaniiAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-11 17:51:06] Текст ошибки: Not Found language 'compiler' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================

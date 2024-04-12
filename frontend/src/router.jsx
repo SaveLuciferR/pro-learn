@@ -57,14 +57,6 @@ const router = createBrowserRouter([
         element: <BlogPage />,
       },
       {
-        path: 'profile/:username/project/:project',
-        element: <ProjectPage isActiveSidebar={false} />,
-      },
-      {
-        path: 'profile/:username/project/add',
-        element: <ProjectAddPage isActiveSidebar={false} />,
-      },
-      {
         path: 'compiler/:username/:project',
         element: <CompilerPage isActiveSidebar={true} isCompiler={true} />,
       },
@@ -113,6 +105,18 @@ const router = createBrowserRouter([
       {
         path: 'profile/:username/course-edit/:slug',
         element: <CourseCreatePage type={'edit'}/>
+      },
+      {
+        path: 'profile/:username/project/:project',
+        element: <ProjectPage isActiveSidebar={false} />,
+      },
+      {
+        path: 'profile/:username/project-creation',
+        element: <ProjectAddPage isActiveSidebar={false} />,
+      },
+      {
+        path: 'profile/:username/project-edit/:slug',
+        element: <ProjectAddPage isActiveSidebar={false} type={'edit'} />,
       },
       {
         path: 'profile/:username/settings/general',

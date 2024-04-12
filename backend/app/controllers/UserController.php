@@ -5,7 +5,9 @@ namespace app\controllers;
 use app\models\User;
 use core\App;
 use core\Cache;
+use core\Language;
 use foroco\BrowserDetection;
+use http\Header;
 
 /** @property User $model */
 
@@ -20,8 +22,7 @@ class UserController extends AppController
     public function loginAction()
     {
         $userParam = json_decode(file_get_contents("php://input"), true);
-
-        if ($userParam) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $userParam) {
             if ($this->model->login($userParam)) {
                 $_SESSION['user']['success'] = true;
 
@@ -45,12 +46,17 @@ class UserController extends AppController
 
                 $_SESSION['user']['sessionID'] = $this->model->saveSession($userDevice, $_SESSION['user']['username']);
             } else {
-                header($_SERVER['SERVER_PROTOCOL'] . ' 401 Incorrect data', true, 401);
+                header('HTTP/1.0 401 Unauthorized');
                 die;
             }
 
 
             echo json_encode(array('auth' => $this->model->checkAuth()));
+        }
+        else {
+            $viewWords = Language::$langView;
+
+            echo json_encode(array('viewWords' => $viewWords), JSON_UNESCAPED_SLASHES);
         }
     }
 
@@ -73,6 +79,10 @@ class UserController extends AppController
     public function profileAction()
     {
         $profileInfo = $this->model->getUserInfo($this->route['username']);
+        if (!$profileInfo) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            die;
+        }
         $profileInfo['date_of_registration'] = date('d.m.Y', strtotime($profileInfo['date_of_registration']));
         $profileInfo['projects'] = $this->model->getUserProjects($this->route['username']);
 
@@ -104,7 +114,7 @@ class UserController extends AppController
                 return;
             }
 
-            if (!$profileInfo['look_current_course_private']) {
+            if ($profileInfo['look_current_course_private']) {
                 unset($profileInfo['completeCourse']);
                 unset($profileInfo['currentCourse']);
             }
@@ -126,9 +136,14 @@ class UserController extends AppController
         echo json_encode(array('profileInfo' => $profileInfo), JSON_UNESCAPED_SLASHES);
     }
 
-
     public function projectListAction()
     {
+        $user = $this->model->getUserInfo($this->route['username']);
+        if (!$user) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            die;
+        }
+
         $projects = $this->model->getUserProjects($this->route['username']);
         if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
             foreach ($projects as $k => $v) {
@@ -137,11 +152,16 @@ class UserController extends AppController
         }
 
         echo json_encode(array('projects' => $projects), JSON_UNESCAPED_SLASHES);
-
     }
 
     public function courseListAction()
     {
+        $user = $this->model->getUserInfo($this->route['username']);
+        if (!$user) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            die;
+        }
+
         $courses = $this->model->getUserCourses($this->route['username'], App::$app->getProperty('language')['id']);
         foreach ($courses as $k => $v) {
             $courses[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
@@ -154,6 +174,12 @@ class UserController extends AppController
 
     public function courseFromUserAction()
     {
+        $user = $this->model->getUserInfo($this->route['username']);
+        if (!$user) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            die;
+        }
+
         $courses = $this->model->getUserCoursesFromUser($this->route['username'], App::$app->getProperty('language')['id']);
         foreach ($courses as $k => $v) {
             if ($v['date_of_publication']) {
@@ -168,6 +194,12 @@ class UserController extends AppController
 
     public function taskFromUserAction()
     {
+        $user = $this->model->getUserInfo($this->route['username']);
+        if (!$user) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            die;
+        }
+
         $tasks = $this->model->getUserTasksFromUser($this->route['username'], App::$app->getProperty('language')['id']);
         foreach ($tasks as $k => $v) {
             $tasks[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
@@ -180,6 +212,12 @@ class UserController extends AppController
 
     public function taskListAction()
     {
+        $user = $this->model->getUserInfo($this->route['username']);
+        if (!$user) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            die;
+        }
+
         $tasks = $this->model->getUserTasks($this->route['username'], App::$app->getProperty('language')['id']);
         foreach ($tasks as $k => $v) {
             $tasks[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
@@ -195,60 +233,59 @@ class UserController extends AppController
     {
         $path = "";
         $project = $this->model->getProjectInfoBySlug($this->route['slug'], $this->route['username']);
-        if (!$project) throw new \Exception("Проект не найден", 404);
+
+        if (!$project) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            die;
+        }
 
         $project['date_of_publication'] = date('d.m.Y', strtotime($project['date_of_publication']));
 
-        if (isset($this->route['secondaryPath'])) {
-            $filesProject = $this->model->getFilesProject($project, $path, $this->route['secondaryPath']);
-        } else {
-            $filesProject = $this->model->getFilesProject($project, $path);
-            if ($filesProject === false) {
-                throw new \Exception("Проект не найден", 404);
-            }
+        $filesProject = isset($this->route['secondaryPath']) ?
+            $this->model->getFilesProject($project, $path, $this->route['secondaryPath']) :
+            $this->model->getFilesProject($project, $path);
+
+        if ($filesProject === false) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            die;
         }
 
         $projectInfo = [];
 
         $projectInfo['languagesProgProject'] = $this->model->getProjectLangsByID($project['id']);
         $projectInfo['info'] = $project;
-        // debug($projectInfo, 1);
 
 
         $readmeFile = "";
 
         if (file_exists($path . "/README.md")) {
             $readmeFile = file_get_contents($path . "/README.md");
-            // debug($readmeFile, 1);
         }
-
-        // debug($path, 1);
 
         echo json_encode(array('projectInfo' => $projectInfo, 'filesInfo' => $filesProject, 'readmeFile' => $readmeFile), JSON_UNESCAPED_SLASHES);
     }
 
     public function addProjectAction()
     {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+
         $this->deleteAllCacheProject();
 
         $cache = Cache::getInstance();
 
         $_POST = json_decode(file_get_contents("php://input"), true);
         if (!empty($_POST)) {
-            // debug($_POST, 1);
-            // debug(json_decode(file_get_contents("php://input"), true), 1);
-
             $files = $_POST['uploadInfoFiles'];
-
-            // debug($files, 1);
 
             $mainFolder = $_POST['mainFolderProject'];
             $username = $_POST['username'];
             $newProject = $_POST['newProject'];
 
-            // debug($files, 1);
-
             $keyCache = $username . '/' . $mainFolder;
+            //TODO: Сделать так, чтобы проект пользователя сохранялся лишь по его нику из роутера в кеш.
 
             $userCacheProjectFolder = PROJECT_CACHE . "/" . md5($username);
             if (!is_dir($userCacheProjectFolder)) {
@@ -274,6 +311,11 @@ class UserController extends AppController
 
     public function saveProjectAction()
     {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+
         $_POST = json_decode(file_get_contents("php://input"), true);
         if (!empty($_POST)) {
             $projectPath = Cache::getInstance()->getCache($_POST['username'] . '/' . $_POST['mainFolderProject']);
@@ -284,6 +326,11 @@ class UserController extends AppController
             $data['private'] = $_POST['privacyProject'];
 
             $slug = $this->model->saveNewProject($data, $projectPath, $_POST['username']);
+            if (!$slug) {
+                header($_SERVER['SERVER_PROTOCOL'] . ' 400 Not Found', true, 400);
+                die;
+            }
+
             Cache::getInstance()->deleteCache($_POST['username'] . '/' . $_POST['mainFolderProject']);
             // rmdir(PROJECT_CACHE . '/' . md5($_POST['username']) . '/' . md5($_POST['mainFolderProject']));
             rmdir(PROJECT_CACHE . '/' . md5($_POST['username']));
@@ -308,12 +355,21 @@ class UserController extends AppController
             $data['category'] = $_POST['currentFeedbackCategory']['id'];
             $data['message'] = $_POST['message'];
 
-            $this->model->saveFeedback($data);
+            $feedback = $this->model->saveFeedback($data);
+            if (!$feedback) {
+                header('HTTP/1.0 400 Bad Request');
+                die;
+            }
         }
     }
 
     public function addNewFilesAction()
     {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+
         $_POST = json_decode(file_get_contents("php://input"), true);
         if (!empty($_POST)) {
             $cache = Cache::getInstance();
@@ -343,6 +399,11 @@ class UserController extends AppController
 
     public function getProjectInCacheAction()
     {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+
         $_POST = json_decode(file_get_contents("php://input"), true);
         if (!empty($_POST)) {
 
@@ -355,14 +416,13 @@ class UserController extends AppController
 
             $path = "";
 
-            if (isset($_POST['secondaryPathProject'])) {
-                $filesProject = $this->model->getFilesProjectInCache($keyCache, $path, $_POST['secondaryPathProject']);
-                // debug($filesProject['body'], 1);
-            } else {
-                $filesProject = $this->model->getFilesProjectInCache($keyCache, $path);
-                if ($filesProject === false) {
-                    throw new \Exception("Проект не найден", 404);
-                }
+            $filesProject = isset($_POST['secondaryPathProject']) ?
+                $this->model->getFilesProjectInCache($keyCache, $path, $_POST['secondaryPathProject']) :
+                $this->model->getFilesProjectInCache($keyCache, $path);
+
+            if (!$filesProject) {
+                header('HTTP/1.0 404 Not Found');
+                die;
             }
 
             // $readmeFile = "";
@@ -382,7 +442,7 @@ class UserController extends AppController
 
     public function generalAction()
     {
-        $fGeneral['errorUpdate'] = "";
+        $profileGeneral['errorUpdate'] = "";
         $profileGeneral['success'] = false;
         if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -401,11 +461,8 @@ class UserController extends AppController
                     $updateTable = $this->model->updateNewGenericUserSettings($data, $_SESSION['user']['id']);
 //                    debug($updateTable, 1);
                     if ($updateTable !== true && str_contains($updateTable, 'UniqueUsername')) {
-                        $profileGeneral['errorUpdate'] = "UniqueUsername";
-
-                        $profile = $this->model->getGeneralSettingsByUser($_SESSION['user']['username']);
-                        $profileGeneral = array_merge($profile, $profileGeneral);
-                        $profileGeneral['success'] = true;
+                        header('HTTP/1.0 400 UniqueUsername');
+                        die;
                     }
                 }
             }
@@ -416,7 +473,7 @@ class UserController extends AppController
 
             echo json_encode(array('profile_general' => $profileGeneral), JSON_UNESCAPED_SLASHES);
         } else {
-            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            header('HTTP/1.0 404 Not Found');
             die;
         }
     }
@@ -435,8 +492,8 @@ class UserController extends AppController
 
                         $updateTable = $this->model->updatePasswordUserSettings($data, $_SESSION['user']['id']);
                         if ($updateTable === 'InCorrectPassword') {
-                            $profileSecurity['errorUpdate'] = $updateTable;
-                            $flag = false;
+                            header('HTTP/1.0 400 InCorrectPassword');
+                            die;
                         }
                     } else {
                         $data['mail'] = $_POST['mail'];
@@ -444,8 +501,8 @@ class UserController extends AppController
                         $updateTable = $this->model->updateSecurityUserSettings($data, $_SESSION['user']['id']);
 
                         if ($updateTable !== true && str_contains($updateTable, 'UniqueMail')) {
-                            $profileSecurity['errorUpdate'] = "UniqueMail";
-                            $flag = false;
+                            header('HTTP/1.0 400 UniqueMail');
+                            die;
                         }
                     }
                 }
@@ -454,7 +511,8 @@ class UserController extends AppController
             $profileSecurity = array_merge($profile, $profileSecurity);
             $profileSecurity['success'] = $flag;
         } else {
-            $profileSecurity['success'] = false;
+            header('HTTP/1.0 404 Not Found');
+            die;
         }
 
         echo json_encode(array('profile_security' => $profileSecurity), JSON_UNESCAPED_SLASHES);
@@ -474,9 +532,12 @@ class UserController extends AppController
 
             $profileSessions = $this->model->getSessions($_SESSION['user']['username']);
             $profileSessions['success'] = true;
-//            debug($profileSessions, 1);
+
+            echo json_encode(array('profile_sessions' => $profileSessions), JSON_UNESCAPED_SLASHES);
+        } else {
+            header('HTTP/1.0 404 Not Found');
+            die;
         }
-        echo json_encode(array('profile_sessions' => $profileSessions), JSON_UNESCAPED_SLASHES);
     }
 
     public function createdByUserAction()
@@ -500,9 +561,12 @@ class UserController extends AppController
 
             $profileCreated['success'] = true;
             $profileCreated['created'] = $created;
-        }
 
-        echo json_encode(array('profile_created' => $profileCreated), JSON_UNESCAPED_SLASHES);
+            echo json_encode(array('profile_created' => $profileCreated), JSON_UNESCAPED_SLASHES);
+        } else {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
     }
 
     public function privacyAction()
@@ -524,6 +588,9 @@ class UserController extends AppController
             $privacy = $this->model->getUserPrivacy($_SESSION['user']['username']);
             $profilePrivacy['success'] = true;
             $profilePrivacy['privacy'] = $privacy;
+        } else {
+            header('HTTP/1.0 404 Not Found');
+            die;
         }
 
         echo json_encode(array('profile_privacy' => $profilePrivacy), JSON_UNESCAPED_SLASHES);
@@ -555,9 +622,13 @@ class UserController extends AppController
                 $result['slug'] = '';
                 $result['success'] = $this->model->saveCourse($_SESSION['user']['id'], $result['slug']);
             }
-        }
 
-        echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
+            echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
+        }
+        else {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
     }
 
     public function editCourseAction()
@@ -566,15 +637,23 @@ class UserController extends AppController
         $result['success'] = false;
         if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
             $result['course'] = $this->model->getCourseForEdit($_SESSION['user']['username'], $this->route['slug']);
-            $result['success'] = (bool)$result['course'];
-        }
+            if (!$result['course']) {
+                header('HTTP/1.0 404 Not Found');
+                die;
+            }
 
-        echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
+            $result['success'] = (bool)$result['course'];
+
+            echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
+        }
+        else {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
     }
 
     public function saveIconAction()
     {
-//        debug($_FILES, 1);
         if (isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'] && isset($_FILES['icon']) &&
             file_exists($_FILES['icon']['tmp_name'][0]) && is_uploaded_file($_FILES['icon']['tmp_name'][0])) {
             $fileExt = explode("/", $_FILES['icon']['type'][0])[1];
@@ -600,6 +679,10 @@ class UserController extends AppController
             $pathClient = UPLOADS . '/course/creation/' . date("Y", time()) . '/' . date('m', time()) . '/' . $fileName;
 
             echo json_encode(array('icon' => $pathClient), JSON_UNESCAPED_SLASHES);
+        }
+        else {
+            header('HTTP/1.0 404 Not Found');
+            die;
         }
     }
 
