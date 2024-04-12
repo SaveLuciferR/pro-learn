@@ -5,6 +5,7 @@ import CompleteCourseMain from './CompleteCourseMain';
 import CurrentCourseMain from './CurrentCourseMain';
 import ProfileInfo from './ProfileInfo';
 import ProfileProjects from './ProfileProjects';
+import LoadingElement from '../../LoadingElement';
 
 const ProfileMainPage = () => {
   const { lang, username } = useParams();
@@ -31,7 +32,7 @@ const ProfileMainPage = () => {
   return (
     <>
       {Object.keys(userData).length === 0 ? (
-        <div>Loading..."</div>
+        <LoadingElement />
       ) : (
         <div className="profile-section-main-cards">
           <ProfileInfo data={userData} />

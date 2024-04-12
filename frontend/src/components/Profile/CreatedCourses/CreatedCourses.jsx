@@ -24,7 +24,7 @@ const ProfileCreatedCourses = () => {
           </svg>
           <Link to={`../../profile/${username}`}>Профиль</Link>
         </div>
-        <h1>Созданные курсы</h1>
+        <h1>_Созданные курсы</h1>
       </div>
       <div className="profile-section-main-cards">
         <ProfileCreateCourseButton type="course" />

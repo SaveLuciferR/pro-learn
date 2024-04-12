@@ -14,7 +14,11 @@ const CompleteCourseMain = ({ data }) => {
   return (
     <div className="currentcourse">
       <p className="currentcourse-title">Пройденные курсы</p>
-      <SliderMain data={completeCourse} sliderType="profileCompleteCourse" countSlide={1} />
+      {completeCourse.length === 0 ? (
+        <div className="profile-none">Нет завершенных курсов ):</div>
+      ) : (
+        <SliderMain data={completeCourse} sliderType="profileCompleteCourse" countSlide={1} />
+      )}
     </div>
   );
 };

@@ -1,6 +1,9 @@
 import img from '../../../header_bg.png';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ProfileInfo = ({ data }) => {
+  const navigate = useNavigate();
+  const { lang, username } = useParams();
   console.log(data);
   return (
     <div className="info-about">
@@ -23,6 +26,7 @@ const ProfileInfo = ({ data }) => {
           {data.role === 'user' ? 'Пользователь' : 'Администратор'}
         </p>
         <svg
+          onClick={() => navigate(`../profile/${username}/settings/general`)}
           className="info-about-name-edit"
           width="16"
           height="16"

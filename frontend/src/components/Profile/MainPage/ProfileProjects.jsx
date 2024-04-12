@@ -32,7 +32,11 @@ const ProfileProjects = ({ data }) => {
           </svg>
         </Link>
       </div>
-      <SliderMain data={projects} sliderType="profileProjects" countSlide={1} />
+      {projects.length === 0 ? (
+        <div className="profile-none">Нет проектов ):</div>
+      ) : (
+        <SliderMain data={projects} sliderType="profileProjects" countSlide={1} />
+      )}
     </div>
   );
 };

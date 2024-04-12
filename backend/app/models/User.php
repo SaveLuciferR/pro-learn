@@ -448,7 +448,7 @@ class User extends AppModel
 
     public function getCourseTagByID($id)
     {
-        return R::getAssoc("SELECT ct.title 
+        return R::getAll("SELECT ct.title 
                                 FROM coursetag ct JOIN course_coursetag cct ON ct.id = cct.coursetag_id 
                                 WHERE cct.course_id = ?", [$id]);
     }
