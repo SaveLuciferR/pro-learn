@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  showWindow: true,
+  showWindow: false,
   titleText: '',
   contentText: '',
   iconType: '',
@@ -15,9 +15,6 @@ export const modalElement = createSlice({
   name: 'modalElement',
   initialState: initialState,
   reducers: {
-    setShowWindow(state, action) {
-      state.showWindow = action.payload;
-    },
     setTitleText(state, action) {
       state.titleText = action.payload;
     },
@@ -38,6 +35,17 @@ export const modalElement = createSlice({
     },
     setButtonAnswer(state, action) {
       state.buttonAnswer = action.payload;
+    },
+    setShowWindow(state, action) {
+      state.showWindow = action.payload;
+      setButtonAnswer(false);
+      setShowIcon(false);
+      setShowContent(true);
+      setShowButtons(true);
+      setIconType('');
+      setContentText('');
+      setTitleText('');
+      // я не разобралась как это оптимизировать, положите тапок, пожалуйста...
     },
   },
 });

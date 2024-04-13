@@ -545,6 +545,49 @@ label {
 
         &-content {
             margin-top: 20px;
+
+            &-data {
+                margin-top: 24px;
+                padding: 12px;
+                width: 551px;
+                height: 265px;
+                overflow-y: auto;
+                background-color: #0d1117;
+                border-radius: 12px;
+
+                & ul {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 12px;
+
+                    & li {
+                        display: flex;
+                        justify-content: space-between;
+
+                        & p {
+                            width: 336px;
+                            overflow: hidden;
+                        }
+
+                        & button {
+                            border-bottom: 1px solid rgba($color: #ffffff, $alpha: 0.3);
+
+                            :hover {
+                                border-bottom: 1px solid #ffffff;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &-status {
+                margin-top: 20px;
+                display: flex;
+                column-gap: 16px;
+                justify-content: center;
+                align-items: center;
+                font-size: 24px;
+            }
         }
 
         &-buttons {
