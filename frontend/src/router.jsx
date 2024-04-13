@@ -143,7 +143,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'courses',
-        element: <CoursesPage />,
+        element: <CoursesPage isActiveSidebar={true} isCompiler={false} />,
       },
       {
         path: 'courses/name-course',

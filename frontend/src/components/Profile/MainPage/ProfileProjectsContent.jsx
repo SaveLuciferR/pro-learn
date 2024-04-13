@@ -1,9 +1,25 @@
+import { useNavigate, useParams } from 'react-router-dom';
+
 const ProfileProjectsContent = ({ data }) => {
+  const { lang, username } = useParams();
+  const navigate = useNavigate();
+
   return (
     <div className="profile-projects-content">
       <div className="profile-projects-info">
         <div className="profile-projects-info-text">
-          <p className="profile-projects-info-text-name">_{data.title}</p>
+          <button
+            onClick={() =>
+              navigate(
+                `${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/project/${
+                  data.slug
+                }`,
+              )
+            }
+            className="profile-projects-info-text-name"
+          >
+            _{data.title}
+          </button>
           <p className="profile-projects-info-text-access">
             {data.private === '0' ? 'Публичный' : 'Приватный'}
           </p>

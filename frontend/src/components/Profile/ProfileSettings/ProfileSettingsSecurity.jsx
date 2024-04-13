@@ -1,11 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { setShowWindow, setTitleText, setContentText } from '../../../redux/Modal/slice';
+import { useSelector, useDispatch } from 'react-redux';
 
 const ProfileSettingsSecurity = () => {
+  const dispatch = useDispatch();
+
+  const buttonAnswer = useSelector((state) => state.modalElement.buttonAnswer);
+  const currentUser = useSelector((state) => state.mainLayout.user);
+
   let temp = '';
   const { lang, username } = useParams();
   const [email, setEmail] = useState('');
   const [secondEmail, setSecondEmail] = useState('');
+  // const [password, setPassword] = useState('');
   const [isActiveChangePswd, setIsActiveChangePswd] = useState(false);
 
   const swapEmails = () => {
@@ -18,6 +26,23 @@ const ProfileSettingsSecurity = () => {
     isActiveChangePswd ? console.log('123') : setIsActiveChangePswd(true);
     console.log('click');
   };
+
+  const modalDelete = () => {
+    dispatch(setShowWindow(true));
+    dispatch(setTitleText('Вы действительно хотите удалить аккаунт?'));
+    dispatch(
+      setContentText(
+        'Если Вы удалите свой аккаунт, то безвозвратно потеряете свои курсы, задачи, прогресс, код, проекты и достижения.',
+      ),
+    );
+  };
+
+  useEffect(() => {
+    setEmail(currentUser.mail);
+    setSecondEmail(currentUser.second_mail);
+    // setPassword(currentUser.password);
+  }, []);
+
   /* <div className="profile-settings-security-delete">
           <svg
             width="21"
@@ -56,7 +81,7 @@ const ProfileSettingsSecurity = () => {
           <Link to={`../../profile/${username}`}>Профиль</Link>
         </div>
         <h1>_Настройки безопасности</h1>
-        <div className="profile-settings-security-delete">
+        <button className="profile-settings-security-delete" onClick={() => modalDelete()}>
           <svg
             width="21"
             height="21"
@@ -72,7 +97,7 @@ const ProfileSettingsSecurity = () => {
             />
           </svg>
           <p>Удалить аккаунт</p>
-        </div>
+        </button>
       </div>
       <div className="profile-settings-security">
         <div className="profile-settings-security-main">

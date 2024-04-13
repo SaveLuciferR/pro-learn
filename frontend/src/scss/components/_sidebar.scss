@@ -1,39 +1,38 @@
-.sidebar{
+.sidebar {
   position: fixed;
-  margin-top: 100px;
+  margin-top: 109px;
 
-  background-color: #161B22;
+  background-color: #161b22;
   width: 64px;
   height: 100%;
-
 
   top: 0;
   left: 0;
   z-index: 2;
 
-  &_btngroup{
+  &_btngroup {
     padding: 16px;
-    
+
     display: flex;
     flex-wrap: wrap;
     row-gap: 20px;
   }
 
-  &_btn{
+  &_btn {
     height: 32px;
     width: 32px;
     border-radius: 4px;
     background-color: rgba(166, 166, 166, 0.3);
-  
+
     transition: 0.2s;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
       background-color: rgba(166, 166, 166, 0.2);
       color: rgba(255, 255, 255, 0.6);
     }
 
-    &__item{
+    &__item {
       padding: 4px 4px;
       border-radius: 4px;
     }

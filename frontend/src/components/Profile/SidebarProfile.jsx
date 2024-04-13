@@ -2,12 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import img from '../../header_bg.png';
 import { setNeedReloadPage, setSidebarProfileActive } from '../../redux/MainLayout/slice';
 import axiosClient from '../../axiosClient';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const SidebarProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { lang } = useParams();
 
   const currentUser = useSelector((state) => state.mainLayout.user);
   const sidebarProfileActive = useSelector((state) => state.mainLayout.sidebarProfileActive);
@@ -78,7 +80,16 @@ const SidebarProfile = () => {
                 </svg>
               </div>
               <div className="sidebar_profile-header_username">{currentUser.username}</div>
-              <div className="sidebar_profile-header_setting">
+              <div
+                className="sidebar_profile-header_setting"
+                onClick={() =>
+                  navigate(
+                    `${lang === undefined ? '/' : '/' + lang + '/'}profile/${
+                      currentUser.username
+                    }/settings/general`,
+                  )
+                }
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -106,7 +117,10 @@ const SidebarProfile = () => {
                 Выйти
               </button>
 
-              <Link to={`/profile/${currentUser.username}/course-creation`} className="sidebar_profile-create">
+              <Link
+                to={`/profile/${currentUser.username}/course-creation`}
+                className="sidebar_profile-create"
+              >
                 <div className="sidebar_profile-create_item">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

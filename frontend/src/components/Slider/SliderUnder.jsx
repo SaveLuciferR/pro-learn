@@ -35,7 +35,7 @@ const SliderUnder = ({ goToSlide, changeSlide, pagesType, items, indx, countSlid
     console.log(count);
     return count;
   };
-  console.log(countSlide);
+  // console.log(countSlide);
 
   return (
     <>
