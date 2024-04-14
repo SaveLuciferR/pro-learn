@@ -21,30 +21,30 @@ const ProfileProjectsPagination = ({ itemsPerPage, data }) => {
   };
 
   return (
-    // <>
-    //   {Object.keys(data).length === 0 ? (
-    //     <LoadingElement />
-    //   ) : (
     <>
-      <ProfileProjectspaginationItems currentItems={currentItems} />
-      <ReactPaginate
-        nextLabel=">"
-        previousLabel="<"
-        nextLinkClassName="slider-arrow-text"
-        nextClassName="slider-arrow"
-        previousLinkClassName="slider-arrow-text"
-        previousClassName="slider-arrow"
-        onPageChange={handlePageClick}
-        pageCount={pageCount}
-        breakLabel="..."
-        renderOnZeroPageCount={'123'}
-        className="slider-under-element pagination"
-        pageLinkClassName="slider-digit"
-        activeLinkClassName=" active"
-      />
+      {currentItems === null || Object.keys(data).length === 0 ? (
+        <LoadingElement />
+      ) : (
+        <>
+          <ProfileProjectspaginationItems currentItems={currentItems} />
+          <ReactPaginate
+            nextLabel=">"
+            previousLabel="<"
+            nextLinkClassName="slider-arrow-text"
+            nextClassName="slider-arrow"
+            previousLinkClassName="slider-arrow-text"
+            previousClassName="slider-arrow"
+            onPageChange={handlePageClick}
+            pageCount={pageCount}
+            breakLabel="..."
+            renderOnZeroPageCount={'123'}
+            className="slider-under-element pagination"
+            pageLinkClassName="slider-digit"
+            activeLinkClassName=" active"
+          />
+        </>
+      )}
     </>
-    // )}
-    // </>
   );
 };
 

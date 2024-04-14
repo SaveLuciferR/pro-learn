@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import SliderMain from '../../Slider/SliderMain';
+import { Link } from 'react-router-dom';
 
 const CurrentCourseMain = ({ data }) => {
   const [currentCourse, setCurrentCourse] = useState([]);
@@ -10,7 +11,9 @@ const CurrentCourseMain = ({ data }) => {
 
   return (
     <div className="currentcourse">
-      <p className="currentcourse-title">Текущие курсы</p>
+      <Link to={'current-courses'} className="currentcourse-title">
+        Текущие курсы
+      </Link>
       {currentCourse.length === 0 ? (
         <div className="profile-none">Нет текущих курсов ):</div>
       ) : (

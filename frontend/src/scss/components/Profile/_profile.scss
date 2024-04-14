@@ -273,6 +273,13 @@
     text-align: center;
     user-select: none;
   }
+  & a {
+    font-size: 28px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    user-select: none;
+  }
 
   &-course {
     display: flex;
