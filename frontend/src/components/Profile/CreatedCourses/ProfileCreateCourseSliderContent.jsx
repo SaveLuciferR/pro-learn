@@ -1,14 +1,40 @@
+import { useNavigate, useParams } from 'react-router-dom';
 import img from '../../../image 7.png';
 
 const ProfileCreateCourseSliderContent = ({ data, index }) => {
+  const navigate = useNavigate();
+  const { lang, username } = useParams();
+  const countDifficulty = [1, 2, 3, 4, 5];
+
+  const listDifficulty = countDifficulty.map((i) => {
+    return (
+      <li
+        className={`profile-difficulty-range-item${i <= data[index].difficulty ? ' active' : ''}`}
+      ></li>
+    );
+  });
+
+  console.log(data[index].tags);
   return (
     <div className="created-course-content">
       <div className="created-course-header">
         <ul className="created-course-header-tags">
-          <li className="created-course-header-tag">#Python</li>
-          <li className="created-course-header-tag">#Начинающим</li>
+          {data[index].tags.length === 0
+            ? ''
+            : Object.keys(data[index].tags).map((item) => {
+                return (
+                  <li className="created-course-header-tag">#{data[index].tags[item].title}</li>
+                );
+              })}
         </ul>
         <svg
+          onClick={() => {
+            navigate(
+              `${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/course-edit/${
+                data[index].slug
+              }`,
+            );
+          }}
           className="info-about-name-edit"
           width="16"
           height="16"
@@ -30,24 +56,15 @@ const ProfileCreateCourseSliderContent = ({ data, index }) => {
         </svg>
       </div>
       <div className="created-course-info">
-        <p className="created-course-info-title">Frontend-разработчик</p>
+        <p className="created-course-info-title">{data[index].title}</p>
         <div className="created-course-info-desc">
-          <p className="created-course-info-desc-text">
-            // Python просто выучить, даже если вы никогда не программировали. В этом курсе Вы
-            разработаете 3 проекта для портфолио. Много полезной информации
-          </p>
+          <p className="created-course-info-desc-text">// {data[index].excerpt}</p>
           <img src={img} className="created-course-info-desc-img"></img>
         </div>
       </div>
       <div className="profile-difficulty">
         <p>_Сложность: </p>
-        <ul className="profile-difficulty-range">
-          <li className="profile-difficulty-range-item active"></li>
-          <li className="profile-difficulty-range-item active"></li>
-          <li className="profile-difficulty-range-item active"></li>
-          <li className="profile-difficulty-range-item"></li>
-          <li className="profile-difficulty-range-item"></li>
-        </ul>
+        <ul className="profile-difficulty-range">{listDifficulty}</ul>
       </div>
       <div className="created-course-cards">
         <div className="created-course-card">
@@ -74,7 +91,7 @@ const ProfileCreateCourseSliderContent = ({ data, index }) => {
               fill="white"
             />
           </svg>
-          <p className="created-course-card-text">Количество блоков: 3</p>
+          <p className="created-course-card-text">Количество блоков: {data[index].amount_stage}</p>
         </div>
         <div className="created-course-card">
           <svg
@@ -104,7 +121,7 @@ const ProfileCreateCourseSliderContent = ({ data, index }) => {
               fill="white"
             />
           </svg>
-          <p className="created-course-card-text">Количество уроков: 8</p>
+          <p className="created-course-card-text">Количество уроков: {data[index].amount_step}</p>
         </div>
         <div className="created-course-card">
           <svg
@@ -134,7 +151,9 @@ const ProfileCreateCourseSliderContent = ({ data, index }) => {
               fill="white"
             />
           </svg>
-          <p className="created-course-card-text">3 финальных проекта</p>
+          <p className="created-course-card-text">
+            Финальных проектов: {data[index].final_projects}
+          </p>
         </div>
       </div>
       <div className="created-course-stat">
@@ -155,7 +174,7 @@ const ProfileCreateCourseSliderContent = ({ data, index }) => {
                 strokeLinejoin="round"
               />
             </svg>
-            <p className="currentcourse-course-info-rate-like-text">12</p>
+            <p className="currentcourse-course-info-rate-like-text">{data[index].like}</p>
           </div>
           <div className="created-course-stat-rate-dislike">
             <svg
@@ -173,7 +192,7 @@ const ProfileCreateCourseSliderContent = ({ data, index }) => {
                 strokeLinejoin="round"
               />
             </svg>
-            <p className="currentcourse-course-info-rate-dislike-text">2</p>
+            <p className="currentcourse-course-info-rate-dislike-text">{data[index].dislike}</p>
           </div>
         </div>
         <div className="created-course-stat-view">
@@ -193,7 +212,7 @@ const ProfileCreateCourseSliderContent = ({ data, index }) => {
               stroke="white"
             />
           </svg>
-          <p>Просмотры: 1k</p>
+          <p>Просмотры: {data[index].views}</p>
         </div>
         <div className="created-course-stat-ended">
           <svg
@@ -214,11 +233,15 @@ const ProfileCreateCourseSliderContent = ({ data, index }) => {
               strokeLinecap="round"
             />
           </svg>
-          <p>Окончили: 64</p>
+          <p>Окончили: {data[index].finish_users}</p>
         </div>
       </div>
       <div className="created-course-bottom">
-        <p className="created-course-bottom-date">28.06.2023</p>
+        <p className="created-course-bottom-date">
+          {data[index].date_of_publication === null
+            ? 'Дата создания не объявлена'
+            : data[index].date_of_publication}
+        </p>
         <p className="created-course-bottom-lang">// Язык: Python</p>
       </div>
     </div>

@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { Outlet, useOutletContext, useNavigate, useParams } from 'react-router-dom';
 import ProfileSidebarMain from '../components/Profile/ProfileSidebarMain';
 import img from '../header_bg.png';
+import axiosClient from '../axiosClient';
 
 const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
   const navigate = useNavigate();
@@ -11,7 +13,16 @@ const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
   activeCompiler[0](isCompiler);
 
   const currentUser = useSelector((state) => state.mainLayout.user);
-  const { username } = useParams();
+  // const [data, setData] = useState([]);
+  const { lang, username } = useParams();
+
+  // useEffect(() => {
+  //   axiosClient
+  //     .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
+  //     .then(({ data }) => {
+  //       setData(data);
+  //     });
+  // }, [lang, username]);
 
   return (
     <div className="profile-section">

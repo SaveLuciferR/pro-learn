@@ -1,22 +1,24 @@
 import axiosClient from '../../axiosClient';
-import {useEffect, useRef, useState} from 'react';
-import {Link, useNavigate, useParams} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {setNeedReloadPage, setUserAuth} from '../../redux/MainLayout/slice';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setNeedReloadPage, setUserAuth } from '../../redux/MainLayout/slice';
 
 const Login = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const {lang} = useParams();
+  const {lang} = useParams();
 
-    const userAuth = useSelector((state) => state.mainLayout.userAuth);
+  const userAuth = useSelector((state) => state.mainLayout.userAuth);
 
-    if (userAuth) navigate('/');
+  if (userAuth) navigate('/');
 
     const [viewWords, setViewWords] = useState({});
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');
+    const [isAuth, setIsAuth] = useState('0');
+
 
     useEffect(() => {
         console.log(`${lang === undefined ? "/" : '/' + lang + '/'}user/login`);
@@ -30,24 +32,28 @@ const Login = () => {
     const handleOnClickLogin = () => {
         if (email <= 0 || password <= 0) {
             console.log('Введите значение');
+            setIsAuth('1');
             return;
         }
 
-        axiosClient
-            .post(`/user/login`, {email, password})
-            .then(({data}) => {
-                dispatch(setUserAuth(data.auth));
-                dispatch(setNeedReloadPage(true));
-                if (data.auth) {
-                    navigate(-1);
-                }
+        setIsAuth('0');
 
-                data.auth === true ? console.log('Успешный вход!') : console.log('Вход не был произведен');
-            })
-            .catch(({response}) => {
-                console.log(response);
-            });
-    };
+    axiosClient
+      .post(`/user/login`, { email, password })
+      .then(({ data }) => {
+        dispatch(setUserAuth(data.auth));
+        dispatch(setNeedReloadPage(true));
+        if (data.auth) {
+            navigate(-1);
+        }
+
+        data.auth === true ? console.log('Успешный вход!') : console.log('Вход не был произведен');
+      })
+      .catch(({response}) => {
+        console.log(response);
+          response.status === 401 ? setIsAuth('2') : console.log(response);
+      });
+  };
 
     return (
         <>
@@ -80,6 +86,13 @@ const Login = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                             <span>{viewWords.tpl_user_login_password}</span>
+                            {isAuth === '1' ? (
+                                <p className="form_input-message">Заполните поля</p>
+                            ) : isAuth === '2' ? (
+                                <p className="form_input-message">Неправильно введен логин и/или пароль</p>
+                            ) : (
+                                <p className="form_input-message"></p>
+                            )}
                         </div>
                     </div>
                     <Link to="" className="modal_form-link">

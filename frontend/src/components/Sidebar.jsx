@@ -1,4 +1,8 @@
-function Sidebar() {
+import { useNavigate, useParams } from 'react-router-dom';
+
+const Sidebar = () => {
+  const navigate = useNavigate();
+  const { lang } = useParams();
   return (
     <nav className="sidebar">
       <div className="sidebar__container">
@@ -8,6 +12,7 @@ function Sidebar() {
             <div className="sidebar_btn__item">
               {/* Курсы */}
               <svg
+                onClick={() => navigate(`${lang === undefined ? '/' : '/' + lang + '/'}courses`)}
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -19,24 +24,9 @@ function Sidebar() {
                   stroke="white"
                   strokeWidth="1.5"
                 />
-                <path
-                  d="M5.5 10H11.5"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M6.5 14H10.5"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M15 21L15 3"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
+                <path d="M5.5 10H11.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M6.5 14H10.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M15 21L15 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
             </div>
           </div>
@@ -72,21 +62,17 @@ function Sidebar() {
             </div>
           </div>
           <div className="sidebar_btn">
-            <div className="sidebar_btn__item">{/* Сообщество */}
+            <div className="sidebar_btn__item">
+              {/* Сообщество */}
               <svg
+                onClick={() => navigate(`${lang === undefined ? '/' : '/' + lang + '/'}blog`)}
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <circle
-                  cx="12"
-                  cy="6"
-                  r="4"
-                  stroke="white"
-                  strokeWidth="1.5"
-                />
+                <circle cx="12" cy="6" r="4" stroke="white" strokeWidth="1.5" />
                 <path
                   d="M18 9C19.6569 9 21 7.88071 21 6.5C21 5.11929 19.6569 4 18 4"
                   stroke="white"
@@ -99,14 +85,7 @@ function Sidebar() {
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
-                <ellipse
-                  cx="12"
-                  cy="17"
-                  rx="6"
-                  ry="4"
-                  stroke="white"
-                  strokeWidth="1.5"
-                />
+                <ellipse cx="12" cy="17" rx="6" ry="4" stroke="white" strokeWidth="1.5" />
                 <path
                   d="M20 19C21.7542 18.6153 23 17.6411 23 16.5C23 15.3589 21.7542 14.3847 20 14"
                   stroke="white"
@@ -126,6 +105,6 @@ function Sidebar() {
       </div>
     </nav>
   );
-}
+};
 
 export default Sidebar;

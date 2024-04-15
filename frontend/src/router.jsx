@@ -28,7 +28,9 @@ import ProfileSettingsSessions from './components/Profile/ProfileSettings/Profil
 import ProfileSettingsPrivacy from './components/Profile/ProfileSettings/ProfileSettingsPrivacy';
 import AdminLayout from './layouts/AdminLayout';
 import CourseCreatePage from './pages/CourseCreatePage';
+import NotFoundPage from './components/NotFoundPage';
 import TaskCreatePage from "./pages/TaskCreatePage";
+
 
 const router = createBrowserRouter([
   {
@@ -56,10 +58,6 @@ const router = createBrowserRouter([
       {
         path: 'blog',
         element: <BlogPage />,
-      },
-      {
-        path: 'compiler/:username/:project',
-        element: <CompilerPage isActiveSidebar={true} isCompiler={true} />,
       },
       {
         path: 'profile/:username',
@@ -176,6 +174,10 @@ const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
 ]);
 

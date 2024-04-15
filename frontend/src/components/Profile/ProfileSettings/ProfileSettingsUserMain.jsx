@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import img from '../../../avatar.png';
 import { useEffect, useState } from 'react';
-import axiosClient from "../../../axiosClient";
+import axiosClient from '../../../axiosClient';
 
 const ProfileSettingsUserMain = ({ data }) => {
   const [nickname, setNickname] = useState('');
@@ -20,22 +20,23 @@ const ProfileSettingsUserMain = ({ data }) => {
   }, []);
 
   const onClickSaveMainProfileSettings = () => {
-    axiosClient.post(`/@${username}/settings/general`, {
-      username: nickname,
-      avatar_img: '',
-      heading_img: '',
-      about_user: infoAbout,
-      last_name: lastName,
-      first_name: firstName,
-      country_address: country
-    })
-        .then((data) => {
-          console.log(data);
-        })
-        .catch(({response}) => {
-          console.log(response);
-        })
-  }
+    axiosClient
+      .post(`/@${username}/settings/general`, {
+        username: nickname,
+        avatar_img: '',
+        heading_img: '',
+        about_user: infoAbout,
+        last_name: lastName,
+        first_name: firstName,
+        country_address: country,
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(({ response }) => {
+        console.log(response);
+      });
+  };
 
   const { username } = useParams();
   return (
@@ -78,27 +79,27 @@ const ProfileSettingsUserMain = ({ data }) => {
         <p className="profile-settings-main-header-text">Рекомендуемый размер 1080х194</p>
       </div>
       <div className="profile-settings-main-line"></div>
-      <div className="profile-settings-main-main">
-        <div className="profile-settings-main-main-title">
-          <div className="lessons-header-back">
-            <svg
-              width="21"
-              height="21"
-              viewBox="0 0 21 21"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M13.125 4.375L7.875 10.5L13.125 16.625"
-                stroke="white"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <Link to={`/profile/${username}`}>Профиль</Link>
-          </div>
-          <p className="profile-settings-main-main-text">Настройки профиля</p>
+      <div className="created-courses-header">
+        <div className="lessons-header-back">
+          <svg
+            width="21"
+            height="21"
+            viewBox="0 0 21 21"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.125 4.375L7.875 10.5L13.125 16.625"
+              stroke="white"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <Link to={`../../profile/${username}`}>Профиль</Link>
         </div>
+        <h1>_Настройки профиля</h1>
+      </div>
+      <div className="profile-settings-main-main">
         <div className="profile-settings-main-main-avatar">
           <img src={img} alt="avatar" />
           <div className="profile-settings-main-header-load">
@@ -175,7 +176,12 @@ const ProfileSettingsUserMain = ({ data }) => {
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
-            <button onClick={() => onClickSaveMainProfileSettings() } className="btn big secondary-blue">Сохранить изменения</button>
+            <button
+              onClick={() => onClickSaveMainProfileSettings()}
+              className="btn big secondary-blue"
+            >
+              Сохранить изменения
+            </button>
           </div>
         </div>
       </div>

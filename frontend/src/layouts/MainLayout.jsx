@@ -5,15 +5,11 @@ import {Outlet, useParams} from 'react-router-dom';
 
 import axiosClient from "../axiosClient";
 import {useDispatch, useSelector} from "react-redux";
-import {
-    setUserAuth,
-    setUser,
-    setNeedReloadPage,
-    setActiveSidebar,
-    setLanguages,
-    setCurrentLanguage
-} from "../redux/MainLayout/slice";
+import {setUserAuth, setUser, setNeedReloadPage, setActiveSidebar, setLanguages,
+    setCurrentLanguage} from "../redux/MainLayout/slice";
 import SidebarProfile from "../components/Profile/SidebarProfile";
+import ModalWindow from '../components/Modal/ModalWindow';
+
 
 const MainLayout = ({isActiveSidebar, isCompiler}) => {
 
@@ -85,6 +81,7 @@ const MainLayout = ({isActiveSidebar, isCompiler}) => {
                             {sidebarProfileActive ? <SidebarProfile/> : <></>}
                         </>
                     </div>
+                    <ModalWindow />
                 </>
             }
         </>

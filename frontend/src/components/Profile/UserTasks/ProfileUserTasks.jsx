@@ -25,7 +25,7 @@ const ProfileUserTasks = () => {
           </svg>
           <Link to={`../../profile/${username}`}>Профиль</Link>
         </div>
-        <h1>Созданные задачи</h1>
+        <h1>_Созданные задачи</h1>
       </div>
       <div className="profile-tasks">
         <ProfileCreateCourseButton type="task" />
