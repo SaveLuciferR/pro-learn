@@ -8,7 +8,8 @@ const initialState = {
     activeSidebar: true,
     activeContainer: true,
     feedbackCategories: [],
-    languages: {}
+    languages: {},
+    currentLang: '',
     // userTokenSession: localStorage.getItem('userTokenSession'),
 }
 
@@ -37,7 +38,10 @@ export const mainLayout = createSlice({
             },
             setLanguages(state, action) {
               state.languages = action.payload;
-            }
+            },
+            setCurrentLanguage(state, action) {
+                state.currentLang = action.payload === undefined ? "" : action.payload;
+            },
             // setUserSession(state, action) {
             //     state.userAuth = action.payload;
             // }
@@ -52,7 +56,8 @@ export const {
     setNeedReloadPage,
     setActiveSidebar,
     setFeedbackCategory,
-    setLanguages
+    setLanguages,
+    setCurrentLanguage
 } = mainLayout.actions;
 
 export default mainLayout.reducer;

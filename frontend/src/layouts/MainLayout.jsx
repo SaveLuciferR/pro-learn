@@ -5,7 +5,14 @@ import {Outlet, useParams} from 'react-router-dom';
 
 import axiosClient from "../axiosClient";
 import {useDispatch, useSelector} from "react-redux";
-import {setUserAuth, setUser, setNeedReloadPage, setActiveSidebar, setLanguages} from "../redux/MainLayout/slice";
+import {
+    setUserAuth,
+    setUser,
+    setNeedReloadPage,
+    setActiveSidebar,
+    setLanguages,
+    setCurrentLanguage
+} from "../redux/MainLayout/slice";
 import SidebarProfile from "../components/Profile/SidebarProfile";
 
 const MainLayout = ({isActiveSidebar, isCompiler}) => {
@@ -34,6 +41,7 @@ const MainLayout = ({isActiveSidebar, isCompiler}) => {
                 setLanguage(data.language);
                 dispatch(setLanguages(data.languages));
                 setLayoutWords(data.layoutWords);
+                dispatch(setCurrentLanguage(lang));
             });
     }, [lang]);
 

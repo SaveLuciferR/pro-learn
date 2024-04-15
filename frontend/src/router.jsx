@@ -28,6 +28,7 @@ import ProfileSettingsSessions from './components/Profile/ProfileSettings/Profil
 import ProfileSettingsPrivacy from './components/Profile/ProfileSettings/ProfileSettingsPrivacy';
 import AdminLayout from './layouts/AdminLayout';
 import CourseCreatePage from './pages/CourseCreatePage';
+import TaskCreatePage from "./pages/TaskCreatePage";
 
 const router = createBrowserRouter([
   {
@@ -105,6 +106,14 @@ const router = createBrowserRouter([
       {
         path: 'profile/:username/course-edit/:slug',
         element: <CourseCreatePage type={'edit'}/>
+      },
+      {
+        path: 'profile/:username/task-creation',
+        element: <TaskCreatePage/>
+      },
+      {
+        path: 'profile/:username/task-edit/:slug',
+        element: <TaskCreatePage type={'edit'}/>
       },
       {
         path: 'profile/:username/project/:project',

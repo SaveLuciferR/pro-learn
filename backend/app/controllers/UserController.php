@@ -52,11 +52,13 @@ class UserController extends AppController
 
 
             echo json_encode(array('auth' => $this->model->checkAuth()));
-        }
-        else {
+        } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $viewWords = Language::$langView;
 
             echo json_encode(array('viewWords' => $viewWords), JSON_UNESCAPED_SLASHES);
+        } else {
+            header('HTTP/1.0 400 Bad Request');
+            die;
         }
     }
 
@@ -624,8 +626,7 @@ class UserController extends AppController
             }
 
             echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
-        }
-        else {
+        } else {
             header('HTTP/1.0 404 Not Found');
             die;
         }
@@ -645,8 +646,7 @@ class UserController extends AppController
             $result['success'] = (bool)$result['course'];
 
             echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
-        }
-        else {
+        } else {
             header('HTTP/1.0 404 Not Found');
             die;
         }
@@ -679,8 +679,27 @@ class UserController extends AppController
             $pathClient = UPLOADS . '/course/creation/' . date("Y", time()) . '/' . date('m', time()) . '/' . $fileName;
 
             echo json_encode(array('icon' => $pathClient), JSON_UNESCAPED_SLASHES);
+        } else {
+            header('HTTP/1.0 404 Not Found');
+            die;
         }
-        else {
+    }
+
+    public function createTaskAction()
+    {
+        //TODO: Task
+        $result = [];
+        $result['success'] = false;
+        if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username'] && $_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = json_decode(file_get_contents("php://input"), true);
+            if (!empty($_POST)) {
+                //TODO: Icon from cache
+                $result['slug'] = '';
+                $result['success'] = $this->model->saveTask($_SESSION['user']['id'], $result['slug']);
+            }
+
+            echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
+        } else {
             header('HTTP/1.0 404 Not Found');
             die;
         }

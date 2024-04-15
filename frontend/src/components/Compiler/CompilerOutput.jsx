@@ -12,8 +12,9 @@ const CompilerOutput = () => {
 
     const dispatch = useDispatch();
 
-    const [path, setPath] = useState("");
     const needReloadFrameCompiler = useSelector(state => state.compiler.needReloadFrameCompiler);
+    const eventPointer = useSelector(state => state.compiler.eventPointerFrame);
+    const [path, setPath] = useState("");
     // const outputFrame = useSelector(state => state.compiler.outputFrame);
 
     const onClickTab = (index) => {
@@ -53,7 +54,7 @@ const CompilerOutput = () => {
                 {/*))}*/}
             </div>
             <div className="output-mainspace">
-                <iframe id="reload_frame_compiler" onLoad={() => onUpdateFrame(this)} className="output-container" width="100%" height="100%" src={"http://localhost:9876"}></iframe>
+                <iframe id="reload_frame_compiler" style={{pointerEvents: eventPointer ? 'auto' : 'none'}} onLoad={() => onUpdateFrame(this)} className="output-container" width="100%" height="100%" src={"http://localhost:9876"}></iframe>
             </div>
         </div>
     );

@@ -1,6 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
+    terminalContent: [
+        "     __   __   __           ___       __       \n" +
+        "    |__) |__) /  \\ __ |    |__   /\\  |__) |\\ | \n" +
+        "___ |    |  \\ \\__/    |___ |___ /~~\\ |  \\ | \\| \n" +
+        "                                               ",
+        "Welcome to the Online Editor from the pro-learn team!"
+    ],
+    workspaceUser: 'workspace $user1:',
     files: {},
     currentFile: {
         file: {
@@ -35,6 +43,7 @@ const initialState = {
     canRenameFile: false,
     saveRenameFile: false,
     updateFiles: true,
+    eventPointerFrame: true,
 }
 
 
@@ -42,6 +51,12 @@ export const compilerSlice = createSlice({
         name: "compiler",
         initialState: initialState,
         reducers: {
+            addTerminalContent (state, action) {
+                state.terminalContent.push(action.payload);
+            },
+            setWorkspaceUser(state, action) {
+                state.workspaceUser = action.payload;
+            },
             setCompilerFiles(state, action) {
                 state.files = action.payload;
             },
@@ -120,11 +135,16 @@ export const compilerSlice = createSlice({
             setNeedReloadFrameCompiler (state, action) {
                 state.needReloadFrameCompiler = action.payload;
             },
+            setEventPointerFrame(state, action) {
+                state.eventPointerFrame = action.payload;
+            }
         }
     })
 ;
 
 export const {
+    addTerminalContent,
+    setWorkspaceUser,
     setCompilerFiles,
     setNewBodyCompilerFiles,
     setCompilerCurrentFileName,
@@ -143,6 +163,7 @@ export const {
     setSaveRenameFile,
     setUpdateFiles,
     setNeedReloadFrameCompiler,
+    setEventPointerFrame,
 } = compilerSlice.actions;
 
 export default compilerSlice.reducer;

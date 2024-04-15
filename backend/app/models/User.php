@@ -571,8 +571,7 @@ class User extends AppModel
                     debug($ex->getMessage());
                     return false;
                 }
-            }
-            else {
+            } else {
                 return 'InCorrectPassword';
             }
         }
@@ -686,6 +685,102 @@ class User extends AppModel
     public function getLangProg()
     {
         return R::getAll("SELECT l.id, l.title, l.code FROM langprog l");
+    }
+
+    public function saveTask($userID, &$slug)
+    {
+        $lang = App::$app->getProperty('language')['id'];
+        $data = $_POST['task'];
+
+        R::begin();
+        try {
+
+            $status = R::findOne("status", "code = ?", [$data['status']]);
+
+            if ($data['slug'] === '') {
+                if (!$status) throw new \Exception("Not status");
+
+                $task = R::dispense('challenge');
+
+                $task->user_id = $userID;
+                $task->views = 0;
+                $task->status_id = $status->id;
+                $task->difficulty = $data['difficulty'];
+                $task->project_id = $data['project_id'];
+                $task->template_id = $data['template_id'];
+                $task->num_of_input_data = $data['num_of_input_data'];
+                $task->for_course = $data['for_course'];
+
+                $taskID = R::store($task);
+
+                $task->slug = AppModel::createSlug('challenge', 'slug', $data['main'][$lang]['title'], $taskID);
+            } else {
+                $task = R::findOne('challenge', 'slug = ?', [$data['slug']]);
+
+                $task->status_id = $status->id;
+                $task->difficulty = $data['difficulty'];
+                $task->project_id = $data['project_id'];
+                $task->template_id = $data['template_id'];
+                $task->num_of_input_data = $data['num_of_input_data'];
+                $task->for_course = $data['for_course'];
+            }
+
+            $slug = $task->slug;
+
+            $taskID = R::store($task);
+            R::commit();
+
+            return $this->saveTaskDescription($taskID, $data);
+        } catch (\Exception $ex) {
+            R::rollback();
+            debug($ex);
+            return false;
+        }
+    }
+
+    protected function saveTaskDescription($taskID, $data)
+    {
+        R::begin();
+        try {
+            $flag = true;
+            if (isset($data['main'])) {
+                foreach ($data['main'] as $langID => $item) {
+                    if ($data['slug'] === '') {
+                        R::exec("INSERT INTO challenge_description (language_id, challenge_id, title, content, description, keywords) VALUES (?, ?, ?, ?, ?, ?)", [
+                            $langID,
+                            $taskID,
+                            $item['title'],
+                            $item['content'],
+                            $item['description'],
+                            $item['keywords'],
+                        ]);
+                    } else {
+                        R::exec("UPDATE challenge_description SET title = ?, description = ?, keywords = ?, content = ? WHERE language_id = ? AND course_id = ?", [
+                            $item['title'],
+                            $item['description'],
+                            $item['keywords'],
+                            $item['content'],
+                            $langID,
+                            $taskID
+                        ]);
+                    }
+                }
+                R::commit();
+                $flag = $this->saveInputOutputData($taskID, $data['input_output_data']);
+            } else {
+                R::commit();
+            }
+            return $flag;
+        } catch (\Exception $ex) {
+            R::rollback();
+            debug($ex);
+            return false;
+        }
+    }
+
+    protected function saveInputOutputData($taskID, $data)
+    {
+
     }
 
     protected function saveCourseDescription($courseID, $data)

@@ -13,6 +13,8 @@ a {
 }
 
 .underline-hover {
+    position: relative;
+
     &::before {
         content: "";
         bottom: -3px;
