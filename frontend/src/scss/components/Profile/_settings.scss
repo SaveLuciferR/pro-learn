@@ -49,7 +49,7 @@
     }
 
     &-main {
-      padding: 28px;
+      padding: 0 28px 28px 28px;
 
       &-title {
         position: relative;
@@ -167,6 +167,9 @@
     }
 
     &-delete {
+      position: absolute;
+      top: 42px;
+      right: 28px;
       display: flex;
       column-gap: 8px;
       align-items: center;
@@ -180,7 +183,7 @@
   }
 
   &-privacy {
-    padding: 28px;
+    padding: 0 28px 28px 28px;
 
     &-main {
       padding: 36px 107px 0;

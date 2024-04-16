@@ -2,6 +2,8 @@ import { Link, useParams } from 'react-router-dom';
 import Table from '../../Table';
 import { useEffect, useState } from 'react';
 import axiosClient from '../../../axiosClient';
+import ModalWindow from '../../Modal/ModalWindow';
+import ModalWindowTask from '../../Modal/ModalWindowTask';
 
 const ProfileSettingsSessions = () => {
   const { lang, username } = useParams();
@@ -16,8 +18,8 @@ const ProfileSettingsSessions = () => {
   }, [lang, username]);
 
   return (
-    <div className="profile-settings-sessions">
-      <div className="profile-settings-main-main-title">
+    <div>
+      <div className="created-courses-header">
         <div className="lessons-header-back">
           <svg
             width="21"
@@ -35,10 +37,13 @@ const ProfileSettingsSessions = () => {
           </svg>
           <Link to={`../../profile/${username}`}>Профиль</Link>
         </div>
-        <p className="profile-settings-title big">Текущие сессии</p>
+        <h1>_Текущие сессии</h1>
       </div>
-      <div className="profile-settings-sessions-main">
-        <Table />
+      <div className="profile-settings-sessions">
+        <div className="profile-settings-sessions-main">
+          <Table />
+          <ModalWindowTask />
+        </div>
       </div>
     </div>
   );

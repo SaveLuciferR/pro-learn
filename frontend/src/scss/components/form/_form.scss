@@ -47,13 +47,12 @@
 }
 
 .form_input {
-
     display: flex;
     // justify-content: center;
     // align-items: center;
     flex-direction: column;
     gap: 36px;
-    // background-color: #0d1117; 
+    // background-color: #0d1117;
 
     &-item {
         position: relative;
@@ -85,7 +84,7 @@
             &:focus {
                 border: 1px solid #797ef9;
 
-                ~span {
+                ~ span {
                     color: #797ef9;
                     transform: translateX(10px) translateY(-7px);
                     font-size: 16px;
@@ -109,7 +108,15 @@
             // text-transform: uppercase;
 
             transition: all 0.3s ease-in-out;
-
         }
+    }
+
+    &-message {
+        font-size: 14px;
+        font-weight: 300;
+        height: 21px;
+        color: rgba($color: #db5b42, $alpha: 0.7);
+        padding-left: 6px;
+        padding-top: 2px;
     }
 }

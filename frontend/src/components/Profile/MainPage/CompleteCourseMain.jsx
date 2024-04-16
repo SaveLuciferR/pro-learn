@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import SliderMain from '../../Slider/SliderMain';
+import { Link } from 'react-router-dom';
 
 /* Переделать названия классов, сделать карточку рабочей */
 const CompleteCourseMain = ({ data }) => {
@@ -13,8 +14,14 @@ const CompleteCourseMain = ({ data }) => {
 
   return (
     <div className="currentcourse">
-      <p className="currentcourse-title">Пройденные курсы</p>
-      <SliderMain data={completeCourse} sliderType="profileCompleteCourse" countSlide={1} />
+      <Link to={'completed-courses'} className="currentcourse-title">
+        Пройденные курсы
+      </Link>
+      {completeCourse.length === 0 ? (
+        <div className="profile-none">Нет завершенных курсов ):</div>
+      ) : (
+        <SliderMain data={completeCourse} sliderType="profileCompleteCourse" countSlide={1} />
+      )}
     </div>
   );
 };

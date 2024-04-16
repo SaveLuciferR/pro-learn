@@ -1,26 +1,28 @@
-import { useEffect, useState } from "react";//Подключение хуков
-import BlogCard from "./BlogCard";//Карточка статьи
-import BlogFilter from "./BlogFilter";//Фильтр для страницы со статьями
-import axiosClient from "../../axiosClient";
-import {useParams} from "react-router-dom";
+import { useEffect, useState } from 'react'; //Подключение хуков
+import BlogCard from './BlogCard'; //Карточка статьи
+import BlogFilter from './BlogFilter'; //Фильтр для страницы со статьями
+import axiosClient from '../../axiosClient';
+import { useParams } from 'react-router-dom';
 //Соединение с беком
 
-const BlogMain = () => {//Страница со всеми статьями
-  const [items, setItems] = useState([]);//State для основного контента с бека
-  const [activeFilter, setActiveFilter] = useState(false);//State для работы фильтра
+const BlogMain = () => {
+  //Страница со всеми статьями
+  const [items, setItems] = useState([]); //State для основного контента с бека
+  const [activeFilter, setActiveFilter] = useState(false); //State для работы фильтра
 
   const { lang } = useParams();
 
-  useEffect(() => {//Effect, который получает данные с бека
+  useEffect(() => {
+    //Effect, который получает данные с бека
 
-    axiosClient.post(`${lang === undefined ? "/" : '/' + lang + "/"}` + "blog").then(({ data }) => {
+    axiosClient.post(`${lang === undefined ? '/' : '/' + lang + '/'}blog/`).then(({ data }) => {
       // console.log(setItems(data.allBlogs));
       setItems(data.allBlogs);
       console.log(data.allBlogs);
     });
   }, [lang]);
 
-  const blogs = items.map((item) => <BlogCard key={"blog_card_" + item.slug} {...item} />);//Прогонка по каждому массиву данных
+  const blogs = items.map((item) => <BlogCard key={'blog_card_' + item.slug} {...item} />); //Прогонка по каждому массиву данных
 
   return (
     <>
@@ -28,9 +30,12 @@ const BlogMain = () => {//Страница со всеми статьями
         <div className="maincontent_maintext">
           <div className="maincontent_maintitle">
             <h4 className="maincontent_category"> &gt; Все статьи</h4>
-            <button type="button"
-                    onClick={() => setActiveFilter(true)}
-                    className="maincontent_filter">Фильтр{/* При клике меняется state */}
+            <button
+              type="button"
+              onClick={() => setActiveFilter(true)}
+              className="maincontent_filter"
+            >
+              Фильтр{/* При клике меняется state */}
               <svg
                 width="22"
                 height="20"
@@ -45,13 +50,14 @@ const BlogMain = () => {//Страница со всеми статьями
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
-              </svg>{/* Иконка фильтра */}
+              </svg>
+              {/* Иконка фильтра */}
             </button>
           </div>
         </div>
         <div className="maincontent_allarticle">{blogs}</div>
       </div>
-      <BlogFilter currentFilter={activeFilter} activeFilter={(state) => setActiveFilter(state)}/>
+      <BlogFilter currentFilter={activeFilter} activeFilter={(state) => setActiveFilter(state)} />
       {/* Пояснение: в компонент передаются параметры в виде переменной и функции в которой
       находятся state и setState, которые уже используются в другом компоненте, но под видом простых
       перемменных\функций */}

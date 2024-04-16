@@ -28,9 +28,14 @@ import ProfileSettingsSessions from './components/Profile/ProfileSettings/Profil
 import ProfileSettingsPrivacy from './components/Profile/ProfileSettings/ProfileSettingsPrivacy';
 import AdminLayout from './layouts/AdminLayout';
 import CourseCreatePage from './pages/CourseCreatePage';
-import TaskCreatePage from "./pages/TaskCreatePage";
+import NotFoundPage from './components/NotFoundPage';
+import TaskCreatePage from './pages/TaskCreatePage';
 
 const router = createBrowserRouter([
+  {
+    path: '*',
+    element: <NotFoundPage />,
+  },
   {
     path: '/admin-panel',
     element: <AdminLayout />,
@@ -101,19 +106,19 @@ const router = createBrowserRouter([
       },
       {
         path: 'profile/:username/course-creation',
-        element: <CourseCreatePage/>
+        element: <CourseCreatePage />,
       },
       {
         path: 'profile/:username/course-edit/:slug',
-        element: <CourseCreatePage type={'edit'}/>
+        element: <CourseCreatePage type={'edit'} />,
       },
       {
         path: 'profile/:username/task-creation',
-        element: <TaskCreatePage/>
+        element: <TaskCreatePage />,
       },
       {
         path: 'profile/:username/task-edit/:slug',
-        element: <TaskCreatePage type={'edit'}/>
+        element: <TaskCreatePage type={'edit'} />,
       },
       {
         path: 'profile/:username/project/:project',
@@ -151,7 +156,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'courses',
-        element: <CoursesPage />,
+        element: <CoursesPage isActiveSidebar={true} isCompiler={false} />,
       },
       {
         path: 'courses/name-course',

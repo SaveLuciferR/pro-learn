@@ -1,9 +1,20 @@
+import { Link, useParams } from 'react-router-dom';
+
 const ProfileProjectItem = ({ data }) => {
+  const { lang, username } = useParams();
+
   return (
     <div className="profile-projects-card">
       <div className="profile-projects-page-info">
         <div className="profile-projects-page-info-text">
-          <p className="profile-projects-info-text-name">_{data.title}</p>
+          <Link
+            to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/project/${
+              data.slug
+            }`}
+            className="profile-projects-info-text-name"
+          >
+            _{data.title}
+          </Link>
           <p className="profile-projects-info-text-access">
             {data.private === 0 ? 'Публичный' : 'Приватный'}
           </p>

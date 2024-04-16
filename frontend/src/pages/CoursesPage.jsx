@@ -1,8 +1,12 @@
+import { useOutletContext } from 'react-router-dom';
 import AllCourses from '../components/Courses/AllCourses';
 import CompletedCourses from '../components/Courses/CompletedCourses';
 import StartedCourses from '../components/Courses/StartedCourses';
 
-const CoursePage = () => {
+const CoursePage = ({ isActiveSidebar, isCompiler }) => {
+  const { activeSidebar, activeCompiler } = useOutletContext();
+  activeSidebar[0](isActiveSidebar);
+  activeCompiler[0](isCompiler);
   return (
     <div className="courses">
       <div className="courses-header">
