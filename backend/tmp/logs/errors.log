@@ -2475,3 +2475,65 @@
 =================
 [2024-04-14 13:48:50] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
 =================
+[2024-04-15 11:45:11] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.status' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-15 11:45:11] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.status' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-15 11:45:11] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.status' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-15 11:45:11] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.status' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-15 11:45:11] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.status' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-15 11:45:11] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.status' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-15 12:00:03] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-15 12:00:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-15 12:00:13] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-15 12:00:19] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-15 12:00:34] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-15 12:58:47] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 31
+=================
+[2024-04-15 12:58:56] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 31
+=================
+[2024-04-15 12:59:20] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 31
+=================
+[2024-04-15 12:59:29] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 31
+=================
+[2024-04-15 15:16:21] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-15 16:32:33] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-15 16:34:39] Текст ошибки: Метод app\controllers\UserController::createTaslAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-04-15 16:35:45] Текст ошибки: Undefined array key "REQUEST_METHOD" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 700
+=================
+[2024-04-15 16:49:04] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-15 16:53:42] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-15 16:53:47] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-15 16:55:45] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-15 17:00:01] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-15 17:05:31] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-15 17:06:44] Текст ошибки: There is no active transaction | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 736
+=================
+[2024-04-15 17:15:45] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-04-15 17:17:43] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-04-15 17:17:45] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-04-15 20:51:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-16 14:45:14] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cd.heading' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================

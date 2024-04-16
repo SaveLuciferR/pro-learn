@@ -256,7 +256,7 @@ const CompilerSidebar = () => {
             Dependices
           </button>
           <Collapse isOpened={isOpenedDependicies}>
-            <div className="compiler-sidebar-dependcies-main">aboba2</div>
+            {/*<div className="compiler-sidebar-dependcies-main">aboba2</div>*/}
           </Collapse>
         </div>
         <div className="compiler-sidebar-rename">

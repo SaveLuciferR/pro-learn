@@ -12,9 +12,9 @@ const ProfileProjects = () => {
 
   useEffect(() => {
     axiosClient
-      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
+      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}/project-list`)
       .then(({ data }) => {
-        setProjectsData(data.profileInfo.projects);
+        setProjectsData(data.projects);
       });
   }, [lang, username]);
 

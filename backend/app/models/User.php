@@ -358,6 +358,7 @@ class User extends AppModel
             $feedback->text = $data['message'];
             $feedbackID = R::store($feedback);
             R::commit();
+            return true;
         } catch (\Exception $ex) {
             debug($ex);
             return false;
@@ -687,14 +688,13 @@ class User extends AppModel
         return R::getAll("SELECT l.id, l.title, l.code FROM langprog l");
     }
 
-    public function saveTask($userID, &$slug)
+    public function saveTask($userID, &$slug = '')
     {
         $lang = App::$app->getProperty('language')['id'];
         $data = $_POST['task'];
 
         R::begin();
         try {
-
             $status = R::findOne("status", "code = ?", [$data['status']]);
 
             if ($data['slug'] === '') {
@@ -740,12 +740,13 @@ class User extends AppModel
 
     protected function saveTaskDescription($taskID, $data)
     {
-        R::begin();
-        try {
-            $flag = true;
-            if (isset($data['main'])) {
-                foreach ($data['main'] as $langID => $item) {
+        $flag = true;
+        if (isset($data['main'])) {
+            foreach ($data['main'] as $langID => $item) {
+                R::begin();
+                try {
                     if ($data['slug'] === '') {
+
                         R::exec("INSERT INTO challenge_description (language_id, challenge_id, title, content, description, keywords) VALUES (?, ?, ?, ?, ?, ?)", [
                             $langID,
                             $taskID,
@@ -764,23 +765,71 @@ class User extends AppModel
                             $taskID
                         ]);
                     }
+
+                    R::commit();
+                } catch (\Exception $ex) {
+                    R::rollback();
+                    debug($ex);
+                    return false;
                 }
-                R::commit();
-                $flag = $this->saveInputOutputData($taskID, $data['input_output_data']);
-            } else {
-                R::commit();
             }
-            return $flag;
-        } catch (\Exception $ex) {
-            R::rollback();
-            debug($ex);
-            return false;
         }
+
+        $flag = $this->saveInputOutputData($taskID, $data['input_output_data']);
+
+        return $flag;
+
     }
 
     protected function saveInputOutputData($taskID, $data)
     {
+        $flag = true;
+        R::begin();
+        try {
+            $amountData = R::getAll("SELECT i.id FROM inputoutputdata i WHERE i.challenge_id = ?", [$taskID]);
+            R::commit();
+        }
+        catch (\Exception $ex) {
+            debug($ex);
+            R::rollback();
+            return false;
+        }
+//        debug($amountData, 1);
+        if (count($amountData) > 0) {
+            foreach ($amountData as $v) {
+                R::begin();
+                try {
+//                    debug($v, 1);
+                    $removeInput = R::load("inputoutputdata", $v['id']);
+                    R::trash($removeInput);
+                    R::commit();
+                } catch (\Exception $ex) {
+                    R::rollback();
+                    debug($ex);
+                    return false;
+                }
+            }
+        }
 
+        foreach ($data as $index => $input) {
+            R::begin();
+            try {
+//                debug($input, 1);
+                $addInput = R::dispense('inputoutputdata');
+                $addInput->challenge_id = $taskID;
+                $addInput->input_data = json_encode($input['input']);
+                $addInput->output_data = json_encode($input['output']);
+
+                R::store($addInput);
+                R::commit();
+            } catch (\Exception $ex) {
+                R::rollback();
+                debug($ex);
+                return false;
+            }
+        }
+
+        return $flag;
     }
 
     protected function saveCourseDescription($courseID, $data)

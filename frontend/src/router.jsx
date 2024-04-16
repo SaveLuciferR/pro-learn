@@ -173,6 +173,10 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: 'compiler/:username/:project',
+        element: <CompilerPage isCompiler={true} isActiveSidebar={true}/>
+      },
     ],
   },
   {

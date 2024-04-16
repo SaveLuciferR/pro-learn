@@ -87,9 +87,9 @@ const Login = () => {
                             />
                             <span>{viewWords.tpl_user_login_password}</span>
                             {isAuth === '1' ? (
-                                <p className="form_input-message">Заполните поля</p>
+                                <p className="form_input-message">{viewWords.tpl_user_login_enterLoginData}</p>
                             ) : isAuth === '2' ? (
-                                <p className="form_input-message">Неправильно введен логин и/или пароль</p>
+                                <p className="form_input-message">{viewWords.tpl_user_login_errorLogin}</p>
                             ) : (
                                 <p className="form_input-message"></p>
                             )}
@@ -103,7 +103,6 @@ const Login = () => {
                         <span className="custom_checkbox"></span>
                         <p>{viewWords.tpl_user_login_rememberMe}</p>
                     </label>
-                    {/* viewWords.tpl_user_login_enterLoginData, viewWords.tpl_user_login_errorLogin */}
                     <button onClick={() => handleOnClickLogin()} className="btn big primary" type="submit">
                         {viewWords.tpl_user_login_login}
                     </button>

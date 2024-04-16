@@ -10,14 +10,16 @@ const ProfileProjectsPagination = ({ itemsPerPage, data }) => {
   // console.log(data);
 
   useEffect(() => {
+    console.log(data);
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(data.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(data.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage]);
+  }, [itemOffset, itemsPerPage, data]);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % data.length;
     setItemOffset(newOffset);
+    console.log(currentItems);
   };
 
   return (
@@ -26,22 +28,25 @@ const ProfileProjectsPagination = ({ itemsPerPage, data }) => {
         <LoadingElement />
       ) : (
         <>
-          <ProfileProjectspaginationItems currentItems={currentItems} />
-          <ReactPaginate
-            nextLabel=">"
-            previousLabel="<"
-            nextLinkClassName="slider-arrow-text"
-            nextClassName="slider-arrow"
-            previousLinkClassName="slider-arrow-text"
-            previousClassName="slider-arrow"
-            onPageChange={handlePageClick}
-            pageCount={pageCount}
-            breakLabel="..."
-            renderOnZeroPageCount={'123'}
-            className="slider-under-element pagination"
-            pageLinkClassName="slider-digit"
-            activeLinkClassName=" active"
-          />
+          {pageCount === 0 ? <div>loading...</div> :
+              <>
+                <ProfileProjectspaginationItems currentItems={currentItems} />
+                <ReactPaginate
+                    nextLabel=">"
+                    previousLabel="<"
+                    nextLinkClassName="slider-arrow-text"
+                    nextClassName="slider-arrow"
+                    previousLinkClassName="slider-arrow-text"
+                    previousClassName="slider-arrow"
+                    onPageChange={handlePageClick}
+                    pageCount={pageCount}
+                    breakLabel="..."
+                    renderOnZeroPageCount={'...'}
+                    className="slider-under-element pagination"
+                    pageLinkClassName="slider-digit"
+                    activeLinkClassName=" active"
+                />
+          </>}
         </>
       )}
     </>

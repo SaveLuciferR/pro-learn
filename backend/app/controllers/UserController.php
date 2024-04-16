@@ -687,18 +687,21 @@ class UserController extends AppController
 
     public function createTaskAction()
     {
-        //TODO: Task
         $result = [];
         $result['success'] = false;
         if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username'] && $_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = json_decode(file_get_contents("php://input"), true);
             if (!empty($_POST)) {
-                //TODO: Icon from cache
                 $result['slug'] = '';
                 $result['success'] = $this->model->saveTask($_SESSION['user']['id'], $result['slug']);
+                if (!$result['success']) {
+                    header("HTTP/1.0 400 Bad Request");
+                }
             }
 
             echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
+        } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
         } else {
             header('HTTP/1.0 404 Not Found');
             die;

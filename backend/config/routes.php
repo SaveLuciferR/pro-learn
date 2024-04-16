@@ -43,6 +43,7 @@ Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/creation/edit-cour
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/creation/course/type-lesson?$', ['controller' => 'User', 'action' => 'typeLesson']); // Страница со всеми созданными задачами
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/creation/course/category-lang-prog?$', ['controller' => 'User', 'action' => 'categoryLangProg']); // Страница со всеми созданными задачами
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/creation/course/save-icon?$', ['controller' => 'User', 'action' => 'saveIcon']); // Страница со всеми созданными задачами
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/creation/task/?$', ['controller' => 'User', 'action' => 'createTask']); // Страница со всеми созданными задачами
 
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'profile']); // Страница профиля пользователя
 
