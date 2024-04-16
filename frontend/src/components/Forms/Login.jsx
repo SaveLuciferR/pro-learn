@@ -5,18 +5,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setNeedReloadPage, setUserAuth } from '../../redux/MainLayout/slice';
 
 const Login = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-  const {lang} = useParams();
+    const {lang} = useParams();
 
-  const userAuth = useSelector((state) => state.mainLayout.userAuth);
+    const userAuth = useSelector((state) => state.mainLayout.userAuth);
 
-  if (userAuth) navigate('/');
+    if (userAuth) navigate('/');
 
     const [viewWords, setViewWords] = useState({});
     const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('');
     const [isAuth, setIsAuth] = useState('0');
 
 
@@ -38,22 +38,22 @@ const Login = () => {
 
         setIsAuth('0');
 
-    axiosClient
-      .post(`/user/login`, { email, password })
-      .then(({ data }) => {
-        dispatch(setUserAuth(data.auth));
-        dispatch(setNeedReloadPage(true));
-        if (data.auth) {
-            navigate(-1);
-        }
+        axiosClient
+            .post(`/user/login`, { email, password })
+            .then(({ data }) => {
+                dispatch(setUserAuth(data.auth));
+                dispatch(setNeedReloadPage(true));
+                if (data.auth) {
+                    navigate(-1);
+                }
 
-        data.auth === true ? console.log('Успешный вход!') : console.log('Вход не был произведен');
-      })
-      .catch(({response}) => {
-        console.log(response);
-          response.status === 401 ? setIsAuth('2') : console.log(response);
-      });
-  };
+                data.auth === true ? console.log('Успешный вход!') : console.log('Вход не был произведен');
+            })
+            .catch(({response}) => {
+                console.log(response);
+                response.status === 401 ? setIsAuth('2') : console.log(response);
+            });
+    };
 
     return (
         <>
