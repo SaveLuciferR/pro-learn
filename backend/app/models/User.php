@@ -100,7 +100,7 @@ class User extends AppModel
 
     public function getSessions($username)
     {
-        return R::getAssoc("SELECT s.id, s.type_device, s.country_address, s.city_address, s.date_of_last_session, s.ip_address
+        return R::getAll("SELECT s.id, s.type_device, s.country_address, s.city_address, s.date_of_last_session, s.ip_address
                             FROM session s JOIN user u ON u.id = s.user_id WHERE u.username = ?", [$username]);
     }
 

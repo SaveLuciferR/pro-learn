@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import img from '../../image 7.png';
 
-const CourseCard = () => {
+const CourseCard = ({ data, status }) => {
+  const [statusText, setStatusText] = useState('');
+
   return (
     <div className="courses-card">
       <div className="courses-card-header">
@@ -8,7 +11,50 @@ const CourseCard = () => {
           <li className="courses-card-header-tag">#Python</li>
           <li className="courses-card-header-tag">#Начинающим</li>
         </ul>
-        <p className="courses-card-header-status">Не начат</p>
+        {status === 'started' ? (
+          <div className="courses-card-header-status">
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="10.5" cy="10.5" r="8.75" stroke="white" strokeOpacity="0.6" />
+              <path
+                d="M10.5 7V10.5L12.6875 12.6875"
+                stroke="white"
+                strokeOpacity="0.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span>Проходится</span>
+          </div>
+        ) : status === 'completed' ? (
+          <div className="courses-card-header-status complete">
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="10.5" cy="10.5" r="8.75" stroke="#2EA043" />
+              <path
+                d="M7.4375 10.9375L9.1875 12.6875L13.5625 8.3125"
+                stroke="#2EA043"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span>Пройден</span>
+          </div>
+        ) : (
+          <div className="courses-card-header-status">
+            <span>Не начат</span>
+          </div>
+        )}
       </div>
       <div className="created-course-info">
         <p className="courses-card-info-title">_Frontend-разработчик</p>

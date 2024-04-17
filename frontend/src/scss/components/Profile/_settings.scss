@@ -180,6 +180,17 @@
   &-sessions {
     padding: 28px;
     height: 100%;
+
+    &-button {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+    }
+
+    &-table {
+      display: flex;
+      justify-content: center;
+    }
   }
 
   &-privacy {

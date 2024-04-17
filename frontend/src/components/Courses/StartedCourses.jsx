@@ -5,7 +5,7 @@ const StartedCourses = () => {
     <div className="courses-started">
       <p className="courses-started-title">_Начатые курсы</p>
       <div className="courses-started-main">
-        <CourseCard />
+        <CourseCard status={'started'} />
         <CourseCard />
       </div>
       <div className="courses-started-bottom">

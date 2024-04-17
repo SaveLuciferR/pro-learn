@@ -5,7 +5,7 @@ const CompletedCourses = () => {
     <div className="courses-completed">
       <p className="courses-completed-title">_Пройденные курсы</p>
       <div className="courses-completed-main">
-        <CourseCard />
+        <CourseCard status={'completed'} />
         <CourseCard />
       </div>
       <div className="courses-completed-bottom">

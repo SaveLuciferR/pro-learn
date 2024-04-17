@@ -6,7 +6,7 @@ const ProfileProjectsButton = () => {
     <button
       className="profile-projects-card-button"
       onClick={() =>
-        navigate(`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/project/add`)
+        navigate(`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/task-creation`)
       }
     >
       <div className="profile-projects-card-button-items">
