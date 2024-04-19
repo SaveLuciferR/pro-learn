@@ -30,6 +30,7 @@ import AdminLayout from './layouts/AdminLayout';
 import CourseCreatePage from './pages/CourseCreatePage';
 import NotFoundPage from './components/NotFoundPage';
 import TaskCreatePage from "./pages/TaskCreatePage";
+import TaskSinglePage from "./pages/TaskSinglePage";
 
 
 const router = createBrowserRouter([
@@ -174,8 +175,20 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: 'task',
+        element: <></>
+      },
+      {
+        path: 'task/:slug',
+        element: <TaskSinglePage/>
+      },
+      {
         path: 'compiler/:username/:project',
-        element: <CompilerPage isCompiler={true} isActiveSidebar={true}/>
+        element: <CompilerPage isSolve={false} isCompiler={true} isActiveSidebar={true}/>
+      },
+      {
+        path: 'compiler-task/:username/:project/:task',
+        element: <CompilerPage isSolve={true} isCompiler={true} isActiveSidebar={true}/>
       },
     ],
   },

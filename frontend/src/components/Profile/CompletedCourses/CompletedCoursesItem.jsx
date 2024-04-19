@@ -14,7 +14,7 @@ const ProfileCompletedCoursesItem = () => {
             // Python просто выучить, даже если вы никогда не программировали. В этом курсе Вы
             разработаете 3 проекта для портфолио. Много полезной информации
           </p>
-          <img src={img} className="created-course-info-desc-img"></img>
+          <img src={img} className="created-course-info-desc-img" alt={""}/>
         </div>
       </div>
       <div className="profile-difficulty">

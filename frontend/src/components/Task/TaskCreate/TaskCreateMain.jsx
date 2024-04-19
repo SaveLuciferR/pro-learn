@@ -1,20 +1,44 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 import TaskCreateTab from "./TaskCreateTab";
+import TaskCreateDataTab from "./TaskCreateDataTab";
+import ModalWindowTask from "../../Modal/ModalWindowTask";
+import {setCurrentCourseStatus} from "../../../redux/Course/slice";
+import axiosClient from "../../../axiosClient";
+import {setTaskSlug, setTaskStatus} from "../../../redux/Task/slice";
+import {useNavigate, useParams} from "react-router-dom";
 
 
-const TaskCreateMain  = ({type}) => {
+const TaskCreateMain = ({type}) => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const {lang, username} = useParams();
 
     const languages = useSelector(state => state.mainLayout.languages);
+    const task = useSelector(state => state.task.currentTaskEdit);
 
     const [currentLang, setCurrentLang] = useState('1');
+    const [isInputTab, setIsInputTab] = useState(true);
 
     const onClickPublishTask = () => {
 
     }
 
-    const onClickSaveCourse = () => {
+    const onClickSaveTask = () => {
+        dispatch(setTaskStatus({status: "draft"}));
+        axiosClient.post(`@${username}/creation/task`, {task})
+            .then(({data}) => {
+                console.log(data);
 
+                if (data.result.slug) {
+                    navigate(`${lang === undefined ? "/" : '/' + lang + "/"}profile/${username}/task-edit/${data.result.slug}`);
+                }
+            })
+            .catch((response) => {
+                console.log(response);
+            });
     }
 
     return (
@@ -30,7 +54,24 @@ const TaskCreateMain  = ({type}) => {
             </div>
 
             {Object.keys(languages).map((item) => <TaskCreateTab type={type} currentLang={languages[item].id}
-                                                                   active={currentLang === languages[item].id}/>)}
+                                                                 active={currentLang === languages[item].id}/>)}
+
+            <div className="course-create-tabs">
+                <span onClick={() => setIsInputTab(true)}
+                      className={`course-create-tabs ${isInputTab ? 'active' : ''}`}>
+                    Входные данные
+                </span>
+                <span onClick={() => setIsInputTab(false)}
+                      className={`course-create-tabs ${!isInputTab ? 'active' : ''}`}>
+                           Выходные данные
+                </span>
+            </div>
+
+            {isInputTab ?
+                <TaskCreateDataTab title={"Входные данные"} activeInput={isInputTab}/>
+                :
+                <TaskCreateDataTab title={"Выходные данные"} activeInput={isInputTab}/>
+            }
 
             <div className="course-create-buttons">
                 <button className="project__action-links-item btn-red">
@@ -44,7 +85,7 @@ const TaskCreateMain  = ({type}) => {
                     <span>Удалить задачу</span>
                 </button>
                 <button onClick={() => onClickPublishTask()} className="btn primary big">Опубликовать</button>
-                <button onClick={() => onClickSaveCourse()} className="btn secondary-blue big">Сохранить задачу</button>
+                <button onClick={() => onClickSaveTask()} className="btn secondary-blue big">Сохранить задачу</button>
             </div>
         </div>
     );

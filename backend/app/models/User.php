@@ -100,7 +100,7 @@ class User extends AppModel
 
     public function getSessions($username)
     {
-        return R::getAssoc("SELECT s.id, s.type_device, s.country_address, s.city_address, s.date_of_last_session, s.ip_address
+        return R::getAll("SELECT s.id, s.type_device, s.country_address, s.city_address, s.date_of_last_session, s.ip_address
                             FROM session s JOIN user u ON u.id = s.user_id WHERE u.username = ?", [$username]);
     }
 
@@ -492,7 +492,7 @@ class User extends AppModel
 
     public function getTaskLangProgByID($id)
     {
-        return R::getAssoc("SELECT lp.id, lp.title
+        return R::getAll("SELECT lp.id, lp.title
                                 FROM challenge c JOIN challenge_categorylangprog cclp ON c.id = cclp.challenge_id
                                 JOIN langprog lp ON lp.id = cclp.lang_prog_id
                                 WHERE c.id = ?", [$id]);

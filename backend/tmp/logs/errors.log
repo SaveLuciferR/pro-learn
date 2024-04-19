@@ -2537,3 +2537,89 @@
 =================
 [2024-04-16 14:45:14] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cd.heading' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
 =================
+[2024-04-16 20:48:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-16 20:52:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-16 20:52:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-16 20:53:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-16 20:53:07] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-16 20:53:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-16 20:53:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-17 13:11:42] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.status' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-17 13:11:42] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.status' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-17 13:11:42] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.status' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-17 13:11:42] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.status' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-17 13:11:42] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.status' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-17 13:11:42] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.status' in 'where clause' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-17 13:59:40] Текст ошибки: Too few arguments to function app\controllers\AppController::__construct(), 0 passed in C:\OSPanel\domains\pro-learn\backend\vendor\core\Controller.php on line 28 and exactly 1 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\AppController.php | Строка: 25
+=================
+[2024-04-17 13:59:53] Текст ошибки: Too few arguments to function app\controllers\AppController::__construct(), 0 passed in C:\OSPanel\domains\pro-learn\backend\vendor\core\Controller.php on line 28 and exactly 1 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\AppController.php | Строка: 25
+=================
+[2024-04-17 14:00:48] Текст ошибки: Too few arguments to function app\controllers\AppController::__construct(), 0 passed in C:\OSPanel\domains\pro-learn\backend\vendor\core\Controller.php on line 28 and exactly 1 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\AppController.php | Строка: 25
+=================
+[2024-04-17 14:01:12] Текст ошибки: Too few arguments to function app\controllers\AppController::__construct(), 0 passed in C:\OSPanel\domains\pro-learn\backend\vendor\core\Controller.php on line 28 and exactly 1 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\AppController.php | Строка: 25
+=================
+[2024-04-17 14:09:10] Текст ошибки: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'prolearn.projecttamplate' doesn't exist | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-17 14:10:42] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.slug' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-04-17 15:42:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-17 15:52:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 301
+=================
+[2024-04-17 15:52:15] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 301
+=================
+[2024-04-17 17:25:22] Текст ошибки: Undefined array key "title" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Task.php | Строка: 69
+=================
+[2024-04-18 18:15:27] Текст ошибки: syntax error, unexpected token "$", expecting variable | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Task.php | Строка: 92
+=================
+[2024-04-18 18:15:27] Текст ошибки: syntax error, unexpected token "$", expecting variable | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Task.php | Строка: 92
+=================
+[2024-04-18 18:15:36] Текст ошибки: syntax error, unexpected token "$", expecting variable | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Task.php | Строка: 92
+=================
+[2024-04-18 18:15:36] Текст ошибки: syntax error, unexpected token "$", expecting variable | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Task.php | Строка: 92
+=================
+[2024-04-18 18:15:51] Текст ошибки: syntax error, unexpected token "$", expecting variable | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Task.php | Строка: 92
+=================
+[2024-04-18 18:15:51] Текст ошибки: syntax error, unexpected token "$", expecting variable | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Task.php | Строка: 92
+=================
+[2024-04-18 18:16:06] Текст ошибки: syntax error, unexpected token "$", expecting variable | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Task.php | Строка: 92
+=================
+[2024-04-18 18:16:06] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-18 18:20:04] Текст ошибки: Undefined array key "id" | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Repository.php | Строка: 632
+=================
+[2024-04-18 18:46:40] Текст ошибки: syntax error, unexpected token "\" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\TaskController.php | Строка: 42
+=================
+[2024-04-18 20:33:10] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-18 21:56:07] Текст ошибки: Undefined variable $pathProject | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 31
+=================
+[2024-04-18 21:56:20] Текст ошибки: Undefined variable $pathProject | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 31
+=================
+[2024-04-18 22:02:20] Текст ошибки: Too few arguments to function core\Docker\Docker::__construct(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php on line 99 and at least 2 expected | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 21
+=================
+[2024-04-18 22:02:31] Текст ошибки: Undefined variable $commandPathProject | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 36
+=================
+[2024-04-18 22:13:44] Текст ошибки: Undefined array key 0 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 59
+=================
+[2024-04-18 22:14:02] Текст ошибки: Undefined array key 0 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 60
+=================
+[2024-04-18 22:14:17] Текст ошибки: Undefined array key 0 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 60
+=================
+[2024-04-18 22:40:39] Текст ошибки: Undefined variable $proc_close | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 85
+=================
+[2024-04-18 23:28:02] Текст ошибки: stream_get_contents(): supplied resource is not a valid stream resource | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 82
+=================

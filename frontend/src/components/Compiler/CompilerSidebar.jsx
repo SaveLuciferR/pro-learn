@@ -25,8 +25,7 @@ import { useParams } from 'react-router-dom';
 const CompilerSidebar = () => {
   const dispatch = useDispatch();
 
-  const { project } = useParams();
-  const username = 'user1';
+  const { username, project } = useParams();
 
   const compilerFiles = useSelector((state) => state.compiler.files);
   const tabs = useSelector((state) => state.compiler.tabs);
