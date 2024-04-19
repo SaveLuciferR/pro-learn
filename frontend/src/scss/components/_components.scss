@@ -6,6 +6,10 @@ a {
     &:hover {
         color: rgba($color: #ffffff, $alpha: 0.6);
     }
+
+    &.btn:hover {
+        color: rgba($color: #ffffff, $alpha: 1);
+    }
 }
 
 .hover {
@@ -38,7 +42,6 @@ a {
     border-radius: 8px;
 
     font-size: 16px;
-
     color: #fff;
 
     &-red {
@@ -151,6 +154,14 @@ a {
         display: block;
         width: 100%;
         max-width: 1200px;
+    }
+
+    &.width110 {
+        display: block;
+        width: 100%;
+        max-width: 110px;
+
+        text-align: center;
     }
 
     &.textarea {
@@ -432,6 +443,10 @@ label {
     &-arrow {
         height: 30px;
         width: 30px;
+
+        &.hidden {
+            opacity: 0.5;
+        }
 
         &-text {
             width: 30px;

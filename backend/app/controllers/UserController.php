@@ -237,7 +237,7 @@ class UserController extends AppController
         $project = $this->model->getProjectInfoBySlug($this->route['slug'], $this->route['username']);
 
         if (!$project) {
-            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found Project', true, 404);
             die;
         }
 

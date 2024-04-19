@@ -92,6 +92,19 @@
       & svg {
         transform: scale(0.5);
       }
+
+      &.create-row-data {
+        padding: 12px;
+        margin: 8px 0;
+
+        &.create-data {
+          margin: 0;
+          width: 100%;
+          max-width: 110px;
+
+          padding: 0;
+        }
+      }
     }
 
     &.create-block {

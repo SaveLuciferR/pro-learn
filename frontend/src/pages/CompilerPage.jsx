@@ -17,14 +17,14 @@ import {
 } from "../redux/Compiler/slice";
 import Splitter, {SplitDirection} from '@devbookhq/splitter';
 
-const Compiler = ({isActiveSidebar, isCompiler}) => {
+const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
 
     const {activeSidebar, activeCompiler} = useOutletContext();
     activeSidebar[0](isActiveSidebar);
     activeCompiler[0](isCompiler);
 
     // const username = 'user1';
-    const {project, username} = useParams();
+    const {project, username, task} = useParams();
     const dispatch = useDispatch();
     const updateFiles = useSelector(state => state.compiler.updateFiles);
 
@@ -87,12 +87,13 @@ const Compiler = ({isActiveSidebar, isCompiler}) => {
         if (updateFiles) {
             axiosClient.post(`/compiler/@${username}/${project}`)
                 .then(({data}) => {
+                    console.log(data);
                     dispatch(setCompilerFiles(data.fileStructure));
                     dispatch(setUpdateFiles(false));
                     dispatch(setNeedReloadFrameCompiler(true));
                 })
                 .catch((data) => {
-
+                    console.log(data);
                 });
 
             startDockerContainer(`http://api.pro-learn.my/compiler/@${username}/${project}/start-docker-session`);
@@ -154,4 +155,4 @@ const Compiler = ({isActiveSidebar, isCompiler}) => {
     );
 };
 
-export default Compiler;
+export default CompilerPage;

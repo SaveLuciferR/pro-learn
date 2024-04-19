@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\models\AppModel;
+use core\Docker\Docker;
 
 class Compiler extends AppModel
 {
@@ -10,7 +11,7 @@ class Compiler extends AppModel
 
     public function getUrlPathProject($username, $project)
     {
-        return PATH . '/public/projects/' . $username . '/' . $project . '/src';
+        return PATH . '/public/projects/' . $username . '/' . $project; //
     }
 
     protected function getInfoDirectory($path, $url, $localPath = ""): array
@@ -87,17 +88,23 @@ class Compiler extends AppModel
 
     public function getPathProject($user, $project): string
     {
-        return USER_PROJECT . '/' . $user . '/' . $project . '/src';
+        return USER_PROJECT . '/' . $user . '/' . $project; // . '/src'
     }
 
     public function startOrUpdateDockerContainer($pathProject, $str = '')
     {
-
         $retval = null;
         $output = array();
 
-        $commandPathProject = "cd " . $pathProject . " && cd..";
-        $commandDockerProject = 'docker-compose up --build -d'; //"C:\Program Files\Docker\Docker\resources\cli-plugins\docker-compose.exe"
+        $docker = new Docker(md5($pathProject), $pathProject);
+        $docker->createImage($pathProject);
+
+        $commandPathProject = "cd " . $pathProject; //  . " && cd.."
+//        $commandDockerProject = 'docker-compose up --build -d'; //"C:\Program Files\Docker\Docker\resources\cli-plugins\docker-compose.exe"
+
+        $commandDockerProject = 'docker build . -t cpp_test:1.0.0';
+//        $commandDockerProject = 'docker run --rm -it cpp_test:1.0.0';
+
 
         set_time_limit(0);
         ob_implicit_flush(1);
@@ -129,6 +136,7 @@ class Compiler extends AppModel
             flush();
             ob_flush();
         }
+
 //        echo "</pre>";
 
 
@@ -146,11 +154,12 @@ class Compiler extends AppModel
 //        sleep(1);
 //        echo json_encode(['proccess' => 100, 'success' => 1, 'data' => '6545']);
 
-//        exec($commandPathProject . " && " . $commandDockerProject, $output, $retval);
+        exec($commandPathProject . " && " . $commandDockerProject, $output, $retval);
+        debug($output);
 
-//        exec("docker system prune -f");
+//        debug($pathProject, 1);
+        exec("docker system prune -f");
 
-//        debug($output);
 //        $imageDockerName = md5(session_id());
     }
 }

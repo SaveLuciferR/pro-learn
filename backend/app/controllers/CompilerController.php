@@ -22,7 +22,7 @@ class CompilerController extends AppController
 //        debug(json_last_error(), 1);
 
         if (!$fileStructure) {
-            header('HTTP/1.0 401 Unauthorized');
+            header('HTTP/1.0 404 Not Found');
             die;
         }
 

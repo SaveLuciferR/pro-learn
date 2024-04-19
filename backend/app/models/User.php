@@ -100,7 +100,7 @@ class User extends AppModel
 
     public function getSessions($username)
     {
-        return R::getAssoc("SELECT s.id, s.type_device, s.country_address, s.city_address, s.date_of_last_session, s.ip_address
+        return R::getAll("SELECT s.id, s.type_device, s.country_address, s.city_address, s.date_of_last_session, s.ip_address
                             FROM session s JOIN user u ON u.id = s.user_id WHERE u.username = ?", [$username]);
     }
 
@@ -492,7 +492,7 @@ class User extends AppModel
 
     public function getTaskLangProgByID($id)
     {
-        return R::getAssoc("SELECT lp.id, lp.title
+        return R::getAll("SELECT lp.id, lp.title
                                 FROM challenge c JOIN challenge_categorylangprog cclp ON c.id = cclp.challenge_id
                                 JOIN langprog lp ON lp.id = cclp.lang_prog_id
                                 WHERE c.id = ?", [$id]);
@@ -632,13 +632,21 @@ class User extends AppModel
         }
     }
 
-    public function getCourseForEdit($username, $slug)
+    public function getCourseForEdit(&$username, $slug, $isAdmin = false)
     {
         //TODO: категория и язык
-        $course = R::getRow("SELECT c.id, c.slug, u.username, c.difficulty, c.icon, s.code AS 'status' 
+        if ($isAdmin) {
+            $course = R::getRow("SELECT c.id, c.slug, u.username, c.difficulty, c.icon, s.code AS 'status' 
+                                FROM course c JOIN status s ON s.id = c.status_id
+                                JOIN user u ON u.id = c.user_id
+                                WHERE c.slug = ?", [$slug]);
+            $username = $course['username'];
+        } else {
+            $course = R::getRow("SELECT c.id, c.slug, u.username, c.difficulty, c.icon, s.code AS 'status' 
                                 FROM course c JOIN status s ON s.id = c.status_id
                                 JOIN user u ON u.id = c.user_id
                                 WHERE c.slug = ? AND u.username = ?", [$slug, $username]);
+        }
 
         if (!$course) {
             return $course;
@@ -788,8 +796,7 @@ class User extends AppModel
         try {
             $amountData = R::getAll("SELECT i.id FROM inputoutputdata i WHERE i.challenge_id = ?", [$taskID]);
             R::commit();
-        }
-        catch (\Exception $ex) {
+        } catch (\Exception $ex) {
             debug($ex);
             R::rollback();
             return false;

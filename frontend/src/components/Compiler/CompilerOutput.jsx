@@ -7,8 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 const CompilerOutput = () => {
     const [activeTab, setActiveTab] = useState(0);
 
-    const username = 'user1';
-    const {project} = useParams();
+    const {username, project} = useParams();
 
     const dispatch = useDispatch();
 
