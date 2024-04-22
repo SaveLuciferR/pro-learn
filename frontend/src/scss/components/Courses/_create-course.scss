@@ -1,5 +1,4 @@
 .course-create {
-
   &-header {
     padding: 0 28px;
 
@@ -55,7 +54,6 @@
     margin: 32px 0;
 
     &.active {
-
       margin-right: 32px;
 
       & svg {
@@ -116,6 +114,7 @@
       padding: 12px 24px;
 
       cursor: pointer;
+      user-select: none;
 
       color: #fff;
 

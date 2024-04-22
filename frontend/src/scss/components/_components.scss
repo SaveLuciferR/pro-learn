@@ -153,6 +153,12 @@ a {
         max-width: 1200px;
     }
 
+    &.w700 {
+        display: block;
+        width: 100%;
+        max-width: 660px;
+    }
+
     &.textarea {
         resize: none;
 

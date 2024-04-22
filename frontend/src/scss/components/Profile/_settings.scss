@@ -215,6 +215,23 @@
       }
     }
   }
+
+  &-creations {
+    padding: 28px;
+
+    &-none {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 28px;
+
+      & span {
+        color: #797ef9;
+      }
+    }
+  }
 }
 
 .input.w531 {
