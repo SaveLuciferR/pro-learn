@@ -1,7 +1,5 @@
 .courses {
-  margin-top: 49px;
-  width: 100%;
-
+  margin: 49px 120px 0 120px; //49
   &-header {
     display: flex;
     flex-wrap: wrap;
@@ -157,7 +155,14 @@
     }
 
     &-status {
+      display: flex;
+      align-items: center;
+      column-gap: 8px;
       color: rgba($color: #ffffff, $alpha: 0.6);
+
+      &.complete {
+        color: #2ea043;
+      }
     }
   }
 
@@ -170,13 +175,13 @@
     &-desc {
       &-text {
         padding-top: 17px;
-        width: 372px;
+        height: 84px;
         font-size: 16px;
         font-weight: 400;
       }
       &-img {
         width: 150px;
-        height: auto;
+        max-height: 150px;
       }
     }
   }

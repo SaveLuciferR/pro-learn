@@ -180,6 +180,17 @@
   &-sessions {
     padding: 28px;
     height: 100%;
+
+    &-button {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+    }
+
+    &-table {
+      display: flex;
+      justify-content: center;
+    }
   }
 
   &-privacy {
@@ -201,6 +212,23 @@
         text-align: center;
         background-color: #0d1117;
         border-radius: 12px;
+      }
+    }
+  }
+
+  &-creations {
+    padding: 28px;
+
+    &-none {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 28px;
+
+      & span {
+        color: #797ef9;
       }
     }
   }

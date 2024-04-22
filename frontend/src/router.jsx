@@ -29,7 +29,7 @@ import ProfileSettingsPrivacy from './components/Profile/ProfileSettings/Profile
 import AdminLayout from './layouts/AdminLayout';
 import CourseCreatePage from './pages/CourseCreatePage';
 import NotFoundPage from './components/NotFoundPage';
-import TaskCreatePage from "./pages/TaskCreatePage";
+import TaskCreatePage from './pages/TaskCreatePage';
 import TaskSinglePage from "./pages/TaskSinglePage";
 
 
@@ -41,6 +41,20 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: '',
+        element: <AdminPage />,
+        children: [
+          {
+            path: 'blog',
+            element: <AdminBlog />,
+          },
+          {
+            path: 'courses',
+            element: <AdminCourses />,
+          },
+        ],
       },
     ],
   },
@@ -145,6 +159,10 @@ const router = createBrowserRouter([
           {
             path: 'privacy',
             element: <ProfileSettingsPrivacy />,
+          },
+          {
+            path: 'creations',
+            element: <ProfileSettingsMadeByUser />,
           },
         ],
       },

@@ -5,7 +5,7 @@ import ProfileProjectspaginationItems from './ProfileProjectsPaginationItems';
 
 const ProfileProjectsPagination = ({ itemsPerPage, data }) => {
   const [currentItems, setCurrentItems] = useState([]); //работа с пагинацией
-  const [pageCount, setPageCount] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
   const [itemOffset, setItemOffset] = useState(0);
   // console.log(data);
 
