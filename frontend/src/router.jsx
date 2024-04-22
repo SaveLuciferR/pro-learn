@@ -30,12 +30,12 @@ import AdminLayout from './layouts/AdminLayout';
 import CourseCreatePage from './pages/CourseCreatePage';
 import NotFoundPage from './components/NotFoundPage';
 import TaskCreatePage from './pages/TaskCreatePage';
+import ProfileSettingsMadeByUser from './components/Profile/ProfileSettings/ProfileSettingsMadeByUser';
+import AdminPage from './pages/AdminPage';
+import AdminBlog from './components/Admin/AdminBlog';
+import AdminCourses from './components/Admin/AdminCourses';
 
 const router = createBrowserRouter([
-  {
-    path: '*',
-    element: <NotFoundPage />,
-  },
   {
     path: '/admin-panel',
     element: <AdminLayout />,
@@ -43,6 +43,20 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: '',
+        element: <AdminPage />,
+        children: [
+          {
+            path: 'blog',
+            element: <AdminBlog />,
+          },
+          {
+            path: 'courses',
+            element: <AdminCourses />,
+          },
+        ],
       },
     ],
   },
@@ -152,6 +166,10 @@ const router = createBrowserRouter([
             path: 'privacy',
             element: <ProfileSettingsPrivacy />,
           },
+          {
+            path: 'creations',
+            element: <ProfileSettingsMadeByUser />,
+          },
         ],
       },
       {
@@ -181,6 +199,10 @@ const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
 ]);
 
