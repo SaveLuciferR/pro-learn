@@ -15,7 +15,7 @@ const AdminSidebar = () => {
             AdminName
           </Link>
         </div>
-        <div className={`profile-section-sidebar-tab${activePage === 'blog' ? ' active' : ''}`}>
+        {/* <div className={`profile-section-sidebar-tab${activePage === 'blog' ? ' active' : ''}`}>
           <Link
             to={'blog'}
             className="profile-section-sidebar-tab-text"
@@ -23,7 +23,7 @@ const AdminSidebar = () => {
           >
             Статьи
           </Link>
-        </div>
+        </div> */}
         <div className={`profile-section-sidebar-tab${activePage === 'course' ? ' active' : ''}`}>
           <Link
             to={'courses'}
@@ -33,25 +33,39 @@ const AdminSidebar = () => {
             Курсы
           </Link>
         </div>
-        <div className={`profile-section-sidebar-tab${activePage === 'category' ? ' active' : ''}`}>
+        {/* <div className={`profile-section-sidebar-tab${activePage === 'category' ? ' active' : ''}`}>
           <Link
             className="profile-section-sidebar-tab-text"
             onClick={() => setActivePage('category')}
           >
             Категории
           </Link>
-        </div>
+        </div> */}
         <div className={`profile-section-sidebar-tab${activePage === 'task' ? ' active' : ''}`}>
-          <Link className="profile-section-sidebar-tab-text" onClick={() => setActivePage('task')}>
+          <Link
+            to={'tasks'}
+            className="profile-section-sidebar-tab-text"
+            onClick={() => setActivePage('task')}
+          >
             Задачи
           </Link>
         </div>
         <div className={`profile-section-sidebar-tab${activePage === 'project' ? ' active' : ''}`}>
           <Link
+            to={'projects'}
             className="profile-section-sidebar-tab-text"
             onClick={() => setActivePage('project')}
           >
             Проекты
+          </Link>
+        </div>
+        <div className={`profile-section-sidebar-tab${activePage === 'user' ? ' active' : ''}`}>
+          <Link
+            to={'users'}
+            className="profile-section-sidebar-tab-text"
+            onClick={() => setActivePage('user')}
+          >
+            Пользователи
           </Link>
         </div>
         <div className={`profile-section-sidebar-tab${activePage === 'feedback' ? ' active' : ''}`}>
@@ -62,9 +76,6 @@ const AdminSidebar = () => {
             Обратная связь
           </Link>
         </div>
-
-        {/*Управление статьями Курсы Категории Задачи Проекты Обратная связь
-           blog course category task project feedback*/}
       </div>
     </div>
   );

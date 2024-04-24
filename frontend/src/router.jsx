@@ -26,12 +26,18 @@ import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ProfileSettingsSecurity from './components/Profile/ProfileSettings/ProfileSettingsSecurity';
 import ProfileSettingsSessions from './components/Profile/ProfileSettings/ProfileSettingsSessions';
 import ProfileSettingsPrivacy from './components/Profile/ProfileSettings/ProfileSettingsPrivacy';
+import ProfileSettingsMadeByUser from './components/Profile/ProfileSettings/ProfileSettingsMadeByUser.jsx';
 import AdminLayout from './layouts/AdminLayout';
 import CourseCreatePage from './pages/CourseCreatePage';
 import NotFoundPage from './components/NotFoundPage';
 import TaskCreatePage from './pages/TaskCreatePage';
-import TaskSinglePage from "./pages/TaskSinglePage";
-
+import TaskSinglePage from './pages/TaskSinglePage';
+import AdminPage from './pages/AdminPage';
+import AdminBlog from './components/Admin/AdminBlog';
+import AdminCourses from './components/Admin/AdminCourses';
+import AdminTasks from './components/Admin/AdminTasks.jsx';
+import AdminProjects from './components/Admin/AdminProjects.jsx';
+import AdminUsers from './components/Admin/AdminUsers.jsx';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +59,18 @@ const router = createBrowserRouter([
           {
             path: 'courses',
             element: <AdminCourses />,
+          },
+          {
+            path: 'tasks',
+            element: <AdminTasks />,
+          },
+          {
+            path: 'projects',
+            element: <AdminProjects />,
+          },
+          {
+            path: 'users',
+            element: <AdminUsers />,
           },
         ],
       },
@@ -114,19 +132,19 @@ const router = createBrowserRouter([
       },
       {
         path: 'profile/:username/course-creation',
-        element: <CourseCreatePage/>
+        element: <CourseCreatePage />,
       },
       {
         path: 'profile/:username/course-edit/:slug',
-        element: <CourseCreatePage type={'edit'}/>
+        element: <CourseCreatePage type={'edit'} />,
       },
       {
         path: 'profile/:username/task-creation',
-        element: <TaskCreatePage/>
+        element: <TaskCreatePage />,
       },
       {
         path: 'profile/:username/task-edit/:slug',
-        element: <TaskCreatePage type={'edit'}/>
+        element: <TaskCreatePage type={'edit'} />,
       },
       {
         path: 'profile/:username/project/:project',
@@ -194,19 +212,19 @@ const router = createBrowserRouter([
       },
       {
         path: 'task',
-        element: <></>
+        element: <></>,
       },
       {
         path: 'task/:slug',
-        element: <TaskSinglePage/>
+        element: <TaskSinglePage />,
       },
       {
         path: 'compiler/:username/:project',
-        element: <CompilerPage isSolve={false} isCompiler={true} isActiveSidebar={true}/>
+        element: <CompilerPage isSolve={false} isCompiler={true} isActiveSidebar={true} />,
       },
       {
         path: 'compiler-task/:username/:project/:task',
-        element: <CompilerPage isSolve={true} isCompiler={true} isActiveSidebar={true}/>
+        element: <CompilerPage isSolve={true} isCompiler={true} isActiveSidebar={true} />,
       },
     ],
   },
