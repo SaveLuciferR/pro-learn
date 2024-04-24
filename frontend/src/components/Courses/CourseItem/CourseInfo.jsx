@@ -1,13 +1,13 @@
 import img from '../../../image_5.png';
 
-const CourseInfo = () => {
+const CourseInfo = ({course}) => {
   return (
     <div className="course-info">
       <div className="course-info-header">
-        <p className="course-info-header-title">_Python-разработчик</p>
+        <p className="course-info-header-title">_{course.title}</p>
         <ul className="courses-card-header-tags">
-          <li className="courses-card-header-tag">#Python</li>
-          <li className="courses-card-header-tag">#Начинающим</li>
+          {course.tags.map(item => <li className="courses-card-header-tag">#{item.title}</li>)}
+          {/*<li className="courses-card-header-tag">#Начинающим</li>*/}
         </ul>
       </div>
       <div className="course-info-main">

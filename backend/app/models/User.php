@@ -394,9 +394,9 @@ class User extends AppModel
                                     (SELECT COUNT(sct.id)
                                     FROM stepcourse sct JOIN stagecourse sc ON sc.id = sct.stage_course_id
                                     WHERE sc.course_id = c.id) AS 'amount_step',
-                                    (SELECT COUNT(cc.challenge_id)
-                                    FROM course_challenge cc
-                                    WHERE cc.course_id = c.id) AS 'final_projects',
+                                    (SELECT COUNT(sct.id)
+                                    FROM stepcourse sct JOIN stagecourse sc ON sc.id = sct.stage_course_id
+                                    WHERE sc.course_id = c.id AND sct.challenge_id <> null) AS 'final_projects',
                                     (SELECT COUNT(uc.user_id)
                                     FROM user_course uc
                                     WHERE uc.success = 1 AND uc.course_id = c.id) AS 'finish_users',
@@ -422,9 +422,9 @@ class User extends AppModel
                                     (SELECT COUNT(sct.id)
                                     FROM stepcourse sct JOIN stagecourse sc ON sc.id = sct.stage_course_id
                                     WHERE sc.course_id = c.id) AS 'amount_step',
-                                    (SELECT COUNT(cc.challenge_id)
-                                    FROM course_challenge cc
-                                    WHERE cc.course_id = c.id) AS 'final_projects',
+                                    (SELECT COUNT(sct.id)
+                                    FROM stepcourse sct JOIN stagecourse sc ON sc.id = sct.stage_course_id
+                                    WHERE sc.course_id = c.id AND sct.challenge_id <> null) AS 'final_projects',
                                     (SELECT COUNT(uc.user_id)
                                     FROM user_course uc
                                     WHERE uc.success = 1 AND uc.course_id = c.id) AS 'finish_users',
@@ -662,7 +662,7 @@ class User extends AppModel
                                                                 WHERE s.course_id = ? AND sd.language_id = ?", [$course['id'], $lang]);
 
             foreach ($course['main'][$lang]['block'] as $numStage => &$blockDesc) {
-                $course['main'][$lang]['block'][$numStage]['lesson'] = R::getAssoc("SELECT s.num_step, t.code, sd.title, 
+                $course['main'][$lang]['block'][$numStage]['lesson'] = R::getAssoc("SELECT s.num_step, s.challenge_id, t.code, sd.title, 
                                                                                             sd.description, sd.answer_option, 
                                                                                             sd.right_answer
                                                                                          FROM stepcourse s JOIN stepcourse_description sd ON s.id = sd.step_course_id
@@ -936,25 +936,33 @@ class User extends AppModel
     {
         R::begin();
         try {
-            if ($slug === '') {
-                R::exec("INSERT INTO stagecourse_description (language_id, stage_course_id, title) VALUES (?, ?, ?)", [
-                    $langID,
-                    $stageID,
-                    $block['title'],
-                ]);
-            } else {
-                R::exec("UPDATE stagecourse_description SET title = ? WHERE language_id = ? AND stage_course_id = ?", [
-                    $block['title'],
-                    $langID,
-                    $stageID
-                ]);
-            }
-            R::commit();
+            R::exec("INSERT INTO stagecourse_description (language_id, stage_course_id, title) VALUES (?, ?, ?)", [
+                $langID,
+                $stageID,
+                $block['title'],
+            ]);
 
-            return $this->saveStepCourse($block, $slug, $langID, $stageID);
+            R::commit();
+            return true;
         } catch (\Exception $ex) {
             R::rollback();
-            debug($ex);
+            if (str_contains($ex->getMessage(), 'PRIMARY')) {
+                R::begin();
+                try {
+                    R::exec("UPDATE stagecourse_description SET title = ? WHERE language_id = ? AND stage_course_id = ?", [
+                        $block['title'],
+                        $langID,
+                        $stageID
+                    ]);
+                    R::commit();
+                    return true;
+                } catch (\Exception $ex2) {
+                    R::rollback();
+                    debug($ex . $ex2);
+                    return false;
+                }
+            }
+
             return false;
         }
     }
@@ -976,6 +984,7 @@ class User extends AppModel
                         $step = R::dispense("stepcourse");
                         $step->stage_course_id = $stageID;
                         $step->typestepcourse_id = $type->id;
+                        $step->challenge_id = $lesson['challenge_id'];
                         //TODO: Запись id задачи
                         $step->num_step = $numStep;
                         $stepID = R::store($step);
@@ -985,6 +994,7 @@ class User extends AppModel
                         if ($slug !== '') {
                             $step = R::load('stepcourse', $stepID);
                             $step->typestepcourse_id = $type->id;
+                            $step->challenge_id = $lesson['challenge_id'];
                             R::store($step);
                         }
                     }

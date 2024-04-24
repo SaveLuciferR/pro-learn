@@ -96,6 +96,7 @@ class Task extends AppModel
     public function getSolveTask($projectID)
     {
         $project = R::load('project', $projectID);
+//        debug($project, 1);
         return $project->slug;
     }
 

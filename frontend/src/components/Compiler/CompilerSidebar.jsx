@@ -57,6 +57,7 @@ const CompilerSidebar = () => {
       path: pathIndex,
       body: findSavingFile(pathIndex),
     };
+    console.log(tempSavingFile)
     dispatch(setFileRenamingPathInActionContext(pathIndex));
     dispatch(setFileRenamingNameInActionContext(name));
     console.log(actionContext.file.rename);
@@ -74,7 +75,7 @@ const CompilerSidebar = () => {
   };
 
   const findSavingFile = (pathIndex, files = compilerFiles) => {
-    let body = '';
+    let body = 'eчё';
     Object.keys(files).map((key) => {
       if (files[key].type === 'directory') {
         body = findSavingFile(pathIndex, files[key].children);
@@ -83,6 +84,8 @@ const CompilerSidebar = () => {
         body = files[key].body;
       }
     });
+
+    console.log(body)
 
     return body;
   };

@@ -38,10 +38,12 @@ class CourseController extends AppController
     public function viewAction()
     {
         $course = $this->model->getCourseBySlug(App::$app->getProperty('language')['id'], $this->route['slug']);
+//        debug($course, 1);
         if (!$course) {
             header('HTTP/1.0 404 Not Found');
             die;
         }
+        $course['tags'] = $this->model->getCourseTagByID($course['id']);
         $course['stage_course'] = [];
         if (isset($_SESSION['user'])) {
             $stageCourse = $this->model->getStageCourseBySlug(App::$app->getProperty('language')['id'], $course['id']);
@@ -97,6 +99,7 @@ class CourseController extends AppController
             $course['stage_course'] = $stageCourse;
 //            debug($stageCourse, 1);
         }
+
 
         echo json_encode(array('course' => $course), JSON_UNESCAPED_SLASHES);
     }

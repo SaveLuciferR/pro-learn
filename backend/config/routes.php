@@ -14,6 +14,9 @@ Router::add('^(?P<lang>[a-z]+)?/?language/?$', ['controller' => 'Language', 'act
 
 Router::add('^compiler/@(?P<username>[a-z-0-9A-Z]+)/(?P<slug>[a-z-0-9A-Z]+)/?$', ['controller' => 'Compiler', 'action' => 'index']); // загрузка редактора
 Router::add('^compiler/@(?P<username>[a-z-0-9A-Z]+)/(?P<slug>[a-z-0-9A-Z]+)/(?P<action>[a-z-]+)/?$', ['controller' => 'Compiler']); // сохранение, удаление и тд для редактора
+Router::add('^compiler/@(?P<username>[a-z-0-9A-Z]+)/(?P<slugProject>[a-z-0-9A-Z]+)/(?P<slugTask>[a-z-0-9A-Z]+)/check-solution-task/?$', ['controller' => 'Compiler', 'action' => 'checkSolutionTask']); // загрузка задачи
+Router::add('^compiler/solve-task/?$', ['controller' => 'Compiler', 'action' => 'solveTask']); // загрузка задачи
+
 
 Router::add('^(?P<lang>[a-z]+)?/?blog/?$', ['controller' => 'Blog', 'action' => 'index']); // Главная страница со статьями
 Router::add('^(?P<lang>[a-z]+)?/?blog/(?P<slug>[a-z0-9-]+)/?$', ['controller' => 'Blog', 'action' => 'view']); // Страница статьи

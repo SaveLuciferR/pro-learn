@@ -15,8 +15,8 @@ import ProfileTasks from './components/Profile/UserTasks/ProfileTasks';
 import ProfileProjects from './components/Profile/Projects/ProfileProjects';
 import ProfileCompletedCourses from './components/Profile/CompletedCourses/CompletedCourses';
 import ProfileCurrentCourses from './components/Profile/CurrentCourses/ProfileCurrentCourses';
-import CoursesPage from './pages/CoursesPage';
-import CoursePage from './pages/CoursePage';
+import CoursesPage from './pages/CoursePage';
+import CourseSinglePage from './pages/CourseSinglePage';
 import LessonOneOption from './components/CourseLessons/LessonOneOption';
 import CourseLessonPage from './pages/CourseLessonPage';
 import LessonSeveralOption from './components/CourseLessons/LessonSeveralOption';
@@ -149,15 +149,15 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: 'courses',
+        path: 'course',
         element: <CoursesPage />,
       },
       {
-        path: 'courses/name-course',
-        element: <CoursePage />,
+        path: 'course/:slug',
+        element: <CourseSinglePage />,
       },
       {
-        path: 'courses/lessons',
+        path: 'course/lessons',
         element: <CourseLessonPage />,
         children: [
           {

@@ -43,10 +43,10 @@ class TaskController extends AppController
             if (!$userTask) {
                 // только начинаем проходить
                 $result['projectSlug'] = $this->model->solveTask($_SESSION['user'], $this->route['slug'], $_POST, 'new');
-            } else if ($userTask['success'] === 1) {
-                // не даем воможность зайти на задачу тк прошли
-                header("HTTP/1.0 403 Not Forbidden");
-                die;
+//            } else if ($userTask['success'] === 1) {
+//                // не даем воможность зайти на задачу тк прошли
+//                header("HTTP/1.0 403 Not Forbidden");
+//                die;
             } else if ($userTask['project_id'] === null) {
                 // проект был удален
                 $result['projectSlug'] = $this->model->solveTask($_SESSION['user'], $this->route['slug'], $_POST, 'edit');
@@ -54,6 +54,8 @@ class TaskController extends AppController
                 // отдаем пользователю его проект с решением задачи
                 $result['projectSlug'] = $this->model->getSolveTask($userTask['project_id']);
             }
+
+//            debug($result, 1);
 
             echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
         } else {

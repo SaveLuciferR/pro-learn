@@ -4,7 +4,12 @@ import CourseCreateLessonFewAnswer from "./CourseCreateLessonFewAnswer";
 import CourseCreateLessonOneAnswer from "./CourseCreateLessonOneAnswer";
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {editCurrentCourseMainLesson, setCurrentCourseEditMainLessonCode} from "../../../redux/Course/slice";
+import {
+    bindTaskToCourse,
+    editCurrentCourseMainLesson,
+    setCurrentCourseEditMainLessonCode
+} from "../../../redux/Course/slice";
+import CourseCreateLessonTask from "./CourseCreateLessonTask";
 
 
 const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numStage}) => {
@@ -23,6 +28,7 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
     const [answerOption, setAnswerOption] = useState({});
     const [rightAnswer, setRightAnswer] = useState("");
     const [canBeUpdate, setCanBeUpdate] = useState(false);
+    const [slugBindSlugText, setBindSlugText] = useState(null);
 
     useEffect(() => {
         // console.log(lesson.description);
@@ -97,9 +103,24 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
                                                     setDescription={(value) => setDescription(value)}
                                                     setAnswerOp={(e) => setAnswer(e)}/>
             }
+            case "task": {
+                return <CourseCreateLessonTask
+                    key={index}
+                    index={index}
+                    currentLesson={lesson}
+                    updateTaskID={(id, slug) => updateTaskID(id, slug)}
+                    slugBindTask={slugBindSlugText}
+                    setSlugBindTask={(s) => setBindSlugText(s)}
+                />
+            }
             default:
                 return null;
         }
+    }
+
+    const updateTaskID = (id, slug) => {
+        dispatch(bindTaskToCourse({languages: languages, task: id, num_stage: numStage, num_step: index}));
+        setBindSlugText(id === lesson.challenge_id ? null : slug);
     }
 
     const setAnswer = (answers) => {
@@ -161,7 +182,7 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
                                 stroke="#DB5B42"
                                 strokeLinecap="round"/>
                         </svg>
-                        <span>Удалить блок</span>
+                        <span>Удалить урок</span>
                     </button>
 
                 </div>

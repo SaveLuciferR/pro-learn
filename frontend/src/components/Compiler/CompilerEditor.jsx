@@ -1,5 +1,8 @@
 import {useEffect} from 'react';
 import {Editor, loader} from '@monaco-editor/react';
+import monacoThemes from 'monaco-themes/themes/themelist.json'
+// import monacoThemeData from 'monaco-themes/themes/Tomorrow-Night-Bright.json';
+import myThemeData from './Tomorrow-Night-Bright.json'
 import {useDispatch, useSelector} from 'react-redux';
 import {
     deleteCompilerTab,
@@ -34,16 +37,26 @@ const CompilerEditor = () => {
         dispatch(setNewBodyCompilerFiles(object));
     };
 
+    // useEffect(() => {
+    //     loader.init()
+    //         .then((monaco) => {
+    //             console.log(`${monacoThemes["tomorrow-night-bright"]}.json`);
+    //             console.log(monaco);
+    //             import(`monaco-themes/themes/${monacoThemes["tomorrow-night-bright"]}.json`)
+    //                 .then(([monaco2, themeData]) => {
+    //                     monaco.editor.defineTheme("tomorrow-night-bright", themeData);
+    //                 });
+    //         })
+    //         .catch((error) => console.error('error'));
+    // }, []);
+
     useEffect(() => {
-        loader
-            .init()
+        loader.init()
             .then((monaco) => {
-                import('monaco-themes/themes/Blackboard.json').then((data) => {
-                    monaco.editor.defineTheme('Blackboard', data);
-                });
+                monaco.editor.defineTheme('tomorrow-night-bright', myThemeData);
+                monaco.editor.setTheme('tomorrow-night-bright');
             })
-            .catch((error) => console.error('error'));
-    }, []);
+    }, [])
 
     return (
         <>
@@ -101,6 +114,7 @@ const CompilerEditor = () => {
                             }
                             height={'100%'}
                             theme="vs-dark"
+                            // theme={monacoThemes["tomorrow-night-bright"]}
                         />
                     </div>
                 </div>

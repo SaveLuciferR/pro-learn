@@ -26,7 +26,21 @@ class CompilerController extends AppController
             die;
         }
 
-        echo json_encode(array('fileStructure' => $fileStructure, 'path' => $pathProject), JSON_UNESCAPED_SLASHES);
+        $tasks = $this->model->getTasksForProject($pathProject);
+        $shouldBeRunAtStart = false;
+
+        if (isset($tasks['tasks'])) {
+            foreach ($tasks['tasks'] as $k => $task) {
+                if (isset($task['runAtStart']) && $task['runAtStart']) {
+                    $shouldBeRunAtStart = true;
+                    break;
+                }
+            }
+        }
+
+        //TODO JSON не сохраняется, а приходит пустым!!!
+
+        echo json_encode(array('fileStructure' => $fileStructure, 'path' => $pathProject, 'tasks' => $tasks, 'shouldBeRunAtStart' => $shouldBeRunAtStart), JSON_UNESCAPED_SLASHES);
     }
 
     public function startDockerSessionAction()
@@ -34,9 +48,63 @@ class CompilerController extends AppController
         $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']));
     }
 
+    public function checkSolutionTaskAction()
+    {
+        $output = [];
+        $success = true;
+        $error = "";
+        $taskInputOutputData = $this->model->getDataSolutionTask($this->route['slugTask']);
+//        debug($taskInputOutputData, 1);
+
+        foreach ($taskInputOutputData as $k => &$v) {
+            $v['input_data'] = json_decode($v['input_data'], true);
+            $v['output_data'] = json_decode($v['output_data'], 1);
+            $this->model->startOrUpdateDockerContainer(
+                $this->model->getPathProject($this->route['username'], $this->route['slugProject']),
+                $output, $error, $v['input_data']
+            );
+            $temp = implode(PHP_EOL, $v['output_data']);
+            if (is_array($output)) $output = implode(PHP_EOL, $output);
+            if (trim($output) !== trim($temp)) {
+//                debug($output);
+                $success = false;
+                break;
+            }
+        }
+
+        if ($success) {
+            $this->model->saveSolvedTask($_SESSION['user']['id'], $this->route['slugTask']);
+        }
+
+        echo json_encode(array('success' => $success), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function solveTaskAction()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['task'])) {
+            $task = $this->model->getSolveTask($_SESSION['user']['id'], $_GET['task']);
+            if ($task) {
+                if ($task['input_data']) {
+                    $task['input_data'] = json_decode($task['input_data'], true);
+                }
+
+                if ($task['output_data']) {
+                    $task['output_data'] = json_decode($task['output_data'], true);
+                }
+//                debug(json_encode(array('task' => $task), JSON_UNESCAPED_SLASHES), 1);
+                echo json_encode(array('task' => $task), JSON_UNESCAPED_SLASHES);
+            } else {
+                header('HTTP/1.0 404 Not Found');
+                die;
+            }
+        } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        }
+    }
+
     public function requestTerminalAction()
     {
-        
+
     }
 
     public function saveAction()

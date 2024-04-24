@@ -8,6 +8,8 @@ const initialState = {
         "                                               ",
         "Welcome to the Online Editor from the pro-learn team!"
     ],
+    shouldBeRunAtStart: false,
+    tasks: {},
     workspaceUser: 'workspace $user1:',
     files: {},
     currentFile: {
@@ -28,9 +30,7 @@ const initialState = {
             save: {
                 path: "",
             },
-            delete: {
-
-            },
+            delete: {},
             rename: {
                 path: "",
                 newName: "",
@@ -51,11 +51,17 @@ export const compilerSlice = createSlice({
         name: "compiler",
         initialState: initialState,
         reducers: {
-            addTerminalContent (state, action) {
+            addTerminalContent(state, action) {
                 state.terminalContent.push(action.payload);
             },
             setWorkspaceUser(state, action) {
                 state.workspaceUser = action.payload;
+            },
+            setShouldBeRunAtStart(state, action) {
+                state.shouldBeRunAtStart = action.payload;
+            },
+            setTasksProject(state, action) {
+              state.tasks = action.payload;
             },
             setCompilerFiles(state, action) {
                 state.files = action.payload;
@@ -117,7 +123,7 @@ export const compilerSlice = createSlice({
             setFileRenamingPathInActionContext(state, action) {
                 state.actionContext.file.rename.path = action.payload;
             },
-            setFileRenamingNameInActionContext (state, action) {
+            setFileRenamingNameInActionContext(state, action) {
                 state.actionContext.file.rename.newName = action.payload;
             },
             setTypeContextMenu(state, action) {
@@ -132,12 +138,12 @@ export const compilerSlice = createSlice({
             setUpdateFiles(state, action) {
                 state.updateFiles = action.payload;
             },
-            setNeedReloadFrameCompiler (state, action) {
+            setNeedReloadFrameCompiler(state, action) {
                 state.needReloadFrameCompiler = action.payload;
             },
             setEventPointerFrame(state, action) {
                 state.eventPointerFrame = action.payload;
-            }
+            },
         }
     })
 ;
@@ -146,6 +152,8 @@ export const {
     addTerminalContent,
     setWorkspaceUser,
     setCompilerFiles,
+    setShouldBeRunAtStart,
+    setTasksProject,
     setNewBodyCompilerFiles,
     setCompilerCurrentFileName,
     setCompilerCurrentFile,
