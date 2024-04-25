@@ -3,7 +3,7 @@ import SliderMain from '../../Slider/SliderMain';
 import { Link } from 'react-router-dom';
 
 const CurrentCourseMain = ({ data }) => {
-  const [currentCourse, setCurrentCourse] = useState({});
+  const [currentCourse, setCurrentCourse] = useState([]);
 
   useEffect(() => {
     setCurrentCourse(data);

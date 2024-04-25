@@ -10,17 +10,17 @@ import LoadingElement from '../../LoadingElement';
 const ProfileMainPage = () => {
   const { lang, username } = useParams();
   const [userData, setUserData] = useState([]);
-  const [listCourse, setListCourse] = useState({});
-  let currentCourse = {};
-  let completeCourse = {};
+  const [listCourse, setListCourse] = useState([]);
+  let currentCourse = [];
+  let completeCourse = [];
 
   const addCurrentCourse = (item) => {
     console.log(item);
-    currentCourse = { ...currentCourse, ...item };
+    currentCourse.push(item);
     console.log(currentCourse);
   };
   const addCompleteCourse = ({ item }) => {
-    completeCourse = { ...completeCourse, ...item };
+    completeCourse.push(item);
   };
 
   useEffect(() => {

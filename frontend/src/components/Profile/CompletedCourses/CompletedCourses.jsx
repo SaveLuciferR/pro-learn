@@ -9,14 +9,23 @@ import LoadingElement from '../../LoadingElement';
 const ProfileCompletedCourses = () => {
   const { lang, username } = useParams();
   const [completedCourses, setCompletedCourses] = useState([]);
+  let completedCoursesMassive = [];
 
   useEffect(() => {
     axiosClient
-      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
+      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}/course-list`)
       .then(({ data }) => {
-        setCompletedCourses(data.profileInfo.projects);
+        setCompletedCourses(data.courses);
       });
   }, [lang, username]);
+
+  useEffect(() => {
+    Object.keys(completedCourses).map((i) => {
+      return completedCourses[i].success === '1'
+        ? completedCoursesMassive.push(completedCourses[i])
+        : console.log();
+    });
+  }, [completedCourses]);
 
   return (
     <>
@@ -46,11 +55,11 @@ const ProfileCompletedCourses = () => {
           </div>
           <div className="profile-projects-page">
             <div className="profile-completed-page-main">
-              {completedCourses.length === 0 ? (
+              {completedCoursesMassive.length === 0 ? (
                 <div className="profile-none">Нет завершенных курсов :(</div>
               ) : (
                 <SliderMain
-                  data={completedCourses}
+                  data={completedCoursesMassive}
                   sliderType="profileCompletedCourses"
                   countSlide={2}
                 />
