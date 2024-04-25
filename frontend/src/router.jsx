@@ -38,6 +38,7 @@ import AdminCourses from './components/Admin/AdminCourses';
 import AdminTasks from './components/Admin/AdminTasks.jsx';
 import AdminProjects from './components/Admin/AdminProjects.jsx';
 import AdminUsers from './components/Admin/AdminUsers.jsx';
+import AdminFeedback from './components/Admin/AdminFeedback.jsx';
 
 const router = createBrowserRouter([
   {
@@ -72,10 +73,23 @@ const router = createBrowserRouter([
             path: 'users',
             element: <AdminUsers />,
           },
+          {
+            path: 'feedback',
+            element: <AdminFeedback />,
+          },
         ],
+      },
+      {
+        path: 'course-creation',
+        element: <CourseCreatePage />,
+      },
+      {
+        path: 'task-creation',
+        element: <TaskCreatePage />,
       },
     ],
   },
+
   {
     path: '/:lang?',
     element: <MainLayout isActiveSidebar={true} isCompiler={false} />,

@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import axiosClient from '../../axiosClient';
 import Table from '../Table/Table';
+import { useNavigate } from 'react-router-dom';
 
 const AdminCourses = () => {
+  const navigate = useNavigate();
   const [adminCourses, setAdminCourses] = useState([]);
 
   const columns = [
@@ -168,7 +170,9 @@ const AdminCourses = () => {
       </div>
       <div className="admin-main-header">
         <input type="search" placeholder="Поиск ..." className="input width1200" />
-        <button className="admin-button">Создать курс</button>
+        <button onClick={() => navigate('/admin-panel/course-creation')} className="admin-button">
+          Создать курс
+        </button>
       </div>
       <div className="admin-content">
         <Table data={adminCourses} columns={columns} />

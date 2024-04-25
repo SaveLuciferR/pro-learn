@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axiosClient from '../../axiosClient';
 import Table from '../Table/Table';
 
@@ -16,7 +17,11 @@ const AdminUsers = () => {
       accessorKey: 'username',
       header: 'Имя пользователя',
       size: 190,
-      cell: (props) => <p title={props.getValue()}>{props.getValue()}</p>,
+      cell: (props) => (
+        <Link to={`/profile/${props.getValue()}`} title={props.getValue()}>
+          {props.getValue()}
+        </Link>
+      ),
     },
     {
       accessorKey: 'avatar_img',

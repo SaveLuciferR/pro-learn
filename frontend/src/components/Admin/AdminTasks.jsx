@@ -191,7 +191,7 @@ const AdminTasks = () => {
       </div>
       <div className="admin-main-header">
         <input type="search" placeholder="Поиск ..." className="input width1200" />
-        <button className="admin-button" onClick={() => navigate('/')}>
+        <button className="admin-button" onClick={() => navigate('/admin-panel/task-creation')}>
           Добавить задачу
         </button>
       </div>

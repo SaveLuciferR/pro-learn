@@ -70,6 +70,7 @@ const AdminSidebar = () => {
         </div>
         <div className={`profile-section-sidebar-tab${activePage === 'feedback' ? ' active' : ''}`}>
           <Link
+            to={'feedback'}
             className="profile-section-sidebar-tab-text"
             onClick={() => setActivePage('feedback')}
           >
