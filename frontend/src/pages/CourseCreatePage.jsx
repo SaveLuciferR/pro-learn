@@ -41,7 +41,7 @@ const CourseCreatePage = ({type = 'create'}) => {
                 .get(`@${username}/creation/edit-course/${slug}`)
                 .then(({data}) => {
                     if (data.result.success) {
-                        // console.log(data.data);
+                        console.log(data);
                         dispatch(setCurrentCourse({course: data.result.course}));
                         setDifficulty(data.result.course.difficulty);
                         setIcon(data.result.course.icon);

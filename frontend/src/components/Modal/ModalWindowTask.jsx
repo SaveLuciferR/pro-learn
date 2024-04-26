@@ -32,22 +32,6 @@ const ModalWindowTask = (
         }
     }, [isOpen])
 
-    // const updateData = () => {
-    //     setData([]);
-    //     if (isProject) {
-    //         axiosClient.get(`/@${username}/project-list`)
-    //             .then(({data}) => {
-    //                 setData(data.projects);
-    //                 console.log(data);
-    //             })
-    //             .catch((response) => {
-    //                 console.log(response)
-    //             })
-    //     } else if (isTask) {
-    //
-    //     }
-    // }
-
     return (
         <div className="modal" style={isOpen === true ? {} : {display: 'none'}}>
             <div className="modal-window">

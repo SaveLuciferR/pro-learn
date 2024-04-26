@@ -27,7 +27,7 @@ const CourseSinglePage = () => {
                 <LoadingElement/> :
                 <>
                     <CourseInfo course={course}/>
-                    <CourseBlocks course={course}/>
+                    <CourseBlocks blocks={course.stage_course}/>
                 </>
             }
 

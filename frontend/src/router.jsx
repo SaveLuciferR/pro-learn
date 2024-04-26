@@ -89,6 +89,10 @@ const router = createBrowserRouter([
             element: <ProfileProjects />,
           },
           {
+            path: 'templates',
+            element: <ProfileProjects />,
+          },
+          {
             path: 'completed-courses',
             element: <ProfileCompletedCourses />,
           },
@@ -125,6 +129,18 @@ const router = createBrowserRouter([
       {
         path: 'profile/:username/project-edit/:slug',
         element: <ProjectAddPage isActiveSidebar={false} type={'edit'} />,
+      },
+      {
+        path: 'profile/:username/template/:template',
+        element: <ProjectPage isActiveSidebar={false} isTemplate={true} />,
+      },
+      {
+        path: 'profile/:username/template-creation',
+        element: <ProjectAddPage isActiveSidebar={false} isTemplate={true} />,
+      },
+      {
+        path: 'profile/:username/template-edit/:slug',
+        element: <ProjectAddPage isActiveSidebar={false} type={'edit'} isTemplate={true} />,
       },
       {
         path: 'profile/:username/settings/general',

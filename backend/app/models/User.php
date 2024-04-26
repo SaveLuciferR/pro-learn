@@ -367,7 +367,7 @@ class User extends AppModel
 
     public function getUserInfo($username)
     {
-        return R::getRow("SELECT u.username, u.role, u.last_name, 
+        return R::getRow("SELECT u.id, u.username, u.role, u.last_name, 
                                     u.first_name, u.country_address, 
                                     u.date_of_registration, avatar_img, heading_img,
                                     about_user, all_profile_private, personal_info_private,
@@ -381,6 +381,22 @@ class User extends AppModel
         return R::getAll("SELECT p.id, p.slug, p.title, p.date_of_publication, p.private, p.description
                                FROM project p JOIN user u ON u.id = p.user_id
                                WHERE u.username = ?", [$username]);
+    }
+
+    public function getUserTemplate($userID, $lang)
+    {
+        return R::getAll("SELECT u.username, u.role, t.slug, t.icon, t.private, t.for_project, td.title, td.description
+                                FROM projecttemplate t JOIN projecttemplate_description td ON td.projecttemplate_id = t.id
+                                JOIN user u ON u.id = t.user_id
+                                WHERE u.id = ? AND td.language_id = ?", [$userID, $lang]);
+    }
+
+    public function getUserOtherTemplate($lang)
+    {
+        return R::getAll("SELECT u.username, u.role, t.slug, t.icon, t.private, t.for_project, td.title, td.description
+                                FROM projecttemplate t JOIN projecttemplate_description td ON td.projecttemplate_id = t.id
+                                JOIN user u ON u.id = t.user_id
+                                WHERE td.language_id = ? AND t.private = 0", [$lang]);
     }
 
     public function getUserCourses($username, $lang)
@@ -943,6 +959,7 @@ class User extends AppModel
             ]);
 
             R::commit();
+            $this->saveStepCourse($block, $slug, $langID, $stageID);
             return true;
         } catch (\Exception $ex) {
             R::rollback();
@@ -955,6 +972,8 @@ class User extends AppModel
                         $stageID
                     ]);
                     R::commit();
+
+                    $this->saveStepCourse($block, $slug, $langID, $stageID);
                     return true;
                 } catch (\Exception $ex2) {
                     R::rollback();
@@ -1027,6 +1046,7 @@ class User extends AppModel
             }
         }
 
+//        debug($block['lesson'], 1);
         return $flag;
     }
 
@@ -1040,7 +1060,7 @@ class User extends AppModel
                 $stepID,
                 $lesson['title'],
                 $lesson['description'],
-                json_encode($lesson['answer_option'], JSON_UNESCAPED_SLASHES) ?: null,
+                json_encode($lesson['answer_option'], JSON_UNESCAPED_UNICODE) ?: null,
                 $lesson['right_answer']
             ]);
 
@@ -1057,7 +1077,7 @@ class User extends AppModel
                     R::exec("UPDATE stepcourse_description SET title = ?, description = ?, answer_option = ?, right_answer = ? WHERE language_id = ? AND step_course_id = ?", [
                         $lesson['title'],
                         $lesson['description'],
-                        json_encode($lesson['answer_option'], JSON_UNESCAPED_SLASHES) ?: null,
+                        json_encode($lesson['answer_option'], JSON_UNESCAPED_UNICODE) ?: null,
                         $lesson['right_answer'],
                         $langID,
                         $stepID

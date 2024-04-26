@@ -117,6 +117,7 @@ export const courseSlice = createSlice({
                 }
             },
             editCurrentCourseMainLesson(state, action) {
+                // console.log(action.payload)
                 state.currentCourseEdit.main[action.payload.lang].block[action.payload.num_stage].lesson[action.payload.num_step].title = action.payload.title;
                 state.currentCourseEdit.main[action.payload.lang].block[action.payload.num_stage].lesson[action.payload.num_step].description = action.payload.description;
                 state.currentCourseEdit.main[action.payload.lang].block[action.payload.num_stage].lesson[action.payload.num_step].answer_option = action.payload.answer_option;

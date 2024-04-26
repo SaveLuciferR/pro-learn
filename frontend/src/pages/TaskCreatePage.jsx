@@ -6,7 +6,7 @@ import img from "../header_bg.png";
 import TaskCreateMain from "../components/Task/TaskCreate/TaskCreateMain";
 import DropdownCheckbox from "../components/DropdownCheckbox";
 import axiosClient from "../axiosClient";
-import {setTaskMainInfo, setTaskProject} from "../redux/Task/slice";
+import {setTaskMainInfo, setTaskProject, setTaskTemplate} from "../redux/Task/slice";
 import ModalWindowTask from "../components/Modal/ModalWindowTask";
 
 
@@ -52,8 +52,10 @@ const TaskCreatePage = ({type}) => {
 
     const currentTask = useSelector(state => state.task.currentTaskEdit);
 
-    const [openModalTask, setOpenModalTask] = useState(false);
+    const [openModalTaskProject, setOpenModalTaskProject] = useState(false);
+    const [openModalTaskTemplate, setOpenModalTaskTemplate] = useState(false);
     const [slugBindProject, setSlugBindProject] = useState(null);
+    const [slugBindTemplate, setSlugBindTemplate] = useState(null);
     const [difficultyAmount, setDifficultyAmount] = useState([false, false, false, false, false]);
     const [allCategoryProg, setAllCategoryProg] = useState([]);
     const [allLangProg, setAllLangProg] = useState([]);
@@ -61,6 +63,9 @@ const TaskCreatePage = ({type}) => {
     const [difficulty, setDifficulty] = useState(1);
     const [forCourse, setForCourse] = useState(false);
     const [numOfInputData, setNumOfInputData] = useState(0);
+
+    const [modalDataProject, setModalDataProject] = useState([]);
+    const [modalDataTemplate, setModalDataTemplate] = useState([]);
 
     const updateProjectID = (id, slugProject) => {
         if (id === currentTask.project_id) {
@@ -70,6 +75,46 @@ const TaskCreatePage = ({type}) => {
             dispatch(setTaskProject(id));
             setSlugBindProject(slugProject);
         }
+    }
+
+    const updateTemplateID = (id, slugTemplate) => {
+        if (id === currentTask.project_id) {
+            dispatch(setTaskTemplate(null));
+            setSlugBindTemplate(null);
+        } else {
+            dispatch(setTaskTemplate(id));
+            setSlugBindTemplate(slugTemplate);
+        }
+    }
+
+    const updateProjectData = () => {
+        axiosClient.get(`/@${username}/project-list`)
+            .then(({data}) => {
+                setModalDataProject(data.projects);
+                console.log(data);
+            })
+            .catch((response) => {
+                console.log(response)
+            })
+    }
+
+    const updateTemplateData = () => {
+        axiosClient.get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}/template-list?type=all`)
+            .then(({data}) => {
+                setModalDataTemplate(data.templates);
+                console.log(data);
+            })
+            .catch((response) => {
+                console.log(response)
+            })
+    }
+
+    const canBeViewDataProject = (item, i) => {
+        return !Boolean(item.private)
+    }
+
+    const canBeViewDataTemplate = (item, i) => {
+        return true;
     }
 
     useEffect(() => {
@@ -84,6 +129,7 @@ const TaskCreatePage = ({type}) => {
                 for_course: true,
             }))
         }
+        updateProjectData();
     }, [])
 
     useEffect(() => {
@@ -132,8 +178,16 @@ const TaskCreatePage = ({type}) => {
                                   style={{pointerEvents: slugBindProject === null ? 'none' : 'auto'}}
                                   to={`${lang === undefined ? "/" : '/' + lang + '/'}profile/${username}/project/${slugBindProject}`}
                                   target={'_blank'}>Перейти к проекту</Link>
-                            <button onClick={() => setOpenModalTask(true)} className={'btn underline-hover'}>Привязать
+                            <button onClick={() => setOpenModalTaskProject(true)} className={'btn underline-hover'}>Привязать
                                 проект
+                            </button>
+
+                            <Link className={'btn secondary-blue big'}
+                                  style={{pointerEvents: slugBindProject === null ? 'none' : 'auto'}}
+                                  to={`${lang === undefined ? "/" : '/' + lang + '/'}profile/${username}/project/${slugBindProject}`} // TODO страница с шаблоном
+                                  target={'_blank'}>Перейти к шаблону</Link>
+                            <button onClick={() => setOpenModalTaskTemplate(true)} className={'btn underline-hover'}>Привязать
+                                шаблон
                             </button>
 
                         </div>
@@ -143,11 +197,42 @@ const TaskCreatePage = ({type}) => {
             </div>
 
             <ModalWindowTask
-                isOpen={openModalTask}
-                setIsOpen={(e) => setOpenModalTask(e)}
+                isOpen={openModalTaskProject}
+                setIsOpen={(e) => setOpenModalTaskProject(e)}
                 bindData={currentTask.project_id}
                 setBindData={(id, slugProject) => updateProjectID(id, slugProject)}
-                isProject={true}
+                data={modalDataProject}
+                updateData={() => updateProjectData()}
+                canBeViewData={(item, i) => canBeViewDataProject(item, i)}
+                linkToData={`profile/${username}/project`}
+                linkToNewData={`profile/${username}/project-creation`}
+                bindText={'Привязать проект'}
+                unBindText={'Отвязать проект'}
+                titleText={'Привязка проекта к задаче'}
+                rejectLoadText={'Ошибка загрузки'}
+                successBindText={'Проект успешно привязан'}
+                rejectBindText={'Проект не привязан'}
+                updateText={'Обновить'}
+                newDataText={'Создать новый проект'}
+            />
+            <ModalWindowTask
+                isOpen={openModalTaskTemplate}
+                setIsOpen={(e) => setOpenModalTaskTemplate(e)}
+                bindData={currentTask.template_id}
+                setBindData={(id, slugProject) => updateTemplateData(id, slugProject)}
+                data={modalDataTemplate}
+                updateData={() => updateTemplateData()}
+                canBeViewData={(item, i) => canBeViewDataTemplate(item, i)}
+                linkToData={`profile/${username}/template`}
+                linkToNewData={`profile/${username}/template-creation`}
+                bindText={'Привязать шаблон'}
+                unBindText={'Отвязать шаблон'}
+                titleText={'Привязка шаблона к задаче'}
+                rejectLoadText={'Ошибка загрузки'}
+                successBindText={'Шаблон успешно привязан'}
+                rejectBindText={'Шаблон не привязан'}
+                updateText={'Обновить'}
+                newDataText={'Создать новый шаблон'}
             />
         </div>
     );

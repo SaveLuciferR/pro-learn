@@ -28,9 +28,9 @@ const CourseCreateMain = ({type}) => {
         dispatch(setCurrentCourseStatus("draft"));
         axiosClient.post(`@${username}/creation/course`, {course: currentCourse})
             .then(({data}) => {
-                // if (data.result.slug) {
-                //     navigate(`${lang === undefined ? "/" : '/' + lang + "/"}profile/${username}/course-edit/${data.result.slug}`);
-                // }
+                if (data.result.slug) {
+                    navigate(`${lang === undefined ? "/" : '/' + lang + "/"}profile/${username}/course-edit/${data.result.slug}`);
+                }
                 console.log(data);
             })
             .catch((response) => {

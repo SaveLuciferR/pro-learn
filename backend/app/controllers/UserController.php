@@ -156,6 +156,29 @@ class UserController extends AppController
         echo json_encode(array('projects' => $projects), JSON_UNESCAPED_SLASHES);
     }
 
+    public function templateListAction()
+    {
+        $user = $this->model->getUserInfo($this->route['username']);
+        if (!$user) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            die;
+        }
+
+        $templates = $this->model->getUserTemplate($user['id'], App::$app->getProperty('language')['id']);
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            foreach ($templates as $k => $v) {
+                if ($v['private']) unset($templates[$k]);
+            }
+        } else if (isset($_GET['type']) && $_GET['type'] === 'all') {
+            $otherTemplates = $this->model->getUserOtherTemplate(App::$app->getProperty('language')['id']);
+            $templates = array_merge($otherTemplates, $templates);
+//            $templates = [];
+            $templates = array_values(array_column($templates, null, 'slug'));
+        }
+
+        echo json_encode(array('templates' => $templates), JSON_UNESCAPED_SLASHES);
+    }
+
     public function courseListAction()
     {
         $user = $this->model->getUserInfo($this->route['username']);

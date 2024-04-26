@@ -43,19 +43,23 @@ class CourseController extends AppController
             header('HTTP/1.0 404 Not Found');
             die;
         }
+        $course['date_of_publication'] = date('d.m.Y', strtotime($course['date_of_publication']));
         $course['tags'] = $this->model->getCourseTagByID($course['id']);
         $course['stage_course'] = [];
         if (isset($_SESSION['user'])) {
             $stageCourse = $this->model->getStageCourseBySlug(App::$app->getProperty('language')['id'], $course['id']);
             foreach ($stageCourse as $k => &$v) {
                 $stageCourse[$k]['success'] = 0;
-                $stageCourse[$k]['step_course'] = $this->model->getStepCourseByStageID(App::$app->getProperty('language')['id'], $k);
+                $stageCourse[$k]['step_course'] = $this->model->getStepCourseByStageID(App::$app->getProperty('language')['id'], $v['id']);
 
                 foreach ($stageCourse[$k]['step_course'] as $ks => $vs) {
                     $stageCourse[$k]['step_course'][$ks]['success'] = 0;
                 }
             }
+
+//            debug($stageCourse, 1);
             $firstStageKey = array_key_first($stageCourse);
+//            debug($stageCourse[$firstStageKey]['step_course'], 1);
             $firstStepKey = array_key_first($stageCourse[$firstStageKey]['step_course']);
             $stageCourse[$firstStageKey]['success'] = 2;
             $stageCourse[$firstStageKey]['step_course'][$firstStepKey]['success'] = 2;

@@ -43,9 +43,9 @@ const CourseCreateLessonTask = ({index, currentLesson, updateTaskID, slugBindTas
                 <Link className={'btn secondary-blue big'}
                       style={{pointerEvents: slugBindTask === null ? 'none' : 'auto'}}
                       to={`${lang === undefined ? "/" : '/' + lang + '/'}task/${slugBindTask}`}
-                      target={'_blank'}>Перейти к задачи</Link>
+                      target={'_blank'}>Перейти к задаче</Link>
                 <button onClick={() => setOpenModalTask(true)} className={'btn underline-hover'}>Привязать
-                    проект
+                    задачу
                 </button>
             </div>
             <ModalWindowTask

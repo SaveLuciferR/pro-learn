@@ -12,7 +12,18 @@ import {
 import CourseCreateLessonTask from "./CourseCreateLessonTask";
 
 
-const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numStage}) => {
+const CourseCreateLesson = ({
+                                active,
+                                type,
+                                deleteLesson,
+                                obj,
+                                index,
+                                currentLang,
+                                numStage,
+                                activeSlideUp,
+                                activeSlideDown,
+                                handleSlideData
+                            }) => {
 
     const dispatch = useDispatch();
 
@@ -30,8 +41,9 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
     const [canBeUpdate, setCanBeUpdate] = useState(false);
     const [slugBindSlugText, setBindSlugText] = useState(null);
 
+
     useEffect(() => {
-        // console.log(lesson.description);
+        console.log(lesson);
         if (type === 'edit') {
             setCode(lesson.code);
             setTitle(lesson.title);
@@ -47,6 +59,8 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
 
     useEffect(() => {
         if (canBeUpdate) {
+            console.log(lesson)
+            console.log(answerOption)
             dispatch(editCurrentCourseMainLesson({
                 lang: currentLang,
                 num_stage: numStage,
@@ -71,10 +85,20 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
     }, [code])
 
     useEffect(() => {
-        if (canBeUpdate) {
-            setCode(lesson.code);
-        }
-    }, [lesson])
+        console.log(lesson)
+    }, lesson)
+
+    // useEffect(() => {
+    //     console.log(lesson.answer_option)
+    //     if (canBeUpdate && lesson !== undefined) {
+    //         console.log(lesson.answer_option)
+    //         setCode(lesson.code);
+    //         setTitle(lesson.title);
+    //         setDescription(lesson.description);
+    //         setAnswerOption(lesson.answer_option);
+    //         setRightAnswer(lesson.right_answer);
+    //     }
+    // }, [lesson])
 
     const renderCodeComponent = () => {
         // console.log(lesson);
@@ -139,7 +163,7 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
     return (
         <>
             {obj === undefined || code === '' ? <div>Loading...</div> :
-                <div className="course-create-block">
+                <div className={`course-create-block ${active ? 'active' : ''}`}>
 
                     <h4 className="markdown-h4">Урок №{index}</h4>
 
@@ -172,6 +196,53 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
 
                     {renderCodeComponent()}
 
+                    <div className={""}>
+                        <div className={`slider-arrow ${!activeSlideDown ? 'hidden' : ''}`}
+                             onMouseDown={() => handleSlideData(-1)}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="30"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <circle
+                                    cx="10"
+                                    cy="10"
+                                    r="10"
+                                    transform="matrix(-1 0 0 1 22 2)"
+                                    stroke="white"
+                                    strokeWidth="1.5"
+                                />
+                                <path
+                                    d="M13.5 9L10.5 12L13.5 15"
+                                    stroke="white"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </div>
+                        <div className={`slider-arrow ${!activeSlideUp ? 'hidden' : ''}`}
+                             onMouseDown={() => handleSlideData(1)}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="30"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1.5"/>
+                                <path
+                                    d="M10.5 9L13.5 12L10.5 15"
+                                    stroke="white"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </div>
+                    </div>
                     <button onClick={() => deleteLesson()}
                             className="project__action-links-item btn-red">
                         <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
@@ -184,7 +255,6 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
                         </svg>
                         <span>Удалить урок</span>
                     </button>
-
                 </div>
             }
         </>
