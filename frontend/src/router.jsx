@@ -17,10 +17,10 @@ import ProfileCompletedCourses from './components/Profile/CompletedCourses/Compl
 import ProfileCurrentCourses from './components/Profile/CurrentCourses/ProfileCurrentCourses';
 import CoursesPage from './pages/CoursePage';
 import CourseSinglePage from './pages/CourseSinglePage';
-import LessonOneOption from './components/CourseLessons/LessonOneOption';
-import CourseLessonPage from './pages/CourseLessonPage';
-import LessonSeveralOption from './components/CourseLessons/LessonSeveralOption';
-import LessonFillGaps from './components/CourseLessons/LessonFillGaps';
+import CourseLessonOneAnswer from './components/Courses/CourseLessons/CourseLessonOneAnswer';
+import CourseStudyPage from './pages/CourseStudyPage';
+import CourseLessonFewOption from './components/Courses/CourseLessons/CourseLessonFewOption';
+import CourseLessonInputData from './components/Courses/CourseLessons/CourseLessonInputData';
 import ProfileSettingsUserPage from './pages/ProfileSettingsUserPage';
 import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ProfileSettingsSecurity from './components/Profile/ProfileSettings/ProfileSettingsSecurity';
@@ -173,22 +173,8 @@ const router = createBrowserRouter([
         element: <CourseSinglePage />,
       },
       {
-        path: 'course/lessons',
-        element: <CourseLessonPage />,
-        children: [
-          {
-            path: 'one-option',
-            element: <LessonOneOption />,
-          },
-          {
-            path: 'several-option',
-            element: <LessonSeveralOption />,
-          },
-          {
-            path: 'fill-gaps',
-            element: <LessonFillGaps />,
-          },
-        ],
+        path: 'course/:slug/study',
+        element: <CourseStudyPage />
       },
       {
         path: 'task',

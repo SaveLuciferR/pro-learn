@@ -5,7 +5,7 @@ import LoadingElement from "../components/LoadingElement";
 import {useSelector} from "react-redux";
 import ModalWindowInput from "../components/Modal/ModalWindowInput";
 
-const TaskSinglePage = () => {
+const TaskSinglePage = ({courseTask, courseSlug, forCourse = false}) => {
 
     const {lang, slug} = useParams();
     const navigate = useNavigate();
@@ -17,6 +17,7 @@ const TaskSinglePage = () => {
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [contentModal, setContentModal] = useState('');
     const [errorModal, setErrorModal] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
     const getLanguageForTask = () => {
         let temp = '';
@@ -26,7 +27,19 @@ const TaskSinglePage = () => {
     }
 
     const handleSolveTask = () => {
-        if (contentModal.length !== 0) {
+        if (forCourse && contentModal.length !== 0) {
+            axiosClient.post(`/task/${task.slug}/solve`, {title: contentModal})
+                .then((res) => {
+                    console.log(res);
+                    setIsOpenModal(false);
+                    if (res.status === 200) {
+                        navigate(`${lang === undefined ? "/" : '/' + lang + '/'}compiler-task/${user.username}/${res.data.result.projectSlug}/${task.slug}?course=${courseSlug}`)
+                    }
+                })
+                .catch((res) => {
+                    console.log(res);
+                })
+        } else if (contentModal.length !== 0) {
             axiosClient.post(`/task/${slug}/solve`, {title: contentModal}) // изменить title на динамическое добавление
                 .then((res) => {
                     console.log(res);
@@ -38,29 +51,42 @@ const TaskSinglePage = () => {
                 .catch((res) => {
                     console.log(res);
                 })
-        }
-        else {
+        } else {
             setErrorModal("Введите название проекта");
         }
     }
 
     useEffect(() => {
-        axiosClient.get(`${lang === undefined ? "/" : '/' + lang + '/'}task/${slug}`)
-            .then(({data}) => {
-                setTask(data.task);
-                setDifficultyAmount(prevState => prevState.map((item, i) => i < data.task.difficulty))
-            })
-            .catch((res) => {
-                // console.log(res);
-                if (res.response.status === 404) {
-                    navigate('/page/not-found');
-                }
-            })
-    }, [lang, slug])
+        if (forCourse) {
+            setTask(courseTask);
+            setDifficultyAmount(prevState => prevState.map((item, i) => i < courseTask.difficulty));
+            setIsLoading(false);
+        }
+    }, [])
+
+    useEffect(() => {
+        if (forCourse) {
+        } else {
+            axiosClient.get(`${lang === undefined ? "/" : '/' + lang + '/'}task/${slug}`)
+                .then(({data}) => {
+                    setTask(data.task);
+                    setDifficultyAmount(prevState => prevState.map((item, i) => i < data.task.difficulty))
+                })
+                .catch((res) => {
+                    // console.log(res);
+                    if (res.response.status === 404) {
+                        navigate('/page/not-found');
+                    }
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                })
+        }
+    }, [lang, slug, courseTask])
 
     return (
         <>
-            {Object.keys(task).length === 0 ? <LoadingElement/>
+            {isLoading ? <LoadingElement/>
                 :
                 <>
                     <div className={"task-single-main"}>

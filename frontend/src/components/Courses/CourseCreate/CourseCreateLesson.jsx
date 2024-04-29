@@ -59,8 +59,6 @@ const CourseCreateLesson = ({
 
     useEffect(() => {
         if (canBeUpdate) {
-            console.log(lesson)
-            console.log(answerOption)
             dispatch(editCurrentCourseMainLesson({
                 lang: currentLang,
                 num_stage: numStage,
@@ -83,10 +81,6 @@ const CourseCreateLesson = ({
             }))
         }
     }, [code])
-
-    useEffect(() => {
-        console.log(lesson)
-    }, lesson)
 
     // useEffect(() => {
     //     console.log(lesson.answer_option)
@@ -197,7 +191,7 @@ const CourseCreateLesson = ({
                     {renderCodeComponent()}
 
                     <div className={""}>
-                        <div className={`slider-arrow ${!activeSlideDown ? 'hidden' : ''}`}
+                        <button className={`btn slider-arrow ${!activeSlideDown ? 'hidden' : ''}`}
                              onMouseDown={() => handleSlideData(-1)}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -222,8 +216,8 @@ const CourseCreateLesson = ({
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                        </div>
-                        <div className={`slider-arrow ${!activeSlideUp ? 'hidden' : ''}`}
+                        </button>
+                        <button className={`btn slider-arrow ${!activeSlideUp ? 'hidden' : ''}`}
                              onMouseDown={() => handleSlideData(1)}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -241,7 +235,7 @@ const CourseCreateLesson = ({
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                        </div>
+                        </button>
                     </div>
                     <button onClick={() => deleteLesson()}
                             className="project__action-links-item btn-red">

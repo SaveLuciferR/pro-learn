@@ -118,5 +118,9 @@
         color: rgba($color: #db5b42, $alpha: 0.7);
         padding-left: 6px;
         padding-top: 2px;
+
+        &.success {
+            color: #2ea043;
+        }
     }
 }

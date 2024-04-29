@@ -8,7 +8,7 @@ class Task extends AppModel
 {
     public function getTaskBySlug($slug, $lang)
     {
-        return R::getRow("SELECT c.id, c.difficulty, c.date_of_publication, cd.title, 
+        return R::getRow("SELECT c.id, c.difficulty, c.date_of_publication, cd.title, c.for_course,
                                 cd.description, cd.keywords, cd.content, c.slug, u.username, u.role
                                 FROM challenge c JOIN challenge_description cd ON cd.challenge_id = c.id
                                 JOIN user u ON u.id = c.user_id JOIN status s ON s.id = c.status_id

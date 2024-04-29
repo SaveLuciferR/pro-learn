@@ -58,6 +58,7 @@ Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/creation/course/ca
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/creation/course/save-icon?$', ['controller' => 'User', 'action' => 'saveIcon']); // Запрос для сохранения иконки
 
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/creation/task/?$', ['controller' => 'User', 'action' => 'createTask']); // Страница с созданием задачи
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/creation/edit-task/(?P<slug>[a-z0-9-]+)/?$', ['controller' => 'User', 'action' => 'editTask']); // Страница с созданием задачи
 
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'profile']); // Страница профиля пользователя
 

@@ -19,7 +19,7 @@ const CourseSinglePage = () => {
             .catch((err) => {
                 console.log(err);
             })
-    }, [])
+    }, [lang, slug])
 
     return (
         <div className="course">

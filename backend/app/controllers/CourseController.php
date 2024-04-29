@@ -110,82 +110,175 @@ class CourseController extends AppController
 
     public function studyAction()
     {
-        $lesson = [];
         if (isset($_SESSION['user'])) {
+            $lesson = [];
+            $canBeNextLesson = false;
+            $canBePrevLesson = false;
             $course = $this->model->getCourseIDBySlug($this->route['slug']);
-            $userCourse = $this->model->getInfoAboutUserFromCourse($_SESSION['user']['id'], $course['id']);
+            if (!$course) {
+                header("HTTP/1.0 404 Not Found");
+                die;
+            }
 
+            $userCourse = $this->model->getInfoAboutUserFromCourse($_SESSION['user']['id'], $course['id']);
             if (!$userCourse) {
+//                debug($userCourse, 1);
                 $lesson = $this->model->getLessonFromCourse(App::$app->getProperty('language')['id'], $course['id'], 1, 1);
-                //TODO: Запись в бд, что пользователь начал проходить курс
+                $this->model->saveUserCourse($_SESSION['user']['id'], $course['id'], false, 1, 1);
                 $lesson['current_step'] = 1;
+                unset($lesson['current_stage_id']);
             } else {
                 if ((isset($_GET['block']) && isset($_GET['lesson'])) &&
-                    (is_numeric($_GET['block']) && is_numeric($_GET['lesson'])) &&
-                    ($_GET['block'] > 0 && $_GET['lesson'] > 0) &&
-                    ($_GET['block'] < $userCourse['current_stage'] ||
-                        $_GET['block'] == $userCourse['current_stage'] &&
-                        $_GET['lesson'] <= $userCourse['current_stage'])) {
+                    $this->model->canBeStudyLesson($_GET['block'], $_GET['lesson'], $_SESSION['user']['id'], $course['id'])) {
                     $lesson = $this->model->getLessonFromCourse(
                         App::$app->getProperty('language')['id'], $course['id'],
                         $_GET['block'], $_GET['lesson']);
-//                    debug($lesson, 1);
                     $lesson['current_step'] = $_GET['lesson'];
-                    $lesson = array_merge($lesson, $this->model->getAmountStepInStageCourse($lesson['current_stage_id']));
-                    unset($lesson['current_stage_id']);
+                    if ($_GET['block'] === $userCourse['current_stage'] && $lesson['current_step'] < $userCourse['current_step'] ||
+                        $_GET['block'] < $userCourse['current_stage']) {
+                        $canBeNextLesson = true;
+                    }
                 } else {
                     $lesson = $this->model->getLessonFromCourse(
                         App::$app->getProperty('language')['id'], $course['id'],
                         $userCourse['current_stage'], $userCourse['current_step']);
-//                    debug($lesson, 1);
                     $lesson['current_step'] = $userCourse['current_step'];
-                    $lesson = array_merge($lesson, $this->model->getAmountStepInStageCourse($lesson['current_stage_id']));
-                    unset($lesson['current_stage_id']);
                 }
+                $lesson = array_merge($lesson, $this->model->getAmountStepInStageCourse($lesson['current_stage_id']));
+                unset($lesson['current_stage_id']);
+
+                if ($lesson['current_step'] > 1) {
+                    $canBePrevLesson = true;
+                }
+
                 $lesson['answer_option'] = json_decode($lesson['answer_option'], true);
             }
 
             if ($lesson) {
-                if ($lesson['code'] == 'task') {
+                if ($lesson['code'] === 'task') {
                     $taskForStepCourse = $this->model->getTaskForStepCourse($lesson['id'], App::$app->getProperty('language')['id']);
+                    $taskForStepCourse['date_of_publication'] = date('d.m.Y', strtotime($taskForStepCourse['date_of_publication']));
+                    $taskForStepCourse['tags'] = $this->model->getTaskTags($taskForStepCourse['id']);
+                    $taskForStepCourse['template'] = $this->model->getTemplateProjectForTask($taskForStepCourse['id']);
+                    $taskForStepCourse['lang'] = $this->model->getTaskLangProgByID($taskForStepCourse['id']);
+                    $taskForStepCourse['project'] = $this->model->getProjectForTask($taskForStepCourse['id']);
+                    $lesson['task'] = $taskForStepCourse;
                 }
             }
+            echo json_encode(array(
+                'lesson' => $lesson,
+                'can_be_next_lesson' => $canBeNextLesson,
+                'can_be_prev_lesson' => $canBePrevLesson
+            ), JSON_UNESCAPED_SLASHES);
+        } else {
+            header("HTTP/1.0 401 Unauthorized");
+            die;
         }
 
-        echo json_encode(array('lesson' => $lesson), JSON_UNESCAPED_SLASHES);
     }
 
     public function studyCheckAction()
     {
-        $lesson = [];
-        $success = false;
         if (isset($_SESSION['user']) && isset($_GET['block']) && isset($_GET['lesson']) && isset($_GET['answer'])) {
+            $lesson = [];
+            $success = false;
+            $blockSuccess = false;
+            $courseSuccess = false;
+            $nextStage = 0;
+            $nextStep = 0;
             $course = $this->model->getCourseIDBySlug($this->route['slug']);
+            if (!$course) {
+                header("HTTP/1.0 404 Not Found");
+                die;
+            }
             $userCourse = $this->model->getInfoAboutUserFromCourse($_SESSION['user']['id'], $course['id']);
-            if ($userCourse) {
+            if ($userCourse && $this->model->canBeStudyLesson($_GET['block'], $_GET['lesson'], $_SESSION['user']['id'], $course['id'])) {
                 $lesson = $this->model->getLessonFromCourse(
                     App::$app->getProperty('language')['id'], $course['id'],
                     $_GET['block'], $_GET['lesson']);
+                if (!$lesson) {
+                    header('HTTP/1.0 404 Not Found');
+                    die;
+                }
 
                 if ($lesson['code'] == 'theory') {
                     $success = true;
                 } else if ($lesson['code'] == 'one-answer') {
-                    $success = $lesson['rigth_answer'] == $_GET['answer'];
+                    $success = $lesson['right_answer'] == $_GET['answer'];
                 } else if ($lesson['code'] == 'few-answer') {
                     $answerChoose = explode(',', $_GET['answer'], 20);
-                    $answerRight = explode(',', $lesson['rigth_answer'], 20);
+                    $answerRight = explode(',', $lesson['right_answer'], 20);
                     sort($answerRight);
                     sort($answerChoose);
 
                     $success = implode(" ", $answerChoose) == implode(" ", $answerRight);
-                }
-                //TODO: Если проект курса или если это задача
+                } else if ($lesson['code'] === 'input-data') {
 
-                //TODO: Если Success = true запись в бд о переходе на новый урок или блок
-                // TODO: Если последний урок курса или блока
+                    preg_match_all('/<code class="markdown-inline-block-code">.*?<\/code>/u', $lesson['description'], $matches);
+                    foreach ($matches[0] as $k => &$v) {
+                        $v = str_replace('</code>', '', $v);
+                        $v = str_replace('<code class="markdown-inline-block-code">', '', $v);
+                    }
+                    $matches = $matches[0];
+                    $answer = explode('```prolearnreplace```', $_GET['answer']);
+                    foreach ($answer as $k => &$v) {
+                        $v = h($v);
+                    }
+//                    debug($answer);
+//                    debug($matches, 1);
+                    $success = $matches == $answer;
+                } else if ($lesson['code'] === 'task') {
+                    $userTask = $this->model->getUserTask($_SESSION['user']['id'], $lesson['id']);
+                    $success = $userTask && $userTask['success'];
+                } else {
+                    header('HTTP/1.0 400 Bad Request');
+                    die;
+                }
+
+                if ($success) {
+                    $lesson = $this->model->getLessonFromCourse(
+                        App::$app->getProperty('language')['id'], $course['id'],
+                        $_GET['block'], $_GET['lesson'] + 1);
+                    if ($lesson) {
+                        if (!$this->model->canBeStudyLesson($_GET['block'], $_GET['lesson'] + 1, $_SESSION['user']['id'], $course['id'])) {
+                            $this->model->saveUserCourse($_SESSION['user']['id'], $course['id'], $userCourse['success'], $_GET['block'], $_GET['lesson'] + 1);
+                        }
+                        $nextStage = (int)$_GET['block'];
+                        $nextStep = $_GET['lesson'] + 1;
+                    } else {
+                        $blockSuccess = true;
+                        $lesson = $this->model->getLessonFromCourse(
+                            App::$app->getProperty('language')['id'], $course['id'],
+                            $_GET['block'] + 1, 1);
+                        if ($lesson) {
+                            if (!$this->model->canBeStudyLesson($_GET['block'] + 1, 1, $_SESSION['user']['id'], $course['id'])) {
+                                $this->model->saveUserCourse($_SESSION['user']['id'], $course['id'], $userCourse['success'], $_GET['block'] + 1, 1);
+                            }
+
+                            $nextStage = (int)$_GET['block'] + 1;
+                            $nextStep = 1;
+                        } else {
+                            $courseSuccess = true;
+                            $this->model->saveUserCourse($_SESSION['user']['id'], $course['id'], true, $_GET['block'], $_GET['lesson']);
+                        }
+                    }
+                }
+            } else {
+                header("HTTP/1.0 400 Bad Request");
+                die;
             }
+
+            echo json_encode(array(
+                'success' => $success,
+                'block_success' => $blockSuccess,
+                'course_success' => $courseSuccess,
+                'next_lesson' => $nextStep,
+                'next_block' => $nextStage
+            ), JSON_UNESCAPED_SLASHES);
+        } else {
+            header("HTTP/1.0 400 Bad Request");
+            die;
         }
 
-        echo json_encode(array('success' => $success), JSON_UNESCAPED_SLASHES);
     }
 }

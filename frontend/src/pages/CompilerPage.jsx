@@ -1,4 +1,4 @@
-import {useOutletContext, useParams} from "react-router-dom"
+import {useOutletContext, useParams, useSearchParams} from "react-router-dom"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import axiosClient from '../axiosClient';
@@ -27,6 +27,8 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
     // const username = 'user1';
     const {project, username, task, lang} = useParams();
     const dispatch = useDispatch();
+    const [searchParams, setSearchParams] = useSearchParams();
+
     const updateFiles = useSelector(state => state.compiler.updateFiles);
     const shouldBeRunAtStart = useSelector(state => state.compiler.shouldBeRunAtStart);
 
@@ -88,9 +90,11 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
     }
 
     const solvedTask = () => {
+        setSuccessSolutionTask(null);
         axiosClient.post(`/compiler/@${username}/${project}/${task}/check-solution-task`, [])
             .then(({data}) => {
                 setSuccessSolutionTask(data.success);
+                // if (data.success && )
             })
             .catch((res) => {
                 console.log(res);
@@ -149,7 +153,10 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                     }}
 
                 >
-                    {task === undefined || Object.keys(solveTask).length === 0 ? <></> : <CompilerTaskDescription obj={solveTask} solvedTask={() => solvedTask()} success={successSolutionTask}/>}
+                    {task === undefined || Object.keys(solveTask).length === 0 ?
+                        <></>
+                        :
+                        <CompilerTaskDescription courseSlug={searchParams.get('course')} obj={solveTask} solvedTask={() => solvedTask()} success={successSolutionTask}/>}
                     <Splitter
                         direction={SplitDirection.Horizontal}
                         initialSizes={[widthSidebar, widthContainer]}

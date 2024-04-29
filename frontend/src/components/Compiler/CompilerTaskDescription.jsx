@@ -1,4 +1,8 @@
-const CompilerTaskDescription = ({obj, solvedTask, success}) => {
+import {Link, useParams} from "react-router-dom";
+
+const CompilerTaskDescription = ({courseSlug, obj, solvedTask, success}) => {
+
+    const {lang} = useParams();
 
     const getInputData = () => {
         let temp = '';
@@ -37,9 +41,18 @@ const CompilerTaskDescription = ({obj, solvedTask, success}) => {
                                     <p>Задача решена неверно</p>}
                             </>
                     }
-                    <button className={"btn big primary"} type={'button'} onClick={() => solvedTask()}>Проверить
+                    <button style={{marginRight: 24}} className={"btn big primary"} type={'button'}
+                            onClick={() => solvedTask()}>Проверить
                         задачу
                     </button>
+                    {courseSlug !== undefined && courseSlug !== 'undefined' ?
+                        <Link className={"btn big secondary-blue"} type={'button'}
+                              to={`${lang === undefined ? '/' : '/' + lang + '/'}course/${courseSlug}/study`}>
+                            Вернуться к курсу
+                        </Link>
+                        :
+                        <></>
+                    }
                 </div>
             </div>
         </div>

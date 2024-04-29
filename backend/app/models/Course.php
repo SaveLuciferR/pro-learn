@@ -139,7 +139,7 @@ class Course extends AppModel
 
     public function getLessonFromCourse($lang, $courseID, $blockNum, $lessonNum)
     {
-        return R::getRow("SELECT sc.id, scr.id AS 'current_stage_id', tsc.code, scd.title, scd.description, scd.answer_option, scd.rigth_answer
+        return R::getRow("SELECT sc.id, scr.id AS 'current_stage_id', scr.num_stage AS 'block', tsc.code, scd.title, scd.description, scd.answer_option, scd.right_answer
                             FROM typestepcourse tsc JOIN stepcourse sc ON tsc.id = sc.typestepcourse_id
                             JOIN stagecourse scr ON scr.id = sc.stage_course_id
                             JOIN stepcourse_description scd ON scd.step_course_id = sc.id
@@ -158,8 +158,96 @@ class Course extends AppModel
     public function getTaskForStepCourse($step, $lang)
     {
         $stepCourse = R::load("stepcourse", $step);
-        $task = R::load("challenge", $stepCourse->challenge_id);
-        $taskCourse = R::getRow("SELECT c.id, cd.title, ");
+        return R::getRow("SELECT c.id, c.slug, c.difficulty, c.date_of_publication, cd.title, c.for_course,
+                                cd.description, cd.keywords, cd.content, c.slug, u.username, u.role
+                                FROM challenge c JOIN challenge_description cd ON cd.challenge_id = c.id
+                                JOIN user u ON u.id = c.user_id JOIN status s ON s.id = c.status_id
+                                WHERE s.code LIKE 'public' AND cd.language_id = ? AND c.id = ?", [$lang, $stepCourse->challenge_id]);
+    }
+
+    public function getTaskTags($taskID)
+    {
+        return R::getAll("SELECT ct.title 
+                                FROM challengetag ct JOIN challenge_challengetag cct ON ct.id = cct.challengetag_id 
+                                WHERE cct.challenge_id = ?", [$taskID]);
+    }
+
+    public function getTemplateProjectForTask($id)
+    {
+        return R::getRow("SELECT t.slug, t.id
+                                FROM projecttemplate t JOIN challenge c ON c.template_id = t.id
+                                WHERE c.id = ?", [$id]);
+    }
+
+    public function getTaskLangProgByID($id)
+    {
+        return R::getAll("SELECT lp.id, lp.title
+                                FROM challenge c JOIN challenge_categorylangprog cclp ON c.id = cclp.challenge_id
+                                JOIN langprog lp ON lp.id = cclp.lang_prog_id
+                                WHERE c.id = ?", [$id]);
+    }
+
+    public function getProjectForTask($id)
+    {
+        return R::getRow("SELECT p.slug, p.id 
+                            FROM challenge c JOIN project p ON c.project_id = p.id 
+                            WHERE c.id = ?", [$id]);
+    }
+
+    public function getUserTask($userID, $stepID)
+    {
+        $step = R::load('stepcourse', $stepID);
+        return R::getRow("SELECT success FROM user_challenge WHERE user_id = ? AND challenge_id = ?", [$userID, $step->challenge_id]);
+    }
+
+    public function saveUserCourse($userID, $courseID, $success, $currentStage, $currentStep)
+    {
+        R::begin();
+        try {
+            R::exec("INSERT INTO user_course (user_id, course_id, success, current_step, current_stage) VALUES (?, ?, ?, ?, ?)", [
+                $userID,
+                $courseID,
+                $success ? 1 : 0,
+                $currentStep,
+                $currentStage
+            ]);
+
+            R::commit();
+            return true;
+        } catch (\Exception $ex) {
+            R::rollback();
+            if (str_contains($ex->getMessage(), 'PRIMARY')) {
+                R::begin();
+                try {
+                    R::exec("UPDATE user_course SET success = ?, current_step = ?, current_stage = ? WHERE user_id = ? AND course_id = ?", [
+                        $success ? 1 : 0,
+                        $currentStep,
+                        $currentStage,
+                        $userID,
+                        $courseID
+                    ]);
+                    R::commit();
+                    return true;
+                } catch (\Exception $ex2) {
+                    R::rollback();
+                    return false;
+                }
+            }
+
+            return false;
+        }
+    }
+
+    public function canBeStudyLesson($block, $lesson, $userID, $courseID): bool
+    {
+        if (!(is_numeric($block) && is_numeric($lesson) && is_numeric($userID) && is_numeric($courseID))) return false;
+        if ($block <= 0 || $lesson <= 0) return false;
+
+        $userCourse = $this->getInfoAboutUserFromCourse($userID, $courseID);
+        if ($userCourse['success']) return true;
+
+
+        return $block < $userCourse['current_stage'] || $block === $userCourse['current_stage'] && $lesson <= $userCourse['current_step'];
     }
 
 }

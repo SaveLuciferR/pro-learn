@@ -1,5 +1,6 @@
 import img from '../../../image_5.png';
 import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 const CourseInfo = ({course}) => {
 
@@ -164,7 +165,7 @@ const CourseInfo = ({course}) => {
                 <img src={img} alt="course-image" className="course-info-main-img"/>
             </div>
             <div className="course-info-button">
-                <button className="btn primary big">{course.success === 0 ? 'Начать прохождение курса' : 'Продолжить прохождение курса'}</button>
+                <Link to={"study"} className="btn primary big">{course.success === 0 ? 'Начать прохождение курса' : 'Продолжить прохождение курса'}</Link>
             </div>
         </div>
     );

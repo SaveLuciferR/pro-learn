@@ -1,4 +1,4 @@
-const LessonSeveralOption = () => {
+const CourseLessonFewOption = () => {
   return (
     <div className="lessons-option">
       <div className="lessons-option-info">
@@ -48,4 +48,4 @@ const LessonSeveralOption = () => {
     </div>
   );
 };
-export default LessonSeveralOption;
+export default CourseLessonFewOption;

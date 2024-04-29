@@ -675,6 +675,26 @@ class UserController extends AppController
         }
     }
 
+    public function editTaskAction()
+    {
+        $result = [];
+        $result['success'] = false;
+        if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $this->route['username']) {
+            $result['task'] = $this->model->getTaskForEdit($_SESSION['user']['username'], $this->route['slug']);
+            if (!$result['task']) {
+                header('HTTP/1.0 404 Not Found');
+                die;
+            }
+
+            $result['success'] = (bool)$result['task'];
+
+            echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
+        } else {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+    }
+
     public function saveIconAction()
     {
         if (isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'] && isset($_FILES['icon']) &&

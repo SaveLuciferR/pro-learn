@@ -133,7 +133,7 @@ class Compiler extends AppModel
 
     public function getSolveTask($userID, $slug)
     {
-        $temp = R::getRow("SELECT c.id, cd.title, cd.content, i.input_data, i.output_data
+        return R::getRow("SELECT c.id, cd.title, cd.content, i.input_data, i.output_data
                                 FROM challenge c JOIN challenge_description cd ON cd.challenge_id = c.id
                                 JOIN inputoutputdata i ON i.challenge_id = c.id
                                 WHERE c.slug = ?", [$slug]);

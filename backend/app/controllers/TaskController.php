@@ -14,7 +14,7 @@ class TaskController extends AppController
     public function viewAction()
     {
         $task = $this->model->getTaskBySlug($this->route['slug'], App::$app->getProperty('language')['id']);
-        if (!$task) {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $task['username']) || !$task) {
             header("HTTP/1.0 404 Not Found");
             die;
         }

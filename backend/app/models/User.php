@@ -378,14 +378,14 @@ class User extends AppModel
 
     public function getUserProjects($username)
     {
-        return R::getAll("SELECT p.id, p.slug, p.title, p.date_of_publication, p.private, p.description
+        return R::getAll("SELECT p.id, p.id, p.slug, p.title, p.date_of_publication, p.private, p.description
                                FROM project p JOIN user u ON u.id = p.user_id
                                WHERE u.username = ?", [$username]);
     }
 
     public function getUserTemplate($userID, $lang)
     {
-        return R::getAll("SELECT u.username, u.role, t.slug, t.icon, t.private, t.for_project, td.title, td.description
+        return R::getAll("SELECT t.id, u.username, u.role, t.slug, t.icon, t.private, t.for_project, td.title, td.description
                                 FROM projecttemplate t JOIN projecttemplate_description td ON td.projecttemplate_id = t.id
                                 JOIN user u ON u.id = t.user_id
                                 WHERE u.id = ? AND td.language_id = ?", [$userID, $lang]);
@@ -393,7 +393,7 @@ class User extends AppModel
 
     public function getUserOtherTemplate($lang)
     {
-        return R::getAll("SELECT u.username, u.role, t.slug, t.icon, t.private, t.for_project, td.title, td.description
+        return R::getAll("SELECT t.id, u.username, u.role, t.slug, t.icon, t.private, t.for_project, td.title, td.description
                                 FROM projecttemplate t JOIN projecttemplate_description td ON td.projecttemplate_id = t.id
                                 JOIN user u ON u.id = t.user_id
                                 WHERE td.language_id = ? AND t.private = 0", [$lang]);
@@ -607,6 +607,7 @@ class User extends AppModel
     {
         $lang = App::$app->getProperty('language')['id'];
         $data = $_POST['course'];
+        $data['status'] = $_POST['status'];
 
         R::begin();
         try {
@@ -633,6 +634,10 @@ class User extends AppModel
                 $course->status_id = $status->id;
                 $course->icon = $data['icon'];
                 $course->difficulty = $data['difficulty'];
+            }
+
+            if ($status->code === 'public') {
+                $course->date_of_publication = R::isoDate(time());
             }
 
             $slug = $course->slug;
@@ -700,6 +705,43 @@ class User extends AppModel
         return $course;
     }
 
+    public function getTaskForEdit(&$username, $slug, $isAdmin = false)
+    {
+        //TODO: категория и язык
+        if ($isAdmin) {
+            $task = R::getRow("SELECT t.id, t.slug, u.username, t.num_of_input_data, t.for_course, t.project_id, t.template_id, t.difficulty, s.code AS 'status' 
+                                FROM task t JOIN status s ON s.id = t.status_id
+                                JOIN user u ON u.id = t.user_id
+                                WHERE t.slug = ?", [$slug]);
+            $username = $task['username'];
+        } else {
+            $task = R::getRow("SELECT t.id, t.slug, u.username, t.num_of_input_data, t.for_course, t.project_id, t.template_id, 
+                                            t.difficulty, s.code AS 'status' 
+                                FROM challenge t JOIN status s ON s.id = t.status_id
+                                JOIN user u ON u.id = t.user_id
+                                WHERE t.slug = ? AND u.username = ?", [$slug, $username]);
+        }
+
+
+        if (!$task) {
+            return $task;
+        }
+
+        $task['main'] = R::getAssoc("SELECT cd.language_id, cd.title, cd.content, cd.description, cd.keywords
+                                            FROM challenge_description cd 
+                                            WHERE cd.challenge_id = ?", [$task['id']]);
+        $task['input_output_data'] = R::getAll("SELECT i.input_data AS 'input', i.output_data AS 'output' 
+                                                    FROM inputoutputdata i
+                                                    WHERE i.challenge_id = ?", [$task['id']]);
+        foreach ($task['input_output_data'] as $k => &$v) {
+            $v['input'] = json_decode($v['input'], JSON_UNESCAPED_SLASHES);
+            $v['output'] = json_decode($v['output'], JSON_UNESCAPED_SLASHES);
+        }
+        $task['lang_prog'] = R::getAll("SELECT l.lang_prog_id FROM challenge_categorylangprog l WHERE l.challenge_id = ? ", [$task['id']]);
+        $task['category_prog'] = R::getAll("SELECT c.category_prog_id FROM challenge_categorylangprog c WHERE c.challenge_id = ?", [$task['id']]);
+        return $task;
+    }
+
     public function getCategoryLang($lang)
     {
         return R::getAll("SELECT c.id, cd.title, c.code 
@@ -716,6 +758,7 @@ class User extends AppModel
     {
         $lang = App::$app->getProperty('language')['id'];
         $data = $_POST['task'];
+        $data['status'] = $_POST['status'];
 
         R::begin();
         try {
@@ -749,6 +792,7 @@ class User extends AppModel
                 $task->for_course = $data['for_course'];
             }
 
+
             $slug = $task->slug;
 
             $taskID = R::store($task);
@@ -780,7 +824,7 @@ class User extends AppModel
                             $item['keywords'],
                         ]);
                     } else {
-                        R::exec("UPDATE challenge_description SET title = ?, description = ?, keywords = ?, content = ? WHERE language_id = ? AND course_id = ?", [
+                        R::exec("UPDATE challenge_description SET title = ?, description = ?, keywords = ?, content = ? WHERE language_id = ? AND challenge_id = ?", [
                             $item['title'],
                             $item['description'],
                             $item['keywords'],
