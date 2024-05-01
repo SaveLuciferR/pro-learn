@@ -15,6 +15,11 @@ class Compiler extends AppModel
         return PATH . '/public/projects/' . $username . '/' . $project; //
     }
 
+    public function getLangProg()
+    {
+        return R::getAll('SELECT id, title, extension, code FROM langprog');
+    }
+
     protected function getInfoDirectory($path, $url, $localPath = ""): array
     {
         $files = scandir($path);
@@ -35,7 +40,16 @@ class Compiler extends AppModel
             } else {
                 $tree[$v]['type'] = 'file';
                 $tree[$v]['path'] = $localPath . "/" . $v;
-                $tree[$v]['language'] = substr(strrchr($v, '.'), 1);
+                $tree[$v]['extension'] = substr(strrchr($v, '.'), 1);
+                foreach ($this->getLangProg() as $k => $l) {
+                    if ($l['extension'] === $tree[$v]['extension']) {
+                        $tree[$v]['language'] = $l['code'];
+                    }
+                }
+                if (!isset($tree[$v]['language'])) {
+                    $tree[$v]['language'] = $tree[$v]['extension'];
+                }
+//                $tree[$v]['language'] = substr(strrchr($v, '.'), 1);
                 if ($tree[$v]['language'] === 'png' ||
                     $tree[$v]['language'] === 'jpg' ||
                     $tree[$v]['language'] === 'svg' ||
@@ -120,6 +134,7 @@ class Compiler extends AppModel
 
         $tasks = $this->getTasksForProject($pathProject);
 
+//        $_SESSION['docker'] = [];
 //        debug($tasks, 1);
 
         $docker = new Docker(md5($pathProject), $pathProject, $tasks);
@@ -128,6 +143,42 @@ class Compiler extends AppModel
         } else {
             $docker->createImage();
             $docker->runContainer($data, $output, $error);
+        }
+
+
+//        if (!isset($_SESSION['docker'])) {
+//            $_SESSION['docker'] = [];
+//        }
+//
+////        $_SESSION['docker'][0] = $docker;
+//        return array_push($_SESSION['docker'],
+//            array(
+//                'image' => $docker->getImage(),
+//                'tag' => $docker->getTag(),
+//                'container' => $docker->getContainer(),
+//                'ports' => $docker->getPorts(),
+//            )
+//        );
+    }
+
+    public function isWebProject($pathProject, $files, $tasks)
+    {
+        $dockerContent = '';
+        $dockerComposeContent = '';
+        //TODO проверить что таски не содержат веб проект\
+        foreach ($files as $k => $v) {
+            if ($k === 'Dockerfile' || $k === 'dockerfile') {
+                $dockerContent = file_get_contents($pathProject . '/' . $v['path']);
+            } else if ($k === 'docker-compose.yml') {
+                $dockerComposeContent = file_get_contents($pathProject . '/' . $v['path']);
+            }
+        }
+
+        //TODO проверка что подтекст незакоммечен
+        if (str_contains($dockerContent, 'EXPOSE') || str_contains($dockerComposeContent, 'ports:')) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -158,6 +209,21 @@ class Compiler extends AppModel
 //            debug($ex);
             R::rollback();
             return false;
+        }
+    }
+
+    public function deleteDirectoryProject($dir)
+    {
+        if (is_dir($dir)) {
+            $files = scandir($dir);
+            foreach ($files as $file) {
+                if ($file != "." && $file != "..") {
+                    $this->deleteDirectoryProject($dir . '/' . $file);
+                }
+            }
+            rmdir($dir);
+        } else if (file_exists($dir)) {
+            unlink($dir);
         }
     }
 }

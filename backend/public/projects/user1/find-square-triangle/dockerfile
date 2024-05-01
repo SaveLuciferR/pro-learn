@@ -4,4 +4,3 @@ WORKDIR /usr/share/nginx/html
 COPY /src /usr/share/nginx/html
 # COPY hosts /etc
 COPY nginx.conf /etc/nginx/
-# EXPOSE 80

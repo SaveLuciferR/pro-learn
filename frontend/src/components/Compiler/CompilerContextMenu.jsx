@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActionInActionContext, setCanRenameFile } from '../../redux/Compiler/slice';
+import {setActionInActionContext, setCanRenameFile, setNewFileNameInActionContext} from '../../redux/Compiler/slice';
 const CompilerContextMenu = ({ context, xyPos }) => {
   const dispatch = useDispatch();
 

@@ -201,7 +201,7 @@ class User extends AppModel
 
     public function getFilesProject($project, &$path, $secondaryPath = "")
     {
-        $path = USER_PROJECT . '/' . $project['username'] . '/' . $project['slug'] . '/src/' . $secondaryPath;
+        $path = USER_PROJECT . '/' . $project['username'] . '/' . $project['slug'] . '/' . $secondaryPath; // . '/src/'
 
         return $this->createProjectFileList($path);
     }
@@ -247,7 +247,7 @@ class User extends AppModel
                 mkdir($distPath);
             }
 
-            $this->copyCacheProject($pathProject, $distPath . '/src');
+            $this->copyCacheProject($pathProject, $distPath); // . '/src'
 
             // $this->deleteCacheProjectDir($pathProject);
 
@@ -302,7 +302,7 @@ class User extends AppModel
         $directoryInfo = [];
         // debug($path, 1);
 
-        if (str_contains($path, '.')) {
+        if (!is_dir($path)) { // && (str_contains($path, '.'))
             $fileInfo['fileName'] = $path;
             while (str_contains($fileInfo['fileName'], '/')) {
                 $fileInfo['fileName'] = strrchr($fileInfo['fileName'], '/');

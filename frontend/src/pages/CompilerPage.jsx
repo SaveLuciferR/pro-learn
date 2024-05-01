@@ -17,6 +17,7 @@ import {
 } from "../redux/Compiler/slice";
 import Splitter, {SplitDirection} from '@devbookhq/splitter';
 import CompilerTaskDescription from "../components/Compiler/CompilerTaskDescription";
+import CompilerEmptyWindow from "../components/Compiler/CompilerEmptyWindow";
 
 const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
 
@@ -33,13 +34,15 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
     const shouldBeRunAtStart = useSelector(state => state.compiler.shouldBeRunAtStart);
 
     const [widthSidebar, setWidthSidebar] = useState(200);
-    const [widthContainer, setWidthContainer] = useState(window.innerWidth - widthSidebar);
+    const [widthContainer, setWidthContainer] = useState(window.innerWidth - widthSidebar - 400);
     const [widthEditor, setWidthEditor] = useState(widthContainer / 2 - 1);
     const [widthOutput, setWidthOutput] = useState(widthContainer / 2);
     const [minWidthOutputEditor, setMinWidthOutputEditor] = useState(300);
     const [heightEditorOutput, setHeightEditorOutput] = useState(window.innerHeight / 6);
     const [heightConsole, setHeightConsole] = useState(window.innerHeight / 4);
 
+    const [isWebProject, setIsWebProject] = useState(false);
+    const [isOpenOutput, setIsOpenOutput] = useState(true);
     const [dockerIsStart, setDockerIsStart] = useState(false);
     const [solveTask, setSolveTask] = useState({});
     const [successSolutionTask, setSuccessSolutionTask] = useState(null);
@@ -108,9 +111,11 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                     console.log(data);
                     dispatch(setCompilerFiles(data.fileStructure));
                     dispatch(setShouldBeRunAtStart(data.shouldBeRunAtStart));
+                    console.log(data);
                     dispatch(setTasksProject(data.tasks));
                     dispatch(setUpdateFiles(false));
                     dispatch(setNeedReloadFrameCompiler(true));
+                    setIsWebProject(data.isWebProject);
                 })
                 .catch((data) => {
                     console.log(data);
@@ -133,7 +138,15 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
 
     useEffect(() => {
         if (shouldBeRunAtStart) {
-            startDockerContainer(`http://api.pro-learn.my/compiler/@${username}/${project}/start-docker-session`);
+            // startDockerContainer(`http://api.pro-learn.my/compiler/@${username}/${project}/start-docker-session`);
+            axiosClient.get(`${lang === undefined ? "/" : '/' + lang + '/'}compiler/@${username}/${project}/start-docker-session`)
+                .then(({data}) => {
+                    console.log(data.task);
+                    // setSolveTask(data.task);
+                })
+                .catch((res) => {
+                    console.log(res);
+                });
             setDockerIsStart(true);
         }
     }, [shouldBeRunAtStart])
@@ -156,7 +169,8 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                     {task === undefined || Object.keys(solveTask).length === 0 ?
                         <></>
                         :
-                        <CompilerTaskDescription courseSlug={searchParams.get('course')} obj={solveTask} solvedTask={() => solvedTask()} success={successSolutionTask}/>}
+                        <CompilerTaskDescription courseSlug={searchParams.get('course')} obj={solveTask}
+                                                 solvedTask={() => solvedTask()} success={successSolutionTask}/>}
                     <Splitter
                         direction={SplitDirection.Horizontal}
                         initialSizes={[widthSidebar, widthContainer]}
@@ -195,11 +209,16 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                                                     dispatch(setEventPointerFrame(false))
                                                 }}
                                             >
-                                                <CompilerEditor/>
+                                                <CompilerEditor isWebProject={isWebProject} handleOpenOutput={() => setIsOpenOutput(!isOpenOutput)}/>
                                                 <CompilerConsole sendRequestTerminal={sendRequestTerminal}/>
                                             </Splitter>
                                         </div>
-                                        <CompilerOutput/>
+                                        {
+                                            isWebProject && isOpenOutput ?
+                                                <CompilerOutput/>
+                                                :
+                                                <></>
+                                        }
                                     </Splitter>
                                 </div>
                             </div>

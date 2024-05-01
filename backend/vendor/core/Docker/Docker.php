@@ -11,6 +11,8 @@ class Docker
     private string $name = '';
     private string $image = '';
     private string $tag = '';
+    private string $container = '';
+    private array $ports = [];
     private string $projectPath = '';
     private string $commandPathProject = '';
     private array $runAtStartTask = [];
@@ -27,6 +29,7 @@ class Docker
     public function __construct($image, $projectPath, $tasks, $name = '')
     {
         $this->deleteUnusedAll();
+
 
         $this->image = $image;
         $this->projectPath = $projectPath;
@@ -53,7 +56,6 @@ class Docker
         $cmd = $this->commandPathProject . ' && ' . $commandDockerProject;
 
 //        debug($cmd, 1);
-
         $process = popen($cmd, 'r');
 
         while (!feof($process)) {
@@ -66,20 +68,70 @@ class Docker
 //        debug($output);
     }
 
+    protected function getPortsForProjct()
+    {
+        $dockerfile = '';
+        if (file_exists($this->projectPath . '/dockerfile')) {
+            $dockerfile = file_get_contents($this->projectPath . '/dockerfile');
+        } else if (file_exists($this->projectPath . '/Dockerfile')) {
+            $dockerfile = file_get_contents($this->projectPath . '/Dockerfile');
+        }
+        if ($dockerfile !== '') {
+            preg_match_all('/(\r?\n|\r[^\s#])+EXPOSE\s([0-9]+)\n?/m', $dockerfile, $matches);
+            $this->ports = $matches[2];
+//            debug($this->ports);
+//            debug($matches, 1);
+        }
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getTag()
+    {
+        return $this->tag;
+    }
+
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
+    public function getPorts()
+    {
+        return $this->ports;
+    }
+
     public function createImage()
     {
-//        if (!isset($_SESSION['docker'])) {
-//            $_SESSION['docker'] = [];
+//        if (isset($_SESSION['docker'])) {
+//            $key = -1;
+//            foreach ($_SESSION['docker'] as $k => $v) {
+////                debug($_SESSION['docker'], 1);
+//                if ($this->image === $v['image']) {
+//                    exec("docker container stop " . $v['container']);
+//                    exec("docker container prune -f " . $v['container']);
+//                    exec("docker image rm " . $v['image'] . ($v['tag'] !== '' ? (':' . $v['tag']) : ''));
+////                    $_SESSION['docker'][$k] = $this;
+//                    $key = $k;
+//                }
+//            }
+//            if ($key !== -1) {
+//                unset($_SESSION['docker'][$key]);
+//            }
 //        }
 
+        $this->getPortsForProjct();
         $commandCreateImages = 'docker build . -t ' . $this->image . ($this->tag !== '' ? (':' . $this->tag) : '');
         $cmd = $this->commandPathProject . ' && ' . $commandCreateImages;
 
 //        exec($cmd);
 
+        $process = popen($cmd, 'r');
 //        debug($cmd, 1);
 
-        $process = popen($cmd, 'r');
 
 //        echo "<pre>";
 //        while (!feof($process)) {
@@ -96,8 +148,20 @@ class Docker
 
     public function runContainer($inputData, &$output, &$error)
     {
-        $commandRunContainer = 'docker run -i --name ' . md5($this->image) . ' ' .
+        $commandPorstContainer = '';
+        if ($this->ports) {
+            $commandPorstContainer = '-p';
+            foreach ($this->ports as $k => $v) {
+                $commandPorstContainer .= ' ' . $v . ':' . $v;
+            }
+        }
+
+        $this->container = md5($this->image);
+
+        $commandRunContainer = 'docker run -i ' . $commandPorstContainer . ' --name ' . $this->container . ' ' .
             $this->image . ($this->tag !== '' ? (':' . $this->tag) : ''); //--rm -it
+
+//        debug($commandRunContainer, 1);
 
         $process = proc_open($commandRunContainer, $this->descriptorspec, $pipes);
 

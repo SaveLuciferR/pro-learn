@@ -3113,3 +3113,165 @@
 =================
 [2024-04-29 19:09:59] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 301
 =================
+[2024-04-29 19:23:57] Текст ошибки: Undefined array key "src" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 141
+=================
+[2024-04-29 19:24:09] Текст ошибки: Undefined array key "src" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-04-29 19:50:32] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 50 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 116
+=================
+[2024-04-29 20:08:19] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 50 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 116
+=================
+[2024-04-29 20:10:36] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 50 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 116
+=================
+[2024-04-29 20:10:57] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 50 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 116
+=================
+[2024-04-29 20:11:05] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 50 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 116
+=================
+[2024-04-30 15:08:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 15:13:11] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 15:14:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 15:15:04] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 15:17:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 15:19:55] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 15:19:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 15:20:27] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 15:58:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 16:48:07] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 16:55:52] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 16:57:57] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 16:59:10] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 17:02:56] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 17:04:08] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 17:05:48] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 17:08:25] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 17:15:44] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-04-30 17:19:44] Текст ошибки: Undefined array key "new-file" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php | Строка: 123
+=================
+[2024-04-30 17:22:09] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 151 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 116
+=================
+[2024-04-30 17:30:25] Текст ошибки: Undefined array key "language" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 48
+=================
+[2024-04-30 17:30:25] Текст ошибки: Undefined array key "language" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 48
+=================
+[2024-04-30 17:30:25] Текст ошибки: Undefined array key "language" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 48
+=================
+[2024-04-30 17:30:25] Текст ошибки: Undefined array key "language" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 48
+=================
+[2024-04-30 17:30:25] Текст ошибки: Undefined array key "language" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 48
+=================
+[2024-04-30 17:30:25] Текст ошибки: Undefined array key "language" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 48
+=================
+[2024-04-30 17:32:06] Текст ошибки: Undefined array key "language" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 49
+=================
+[2024-04-30 17:32:06] Текст ошибки: Undefined array key "language" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 49
+=================
+[2024-04-30 17:32:06] Текст ошибки: Undefined array key "language" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 49
+=================
+[2024-04-30 17:32:06] Текст ошибки: Undefined array key "language" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 49
+=================
+[2024-04-30 17:32:06] Текст ошибки: Undefined array key "language" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 49
+=================
+[2024-04-30 17:32:06] Текст ошибки: Undefined array key "language" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 49
+=================
+[2024-04-30 18:15:39] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 151 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 129
+=================
+[2024-04-30 18:16:02] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 151 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 129
+=================
+[2024-04-30 18:58:28] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 168 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 129
+=================
+[2024-04-30 18:58:38] Текст ошибки: Call to undefined method app\models\Compiler::deleteCacheProjectDir() | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 205
+=================
+[2024-05-01 13:34:35] Текст ошибки: preg_match_all(): Unknown modifier 'g' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 79
+=================
+[2024-05-01 13:34:40] Текст ошибки: preg_match_all(): Unknown modifier 'g' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 79
+=================
+[2024-05-01 13:49:26] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 301
+=================
+[2024-05-01 13:49:42] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 301
+=================
+[2024-05-01 13:53:26] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 301
+=================
+[2024-05-01 13:56:48] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 301
+=================
+[2024-05-01 13:56:52] Текст ошибки: scandir(C:\OSPanel\domains\pro-learn\backend/public/projects/user1/generator-zakaza/Dockerfile): Неверно задано имя папк (code: 267) | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 317
+=================
+[2024-05-01 13:58:16] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 301
+=================
+[2024-05-01 13:58:43] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-01 14:07:28] Текст ошибки: Метод app\controllers\CompilerController::srartSessionDockerAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-05-01 14:07:34] Текст ошибки: Метод app\controllers\CompilerController::srartDockerSessionAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-05-01 14:07:42] Текст ошибки: Метод app\controllers\CompilerController::srartSessionDockerAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-05-01 14:07:46] Текст ошибки: Метод app\controllers\CompilerController::startSessionDockerAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-05-01 14:18:01] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 143
+=================
+[2024-05-01 14:22:56] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 168 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 129
+=================
+[2024-05-01 14:24:19] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 168 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 129
+=================
+[2024-05-01 14:24:40] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 168 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 129
+=================
+[2024-05-01 14:25:40] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 168 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 129
+=================
+[2024-05-01 14:28:48] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 140
+=================
+[2024-05-01 14:31:17] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 142
+=================
+[2024-05-01 14:51:23] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 142
+=================
+[2024-05-01 14:51:38] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 151
+=================
+[2024-05-01 14:54:58] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 151
+=================
+[2024-05-01 14:54:58] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-01 14:58:56] Текст ошибки: Undefined array key "docker" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php | Строка: 52
+=================
+[2024-05-01 15:00:08] Текст ошибки: Undefined array key "docker" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php | Строка: 52
+=================
+[2024-05-01 15:03:21] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 156
+=================
+[2024-05-01 15:03:21] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\composer\ClassLoader.php | Строка: 425
+=================
+[2024-05-01 15:03:21] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-01 15:08:39] Текст ошибки: Cannot access private property core\Docker\Docker::$ports | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php | Строка: 56
+=================
+[2024-05-01 15:17:31] Текст ошибки: Undefined array key "docker" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php | Строка: 52
+=================
+[2024-05-01 15:21:16] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-01 15:21:20] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-01 15:21:22] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-01 15:21:24] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-01 15:24:04] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 156
+=================
+[2024-05-01 15:59:37] Текст ошибки: Cannot use object of type core\Docker\Docker as array | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 112
+=================
+[2024-05-01 16:02:00] Текст ошибки: Cannot use object of type core\Docker\Docker as array | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 112
+=================

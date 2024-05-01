@@ -27,7 +27,7 @@ class CompilerController extends AppController
         }
 
         $tasks = $this->model->getTasksForProject($pathProject);
-        $shouldBeRunAtStart = false;
+        $shouldBeRunAtStart = true;
 
         if (isset($tasks['tasks'])) {
             foreach ($tasks['tasks'] as $k => $task) {
@@ -40,12 +40,35 @@ class CompilerController extends AppController
 
         //TODO JSON не сохраняется, а приходит пустым!!!
 
-        echo json_encode(array('fileStructure' => $fileStructure, 'path' => $pathProject, 'tasks' => $tasks, 'shouldBeRunAtStart' => $shouldBeRunAtStart), JSON_UNESCAPED_SLASHES);
+        $isWebProject = $this->model->isWebProject($pathProject, $fileStructure, $tasks);
+
+        echo json_encode(array('fileStructure' => $fileStructure, 'isWebProject' => $isWebProject, 'path' => $pathProject, 'tasks' => $tasks, 'shouldBeRunAtStart' => $shouldBeRunAtStart), JSON_UNESCAPED_SLASHES);
     }
 
     public function startDockerSessionAction()
     {
-        $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']));
+        $output = [];
+        $error = [];
+//        debug($_SESSION, 1);
+        $index = $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']), $output, $error);
+
+//        debug($_SESSION['docker'], 1);
+
+//            debug($index);
+//            debug($_SESSION['docker'], 1);
+//        if (isset($_SESSION['docker'][$index])) {
+//            echo json_encode(array('ports' => $_SESSION['docker'][$index]['ports']));
+//        } else {
+//            echo json_encode(array('ports' => null));
+//        }
+
+    }
+
+    public function portsProjectAction()
+    {
+        if ($_SESSION['docker']) {
+
+        }
     }
 
     public function checkSolutionTaskAction()
@@ -107,6 +130,44 @@ class CompilerController extends AppController
 
     }
 
+    public function newFileAction()
+    {
+        $_POST = json_decode(file_get_contents("php://input"), true);
+
+        if ((empty($_POST)) || empty($_POST['file'])) {
+            header('HTTP/1.0 400 Bad Requst');
+            die;
+        }
+
+        $file = $_POST['file']['newFile'];
+        $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
+        if (!file_exists($pathProject . $file['path'])) {
+            mkdir($pathProject . $file['path']);
+        }
+
+        file_put_contents($pathProject . $file['path'] . '/' . $file['name'], '');
+    }
+
+    public function newFolderAction()
+    {
+        $_POST = json_decode(file_get_contents("php://input"), true);
+
+        if ((empty($_POST)) || empty($_POST['file'])) {
+            header('HTTP/1.0 400 Bad Requst');
+            die;
+        }
+
+        $file = $_POST['file']['newFolder'];
+        $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
+        if (!file_exists($pathProject . $file['path'])) {
+            mkdir($pathProject);
+        }
+
+        if (!file_exists($pathProject . $file['path'] . '/' . $file['name'])) {
+            mkdir($pathProject . $file['path'] . '/' . $file['name']);
+        }
+    }
+
     public function saveAction()
     {
         $_POST = json_decode(file_get_contents("php://input"), true);
@@ -128,6 +189,22 @@ class CompilerController extends AppController
 
     public function deleteAction()
     {
+        $_POST = json_decode(file_get_contents("php://input"), true);
+
+        if ((empty($_POST)) || empty($_POST['file'])) {
+            header('HTTP/1.0 400 Bad Request');
+            die;
+        }
+
+        $file = $_POST['file']['delete'];
+        $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
+        if (file_exists($pathProject . $file)) {
+            if (is_dir($pathProject . $file)) {
+                $this->model->deleteDirectoryProject($pathProject . $file);
+            } else {
+                unlink($pathProject . $file);
+            }
+        }
     }
 
     public function renameAction()

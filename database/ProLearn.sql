@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 11 2024 г., 14:20
+-- Время создания: Май 01 2024 г., 20:25
 -- Версия сервера: 10.8.4-MariaDB
 -- Версия PHP: 8.1.9
 
@@ -343,11 +343,10 @@ CREATE TABLE `challenge` (
   `project_id` int(10) UNSIGNED DEFAULT NULL,
   `template_id` int(10) UNSIGNED DEFAULT NULL,
   `status_id` int(10) UNSIGNED NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `path_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `difficulty` int(10) UNSIGNED NOT NULL,
   `num_of_input_data` int(10) UNSIGNED NOT NULL,
-  `date_of_publication` date NOT NULL,
+  `date_of_publication` date DEFAULT NULL,
   `views` int(10) UNSIGNED NOT NULL,
   `for_course` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -356,8 +355,10 @@ CREATE TABLE `challenge` (
 -- Дамп данных таблицы `challenge`
 --
 
-INSERT INTO `challenge` (`id`, `user_id`, `project_id`, `template_id`, `status_id`, `slug`, `path_code`, `difficulty`, `num_of_input_data`, `date_of_publication`, `views`, `for_course`) VALUES
-(1, 1, NULL, NULL, 1, 'find-the-area-of-the-triangle', '/public/project/challenge/find-the-area-of-the-triangle', 0, 2, '2023-05-10', 0, 0);
+INSERT INTO `challenge` (`id`, `user_id`, `project_id`, `template_id`, `status_id`, `slug`, `difficulty`, `num_of_input_data`, `date_of_publication`, `views`, `for_course`) VALUES
+(1, 2, 1, 1, 1, 'find-the-area-of-the-triangle', 3, 2, '2023-05-10', 0, 0),
+(27, 1, NULL, 2, 1, 'pervyy-klass-na-c', 2, 0, '2023-05-10', 0, 0),
+(28, 2, NULL, 2, 1, 'vasha-pervaya-programma-na-c', 1, 0, '2024-04-26', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -394,6 +395,8 @@ CREATE TABLE `challenge_categorylangprog` (
 --
 
 INSERT INTO `challenge_categorylangprog` (`category_prog_ID`, `lang_prog_id`, `challenge_id`) VALUES
+(2, 1, 1),
+(2, 4, 1),
 (3, 2, 1);
 
 -- --------------------------------------------------------
@@ -423,9 +426,8 @@ INSERT INTO `challenge_challengetag` (`challenge_id`, `challengetag_id`) VALUES
 CREATE TABLE `challenge_description` (
   `language_id` int(10) UNSIGNED NOT NULL,
   `challenge_id` int(10) UNSIGNED NOT NULL,
-  `heading` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `keywords` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -434,9 +436,13 @@ CREATE TABLE `challenge_description` (
 -- Дамп данных таблицы `challenge_description`
 --
 
-INSERT INTO `challenge_description` (`language_id`, `challenge_id`, `heading`, `content`, `title`, `description`, `keywords`) VALUES
-(1, 1, 'Найти площадь треугольника23', 'найти площадь треугольника по высоте и его основанию3232', 'Найти площадь треугольника', 'найти площадь треугольника - описание', 'найти площадь треугольника - ключевые'),
-(2, 1, 'Find the area of the triangle', 'find the area of the triangle in height and its base', 'Find the area of the triangle', 'Find the area of the triangle - desc', 'Find the area of the triangle - keywords');
+INSERT INTO `challenge_description` (`language_id`, `challenge_id`, `title`, `content`, `description`, `keywords`) VALUES
+(1, 1, 'Найти площадь треугольника23', 'найти площадь треугольника по высоте и его основанию', 'найти площадь треугольника - описание', 'найти площадь треугольника - ключевые'),
+(1, 27, 'Первый класс на C++', '<h3 class=\"markdown-h3\">Создай свой первый класс!!!</h3><p class=\"markdown-p\">Создать класс <code class=\"markdown-inline-block-code\">Tiles</code>, который будет содержать поля с открытым доступом: <code class=\"markdown-inline-block-code\">brand</code>, <code class=\"markdown-inline-block-code\">size_h</code>, <code class=\"markdown-inline-block-code\">size_w</code>, <code class=\"markdown-inline-block-code\">price</code> и метод класса <code class=\"markdown-inline-block-code\">getData()</code>. </p><p class=\"markdown-p\">В главной функции объявить пару объектов класса и внести в поля. Затем отобразить их, вызвав метод <code class=\"markdown-inline-block-code\">getData()</code>.</p>', NULL, ''),
+(1, 28, 'Ваша первая программа на C++', '<p class=\"markdown-p\">Напишите программу для вывода <code class=\"markdown-inline-block-code\">C++ is cool</code>. Обратите внимание, что предложение начинается с заглавной буквы.</p><blockquote class=\"markdown-blockquote\"><p class=\"markdown-p\">Подсказка:</p><p class=\"markdown-p\">Используйте <code class=\"markdown-inline-block-code\">cout</code> и <strong>оператор вывода</strong> <code class=\"markdown-inline-block-code\">&lt;&lt;</code>, чтобы вывести текст.</p></blockquote><blockquote class=\"markdown-blockquote\"><p class=\"markdown-p\">Не забудьте заключить текст в <strong>двойные кавычки</strong> и поставить <strong>точку с запятой (;)</strong> в конце выражения.</p></blockquote>', 'ьаваьвы', 'рпрпарпав'),
+(2, 1, 'Find the area of the triangle', 'find the area of the triangle in height and its base', 'Find the area of the triangle - desc', 'Find the area of the triangle - keywords'),
+(2, 27, 'First class in C++', '<h3 class=\"markdown-h3\">Create your first class!!!</h3><p class=\"markdown-p\">Create the Tiles class, which will contain the fields with open access: <code class=\"markdown-inline-block-code\">brand</code>, <code class=\"markdown-inline-block-code\">size_h</code>, <code class=\"markdown-inline-block-code\">size_w</code>, <code class=\"markdown-inline-block-code\">price</code> and the method of the <code class=\"markdown-inline-block-code\">getData()</code> class. </p><p class=\"markdown-p\">In the main function, declare a pair of class objects and add them to the fields. Then display them by calling the <code class=\"markdown-inline-block-code\">getData()</code> method.</p>', '', ''),
+(2, 28, 'Your first C++ program', '<p class=\"markdown-p\">Write a program to output <code class=\"markdown-inline-block-code\">C++ is cool</code>. Please note that the sentence begins with a capital letter.</p><blockquote class=\"markdown-blockquote\"><p class=\"markdown-p\">Hint:</p><p class=\"markdown-p\">Use <code class=\"markdown-inline-block-code\">cout</code> and the <strong>output operator</strong> <code class=\"markdown-inline-block-code\">&lt;&lt;</code> to output the text.</p></blockquote><blockquote class=\"markdown-blockquote\"><p class=\"markdown-p\">Don\'t forget to enclose the text in <strong>double quotes</strong> and <strong>put a semicolon</strong> (;) at the end of the expression.</p></blockquote>', '', '');
 
 -- --------------------------------------------------------
 
@@ -481,12 +487,13 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`id`, `user_id`, `status_id`, `slug`, `icon`, `difficulty`, `date_of_publication`, `views`) VALUES
-(1, 1, 1, 'getting-started-in-javascript', '/public/uploads/course/getting-started-in-javascript.svg', 1, '2023-05-12', 0),
-(25, 2, 3, 'osnovy-fullstack-razrabotki', '/tmp/', 5, NULL, 0),
+(1, 1, 3, 'getting-started-in-javascript', '/public/uploads/course/getting-started-in-javascript.svg', 1, '2023-05-12', 0),
+(25, 2, 1, 'osnovy-fullstack-razrabotki', '/tmp/', 5, '2024-04-23', 0),
 (26, 2, 3, 'osnovy-fullstack-razrabotki-26', '/tmp/', 3, NULL, 0),
 (28, 2, 3, '33', '', 1, NULL, 0),
 (29, 2, 3, 'osnovy-fullstack-razrabotkid', '/tmp/', 4, NULL, 0),
-(45, 2, 3, 'testovyy-kurs', '/tmp/', 2, NULL, 0);
+(45, 2, 1, 'testovyy-kurs', '/tmp/', 2, '2024-04-17', 0),
+(47, 2, 1, 'nachalo-v-c', '', 1, '2024-04-26', 0);
 
 -- --------------------------------------------------------
 
@@ -505,7 +512,8 @@ CREATE TABLE `coursetag` (
 
 INSERT INTO `coursetag` (`id`, `title`) VALUES
 (1, 'Python'),
-(2, 'Начинающим');
+(2, 'Начинающим'),
+(3, 'Fullstack');
 
 -- --------------------------------------------------------
 
@@ -529,24 +537,6 @@ INSERT INTO `course_categorylangprog` (`course_id`, `lang_Prog_id`, `category_pr
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `course_challenge`
---
-
-CREATE TABLE `course_challenge` (
-  `course_id` int(10) UNSIGNED NOT NULL,
-  `challenge_id` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп данных таблицы `course_challenge`
---
-
-INSERT INTO `course_challenge` (`course_id`, `challenge_id`) VALUES
-(1, 1);
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `course_coursetag`
 --
 
@@ -561,7 +551,8 @@ CREATE TABLE `course_coursetag` (
 
 INSERT INTO `course_coursetag` (`course_id`, `coursetag_id`) VALUES
 (1, 1),
-(1, 2);
+(1, 2),
+(25, 3);
 
 -- --------------------------------------------------------
 
@@ -589,12 +580,14 @@ INSERT INTO `course_description` (`language_id`, `course_id`, `title`, `excerpt`
 (1, 28, 'Тест 3', 'Описание тест 3', 'clear desc', 'clear keywords'),
 (1, 29, 'Тест 4', 'Описание тест 4', 'clear desc', 'clear keywords'),
 (1, 45, 'Тестовый курс', 'этот курс создается для теста', 'мета-описание тестового курса', ''),
+(1, 47, 'Начало в C++', 'Наш курс по C++ охватывает основные понятия, типы данных, массивы, указатели, условные операторы, циклы, функции, классы, объекты, наследование и полиморфизм.', '', ''),
 (2, 1, 'Test 1', 'Test desc 1', 'clear desc', 'clear keywords'),
 (2, 25, 'The basics of Fullstack development', 'In this course, you will learn the main stages of developing full-stack websites using html, css, js and php', 'clear desc', 'clear keywords'),
 (2, 26, 'Test 2', 'Test desc 2', 'clear desc', 'clear keywords'),
 (2, 28, 'Test 3', 'Test desc 3', 'clear desc', 'clear keywords'),
 (2, 29, 'Test 4', 'Test desc 4', 'clear desc', 'clear keywords'),
-(2, 45, 'Test course', 'Description for test course', 'meta-desc for test course', '');
+(2, 45, 'Test course', 'Description for test course', 'meta-desc for test course', ''),
+(2, 47, 'Getting started in C++', 'Getting started in C++Our C++ course covers basic concepts, data types, arrays, pointers, conditional operators, loops, functions, classes, objects, inheritance and polymorphism.', '', '');
 
 -- --------------------------------------------------------
 
@@ -678,8 +671,7 @@ CREATE TABLE `Feedback` (
 
 INSERT INTO `Feedback` (`id`, `user_id`, `feedbackcategory_id`, `name`, `email`, `text`, `status`) VALUES
 (3, NULL, 1, 'Вася', 'vasya@gmail.com', 'Пользователь Игорь оскорбил меня.', 'Не просмотрено'),
-(4, NULL, 2, 'Head', 'head@mail.ru', 'meessagee', 'Не просмотрено'),
-(5, NULL, 1, 'Jonh', 'jonh@gmail.com', 'IM', 'Не просмотрено');
+(9, NULL, 2, 'dsads', 'user@mail.ru', 'ff;dsf\'kdsa', 'Не просмотрено');
 
 -- --------------------------------------------------------
 
@@ -850,23 +842,25 @@ INSERT INTO `forum_forumcategory` (`forum_category_id`, `forum_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `inputoutputdata_challenge`
+-- Структура таблицы `inputoutputdata`
 --
 
-CREATE TABLE `inputoutputdata_challenge` (
+CREATE TABLE `inputoutputdata` (
   `id` int(10) UNSIGNED NOT NULL,
   `challenge_id` int(10) UNSIGNED NOT NULL,
   `input_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `output_data` float NOT NULL
+  `output_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`output_data`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `inputoutputdata_challenge`
+-- Дамп данных таблицы `inputoutputdata`
 --
 
-INSERT INTO `inputoutputdata_challenge` (`id`, `challenge_id`, `input_data`, `output_data`) VALUES
-(1, 1, '{\"a\": 10,\"b\": 2}', 10),
-(2, 1, '{\"a\": 20, \"b\": 10}', 100);
+INSERT INTO `inputoutputdata` (`id`, `challenge_id`, `input_data`, `output_data`) VALUES
+(8, 27, '[\"10\",\"10\",\"Cosmetic\",\"30\"]', '[\"Brand: Cosmetic, Heigth: 10, Wight: 10, Price: 30\"]'),
+(9, 27, '[\"10\",\"20\",\"Cosmetic\",\"50\"]', '[\"Brand: Cosmetic, Heigth: 20, Wight: 10, Price: 50\"]'),
+(10, 27, '[\"20\",\"20\",\"TileWind\",\"20\"]', '[\"Brand: TileWind, Heigth: 20, Wight: 20, Price: 20\"]'),
+(21, 28, '[]', '[\"C++ is cool\"]');
 
 -- --------------------------------------------------------
 
@@ -878,19 +872,22 @@ CREATE TABLE `langprog` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `icon_img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL
+  `code` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `extension` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `langprog`
 --
 
-INSERT INTO `langprog` (`id`, `title`, `icon_img`, `code`) VALUES
-(1, 'Java', '/public/uploads/java.svg', 'java'),
-(2, 'JavaScript', '/public/uploads/js.svg', 'javascript'),
-(3, 'C#', 'public/uploads/c#.svg', 'csharp'),
-(4, 'C++', 'public/uploads/c++.svg', 'cpp'),
-(5, 'PHP', 'public/uploads/php.svg', 'php');
+INSERT INTO `langprog` (`id`, `title`, `icon_img`, `code`, `extension`) VALUES
+(1, 'Java', '/public/uploads/java.svg', 'java', 'java'),
+(2, 'JavaScript', '/public/uploads/js.svg', 'javascript', 'js'),
+(3, 'C#', 'public/uploads/c#.svg', 'csharp', 'cs'),
+(4, 'C++', 'public/uploads/c++.svg', 'cpp', 'cpp'),
+(5, 'PHP', 'public/uploads/php.svg', 'php', 'php'),
+(6, 'Python', '/tmp/', 'python', 'py'),
+(7, 'Markdown', '/tmp/', 'markdown', 'md');
 
 -- --------------------------------------------------------
 
@@ -936,10 +933,17 @@ CREATE TABLE `project` (
 
 INSERT INTO `project` (`id`, `user_id`, `slug`, `title`, `path_project`, `date_of_publication`, `private`, `description`) VALUES
 (1, 2, 'find-square-triangle', 'Найти площадь треугольника', '/public/projects/user1/find-square-triangle', '2023-05-12', 0, 'Программа для поиска площади треугольника по основанию и его высоте.'),
-(44, 2, 'sayt-dlya-transportnoy-kompanii', 'Сайт для транспортной компании', '/public/projects/user1/sayt-dlya-transportnoy-kompanii', '2023-11-23', 0, 'Данный сайт был создан в момент практики над верстой, с использованием jquery для анимации и прочего'),
+(44, 2, 'sayt-dlya-transportnoy-kompanii', 'Сайт для транспортной компании', '/public/projects/user1/sayt-dlya-transportnoy-kompanii', '2023-11-23', 1, 'Данный сайт был создан в момент практики над верстой, с использованием jquery для анимации и прочего'),
 (46, 2, 'new', 'new', '/public/projects/user1/new', '2024-03-08', 1, ''),
 (47, 2, 'testovyy-proekt', 'тестовый проект ', '/public/projects/user1/testovyy-proekt', '2024-04-10', 1, 'этот проект был создан для теста'),
-(48, 2, 'testovyy-proekt-215', 'Тестовый проект 215', '/public/projects/user1/testovyy-proekt-215', '2024-04-10', 0, 'Описание ');
+(48, 2, 'testovyy-proekt-215', 'Тестовый проект 215', '/public/projects/user1/testovyy-proekt-215', '2024-04-10', 0, 'Описание '),
+(68, 1, 'testsolve', 'testsolve', NULL, '2024-04-18', 1, NULL),
+(71, 1, 'testsolve-71', 'testsolve', NULL, '2024-04-18', 1, NULL),
+(72, 2, 'dsa', 'dsa', '/public/projects/user1/dsa', '2024-04-22', 1, 'dsa'),
+(73, 1, 'testsolve-cpp', 'testSolve-cpp', NULL, '2024-04-22', 0, NULL),
+(75, 2, 'gfgfd', 'gfgfd', NULL, '2024-04-26', 1, NULL),
+(77, 2, 'pervyy-proekt-na-c', 'Первый проект на C++', NULL, '2024-04-29', 1, NULL),
+(78, 2, 'generator-zakaza', 'Генератор заказа', '/public/projects/user1/generator-zakaza', '2024-05-01', 0, 'Данный проект был создан на реакте и представляет собой генератор заказа, который можно будет скачать');
 
 -- --------------------------------------------------------
 
@@ -950,11 +954,19 @@ INSERT INTO `project` (`id`, `user_id`, `slug`, `title`, `path_project`, `date_o
 CREATE TABLE `projecttemplate` (
   `id` int(11) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
-  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `path_to_template` int(11) NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `private` tinyint(1) NOT NULL,
-  `for_project` int(11) NOT NULL
+  `for_project` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `projecttemplate`
+--
+
+INSERT INTO `projecttemplate` (`id`, `user_id`, `slug`, `icon`, `private`, `for_project`) VALUES
+(1, 2, 'testtemplate1', '', 0, 1),
+(2, 1, 'docker-for-cplusplus', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -968,6 +980,16 @@ CREATE TABLE `projecttemplate_description` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `projecttemplate_description`
+--
+
+INSERT INTO `projecttemplate_description` (`language_id`, `projecttemplate_id`, `title`, `description`) VALUES
+(1, 1, 'тест', 'тест'),
+(1, 2, 'Консольное приложение на C++', 'Данный шаблон используется для консольного приложения на языке программирования С++'),
+(2, 1, 'test', 'test'),
+(2, 2, 'Console application in C++', 'This template is used for a console application in the C++ programming language');
 
 -- --------------------------------------------------------
 
@@ -1011,8 +1033,9 @@ CREATE TABLE `session` (
 INSERT INTO `session` (`id`, `user_id`, `type_device`, `country_address`, `city_address`, `date_of_last_session`, `ip_address`) VALUES
 (2, 1, 'desktop', 'Colombia', 'Cartagena', '2024-04-02', '200.0.3.1'),
 (3, 2, 'unknown', 'Colombia', 'Cartagena', '2024-04-09', '200.0.3.1'),
-(4, 2, 'desktop', 'United States', 'Montgomery', '2024-04-11', '132.3.200.1'),
-(5, 1, 'desktop', 'United States', 'Montgomery', '2024-04-11', '132.3.200.1');
+(4, 2, 'unknown', 'United States', 'Montgomery', '2024-04-26', '132.3.200.1'),
+(5, 1, 'unknown', 'United States', 'Montgomery', '2024-05-01', '132.3.200.1'),
+(6, 3, 'unknown', 'United States', 'Montgomery', '2024-04-17', '132.3.200.1');
 
 -- --------------------------------------------------------
 
@@ -1033,7 +1056,11 @@ CREATE TABLE `stagecourse` (
 
 INSERT INTO `stagecourse` (`id`, `course_id`, `num_stage`, `icon`) VALUES
 (46, 25, 1, '/tmp/'),
-(68, 45, 1, '/tmp/');
+(68, 45, 1, '/tmp/'),
+(70, 25, 2, '/tmp/'),
+(71, 25, 3, '/tmp/'),
+(72, 47, 1, '/tmp/'),
+(74, 47, 2, '/tmp/');
 
 -- --------------------------------------------------------
 
@@ -1054,8 +1081,16 @@ CREATE TABLE `stagecourse_description` (
 INSERT INTO `stagecourse_description` (`language_id`, `stage_course_id`, `title`) VALUES
 (1, 46, 'Введение в верстку'),
 (1, 68, 'Тестовый блок 1'),
+(1, 70, 'апьаьпы'),
+(1, 71, 'лавыа'),
+(1, 72, 'Основные понятия'),
+(1, 74, 'Заголовки и пространства имен'),
 (2, 46, 'Getting start layout'),
-(2, 68, 'Test bock 1');
+(2, 68, 'Test bock 1'),
+(2, 70, 'jfdkgkfds'),
+(2, 71, 'flds;lf;l'),
+(2, 72, 'Basic concepts'),
+(2, 74, 'Headers and namespaces');
 
 -- --------------------------------------------------------
 
@@ -1125,7 +1160,20 @@ CREATE TABLE `stepcourse` (
 INSERT INTO `stepcourse` (`id`, `stage_course_id`, `typestepcourse_id`, `challenge_id`, `num_step`) VALUES
 (138, 46, 4, NULL, 1),
 (145, 68, 1, NULL, 1),
-(146, 68, 2, NULL, 2);
+(146, 68, 2, NULL, 2),
+(148, 70, 5, 1, 1),
+(149, 72, 1, NULL, 1),
+(150, 72, 4, NULL, 2),
+(151, 72, 1, NULL, 3),
+(152, 72, 4, NULL, 4),
+(153, 72, 1, NULL, 5),
+(154, 72, 2, NULL, 6),
+(155, 72, 5, 28, 7),
+(156, 72, 4, NULL, 8),
+(159, 74, 1, NULL, 1),
+(160, 74, 2, NULL, 2),
+(161, 74, 1, NULL, 3),
+(162, 74, 4, NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -1148,11 +1196,37 @@ CREATE TABLE `stepcourse_description` (
 
 INSERT INTO `stepcourse_description` (`language_id`, `step_course_id`, `title`, `description`, `answer_option`, `right_answer`) VALUES
 (1, 138, 'авыавы', '<p class=\"markdown-p\">авыавыф3</p>', '{\"1\":\",lt;l,h;lgdh\",\"2\":\"jgfdjhgj\"}', '1'),
-(1, 145, 'Тестовый урок 1 блока 1.', 'Контент первого заголовка. Текстовая часть', '[]', ''),
+(1, 145, 'Тестовый урок 1 блока 1.', 'Контент первого заголовка. Текстовая часть', '{\"1\": \"вывы}', ''),
 (1, 146, 'Текстовый урок 2 блока 1', 'let a <code>=</code> 10; ', '[]', ''),
+(1, 148, 'лдааджы', '', '[]', ''),
+(1, 149, 'Добро пожаловать в мир C++', '<p class=\"markdown-p\"><script>alert(\'sdsds\');</script>C++ - популярный кроссплатформенный язык программирования, который используется для создания высокопроизводительных программ - операционные системы, браузеры, видеоигры, графические приложения и т.д.</p><blockquote class=\"markdown-blockquote\"><p class=\"markdown-p\">C++ наследован от языка программирования C, и во многих аспектах основан на нем.</p></blockquote>', '[]', ''),
+(1, 150, 'Что такое С++', '<p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">C++ - это...</span></p>', '{\"1\":\"Сценарный язык программирования на стороне клиента\",\"2\":\"Язык программирования общего назначения\",\"3\":\"Программа для создания видео\"}', '2'),
+(1, 151, 'Шаблон проекта', '<p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">Программа на языке C++ является набором <strong>команд</strong> и <strong>выражений</strong>. Ниже представлен простой шаблон программы C++:</span></p><pre class=\"project__file-code tiptap-code-editor scroll \"><code class=\"language-cpp\">#include &lt;iostream&gt;\nusing namespace std;\n\nint main()\n\n{\n\n  return 0;\n\n}</code></pre><p class=\"markdown-p\">Вы изучите, что делает каждое выражение в последующих уроках. Пока запомните, точкой входа каждой программы на языке C++ является функция <strong>main()</strong>, независимо от того, что делает программа.</p>', '[]', ''),
+(1, 152, 'Какая точка входа в программу', '<p class=\"markdown-p\">Какой вариант является входной точкой каждой C++ программы?</p>', '{\"1\":\"int main()\",\"2\":\"using namespace std;\",\"3\":\"#include <iostream>\"}', '1'),
+(1, 153, 'Ваша первая программа на C++', '<p class=\"markdown-p\">Давайте выведем \"Hello world\" на экран!</p><p class=\"markdown-p\">Для этого мы добавим строку cout &lt;&lt; \"Hello world!\"; в тело нашей функции main():</p><pre class=\"project__file-code tiptap-code-editor scroll \"><code class=\"language-cpp\">#include &lt;iostream&gt; \nusing namespace std;  \nint main() {\n   cout &lt;&lt; \"Hello world!\";\n   cout &lt;&lt; \" This \" &lt;&lt; \"is \" &lt;&lt; \"awesome!\";\n   return 0;\n}</code></pre><p class=\"markdown-p\">Результатом же программы будет: </p><pre class=\"project__file-code tiptap-code-editor scroll \"><code class=\"language-textplain\">Hello world! This is awesome!</code></pre><p class=\"markdown-p\">В большинстве программных сред стандартный вывод по умолчанию выводится на экран. В C++ объект cout используется для доступа к потоку вывода.</p><p class=\"markdown-p\">cout используется в комбинации с оператором вставки &lt;&lt;.</p><p class=\"markdown-p\">Вы можете добавить множество операторов вставки после cout.</p><blockquote class=\"markdown-blockquote\"><p class=\"markdown-p\">В языке C++, точка с запятой используется для завершения выражения. Каждое выражение должно заканчиваться точкой с запятой. Это указывает на конец логического выражения.</p></blockquote>', '[]', ''),
+(1, 154, 'Выведи Hello World', '<p class=\"markdown-p\">Перетащите из вариантов, указанных ниже, чтобы вывести \"Hello, world!\" на экран:</p><p class=\"markdown-p\"><code class=\"markdown-inline-block-code\">cout</code><strong> </strong><code class=\"markdown-inline-block-code\">&lt;&lt;</code><strong> \"Hello, world!\"</strong><code class=\"markdown-inline-block-code\">;</code></p>', '[]', ''),
+(1, 155, 'Практика - ключ к успеху', '<p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">Попробуйте наш Код Коуч, чтобы попрактиковаться и написать реальный код.</span></p>', '[]', ''),
+(1, 156, 'Как заканчивается каждое выражение?', '<p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">Каждое выражение должно заканчиваться:</span></p>', '{\"1\":\"точка с запятой ( ; )\",\"2\":\"двоеточие ( : )\",\"3\":\"точка ( . )\",\"4\":\"запятая ( , )\"}', '1'),
+(1, 159, 'Заголовки', '<p class=\"markdown-p\">C++ предлагает различные заголовки, каждый из которых содержит необходимую информацию для корректной работы программ.</p><p class=\"markdown-p\">Мы уже встречали стандартный заголовок &lt;iostream&gt; в нашей первой C++ программе:</p><pre class=\"project__file-code tiptap-code-editor scroll \"><code class=\"language-cpp\">#include &lt;iostream&gt;\nusing namespace std;\n\nint main()\n{\ncout &lt;&lt; \"Hello world!\";\nreturn 0;\n}</code></pre><p class=\"markdown-p\">#include используется для добавления стандартных или пользовательских заголовков в программу.</p><blockquote class=\"markdown-blockquote\"><p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">Заголовочный файл &lt;iostream&gt; управляет стандартным потоком ввода-вывода информации.</span></p></blockquote>', '[]', ''),
+(1, 160, 'Как правильно?', '<p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">Перетащите из вариантов, указанных ниже, чтобы включить заголовок &lt;iostream&gt;:</span></p><p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">#</span><code class=\"markdown-inline-block-code\">include</code><span style=\"color: rgb(225, 227, 230)\"> &lt;</span><code class=\"markdown-inline-block-code\">iostream</code><span style=\"color: rgb(225, 227, 230)\">&gt;</span></p>', '[]', ''),
+(1, 161, 'Пространства имен', '<p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">Пространство имен (namespace) это декларативная область которая предостовляет пространсво для идентификаторов (имен элементов) внутри него.</span><br><span style=\"color: rgb(225, 227, 230)\">В нашей программе строка using namespace std; говорит компилятору использовать std (Стандартное) пространство имен.</span></p><pre class=\"project__file-code tiptap-code-editor scroll \"><code class=\"language-cpp\">#include &lt;iostream&gt;\nusing namespace std;\n\nint main()\n{\ncout &lt;&lt; \"Hello world!\";\nreturn 0;\n}</code></pre><blockquote class=\"markdown-blockquote\"><p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">Пространство имен std включает особенности Стандартной Библиотеки C++.</span></p></blockquote>', '[]', ''),
+(1, 162, 'Стандартная библиотека C++', '<p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">Какой вариант является пространством имен, который включает в себя стандартную библиотеку C++.</span></p>', '{\"1\":\"std\",\"2\":\"stdlib\",\"3\":\"standard\"}', '1'),
 (2, 138, 'klgfl;gmfdsg;fdsm;gds', '<p class=\"markdown-p\">kgfmg;fdms;lgfds</p>', '{\"1\":\",glfdm\'lgfds\'lmgfds\",\"2\":\"gfkng,fdsgnfds\"}', '2'),
 (2, 145, 'Test lesson 1 of the block 1', 'Content h1. Content text', '[]', ''),
-(2, 146, 'Test lesson 2 of the block 1', 'let a <code>=</code> 10;', '[]', '');
+(2, 146, 'Test lesson 2 of the block 1', 'let a <code>=</code> 10;', '[]', ''),
+(2, 148, 'aasjds', '', '[]', ''),
+(2, 149, 'Welcome to the world of C++', '<p class=\"markdown-p\">C++ is a popular cross-platform programming language that is used to create high-performance programs - operating systems, browsers, video games, graphical applications, etc.</p><blockquote class=\"markdown-blockquote\"><p class=\"markdown-p\"><span style=\"color: rgb(255, 255, 255)\">C++ is inherited from the C programming language, and is based on it in many aspects.</span></p></blockquote>', '[]', ''),
+(2, 150, 'What is C++?', '<p class=\"markdown-p\">C++ is...</p>', '{\"1\":\"Client-side scripting programming language\",\"2\":\"General purpose programming language\",\"3\":\"Video creation program\"}', '2'),
+(2, 151, 'Project Template', '<p class=\"markdown-p\">A C++ program is a set of <strong>commands</strong> and <strong>expressions</strong>. Below is a simple C++ program template:</p><pre class=\"project__file-code tiptap-code-editor scroll \"><code class=\"language-cpp\">#include &lt;iostream&gt;\nusing namespace std;\n\nint main()\n\n{\n\n  return 0;\n\n}</code></pre><p class=\"markdown-p\">You will learn what each expression does in the following lessons. For now, remember, the entry point of every C++ program is the <strong>main()</strong> function, regardless of what the program does.</p>', '[]', ''),
+(2, 152, 'What is the entry point to the program', '<p class=\"markdown-p\">Which option is the entry point of each C++ program?</p>', '{\"1\":\"int main()\",\"2\":\"using namespace std;\",\"3\":\"#include <iostream>\"}', '1'),
+(2, 153, 'Your first C++ program', '<p class=\"markdown-p\">Let\'s put \"Hello world\" on the screen!</p><p class=\"markdown-p\">To do this, we will add the string cout &lt;&lt; \"Hello world!\"; to the body of our main() function:</p><pre class=\"project__file-code tiptap-code-editor scroll \"><code class=\"language-cpp\">#include &lt;iostream&gt; \nusing namespace std;  \nint main() {\n   cout &lt;&lt; \"Hello world!\";\n   cout &lt;&lt; \" This \" &lt;&lt; \"is \" &lt;&lt; \"awesome!\";\n   return 0;\n}</code></pre><p class=\"markdown-p\">The result of the program will be: </p><pre class=\"project__file-code tiptap-code-editor scroll \"><code class=\"language-textplain\">Hello world! This is awesome!</code></pre><p class=\"markdown-p\">In most software environments, standard output is displayed by default. In C++, the cout object is used to access the output stream.</p><p class=\"markdown-p\">cout is used in combination with the insert operator &lt;&lt;.</p><p class=\"markdown-p\">You can add many insertion statements after cout.</p><blockquote class=\"markdown-blockquote\"><p class=\"markdown-p\">In C++, a semicolon is used to complete an expression. Each expression must end with a semicolon. This indicates the end of the logical expression.</p></blockquote>', '[]', ''),
+(2, 154, 'Print Hello World', '<p class=\"markdown-p\">Drag and drop from the options listed below to output \"Hello, world!\" on the screen:</p><p class=\"markdown-p\"><code class=\"markdown-inline-block-code\">cout</code> <code class=\"markdown-inline-block-code\">&lt;&lt;</code> \"Hello, world!\";</p>', '[]', ''),
+(2, 155, 'Practice is the key to success', '', '[]', ''),
+(2, 156, 'How does each expression end?', '<p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">Each expression must end with:</span></p>', '{\"1\":\"colon ( : )\",\"2\":\"dot ( . )\",\"3\":\"semicolon ( ; )\",\"4\":\"comma ( , )\"}', '3'),
+(2, 159, 'Headlines', '<p class=\"markdown-p\">C++ offers various headers, each of which contains the necessary information for the correct operation of programs.</p><p class=\"markdown-p\">We have already encountered the standard &lt;iostream&gt; header in our first C++ program:</p><pre class=\"project__file-code tiptap-code-editor scroll \"><code class=\"language-cpp\">#include &lt;iostream&gt;\nusing namespace std;\n\nint main()\n{\ncout &lt;&lt; \"Hello world!\";\nreturn 0;\n}</code></pre><p class=\"markdown-p\">#include is used to add standard or custom headers to the program.</p><blockquote class=\"markdown-blockquote\"><p class=\"markdown-p\">The &lt;iostream&gt; header file controls the standard I/O flow of information.</p></blockquote>', '[]', ''),
+(2, 160, 'What is the right way?', '<p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">Drag and drop from the options listed below to include the &lt;iostream&gt; header:</span></p><p class=\"markdown-p\"><span style=\"color: rgb(225, 227, 230)\">#</span><code class=\"markdown-inline-block-code\">include</code><span style=\"color: rgb(225, 227, 230)\"> &lt;</span><code class=\"markdown-inline-block-code\">iostream</code><span style=\"color: rgb(225, 227, 230)\">&gt;</span></p>', '[]', ''),
+(2, 161, 'Namespaces', '<p class=\"markdown-p\">A namespace is a declarative area that provides a space for identifiers (element names) inside it.</p><p class=\"markdown-p\">In our program, the string using namespace std; tells the compiler to use the std (Standard) namespace.</p><pre class=\"project__file-code tiptap-code-editor scroll \"><code class=\"language-cpp\">#include &lt;iostream&gt;\nusing namespace std;\n\nint main() {\n\n    cout &lt;&lt; \"Hello world!\";\n    return 0;\n}</code></pre><blockquote class=\"markdown-blockquote\"><p class=\"markdown-p\">The std namespace includes features of the C++ Standard Library.</p></blockquote>', '[]', ''),
+(2, 162, 'Стандартная библиотека C++', '<p class=\"markdown-p\">Which option is a namespace that includes the standard C++ library.</p>', '{\"1\":\"standard\",\"2\":\"std\",\"3\":\"stdlib\"}', '2');
 
 -- --------------------------------------------------------
 
@@ -1200,7 +1274,9 @@ INSERT INTO `typestepcourse_description` (`language_id`, `typestepcourse_id`, `t
 (2, 3, 'Choosing multiple options'),
 (1, 3, 'Выбор нескольких вариантов'),
 (2, 4, 'Choosing one option'),
-(1, 4, 'Выбор одного варианта');
+(1, 4, 'Выбор одного варианта'),
+(2, 5, 'Task binding'),
+(1, 5, 'Привязка задачи');
 
 -- --------------------------------------------------------
 
@@ -1234,7 +1310,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `mail`, `second_mail`, `password`, `avatar_img`, `heading_img`, `about_user`, `last_name`, `first_name`, `country_address`, `date_of_registration`, `mb_for_project`, `consecutive_days`, `all_profile_private`, `personal_info_private`, `look_current_course_private`, `role`) VALUES
-(1, 'admin1', 'admin1@mail.ru', 'admin@second.ru', '$2y$10$fPCaXAY0gqN.hxkzIl8OT.9CdqaSQ2eEkXxCB90uwlBqjYthHdXUu', '/public/uploads/ava5.jpg', '/public/uploads/head1.jpg', 'Первый админ на сайте', 'First', 'Admin', 'Россия', '2023-02-01', 50, 1, 0, 0, 1, 'admin'),
+(1, 'admin1', 'admin1@mail.ru', 'admin@second.ru', '$2y$10$bmsbwRyKiHqGhsao1NKS0.3zNBmeSholPNPs6dzRbt9ngrEud5D4.', '/public/uploads/ava5.jpg', '/public/uploads/head1.jpg', 'Первый админ на сайте', 'First', 'Admin', 'Россия', '2023-02-01', 50, 1, 0, 0, 1, 'admin'),
 (2, 'user1', 'user1@mail.ru', 'admin@second.ru', '$2y$10$gWzhNmoueqVcAjR7xxE6pey1b8E0ibMcoiON6LnjQ27AuGcUNZglq', '', '', 'Первый пользователь', 'First', 'User32', 'Россия', '2023-05-10', 50, 1, 0, 1, 1, 'user'),
 (3, 'admin2', 'admin2@mail.ru', 'admin2@secondmail.ru', '$2y$10$l5LGx0FR2SIMPZca8fjfquZSRjGDS1Dc/BAmqmYWoQTAvqImhF.p6', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это второй админ', 'второй', 'админ', 'Россия', '2023-05-17', 50, 5, 1, 1, 1, 'admin'),
 (4, 'admin3\r\n', 'admin3@mail.ru', 'admin3@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это третий админ\r\n', 'третий', 'админ', 'Россия', '2023-05-17', 50, 1, 1, 1, 1, 'admin'),
@@ -1252,6 +1328,7 @@ INSERT INTO `user` (`id`, `username`, `mail`, `second_mail`, `password`, `avatar
 CREATE TABLE `user_challenge` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `challenge_id` int(10) UNSIGNED NOT NULL,
+  `project_id` int(11) UNSIGNED DEFAULT NULL,
   `success` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1259,8 +1336,11 @@ CREATE TABLE `user_challenge` (
 -- Дамп данных таблицы `user_challenge`
 --
 
-INSERT INTO `user_challenge` (`user_id`, `challenge_id`, `success`) VALUES
-(2, 1, 0);
+INSERT INTO `user_challenge` (`user_id`, `challenge_id`, `project_id`, `success`) VALUES
+(1, 1, 68, 0),
+(1, 27, 73, 1),
+(2, 27, NULL, 0),
+(2, 28, 77, 1);
 
 -- --------------------------------------------------------
 
@@ -1281,7 +1361,9 @@ CREATE TABLE `user_course` (
 --
 
 INSERT INTO `user_course` (`user_id`, `course_id`, `success`, `current_step`, `current_stage`) VALUES
-(2, 1, 0, 2, 2);
+(1, 47, 0, 7, 1),
+(2, 1, 0, 2, 2),
+(2, 47, 1, 4, 2);
 
 --
 -- Индексы сохранённых таблиц
@@ -1440,13 +1522,6 @@ ALTER TABLE `course_categorylangprog`
   ADD KEY `LangProg_ID` (`lang_Prog_id`);
 
 --
--- Индексы таблицы `course_challenge`
---
-ALTER TABLE `course_challenge`
-  ADD PRIMARY KEY (`course_id`,`challenge_id`),
-  ADD KEY `challenge_id` (`challenge_id`);
-
---
 -- Индексы таблицы `course_coursetag`
 --
 ALTER TABLE `course_coursetag`
@@ -1545,9 +1620,9 @@ ALTER TABLE `forum_forumcategory`
   ADD KEY `Forum_ID` (`forum_id`);
 
 --
--- Индексы таблицы `inputoutputdata_challenge`
+-- Индексы таблицы `inputoutputdata`
 --
-ALTER TABLE `inputoutputdata_challenge`
+ALTER TABLE `inputoutputdata`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Challenge_ID` (`challenge_id`);
 
@@ -1575,14 +1650,15 @@ ALTER TABLE `project`
 -- Индексы таблицы `projecttemplate`
 --
 ALTER TABLE `projecttemplate`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `projecttemplate_ibfk_1` (`user_id`);
 
 --
 -- Индексы таблицы `projecttemplate_description`
 --
 ALTER TABLE `projecttemplate_description`
   ADD PRIMARY KEY (`language_id`,`projecttemplate_id`),
-  ADD KEY `projecttemplate_id` (`projecttemplate_id`);
+  ADD KEY `projecttemplate_description_ibfk_2` (`projecttemplate_id`);
 
 --
 -- Индексы таблицы `project_langprog`
@@ -1668,7 +1744,8 @@ ALTER TABLE `user`
 --
 ALTER TABLE `user_challenge`
   ADD PRIMARY KEY (`user_id`,`challenge_id`),
-  ADD KEY `Challenge_ID` (`challenge_id`);
+  ADD KEY `Challenge_ID` (`challenge_id`),
+  ADD KEY `project_id` (`project_id`);
 
 --
 -- Индексы таблицы `user_course`
@@ -1715,7 +1792,7 @@ ALTER TABLE `categoryprog`
 -- AUTO_INCREMENT для таблицы `challenge`
 --
 ALTER TABLE `challenge`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT для таблицы `challengetag`
@@ -1727,13 +1804,13 @@ ALTER TABLE `challengetag`
 -- AUTO_INCREMENT для таблицы `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT для таблицы `coursetag`
 --
 ALTER TABLE `coursetag`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `documentation`
@@ -1745,7 +1822,7 @@ ALTER TABLE `documentation`
 -- AUTO_INCREMENT для таблицы `Feedback`
 --
 ALTER TABLE `Feedback`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `Feedbackcategory`
@@ -1772,10 +1849,10 @@ ALTER TABLE `forumresponse`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT для таблицы `inputoutputdata_challenge`
+-- AUTO_INCREMENT для таблицы `inputoutputdata`
 --
-ALTER TABLE `inputoutputdata_challenge`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `inputoutputdata`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT для таблицы `language`
@@ -1787,25 +1864,25 @@ ALTER TABLE `language`
 -- AUTO_INCREMENT для таблицы `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT для таблицы `projecttemplate`
 --
 ALTER TABLE `projecttemplate`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `stagecourse`
 --
 ALTER TABLE `stagecourse`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT для таблицы `status`
@@ -1817,7 +1894,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT для таблицы `stepcourse`
 --
 ALTER TABLE `stepcourse`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
 
 --
 -- AUTO_INCREMENT для таблицы `typestepcourse`
@@ -1928,7 +2005,7 @@ ALTER TABLE `challenge_challengetag`
 --
 ALTER TABLE `challenge_description`
   ADD CONSTRAINT `challenge_description_ibfk_1` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`),
-  ADD CONSTRAINT `challenge_description_ibfk_2` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`);
+  ADD CONSTRAINT `challenge_description_ibfk_2` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `challenge_mark`
@@ -1951,13 +2028,6 @@ ALTER TABLE `course_categorylangprog`
   ADD CONSTRAINT `course_categorylangprog_ibfk_1` FOREIGN KEY (`category_prog_id`) REFERENCES `categoryprog` (`id`),
   ADD CONSTRAINT `course_categorylangprog_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
   ADD CONSTRAINT `course_categorylangprog_ibfk_3` FOREIGN KEY (`lang_Prog_id`) REFERENCES `langprog` (`id`);
-
---
--- Ограничения внешнего ключа таблицы `course_challenge`
---
-ALTER TABLE `course_challenge`
-  ADD CONSTRAINT `course_challenge_ibfk_1` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `course_challenge_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `course_coursetag`
@@ -2042,10 +2112,10 @@ ALTER TABLE `forum_forumcategory`
   ADD CONSTRAINT `forum_forumcategory_ibfk_2` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`);
 
 --
--- Ограничения внешнего ключа таблицы `inputoutputdata_challenge`
+-- Ограничения внешнего ключа таблицы `inputoutputdata`
 --
-ALTER TABLE `inputoutputdata_challenge`
-  ADD CONSTRAINT `inputoutputdata_challenge_ibfk_1` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`);
+ALTER TABLE `inputoutputdata`
+  ADD CONSTRAINT `inputoutputdata_ibfk_1` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `project`
@@ -2054,11 +2124,17 @@ ALTER TABLE `project`
   ADD CONSTRAINT `project_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
+-- Ограничения внешнего ключа таблицы `projecttemplate`
+--
+ALTER TABLE `projecttemplate`
+  ADD CONSTRAINT `projecttemplate_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
 -- Ограничения внешнего ключа таблицы `projecttemplate_description`
 --
 ALTER TABLE `projecttemplate_description`
   ADD CONSTRAINT `projecttemplate_description_ibfk_1` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `projecttemplate_description_ibfk_2` FOREIGN KEY (`projecttemplate_id`) REFERENCES `typestepcourse` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `projecttemplate_description_ibfk_2` FOREIGN KEY (`projecttemplate_id`) REFERENCES `projecttemplate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `project_langprog`
@@ -2120,7 +2196,8 @@ ALTER TABLE `typestepcourse_description`
 --
 ALTER TABLE `user_challenge`
   ADD CONSTRAINT `user_challenge_ibfk_1` FOREIGN KEY (`challenge_id`) REFERENCES `challenge` (`id`),
-  ADD CONSTRAINT `user_challenge_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `user_challenge_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `user_challenge_ibfk_3` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `user_course`
