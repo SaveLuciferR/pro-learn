@@ -1,4 +1,12 @@
-import {FaBold, FaItalic, FaStrikethrough, FaUnderline, FaParagraph} from "react-icons/fa";
+import {
+    FaBold,
+    FaItalic,
+    FaStrikethrough,
+    FaUnderline,
+    FaParagraph,
+    FaQuoteRight,
+    FaRulerHorizontal
+} from "react-icons/fa";
 import {LuHeading1, LuHeading2, LuHeading3, LuHeading4, LuHeading5, LuHeading6} from "react-icons/lu";
 
 import {useState, useEffect} from "react";
@@ -14,10 +22,16 @@ import {Heading} from "@tiptap/extension-heading";
 import {Placeholder} from "@tiptap/extension-placeholder";
 import {Code} from "@tiptap/extension-code";
 import {FaCode} from "react-icons/fa6";
+import {Blockquote} from "@tiptap/extension-blockquote";
 import {Document} from "@tiptap/extension-document";
 import {Text} from "@tiptap/extension-text";
 import {Italic} from "@tiptap/extension-italic";
 import {Strike} from "@tiptap/extension-strike";
+import {HiCodeBracket} from "react-icons/hi2";
+import {CodeBlockLowlight} from "@tiptap/extension-code-block-lowlight";
+import {common, createLowlight} from 'lowlight';
+import {HorizontalRule} from "@tiptap/extension-horizontal-rule";
+import {MdHorizontalRule} from "react-icons/md";
 
 const MenuBar = ({type}) => {
     const {editor} = useCurrentEditor()
@@ -59,6 +73,18 @@ const MenuBar = ({type}) => {
                 className={editor.isActive('underline') ? 'is-active' : ''}
             >
                 <FaUnderline/>
+            </button>
+
+            <button
+                onClick={() => editor.chain().focus().toggleBlockquote().run()}
+                disabled={
+                    !editor.can()
+                        .chain()
+                        .focus().toggleBlockquote().run()
+                }
+                className={editor.isActive('blockquote') ? 'is-active' : ''}
+            >
+                <FaQuoteRight/>
             </button>
 
             <span className="vertical-line">Стили</span>
@@ -129,6 +155,12 @@ const MenuBar = ({type}) => {
             >
                 <FaParagraph/>
             </button>
+            <button
+                onClick={() => editor.chain().focus().setHorizontalRule().run()}
+                // className={editor.isActive('paragraph') ? 'is-active' : ''}
+            >
+                <MdHorizontalRule/>
+            </button>
 
             <span className="vertical-line">Код</span>
             {type === 'input-data' ?
@@ -141,6 +173,13 @@ const MenuBar = ({type}) => {
                 </button> :
                 <></>
             }
+            <button
+                onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+                disabled={!editor.can().chain().focus().toggleCodeBlock().run()}
+                className={editor.isActive('codeBlock') ? 'is-active' : ''}
+            >
+                <HiCodeBracket/>
+            </button>
 
             {/*<button*/}
             {/*    onClick={() => editor.chain().focus().toggleBulletList().run()}*/}
@@ -206,6 +245,21 @@ const MenuBar = ({type}) => {
     )
 }
 
+
+const CustomBlockquote = Blockquote.extend({
+    addAttributes() {
+        return {
+            class: {
+                default: null,
+                renderHTML: (attributes) => {
+                    return {
+                        class: "markdown-blockquote"
+                    }
+                }
+            }
+        }
+    }
+});
 const CustomParagraph = Paragraph.extend({
     addAttributes() {
         return {
@@ -271,13 +325,27 @@ const CustomCode = Code.extend({
                 renderHTML: (attributes) => {
                     return {
                         class: "markdown-inline-block-code"
+
                     }
                 }
             }
         }
     }
 });
-
+const CustomHorizontalRule = HorizontalRule.extend({
+    addAttributes() {
+        return {
+            class: {
+                default: null,
+                renderHTML: (attributes) => {
+                    return {
+                        class: "markdown-hr"
+                    }
+                }
+            }
+        }
+    }
+});
 const extensions = [
     Color.configure({types: [TextStyle.name, ListItem.name]}),
     TextStyle.configure({types: [ListItem.name]}),
@@ -285,6 +353,15 @@ const extensions = [
     Bold,
     // Italic,
     // Strike,
+    CodeBlockLowlight.configure({
+        lowlight: createLowlight(common),
+        languageClassPrefix: 'language-',
+        HTMLAttributes: {
+            class: 'project__file-code tiptap-code-editor scroll ',
+        }
+    }),
+    CustomHorizontalRule,
+    CustomBlockquote,
     CustomParagraph,
     CustomHeading,
     CustomCode,
@@ -295,6 +372,7 @@ const extensions = [
     // Document,
     // Text
     StarterKit.configure({
+        codeBlock: false,
         bulletList: {
             keepMarks: true,
             keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
@@ -312,47 +390,17 @@ const editorProps = {
     }
 }
 
-const testContent = `
-<h2>
-  Hi there,
-</h2>
-<p>
-  this is a <em>basic</em> example of <strong>tiptap</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
-</p>
-<ul>
-  <li>
-    That’s a bullet list with one …
-  </li>
-  <li>
-    … or two list items.
-  </li>
-</ul>
-<p>
-  Isn’t that great? And all of that is editable. But wait, there’s more. Let’s try a code block:
-</p>
-<pre><code class="language-css">body {
-display: none;
-}</code></pre>
-<p>
-  I know, I know, this is impressive. It’s only the tip of the iceberg though. Give it a try and click a little bit around. Don’t forget to check the other examples too.
-</p>
-<blockquote>
-  Wow, that’s amazing. Good work, boy! 👏
-  <br />
-  — Mom
-</blockquote>
-`
-
 const TextEditor = ({setHTML, type, content}) => {
 
     useEffect(() => {
-        console.log(content);
+        // console.log(content);
     }, [content])
 
     return (
         <div className="text-editor">
             <EditorProvider onUpdate={({editor}) => setHTML(editor.getHTML())} slotBefore={<MenuBar type={type}/>}
-                            editorProps={editorProps} extensions={extensions} content={content} children={""}></EditorProvider>
+                            editorProps={editorProps} extensions={extensions} content={content}
+                            children={""}></EditorProvider>
         </div>
     )
 }

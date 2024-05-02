@@ -1,0 +1,15 @@
+{
+  "setupTasks": [],
+  "tasks": {
+    "start": {
+      "name": "start",
+      "command": "g++ -o Test main.cpp | ./Test",
+      "data": [],
+      "backgroundMode": false,
+      "runAtStart": false,
+      "restartOn": {
+        "files": ["main.cpp"]
+      }
+    }
+  }
+}

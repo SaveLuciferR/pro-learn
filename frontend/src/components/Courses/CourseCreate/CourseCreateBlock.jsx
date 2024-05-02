@@ -16,12 +16,18 @@ const CourseCreateBlock = ({type, deleteBlock, currentLang, obj, index}) => {
 
     const [title, setTitle] = useState("");
     const [currentNumStep, setCurrentNumStep] = useState(0);
+    const [activeSlideUp, setActiveSlideUp] = useState(false);
+    const [activeSlideDown, setActiveSlideDown] = useState(false);
+    const [currentOpenLesson, setCurrentOpenLesson] = useState(0);
+    const [lessonsInBlock, setLessonsInBlock] = useState([]);
+
 
     useEffect(() => {
         if (type === 'edit') {
             setTitle(currentCourse.main[currentLang].block[index].title);
 
             setCurrentNumStep(Object.keys(currentCourse.main[currentLang].block[index].lesson).length);
+            setCurrentOpenLesson(Object.keys(currentCourse.main[currentLang].block[index].lesson).length);
         }
     }, [])
 
@@ -44,12 +50,18 @@ const CourseCreateBlock = ({type, deleteBlock, currentLang, obj, index}) => {
             num_step: currentNumStep + 1,
             lesson: temp
         }));
+        setCurrentOpenLesson(currentNumStep + 1);
         setCurrentNumStep(prevState => prevState + 1);
     }
 
     useEffect(() => {
         dispatch(editCurrentCourseMainBlock({lang: currentLang, title: title, num_stage: index}));
     }, [title])
+
+    useEffect(() => {
+        setActiveSlideUp(Object.keys(currentCourse.main[currentLang].block[index].lesson).length > currentOpenLesson);
+        setActiveSlideDown(currentOpenLesson > 1);
+    }, [currentCourse, currentOpenLesson]);
 
     const onSetOpenBlock = (id) => {
         dispatch(openCurrentCourseMainBlock({lang: currentLang, num_stage: id}))
@@ -62,6 +74,40 @@ const CourseCreateBlock = ({type, deleteBlock, currentLang, obj, index}) => {
             languages: languages,
             lang: currentLang
         }));
+        if (id > 1) {
+            setCurrentOpenLesson(prevState => prevState - 1);
+        }
+    }
+
+    const handleSlideData = (to) => {
+        if (to === -1 && !activeSlideDown || to === 1 && !activeSlideUp) return;
+        setCurrentOpenLesson(prevState => prevState + to);
+    }
+
+    useEffect(() => {
+        setLesson();
+    }, [currentOpenLesson, currentCourse, activeSlideDown, activeSlideUp])
+
+    const setLesson = () => {
+        setLessonsInBlock(
+            Object.keys(currentCourse.main[currentLang].block[index].lesson).map((item) => {
+                // console.log(currentCourse.main[currentLang].block[index].lesson[item]);
+                    return <CourseCreateLesson
+                        active={Number(item) === currentOpenLesson}
+                        type={type}
+                        deleteLesson={() => onClickDeleteLesson(item)}
+                        key={item}
+                        obj={currentCourse.main[currentLang].block[index].lesson[item]}
+                        index={item}
+                        numStage={index}
+                        currentLang={currentLang}
+                        handleSlideData={(to) => handleSlideData(to)}
+                        activeSlideDown={activeSlideDown}
+                        activeSlideUp={activeSlideUp}
+                    />
+                }
+            )
+        );
     }
 
     return (
@@ -80,7 +126,7 @@ const CourseCreateBlock = ({type, deleteBlock, currentLang, obj, index}) => {
 
                     {obj.open ?
                         <>
-                            <div className="course-create-block">
+                            <div className="course-create-block active">
                                 <h4 className="markdown-h4">Блок №{index}</h4>
                                 <input className="input width1200" type="text" name="courseName" id="courseName"
                                        placeholder="Название блока" value={title}
@@ -103,17 +149,7 @@ const CourseCreateBlock = ({type, deleteBlock, currentLang, obj, index}) => {
                                 </div>
                             </div>
 
-                            {Object.keys(currentCourse.main[currentLang].block[index].lesson).map((item) =>
-                                <CourseCreateLesson
-                                    type={type}
-                                    deleteLesson={() => onClickDeleteLesson(item)}
-                                    key={item}
-                                    obj={currentCourse.main[currentLang].block[index].lesson[item]}
-                                    index={item}
-                                    numStage={index}
-                                    currentLang={currentLang}
-                                />
-                            )}
+                            {lessonsInBlock}
 
                             <div className="sidebar_profile-create_item create-lesson"
                                  onClick={() => onClickNewLesson()}>

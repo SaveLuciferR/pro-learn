@@ -26,17 +26,146 @@ class CompilerController extends AppController
             die;
         }
 
-        echo json_encode(array('fileStructure' => $fileStructure, 'path' => $pathProject), JSON_UNESCAPED_SLASHES);
+        $tasks = $this->model->getTasksForProject($pathProject);
+        $shouldBeRunAtStart = true;
+
+        if (isset($tasks['tasks'])) {
+            foreach ($tasks['tasks'] as $k => $task) {
+                if (isset($task['runAtStart']) && $task['runAtStart']) {
+                    $shouldBeRunAtStart = true;
+                    break;
+                }
+            }
+        }
+
+        //TODO JSON не сохраняется, а приходит пустым!!!
+
+        $isWebProject = $this->model->isWebProject($pathProject, $fileStructure, $tasks);
+
+        echo json_encode(array('fileStructure' => $fileStructure, 'isWebProject' => $isWebProject, 'path' => $pathProject, 'tasks' => $tasks, 'shouldBeRunAtStart' => $shouldBeRunAtStart), JSON_UNESCAPED_SLASHES);
     }
 
     public function startDockerSessionAction()
     {
-        $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']));
+        $output = [];
+        $error = [];
+//        debug($_SESSION, 1);
+        $index = $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']), $output, $error);
+
+//        debug($_SESSION['docker'], 1);
+
+//            debug($index);
+//            debug($_SESSION['docker'], 1);
+//        if (isset($_SESSION['docker'][$index])) {
+//            echo json_encode(array('ports' => $_SESSION['docker'][$index]['ports']));
+//        } else {
+//            echo json_encode(array('ports' => null));
+//        }
+
+    }
+
+    public function portsProjectAction()
+    {
+        if ($_SESSION['docker']) {
+
+        }
+    }
+
+    public function checkSolutionTaskAction()
+    {
+        $output = [];
+        $success = true;
+        $error = "";
+        $taskInputOutputData = $this->model->getDataSolutionTask($this->route['slugTask']);
+//        debug($taskInputOutputData, 1);
+
+        foreach ($taskInputOutputData as $k => &$v) {
+            $v['input_data'] = json_decode($v['input_data'], true);
+            $v['output_data'] = json_decode($v['output_data'], 1);
+            $this->model->startOrUpdateDockerContainer(
+                $this->model->getPathProject($this->route['username'], $this->route['slugProject']),
+                $output, $error, $v['input_data']
+            );
+            $temp = implode(PHP_EOL, $v['output_data']);
+            if (is_array($output)) $output = implode(PHP_EOL, $output);
+            if (trim($output) !== trim($temp)) {
+//                debug($output);
+                $success = false;
+                break;
+            }
+        }
+
+        if ($success) {
+            $this->model->saveSolvedTask($_SESSION['user']['id'], $this->route['slugTask']);
+        }
+
+        echo json_encode(array('success' => $success), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function solveTaskAction()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['task'])) {
+            $task = $this->model->getSolveTask($_SESSION['user']['id'], $_GET['task']);
+            if ($task) {
+                if ($task['input_data']) {
+                    $task['input_data'] = json_decode($task['input_data'], true);
+                }
+
+                if ($task['output_data']) {
+                    $task['output_data'] = json_decode($task['output_data'], true);
+                }
+//                debug(json_encode(array('task' => $task), JSON_UNESCAPED_SLASHES), 1);
+                echo json_encode(array('task' => $task), JSON_UNESCAPED_SLASHES);
+            } else {
+                header('HTTP/1.0 404 Not Found');
+                die;
+            }
+        } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        }
     }
 
     public function requestTerminalAction()
     {
-        
+
+    }
+
+    public function newFileAction()
+    {
+        $_POST = json_decode(file_get_contents("php://input"), true);
+
+        if ((empty($_POST)) || empty($_POST['file'])) {
+            header('HTTP/1.0 400 Bad Requst');
+            die;
+        }
+
+        $file = $_POST['file']['newFile'];
+        $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
+        if (!file_exists($pathProject . $file['path'])) {
+            mkdir($pathProject . $file['path']);
+        }
+
+        file_put_contents($pathProject . $file['path'] . '/' . $file['name'], '');
+    }
+
+    public function newFolderAction()
+    {
+        $_POST = json_decode(file_get_contents("php://input"), true);
+
+        if ((empty($_POST)) || empty($_POST['file'])) {
+            header('HTTP/1.0 400 Bad Requst');
+            die;
+        }
+
+        $file = $_POST['file']['newFolder'];
+        $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
+        if (!file_exists($pathProject . $file['path'])) {
+            mkdir($pathProject);
+        }
+
+        if (!file_exists($pathProject . $file['path'] . '/' . $file['name'])) {
+            mkdir($pathProject . $file['path'] . '/' . $file['name']);
+        }
     }
 
     public function saveAction()
@@ -60,6 +189,22 @@ class CompilerController extends AppController
 
     public function deleteAction()
     {
+        $_POST = json_decode(file_get_contents("php://input"), true);
+
+        if ((empty($_POST)) || empty($_POST['file'])) {
+            header('HTTP/1.0 400 Bad Request');
+            die;
+        }
+
+        $file = $_POST['file']['delete'];
+        $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
+        if (file_exists($pathProject . $file)) {
+            if (is_dir($pathProject . $file)) {
+                $this->model->deleteDirectoryProject($pathProject . $file);
+            } else {
+                unlink($pathProject . $file);
+            }
+        }
     }
 
     public function renameAction()

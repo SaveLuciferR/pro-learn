@@ -12,9 +12,7 @@ const initialState = {
         main: {
             1: {
                 title: "",
-                block: {
-
-                }
+                block: {}
             }
         }
     }
@@ -102,6 +100,7 @@ export const courseSlice = createSlice({
                         }
                         state.currentCourseEdit.main[languages[item].id].block[action.payload.num_stage].lesson[action.payload.num_step] = {};
                         state.currentCourseEdit.main[languages[item].id].block[action.payload.num_stage].lesson[action.payload.num_step] = action.payload.lesson;
+                        state.currentCourseEdit.main[languages[item].id].block[action.payload.num_stage].lesson[action.payload.num_step].challenge_id = null;
                         // state.currentCourseEdit.main[languages[item].id].block[action.payload.num_stage].lesson = state.currentCourseEdit.main[languages[item].id].block[action.payload.num_stage].lesson.filter(a => a);
                     })
                 }
@@ -111,10 +110,14 @@ export const courseSlice = createSlice({
                 if (Object.keys(languages).length !== 0) {
                     Object.keys(languages).map((item, index) => {
                         state.currentCourseEdit.main[languages[item].id].block[action.payload.num_stage].lesson[action.payload.num_step].code = action.payload.code;
+                        if (action.payload.code !== 'task') {
+                            state.currentCourseEdit.main[languages[item].id].block[action.payload.num_stage].lesson[action.payload.num_step].challenge_id = null;
+                        }
                     })
                 }
             },
             editCurrentCourseMainLesson(state, action) {
+                // console.log(action.payload)
                 state.currentCourseEdit.main[action.payload.lang].block[action.payload.num_stage].lesson[action.payload.num_step].title = action.payload.title;
                 state.currentCourseEdit.main[action.payload.lang].block[action.payload.num_stage].lesson[action.payload.num_step].description = action.payload.description;
                 state.currentCourseEdit.main[action.payload.lang].block[action.payload.num_stage].lesson[action.payload.num_step].answer_option = action.payload.answer_option;
@@ -137,6 +140,18 @@ export const courseSlice = createSlice({
                     })
                 }
             },
+            bindTaskToCourse(state, action) {
+                const languages = action.payload.languages;
+                if (Object.keys(languages).length !== 0) {
+                    Object.keys(languages).map((item, index) => {
+                        if (state.currentCourseEdit.main[languages[item].id].block[action.payload.num_stage].lesson[action.payload.num_step].challenge_id === action.payload.task) {
+                            state.currentCourseEdit.main[languages[item].id].block[action.payload.num_stage].lesson[action.payload.num_step].challenge_id = null;
+                        } else {
+                            state.currentCourseEdit.main[languages[item].id].block[action.payload.num_stage].lesson[action.payload.num_step].challenge_id = action.payload.task;
+                        }
+                    })
+                }
+            },
         }
     }
 );
@@ -155,7 +170,8 @@ export const {
     deleteCurrentCourseMainLesson,
     deleteCurrentCourseMainBlock,
     addCurrentCourseMainLesson,
-    editCurrentCourseMainLesson
+    editCurrentCourseMainLesson,
+    bindTaskToCourse
 } = courseSlice.actions;
 
 export default courseSlice.reducer;

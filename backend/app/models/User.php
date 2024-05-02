@@ -201,7 +201,7 @@ class User extends AppModel
 
     public function getFilesProject($project, &$path, $secondaryPath = "")
     {
-        $path = USER_PROJECT . '/' . $project['username'] . '/' . $project['slug'] . '/src/' . $secondaryPath;
+        $path = USER_PROJECT . '/' . $project['username'] . '/' . $project['slug'] . '/' . $secondaryPath; // . '/src/'
 
         return $this->createProjectFileList($path);
     }
@@ -247,7 +247,7 @@ class User extends AppModel
                 mkdir($distPath);
             }
 
-            $this->copyCacheProject($pathProject, $distPath . '/src');
+            $this->copyCacheProject($pathProject, $distPath); // . '/src'
 
             // $this->deleteCacheProjectDir($pathProject);
 
@@ -302,7 +302,7 @@ class User extends AppModel
         $directoryInfo = [];
         // debug($path, 1);
 
-        if (str_contains($path, '.')) {
+        if (!is_dir($path)) { // && (str_contains($path, '.'))
             $fileInfo['fileName'] = $path;
             while (str_contains($fileInfo['fileName'], '/')) {
                 $fileInfo['fileName'] = strrchr($fileInfo['fileName'], '/');
@@ -367,7 +367,7 @@ class User extends AppModel
 
     public function getUserInfo($username)
     {
-        return R::getRow("SELECT u.username, u.role, u.last_name, 
+        return R::getRow("SELECT u.id, u.username, u.role, u.last_name, 
                                     u.first_name, u.country_address, 
                                     u.date_of_registration, avatar_img, heading_img,
                                     about_user, all_profile_private, personal_info_private,
@@ -378,9 +378,25 @@ class User extends AppModel
 
     public function getUserProjects($username)
     {
-        return R::getAll("SELECT p.id, p.slug, p.title, p.date_of_publication, p.private, p.description
+        return R::getAll("SELECT p.id, p.id, p.slug, p.title, p.date_of_publication, p.private, p.description
                                FROM project p JOIN user u ON u.id = p.user_id
                                WHERE u.username = ?", [$username]);
+    }
+
+    public function getUserTemplate($userID, $lang)
+    {
+        return R::getAll("SELECT t.id, u.username, u.role, t.slug, t.icon, t.private, t.for_project, td.title, td.description
+                                FROM projecttemplate t JOIN projecttemplate_description td ON td.projecttemplate_id = t.id
+                                JOIN user u ON u.id = t.user_id
+                                WHERE u.id = ? AND td.language_id = ?", [$userID, $lang]);
+    }
+
+    public function getUserOtherTemplate($lang)
+    {
+        return R::getAll("SELECT t.id, u.username, u.role, t.slug, t.icon, t.private, t.for_project, td.title, td.description
+                                FROM projecttemplate t JOIN projecttemplate_description td ON td.projecttemplate_id = t.id
+                                JOIN user u ON u.id = t.user_id
+                                WHERE td.language_id = ? AND t.private = 0", [$lang]);
     }
 
     public function getUserCourses($username, $lang)
@@ -394,9 +410,9 @@ class User extends AppModel
                                     (SELECT COUNT(sct.id)
                                     FROM stepcourse sct JOIN stagecourse sc ON sc.id = sct.stage_course_id
                                     WHERE sc.course_id = c.id) AS 'amount_step',
-                                    (SELECT COUNT(sct.id)
+                                   (SELECT COUNT(sct.id)
                                     FROM stepcourse sct JOIN stagecourse sc ON sc.id = sct.stage_course_id
-                                    WHERE sc.course_id = c.id AND sct.challenge_id <> NULL) AS 'final_projects',
+                                    WHERE sc.course_id = c.id AND sct.challenge_id <> null) AS 'final_projects',
                                     (SELECT COUNT(uc.user_id)
                                     FROM user_course uc
                                     WHERE uc.success = 1 AND uc.course_id = c.id) AS 'finish_users',
@@ -424,7 +440,7 @@ class User extends AppModel
                                     WHERE sc.course_id = c.id) AS 'amount_step',
                                     (SELECT COUNT(sct.id)
                                     FROM stepcourse sct JOIN stagecourse sc ON sc.id = sct.stage_course_id
-                                    WHERE sc.course_id = c.id AND sct.challenge_id <> NULL) AS 'final_projects',
+                                    WHERE sc.course_id = c.id AND sct.challenge_id <> null) AS 'final_projects',
                                     (SELECT COUNT(uc.user_id)
                                     FROM user_course uc
                                     WHERE uc.success = 1 AND uc.course_id = c.id) AS 'finish_users',
@@ -591,6 +607,7 @@ class User extends AppModel
     {
         $lang = App::$app->getProperty('language')['id'];
         $data = $_POST['course'];
+        $data['status'] = $_POST['status'];
 
         R::begin();
         try {
@@ -617,6 +634,10 @@ class User extends AppModel
                 $course->status_id = $status->id;
                 $course->icon = $data['icon'];
                 $course->difficulty = $data['difficulty'];
+            }
+
+            if ($status->code === 'public') {
+                $course->date_of_publication = R::isoDate(time());
             }
 
             $slug = $course->slug;
@@ -662,7 +683,7 @@ class User extends AppModel
                                                                 WHERE s.course_id = ? AND sd.language_id = ?", [$course['id'], $lang]);
 
             foreach ($course['main'][$lang]['block'] as $numStage => &$blockDesc) {
-                $course['main'][$lang]['block'][$numStage]['lesson'] = R::getAssoc("SELECT s.num_step, t.code, sd.title, 
+                $course['main'][$lang]['block'][$numStage]['lesson'] = R::getAssoc("SELECT s.num_step, s.challenge_id, t.code, sd.title, 
                                                                                             sd.description, sd.answer_option, 
                                                                                             sd.right_answer
                                                                                          FROM stepcourse s JOIN stepcourse_description sd ON s.id = sd.step_course_id
@@ -684,6 +705,43 @@ class User extends AppModel
         return $course;
     }
 
+    public function getTaskForEdit(&$username, $slug, $isAdmin = false)
+    {
+        //TODO: категория и язык
+        if ($isAdmin) {
+            $task = R::getRow("SELECT t.id, t.slug, u.username, t.num_of_input_data, t.for_course, t.project_id, t.template_id, t.difficulty, s.code AS 'status' 
+                                FROM task t JOIN status s ON s.id = t.status_id
+                                JOIN user u ON u.id = t.user_id
+                                WHERE t.slug = ?", [$slug]);
+            $username = $task['username'];
+        } else {
+            $task = R::getRow("SELECT t.id, t.slug, u.username, t.num_of_input_data, t.for_course, t.project_id, t.template_id, 
+                                            t.difficulty, s.code AS 'status' 
+                                FROM challenge t JOIN status s ON s.id = t.status_id
+                                JOIN user u ON u.id = t.user_id
+                                WHERE t.slug = ? AND u.username = ?", [$slug, $username]);
+        }
+
+
+        if (!$task) {
+            return $task;
+        }
+
+        $task['main'] = R::getAssoc("SELECT cd.language_id, cd.title, cd.content, cd.description, cd.keywords
+                                            FROM challenge_description cd 
+                                            WHERE cd.challenge_id = ?", [$task['id']]);
+        $task['input_output_data'] = R::getAll("SELECT i.input_data AS 'input', i.output_data AS 'output' 
+                                                    FROM inputoutputdata i
+                                                    WHERE i.challenge_id = ?", [$task['id']]);
+        foreach ($task['input_output_data'] as $k => &$v) {
+            $v['input'] = json_decode($v['input'], JSON_UNESCAPED_SLASHES);
+            $v['output'] = json_decode($v['output'], JSON_UNESCAPED_SLASHES);
+        }
+        $task['lang_prog'] = R::getAll("SELECT l.lang_prog_id FROM challenge_categorylangprog l WHERE l.challenge_id = ? ", [$task['id']]);
+        $task['category_prog'] = R::getAll("SELECT c.category_prog_id FROM challenge_categorylangprog c WHERE c.challenge_id = ?", [$task['id']]);
+        return $task;
+    }
+
     public function getCategoryLang($lang)
     {
         return R::getAll("SELECT c.id, cd.title, c.code 
@@ -700,6 +758,7 @@ class User extends AppModel
     {
         $lang = App::$app->getProperty('language')['id'];
         $data = $_POST['task'];
+        $data['status'] = $_POST['status'];
 
         R::begin();
         try {
@@ -733,6 +792,7 @@ class User extends AppModel
                 $task->for_course = $data['for_course'];
             }
 
+
             $slug = $task->slug;
 
             $taskID = R::store($task);
@@ -764,7 +824,7 @@ class User extends AppModel
                             $item['keywords'],
                         ]);
                     } else {
-                        R::exec("UPDATE challenge_description SET title = ?, description = ?, keywords = ?, content = ? WHERE language_id = ? AND course_id = ?", [
+                        R::exec("UPDATE challenge_description SET title = ?, description = ?, keywords = ?, content = ? WHERE language_id = ? AND challenge_id = ?", [
                             $item['title'],
                             $item['description'],
                             $item['keywords'],
@@ -936,25 +996,36 @@ class User extends AppModel
     {
         R::begin();
         try {
-            if ($slug === '') {
-                R::exec("INSERT INTO stagecourse_description (language_id, stage_course_id, title) VALUES (?, ?, ?)", [
-                    $langID,
-                    $stageID,
-                    $block['title'],
-                ]);
-            } else {
-                R::exec("UPDATE stagecourse_description SET title = ? WHERE language_id = ? AND stage_course_id = ?", [
-                    $block['title'],
-                    $langID,
-                    $stageID
-                ]);
-            }
-            R::commit();
+            R::exec("INSERT INTO stagecourse_description (language_id, stage_course_id, title) VALUES (?, ?, ?)", [
+                $langID,
+                $stageID,
+                $block['title'],
+            ]);
 
-            return $this->saveStepCourse($block, $slug, $langID, $stageID);
+            R::commit();
+            $this->saveStepCourse($block, $slug, $langID, $stageID);
+            return true;
         } catch (\Exception $ex) {
             R::rollback();
-            debug($ex);
+            if (str_contains($ex->getMessage(), 'PRIMARY')) {
+                R::begin();
+                try {
+                    R::exec("UPDATE stagecourse_description SET title = ? WHERE language_id = ? AND stage_course_id = ?", [
+                        $block['title'],
+                        $langID,
+                        $stageID
+                    ]);
+                    R::commit();
+
+                    $this->saveStepCourse($block, $slug, $langID, $stageID);
+                    return true;
+                } catch (\Exception $ex2) {
+                    R::rollback();
+                    debug($ex . $ex2);
+                    return false;
+                }
+            }
+
             return false;
         }
     }
@@ -976,6 +1047,7 @@ class User extends AppModel
                         $step = R::dispense("stepcourse");
                         $step->stage_course_id = $stageID;
                         $step->typestepcourse_id = $type->id;
+                        $step->challenge_id = $lesson['challenge_id'];
                         //TODO: Запись id задачи
                         $step->num_step = $numStep;
                         $stepID = R::store($step);
@@ -985,6 +1057,7 @@ class User extends AppModel
                         if ($slug !== '') {
                             $step = R::load('stepcourse', $stepID);
                             $step->typestepcourse_id = $type->id;
+                            $step->challenge_id = $lesson['challenge_id'];
                             R::store($step);
                         }
                     }
@@ -1017,6 +1090,7 @@ class User extends AppModel
             }
         }
 
+//        debug($block['lesson'], 1);
         return $flag;
     }
 
@@ -1030,7 +1104,7 @@ class User extends AppModel
                 $stepID,
                 $lesson['title'],
                 $lesson['description'],
-                json_encode($lesson['answer_option'], JSON_UNESCAPED_SLASHES) ?: null,
+                json_encode($lesson['answer_option'], JSON_UNESCAPED_UNICODE) ?: null,
                 $lesson['right_answer']
             ]);
 
@@ -1047,7 +1121,7 @@ class User extends AppModel
                     R::exec("UPDATE stepcourse_description SET title = ?, description = ?, answer_option = ?, right_answer = ? WHERE language_id = ? AND step_course_id = ?", [
                         $lesson['title'],
                         $lesson['description'],
-                        json_encode($lesson['answer_option'], JSON_UNESCAPED_SLASHES) ?: null,
+                        json_encode($lesson['answer_option'], JSON_UNESCAPED_UNICODE) ?: null,
                         $lesson['right_answer'],
                         $langID,
                         $stepID

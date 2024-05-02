@@ -11,100 +11,189 @@ class Docker
     private string $name = '';
     private string $image = '';
     private string $tag = '';
+    private string $container = '';
+    private array $ports = [];
     private string $projectPath = '';
     private string $commandPathProject = '';
+    private array $runAtStartTask = [];
+    private array $descriptorspec = array(
+        0 => array("pipe", "r"), // stdin is a pipe that the child will read from
+        1 => array("pipe", "w"), // stdout is a pipe that the child will write to
+        2 => array("pipe", "w") // stderr is a pipe that the child will write to
+    );
     private bool $daemonize = true;
     private bool $privileged = false;
     public string $shell = 'bash';
     public ?string $network = null;
 
-    public function __construct($image, $projectPath, $name = '')
+    public function __construct($image, $projectPath, $tasks, $name = '')
     {
-//        $this->deleteUnusedAll();
+        $this->deleteUnusedAll();
+
 
         $this->image = $image;
         $this->projectPath = $projectPath;
         $this->commandPathProject = "cd " . $this->projectPath; //  . " && cd.."
         $this->$name = $name;
+
+        if (isset($tasks['tasks'])) {
+            foreach ($tasks['tasks'] as $k => $task) {
+                if (isset($task['runAtStart']) && $task['runAtStart']) {
+                    array_push($this->runAtStartTask, $task);
+                }
+            }
+        }
     }
 
-    public function createImage()
+    public function runDockerCompose()
     {
-//        if (!isset($_SESSION['docker'])) {
-//            $_SESSION['docker'] = [];
-//        }
+        $commandDockerProject = 'docker-compose up --build -d'; //"C:\Program Files\Docker\Docker\resources\cli-plugins\docker-compose.exe"
 
-        $commandCreateImages = 'docker build . -t ' . $this->image . ($this->tag !== '' ? (':' . $this->tag) : '');
-        $cmd = $this->commandPathProject . ' && ' . $commandCreateImages;
+        set_time_limit(0);
+        ob_implicit_flush(1);
+        ob_end_flush();
 
-//        exec($cmd);
+        $cmd = $this->commandPathProject . ' && ' . $commandDockerProject;
 
+//        debug($cmd, 1);
         $process = popen($cmd, 'r');
 
-        echo "<pre>";
         while (!feof($process)) {
             echo json_encode(array('data' => fread($process, 4096)), JSON_UNESCAPED_SLASHES);
             flush();
             ob_flush();
         }
 
-//        debug($cmd, 1);
-        $this->runContainer();
+//        exec($this->$commandPathProject . " && " . $commandDockerProject, $output, $retval);
+//        debug($output);
     }
 
-    public function runContainer()
+    protected function getPortsForProjct()
     {
-        $commandRunContainer = 'docker run -i -t ' . $this->image . ($this->tag !== '' ? (':' . $this->tag) : ''); //--rm -it
-        $cmd = $this->commandPathProject . ' && ' . $commandRunContainer;
+        $dockerfile = '';
+        if (file_exists($this->projectPath . '/dockerfile')) {
+            $dockerfile = file_get_contents($this->projectPath . '/dockerfile');
+        } else if (file_exists($this->projectPath . '/Dockerfile')) {
+            $dockerfile = file_get_contents($this->projectPath . '/Dockerfile');
+        }
+        if ($dockerfile !== '') {
+            preg_match_all('/(\r?\n|\r[^\s#])+EXPOSE\s([0-9]+)\n?/m', $dockerfile, $matches);
+            $this->ports = $matches[2];
+//            debug($this->ports);
+//            debug($matches, 1);
+        }
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getTag()
+    {
+        return $this->tag;
+    }
+
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
+    public function getPorts()
+    {
+        return $this->ports;
+    }
+
+    public function createImage()
+    {
+//        if (isset($_SESSION['docker'])) {
+//            $key = -1;
+//            foreach ($_SESSION['docker'] as $k => $v) {
+////                debug($_SESSION['docker'], 1);
+//                if ($this->image === $v['image']) {
+//                    exec("docker container stop " . $v['container']);
+//                    exec("docker container prune -f " . $v['container']);
+//                    exec("docker image rm " . $v['image'] . ($v['tag'] !== '' ? (':' . $v['tag']) : ''));
+////                    $_SESSION['docker'][$k] = $this;
+//                    $key = $k;
+//                }
+//            }
+//            if ($key !== -1) {
+//                unset($_SESSION['docker'][$key]);
+//            }
+//        }
+
+        $this->getPortsForProjct();
+        $commandCreateImages = 'docker build . -t ' . $this->image . ($this->tag !== '' ? (':' . $this->tag) : '');
+        $cmd = $this->commandPathProject . ' && ' . $commandCreateImages;
+
 //        exec($cmd);
 
-//        $process = popen($cmd, 'r');
+        $process = popen($cmd, 'r');
+//        debug($cmd, 1);
+
+
 //        echo "<pre>";
 //        while (!feof($process)) {
 //            echo json_encode(array('data' => fread($process, 4096)), JSON_UNESCAPED_SLASHES);
 //            flush();
 //            ob_flush();
 //        }
+    }
 
-        $descriptorspec = array(
-            0 => array("pipe", "r"), // stdin is a pipe that the child will read from
-            1 => array("pipe", "w"), // stdout is a pipe that the child will write to
-            2 => array("pipe", "w") // stderr is a pipe that the child will write to
-        );
+    public static function execIntoContainer($cmd)
+    {
 
-        $process = proc_open($cmd, $descriptorspec, $pipes, null, null);
+    }
 
-        if (is_resource($process)) {
-            $cmd = 'demo';
-            fwrite($pipes[0], $cmd);
-            fclose($pipes[0]);
-
-            echo stream_get_contents($pipes[1]);
-            fclose($pipes[1]);
-
-            $return_value = proc_close($process);
+    public function runContainer($inputData, &$output, &$error)
+    {
+        $commandPorstContainer = '';
+        if ($this->ports) {
+            $commandPorstContainer = '-p';
+            foreach ($this->ports as $k => $v) {
+                $commandPorstContainer .= ' ' . $v . ':' . $v;
+            }
         }
 
-//        debug($return_value);
+        $this->container = md5($this->image);
 
-        debug('', 1);
+        $commandRunContainer = 'docker run -i ' . $commandPorstContainer . ' --name ' . $this->container . ' ' .
+            $this->image . ($this->tag !== '' ? (':' . $this->tag) : ''); //--rm -it
+
+//        debug($commandRunContainer, 1);
+
+        $process = proc_open($commandRunContainer, $this->descriptorspec, $pipes);
+
+        if (is_resource($process)) {
+            if (is_array($inputData)) {
+                foreach ($inputData as $input) {
+                    fwrite($pipes[0], $input . PHP_EOL);
+                }
+            } else {
+                fwrite($pipes[0], $inputData);
+            }
+            fclose($pipes[0]);
+
+            $output = stream_get_contents($pipes[1]);
+            fclose($pipes[1]);
+
+            $errors = stream_get_contents($pipes[2]);
+            fclose($pipes[2]);
+
+            proc_close($process);
+
+//            echo json_encode(array('data' => $output));
+
+//            if (!empty($errors)) {
+//                echo json_encode(array('data' => 'Error: ' . $errors), JSON_UNESCAPED_SLASHES);
+//            }
+        }
     }
 
     public function deleteUnusedAll()
     {
-        $return_value = '';
-        $process = proc_open("docker system prune", array(), $pipes, null, null);
-
-        if (is_resource($process)) {
-//            debug($pipes, 1);
-//            fwrite($pipes[0], 'y');
-//            fclose($pipes[0]);
-            $return_value = proc_close($process);
-        }
-
-//        debug(1, 1);
-//        exec("docker container prune -a");
-//        exec("docker system prune -a");
+        exec('docker container prune -f');
     }
 
 }

@@ -3,34 +3,34 @@ import axiosClient from "../../axiosClient";
 import {Link, useParams} from "react-router-dom";
 
 
-const ModalWindowTask = ({isOpen, setIsOpen, setBindData, bindData, isProject}) => {
+const ModalWindowTask = (
+    {
+        isOpen,
+        setIsOpen,
+        bindData,
+        setBindData,
+        data,
+        updateData,
+        canBeViewData,
+        linkToNewData,
+        linkToData,
+        bindText,
+        unBindText,
+        titleText,
+        rejectLoadText,
+        successBindText,
+        rejectBindText,
+        updateText,
+        newDataText
+    }) => {
 
-    const {username, lang} = useParams();
-
-    const [data, setData] = useState([]);
-
+    const {lang} = useParams();
 
     useEffect(() => {
         if (isOpen) {
             updateData();
         }
     }, [isOpen])
-
-    const updateData = () => {
-        setData([]);
-        if (isProject) {
-            axiosClient.get(`/@${username}/project-list`)
-                .then(({data}) => {
-                    setData(data.projects);
-                    console.log(data);
-                })
-                .catch((response) => {
-                    console.log(response)
-                })
-        } else {
-
-        }
-    }
 
     return (
         <div className="modal" style={isOpen === true ? {} : {display: 'none'}}>
@@ -59,28 +59,27 @@ const ModalWindowTask = ({isOpen, setIsOpen, setBindData, bindData, isProject}) 
                         strokeLinejoin="round"
                     />
                 </svg>
-                <h1 className="modal-window-title">Привязка проекта к задаче</h1>
+                <h1 className="modal-window-title">{titleText}</h1>
                 <div className="modal-window-content-data scroll">
                     <ul>
-                        {data.length === 0 ? <div>Проекты отсутствуют</div> :
+                        {data.length === 0 ? <div>{rejectLoadText}</div> :
                             <>
                                 {
                                     data.map((item, i) => {
-                                            if (item.private === '0') {
+                                            if (canBeViewData(item, i)) {
                                                 return (
                                                     <li key={i}>
                                                         <Link
-                                                            to={`${lang === undefined ? "/" : '/' + lang + '/'}profile/${username}/project/${item.slug}`}
+                                                            to={`${lang === undefined ? "/" : '/' + lang + '/'}${linkToData}/${item.slug}`}
                                                             target={'_blank'}
                                                             title={item.title}>
                                                             {item.title}
                                                         </Link>
                                                         <button type={'button'}
-                                                                onClick={() => setBindData(item.id, item.slug)}>{bindData === item.id ? "Отвязать проект" : "Привязать проект"}</button>
+                                                                onClick={() => setBindData(item.id, item.slug)}>{bindData === item.id ? unBindText : bindText}</button>
                                                     </li>
                                                 );
-                                            }
-                                            else {
+                                            } else {
                                                 return <></>;
                                             }
                                         }
@@ -91,7 +90,7 @@ const ModalWindowTask = ({isOpen, setIsOpen, setBindData, bindData, isProject}) 
                     </ul>
                 </div>
                 <div className="modal-window-content-status">
-                    <h1>Проект успешно привязан</h1>
+                    <h1>{successBindText}</h1>
                     <svg
                         width="32"
                         height="32"
@@ -110,9 +109,9 @@ const ModalWindowTask = ({isOpen, setIsOpen, setBindData, bindData, isProject}) 
                     </svg>
                 </div>
                 <div className="modal-window-buttons">
-                    <Link to={`${lang === undefined ? "/" : '/' + lang + '/'}profile/${username}/project-creation`}
-                          target={"_blank"} className="btn big secondary-blue">Создать новый проект</Link>
-                    <button className="btn big secondary-blue" onClick={() => updateData()}>Обновить</button>
+                    <Link to={`${lang === undefined ? "/" : '/' + lang + '/'}${linkToNewData}`}
+                          target={"_blank"} className="btn big secondary-blue">{newDataText}</Link>
+                    <button className="btn big secondary-blue" onClick={() => updateData()}>{updateText}</button>
                 </div>
             </div>
         </div>

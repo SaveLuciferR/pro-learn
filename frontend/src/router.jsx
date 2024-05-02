@@ -15,12 +15,12 @@ import ProfileTasks from './components/Profile/UserTasks/ProfileTasks';
 import ProfileProjects from './components/Profile/Projects/ProfileProjects';
 import ProfileCompletedCourses from './components/Profile/CompletedCourses/CompletedCourses';
 import ProfileCurrentCourses from './components/Profile/CurrentCourses/ProfileCurrentCourses';
-import CoursesPage from './pages/CoursesPage';
-import CoursePage from './pages/CoursePage';
-import LessonOneOption from './components/CourseLessons/LessonOneOption';
-import CourseLessonPage from './pages/CourseLessonPage';
-import LessonSeveralOption from './components/CourseLessons/LessonSeveralOption';
-import LessonFillGaps from './components/CourseLessons/LessonFillGaps';
+import CoursesPage from './pages/CoursePage';
+import CourseSinglePage from './pages/CourseSinglePage';
+import CourseLessonOneAnswer from './components/Courses/CourseLessons/CourseLessonOneAnswer';
+import CourseStudyPage from './pages/CourseStudyPage';
+import CourseLessonFewOption from './components/Courses/CourseLessons/CourseLessonFewOption';
+import CourseLessonInputData from './components/Courses/CourseLessons/CourseLessonInputData';
 import ProfileSettingsUserPage from './pages/ProfileSettingsUserPage';
 import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ProfileSettingsSecurity from './components/Profile/ProfileSettings/ProfileSettingsSecurity';
@@ -135,6 +135,10 @@ const router = createBrowserRouter([
             element: <ProfileProjects />,
           },
           {
+            path: 'templates',
+            element: <ProfileProjects />,
+          },
+          {
             path: 'completed-courses',
             element: <ProfileCompletedCourses />,
           },
@@ -173,6 +177,18 @@ const router = createBrowserRouter([
         element: <ProjectAddPage isActiveSidebar={false} type={'edit'} />,
       },
       {
+        path: 'profile/:username/template/:template',
+        element: <ProjectPage isActiveSidebar={false} isTemplate={true} />,
+      },
+      {
+        path: 'profile/:username/template-creation',
+        element: <ProjectAddPage isActiveSidebar={false} isTemplate={true} />,
+      },
+      {
+        path: 'profile/:username/template-edit/:slug',
+        element: <ProjectAddPage isActiveSidebar={false} type={'edit'} isTemplate={true} />,
+      },
+      {
         path: 'profile/:username/settings/general',
         element: <ProfileSettingsUserPage />,
       },
@@ -199,30 +215,16 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: 'courses',
+        path: 'course',
         element: <CoursesPage />,
       },
       {
-        path: 'courses/name-course',
-        element: <CoursePage />,
+        path: 'course/:slug',
+        element: <CourseSinglePage />,
       },
       {
-        path: 'courses/lessons',
-        element: <CourseLessonPage />,
-        children: [
-          {
-            path: 'one-option',
-            element: <LessonOneOption />,
-          },
-          {
-            path: 'several-option',
-            element: <LessonSeveralOption />,
-          },
-          {
-            path: 'fill-gaps',
-            element: <LessonFillGaps />,
-          },
-        ],
+        path: 'course/:slug/study',
+        element: <CourseStudyPage />
       },
       {
         path: 'task',

@@ -25,12 +25,12 @@ const CourseCreateMain = ({type}) => {
     }, [lang, username])
 
     const onClickSaveCourse = () => {
-        dispatch(setCurrentCourseStatus("draft"));
-        axiosClient.post(`@${username}/creation/course`, {course: currentCourse})
+        // dispatch(setCurrentCourseStatus("draft"));
+        axiosClient.post(`@${username}/creation/course`, {course: currentCourse, status: 'draft'})
             .then(({data}) => {
-                // if (data.result.slug) {
-                //     navigate(`${lang === undefined ? "/" : '/' + lang + "/"}profile/${username}/course-edit/${data.result.slug}`);
-                // }
+                if (data.result.slug) {
+                    navigate(`${lang === undefined ? "/" : '/' + lang + "/"}profile/${username}/course-edit/${data.result.slug}`);
+                }
                 console.log(data);
             })
             .catch((response) => {
@@ -39,10 +39,13 @@ const CourseCreateMain = ({type}) => {
     }
 
     const onClickPublishCourse = () => {
-        dispatch(setCurrentCourseStatus("draft"));
-        axiosClient.post(`@${username}/creation/course`, {course: currentCourse})
-            .then((data) => {
+        // dispatch(setCurrentCourseStatus("draft"));
+        axiosClient.post(`@${username}/creation/course`, {course: currentCourse, status: 'public'})
+            .then(({data}) => {
                 console.log(data);
+                if (data.result.slug) {
+                    navigate(`/course/${data.result.slug}`);
+                }
             });
     }
 

@@ -1,4 +1,4 @@
-import {useOutletContext, useParams} from "react-router-dom"
+import {useOutletContext, useParams, useSearchParams} from "react-router-dom"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import axiosClient from '../axiosClient';
@@ -12,10 +12,12 @@ import {
     addTerminalContent,
     setCompilerFiles,
     setEventPointerFrame,
-    setNeedReloadFrameCompiler,
+    setNeedReloadFrameCompiler, setShouldBeRunAtStart, setTasksProject,
     setUpdateFiles
 } from "../redux/Compiler/slice";
 import Splitter, {SplitDirection} from '@devbookhq/splitter';
+import CompilerTaskDescription from "../components/Compiler/CompilerTaskDescription";
+import CompilerEmptyWindow from "../components/Compiler/CompilerEmptyWindow";
 
 const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
 
@@ -24,19 +26,26 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
     activeCompiler[0](isCompiler);
 
     // const username = 'user1';
-    const {project, username, task} = useParams();
+    const {project, username, task, lang} = useParams();
     const dispatch = useDispatch();
+    const [searchParams, setSearchParams] = useSearchParams();
+
     const updateFiles = useSelector(state => state.compiler.updateFiles);
+    const shouldBeRunAtStart = useSelector(state => state.compiler.shouldBeRunAtStart);
 
     const [widthSidebar, setWidthSidebar] = useState(200);
-    const [widthContainer, setWidthContainer] = useState(window.innerWidth - widthSidebar);
+    const [widthContainer, setWidthContainer] = useState(window.innerWidth - widthSidebar - 400);
     const [widthEditor, setWidthEditor] = useState(widthContainer / 2 - 1);
     const [widthOutput, setWidthOutput] = useState(widthContainer / 2);
     const [minWidthOutputEditor, setMinWidthOutputEditor] = useState(300);
     const [heightEditorOutput, setHeightEditorOutput] = useState(window.innerHeight / 6);
     const [heightConsole, setHeightConsole] = useState(window.innerHeight / 4);
 
+    const [isWebProject, setIsWebProject] = useState(false);
+    const [isOpenOutput, setIsOpenOutput] = useState(true);
     const [dockerIsStart, setDockerIsStart] = useState(false);
+    const [solveTask, setSolveTask] = useState({});
+    const [successSolutionTask, setSuccessSolutionTask] = useState(null);
 
     const sendRequestTerminal = (req) => {
         setDockerIsStart(false);
@@ -83,75 +92,141 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
         xhr.send();
     }
 
+    const solvedTask = () => {
+        setSuccessSolutionTask(null);
+        axiosClient.post(`/compiler/@${username}/${project}/${task}/check-solution-task`, [])
+            .then(({data}) => {
+                setSuccessSolutionTask(data.success);
+                // if (data.success && )
+            })
+            .catch((res) => {
+                console.log(res);
+            });
+    }
+
     useEffect(() => {
         if (updateFiles) {
             axiosClient.post(`/compiler/@${username}/${project}`)
                 .then(({data}) => {
                     console.log(data);
                     dispatch(setCompilerFiles(data.fileStructure));
+                    dispatch(setShouldBeRunAtStart(data.shouldBeRunAtStart));
+                    console.log(data);
+                    dispatch(setTasksProject(data.tasks));
                     dispatch(setUpdateFiles(false));
                     dispatch(setNeedReloadFrameCompiler(true));
+                    setIsWebProject(data.isWebProject);
                 })
                 .catch((data) => {
                     console.log(data);
                 });
-
-            startDockerContainer(`http://api.pro-learn.my/compiler/@${username}/${project}/start-docker-session`);
-            setDockerIsStart(true);
         }
     }, [updateFiles]);
 
+    useEffect(() => {
+        if (task !== undefined) {
+            axiosClient.get(`${lang === undefined ? "/" : '/' + lang + '/'}compiler/solve-task?task=${task}`)
+                .then(({data}) => {
+                    console.log(data.task);
+                    setSolveTask(data.task);
+                })
+                .catch((res) => {
+                    console.log(res);
+                });
+        }
+    }, [task, lang])
+
+    useEffect(() => {
+        if (shouldBeRunAtStart) {
+            // startDockerContainer(`http://api.pro-learn.my/compiler/@${username}/${project}/start-docker-session`);
+            axiosClient.get(`${lang === undefined ? "/" : '/' + lang + '/'}compiler/@${username}/${project}/start-docker-session`)
+                .then(({data}) => {
+                    console.log(data.task);
+                    // setSolveTask(data.task);
+                })
+                .catch((res) => {
+                    console.log(res);
+                });
+            setDockerIsStart(true);
+        }
+    }, [shouldBeRunAtStart])
+
     return (
-        <div className="compiler-main">
-            <Splitter
-                direction={SplitDirection.Horizontal}
-                initialSizes={[widthSidebar, widthContainer]}
-                minWidths={[widthSidebar, widthContainer - widthSidebar]}
-                onResizeFinished={() => {
-                    dispatch(setEventPointerFrame(true))
-                }}
-                onResizeStarted={() => {
-                    dispatch(setEventPointerFrame(false))
-                }}
-            >
-                <CompilerSidebar/>
-                <div className="compiler">
-                    <div className="compiler-container">
-                        <div className="compiler-blocks">
-                            <Splitter
-                                direction={SplitDirection.Horizontal}
-                                initialSizes={[widthEditor, widthOutput]}
-                                minWidths={[minWidthOutputEditor, minWidthOutputEditor]}
-                                onResizeFinished={() => {
-                                    dispatch(setEventPointerFrame(true))
-                                }}
-                                onResizeStarted={() => {
-                                    dispatch(setEventPointerFrame(false))
-                                }}
-                            >
-                                <div className="compiler-part">
+        <>
+            <div className={`compiler-main`}>
+                <Splitter
+                    direction={SplitDirection.Vertical}
+                    initialSizes={[100, 900]}
+                    minHeights={[10, 600]}
+                    onResizeFinished={() => {
+                        dispatch(setEventPointerFrame(true))
+                    }}
+                    onResizeStarted={() => {
+                        dispatch(setEventPointerFrame(false))
+                    }}
+
+                >
+                    {task === undefined || Object.keys(solveTask).length === 0 ?
+                        <></>
+                        :
+                        <CompilerTaskDescription courseSlug={searchParams.get('course')} obj={solveTask}
+                                                 solvedTask={() => solvedTask()} success={successSolutionTask}/>}
+                    <Splitter
+                        direction={SplitDirection.Horizontal}
+                        initialSizes={[widthSidebar, widthContainer]}
+                        minWidths={[widthSidebar, widthContainer]}
+                        onResizeFinished={() => {
+                            dispatch(setEventPointerFrame(true))
+                        }}
+                        onResizeStarted={() => {
+                            dispatch(setEventPointerFrame(false))
+                        }}
+                    >
+                        <CompilerSidebar/>
+                        <div className="compiler">
+                            <div className="compiler-container">
+                                <div className="compiler-blocks">
                                     <Splitter
-                                        direction={SplitDirection.Vertical}
-                                        initialSizes={[heightEditorOutput, heightConsole]}
-                                        minHeights={[100, 100]}
-                                        onResizeFinished={(pairIdx, newSizes) => {
+                                        direction={SplitDirection.Horizontal}
+                                        initialSizes={[widthEditor, widthOutput]}
+                                        minWidths={[minWidthOutputEditor, minWidthOutputEditor]}
+                                        onResizeFinished={() => {
                                             dispatch(setEventPointerFrame(true))
                                         }}
                                         onResizeStarted={() => {
                                             dispatch(setEventPointerFrame(false))
                                         }}
                                     >
-                                        <CompilerEditor/>
-                                        <CompilerConsole sendRequestTerminal={sendRequestTerminal}/>
+                                        <div className="compiler-part">
+                                            <Splitter
+                                                direction={SplitDirection.Vertical}
+                                                initialSizes={[heightEditorOutput, heightConsole]}
+                                                minHeights={[100, 100]}
+                                                onResizeFinished={(pairIdx, newSizes) => {
+                                                    dispatch(setEventPointerFrame(true))
+                                                }}
+                                                onResizeStarted={() => {
+                                                    dispatch(setEventPointerFrame(false))
+                                                }}
+                                            >
+                                                <CompilerEditor isWebProject={isWebProject} handleOpenOutput={() => setIsOpenOutput(!isOpenOutput)}/>
+                                                <CompilerConsole sendRequestTerminal={sendRequestTerminal}/>
+                                            </Splitter>
+                                        </div>
+                                        {
+                                            isWebProject && isOpenOutput ?
+                                                <CompilerOutput/>
+                                                :
+                                                <></>
+                                        }
                                     </Splitter>
                                 </div>
-                                <CompilerOutput/>
-                            </Splitter>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </Splitter>
-        </div>
+                    </Splitter>
+                </Splitter>
+            </div>
+        </>
     );
 };
 

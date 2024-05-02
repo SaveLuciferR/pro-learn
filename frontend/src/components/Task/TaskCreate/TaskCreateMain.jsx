@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import TaskCreateTab from "./TaskCreateTab";
 import TaskCreateDataTab from "./TaskCreateDataTab";
 import ModalWindowTask from "../../Modal/ModalWindowTask";
@@ -7,6 +7,7 @@ import {setCurrentCourseStatus} from "../../../redux/Course/slice";
 import axiosClient from "../../../axiosClient";
 import {setTaskSlug, setTaskStatus} from "../../../redux/Task/slice";
 import {useNavigate, useParams} from "react-router-dom";
+import Switch from "../../Component/Switch";
 
 
 const TaskCreateMain = ({type}) => {
@@ -23,12 +24,21 @@ const TaskCreateMain = ({type}) => {
     const [isInputTab, setIsInputTab] = useState(true);
 
     const onClickPublishTask = () => {
-
+        // dispatch(setTaskStatus({status: 'public'}));
+        axiosClient.post(`@${username}/creation/task`, {task, status: 'public'})
+            .then(({data}) => {
+                if (data.result.slug) {
+                    navigate(`${lang === undefined ? "/" : '/' + lang + "/"}task/${data.result.slug}`);
+                }
+            })
+            .catch((response) => {
+                console.log(response);
+            });
     }
 
     const onClickSaveTask = () => {
-        dispatch(setTaskStatus({status: "draft"}));
-        axiosClient.post(`@${username}/creation/task`, {task})
+        // dispatch(setTaskStatus({status: "draft"}));
+        axiosClient.post(`@${username}/creation/task`, {task, status: 'draft'})
             .then(({data}) => {
                 console.log(data);
 

@@ -4,10 +4,26 @@ import CourseCreateLessonFewAnswer from "./CourseCreateLessonFewAnswer";
 import CourseCreateLessonOneAnswer from "./CourseCreateLessonOneAnswer";
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {editCurrentCourseMainLesson, setCurrentCourseEditMainLessonCode} from "../../../redux/Course/slice";
+import {
+    bindTaskToCourse,
+    editCurrentCourseMainLesson,
+    setCurrentCourseEditMainLessonCode
+} from "../../../redux/Course/slice";
+import CourseCreateLessonTask from "./CourseCreateLessonTask";
 
 
-const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numStage}) => {
+const CourseCreateLesson = ({
+                                active,
+                                type,
+                                deleteLesson,
+                                obj,
+                                index,
+                                currentLang,
+                                numStage,
+                                activeSlideUp,
+                                activeSlideDown,
+                                handleSlideData
+                            }) => {
 
     const dispatch = useDispatch();
 
@@ -23,9 +39,11 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
     const [answerOption, setAnswerOption] = useState({});
     const [rightAnswer, setRightAnswer] = useState("");
     const [canBeUpdate, setCanBeUpdate] = useState(false);
+    const [slugBindSlugText, setBindSlugText] = useState(null);
+
 
     useEffect(() => {
-        // console.log(lesson.description);
+        console.log(lesson);
         if (type === 'edit') {
             setCode(lesson.code);
             setTitle(lesson.title);
@@ -64,11 +82,17 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
         }
     }, [code])
 
-    useEffect(() => {
-        if (canBeUpdate) {
-            setCode(lesson.code);
-        }
-    }, [lesson])
+    // useEffect(() => {
+    //     console.log(lesson.answer_option)
+    //     if (canBeUpdate && lesson !== undefined) {
+    //         console.log(lesson.answer_option)
+    //         setCode(lesson.code);
+    //         setTitle(lesson.title);
+    //         setDescription(lesson.description);
+    //         setAnswerOption(lesson.answer_option);
+    //         setRightAnswer(lesson.right_answer);
+    //     }
+    // }, [lesson])
 
     const renderCodeComponent = () => {
         // console.log(lesson);
@@ -97,9 +121,24 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
                                                     setDescription={(value) => setDescription(value)}
                                                     setAnswerOp={(e) => setAnswer(e)}/>
             }
+            case "task": {
+                return <CourseCreateLessonTask
+                    key={index}
+                    index={index}
+                    currentLesson={lesson}
+                    updateTaskID={(id, slug) => updateTaskID(id, slug)}
+                    slugBindTask={slugBindSlugText}
+                    setSlugBindTask={(s) => setBindSlugText(s)}
+                />
+            }
             default:
                 return null;
         }
+    }
+
+    const updateTaskID = (id, slug) => {
+        dispatch(bindTaskToCourse({languages: languages, task: id, num_stage: numStage, num_step: index}));
+        setBindSlugText(id === lesson.challenge_id ? null : slug);
     }
 
     const setAnswer = (answers) => {
@@ -118,7 +157,7 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
     return (
         <>
             {obj === undefined || code === '' ? <div>Loading...</div> :
-                <div className="course-create-block">
+                <div className={`course-create-block ${active ? 'active' : ''}`}>
 
                     <h4 className="markdown-h4">Урок №{index}</h4>
 
@@ -151,6 +190,53 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
 
                     {renderCodeComponent()}
 
+                    <div className={""}>
+                        <button className={`btn slider-arrow ${!activeSlideDown ? 'hidden' : ''}`}
+                             onMouseDown={() => handleSlideData(-1)}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="30"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <circle
+                                    cx="10"
+                                    cy="10"
+                                    r="10"
+                                    transform="matrix(-1 0 0 1 22 2)"
+                                    stroke="white"
+                                    strokeWidth="1.5"
+                                />
+                                <path
+                                    d="M13.5 9L10.5 12L13.5 15"
+                                    stroke="white"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </button>
+                        <button className={`btn slider-arrow ${!activeSlideUp ? 'hidden' : ''}`}
+                             onMouseDown={() => handleSlideData(1)}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="30"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1.5"/>
+                                <path
+                                    d="M10.5 9L13.5 12L10.5 15"
+                                    stroke="white"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </button>
+                    </div>
                     <button onClick={() => deleteLesson()}
                             className="project__action-links-item btn-red">
                         <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
@@ -161,9 +247,8 @@ const CourseCreateLesson = ({type, deleteLesson, obj, index, currentLang, numSta
                                 stroke="#DB5B42"
                                 strokeLinecap="round"/>
                         </svg>
-                        <span>Удалить блок</span>
+                        <span>Удалить урок</span>
                     </button>
-
                 </div>
             }
         </>
