@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import Table from '../../Table/Table';
+import OldTable from '../../Table/OldTable';
 import { useEffect, useState } from 'react';
 import axiosClient from '../../../axiosClient';
 import LoadingElement from '../../LoadingElement';
@@ -124,7 +124,7 @@ const ProfileSettingsSessions = () => {
           <div className="profile-settings-sessions">
             <div className="profile-settings-sessions-main">
               <div className="profile-settings-sessions-table">
-                <Table data={dataTable} columns={columns} />
+                <OldTable data={dataTable} columns={columns} />
               </div>
               <div className="profile-settings-sessions-button">
                 <button className="btn big secondary-blue">Прервать все сессии</button>

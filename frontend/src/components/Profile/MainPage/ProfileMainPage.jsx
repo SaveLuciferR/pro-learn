@@ -11,16 +11,16 @@ const ProfileMainPage = () => {
   const { lang, username } = useParams();
   const [userData, setUserData] = useState([]);
   const [listCourse, setListCourse] = useState([]);
-  let currentCourse = [];
-  let completeCourse = [];
+  const [currentCourse, setCurrentCourse] = useState([]);
+  const [completeCourse, setCompleteCourse] = useState([]);
+
 
   const addCurrentCourse = (item) => {
-    console.log(item);
-    currentCourse.push(item);
-    console.log(currentCourse);
+   setCurrentCourse(prevState => [...prevState, item]);
+
   };
   const addCompleteCourse = ({ item }) => {
-    completeCourse.push(item);
+    setCompleteCourse(prevState => [...prevState, item]);
   };
 
   useEffect(() => {
@@ -34,6 +34,8 @@ const ProfileMainPage = () => {
       .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}/course-list`)
       .then(({ data }) => {
         setListCourse(data.courses);
+        setCurrentCourse([]);
+        setCompleteCourse([]);
       });
   }, [lang, username]);
 
@@ -47,6 +49,7 @@ const ProfileMainPage = () => {
   }, [listCourse]);
   return (
     <>
+      {console.log(listCourse)}
       {Object.keys(userData).length === 0 ? (
         <LoadingElement />
       ) : (

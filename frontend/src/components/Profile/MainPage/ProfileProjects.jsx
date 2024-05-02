@@ -7,6 +7,7 @@ const ProfileProjects = ({ data }) => {
 
   useEffect(() => {
     setProjects(data.projects);
+    console.log(data.projects)
   }, [data]);
 
   // console.log(data);

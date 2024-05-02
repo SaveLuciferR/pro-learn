@@ -14,7 +14,7 @@ const CompleteCourseMain = ({ data }) => {
 
   return (
     <div className="currentcourse">
-      <Link to={'completed-courses'} className="currentcourse-title">
+      <Link to={'completed-courses'} className="currentcourse-title clamp-text">
         Пройденные курсы
       </Link>
       {Object.keys(completeCourse).length === 0 ? (

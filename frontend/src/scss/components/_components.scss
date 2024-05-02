@@ -191,6 +191,12 @@ button:disabled {
     }
 }
 
+.clamp-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .scroll {
     &::-webkit-scrollbar {
         height: 5px;

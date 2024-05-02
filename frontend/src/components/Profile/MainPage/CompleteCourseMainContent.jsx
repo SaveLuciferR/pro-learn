@@ -1,4 +1,5 @@
 import imgcourse from '../../../image 7.png';
+import ClampLines from "react-clamp-lines";
 
 const CompleteCourseMainContent = (data) => {
   return (

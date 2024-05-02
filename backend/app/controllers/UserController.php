@@ -129,9 +129,10 @@ class UserController extends AppController
             }
 
             // Сортировка проектов
-            foreach ($profileInfo['projects'] as $k => $v) {
-                if ($v['private']) unset($profileInfo['projects'][$k]);
-            }
+            $profileInfo['projects'] = array_filter($profileInfo['projects'], function ($v, $k) {
+                return $v['private'] === '0';
+            }, ARRAY_FILTER_USE_BOTH);
+            $profileInfo['projects'] = array_values($profileInfo['projects']);
         }
 
 

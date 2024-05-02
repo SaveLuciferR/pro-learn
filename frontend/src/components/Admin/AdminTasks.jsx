@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Table from '../Table/Table';
+import OldTable from '../Table/OldTable';
 import axiosClient from '../../axiosClient';
 import { useNavigate } from 'react-router-dom';
 
@@ -196,7 +196,7 @@ const AdminTasks = () => {
         </button>
       </div>
       <div className="admin-content">
-        <Table data={adminTasks} columns={columns} />
+        <OldTable data={adminTasks} columns={columns} />
       </div>
     </>
   );

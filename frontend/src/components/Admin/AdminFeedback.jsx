@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Table from '../Table/Table';
+import OldTable from '../Table/OldTable';
 import DATA from './data';
 
 const AdminFeedback = () => {
@@ -33,7 +33,7 @@ const AdminFeedback = () => {
   ];
   return (
     <div>
-      <Table data={data} columns={columns} />
+      <OldTable data={data} columns={columns} />
     </div>
   );
 };

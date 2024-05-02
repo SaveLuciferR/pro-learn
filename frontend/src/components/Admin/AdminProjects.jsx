@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosClient from '../../axiosClient';
-import Table from '../Table/Table';
+import OldTable from '../Table/OldTable';
 
 const AdminProjects = () => {
   const [adminProjects, setAdminProjects] = useState([]);
@@ -59,7 +59,7 @@ const AdminProjects = () => {
         <input type="search" placeholder="Поиск ..." className="input width1200" />
       </div>
       <div className="admin-content">
-        <Table data={adminProjects} columns={columns} />
+        <OldTable data={adminProjects} columns={columns} />
       </div>
     </>
   );

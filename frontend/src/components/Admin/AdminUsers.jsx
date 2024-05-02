@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axiosClient from '../../axiosClient';
-import Table from '../Table/Table';
+import OldTable from '../Table/OldTable';
 
 const AdminUsers = () => {
   const [adminUsers, setAdminUsers] = useState([]);
@@ -76,7 +76,7 @@ const AdminUsers = () => {
         <input type="search" placeholder="Поиск ..." className="input width1200" />
       </div>
       <div className="admin-content">
-        <Table data={adminUsers} columns={columns} />
+        <OldTable data={adminUsers} columns={columns} />
       </div>
     </>
   );
