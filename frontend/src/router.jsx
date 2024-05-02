@@ -8,7 +8,7 @@ import CompilerPage from './pages/CompilerPage';
 import ProfilePage from './pages/ProfilePage';
 import ProfileCreatedCourses from './components/Profile/CreatedCourses/CreatedCourses';
 import Feedback from './components/Forms/Feedback';
-import ProfileMainPage from './components/Profile/MainPage/MainPage';
+import ProfileMainPage from './components/Profile/MainPage/ProfileMainPage';
 import ProfileQuestionsMain from './components/Profile/Questions/ProfileQuestionsMain';
 import ProfileUserTasks from './components/Profile/UserTasks/ProfileUserTasks';
 import ProfileTasks from './components/Profile/UserTasks/ProfileTasks';

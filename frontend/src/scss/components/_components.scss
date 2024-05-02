@@ -56,10 +56,6 @@ a {
 
   &-red {
     color: #db5b42;
-
-    &::before {
-      background-color: #db5b42;
-    }
   }
 
   &.primary {
@@ -117,8 +113,11 @@ a {
     width: 100%;
   }
 
-  & > span {
-    margin-left: 8px;
+  &.with_icon {
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   &.file {
@@ -138,8 +137,8 @@ a {
 }
 
 button:disabled {
-    border: 1px solid rgba($color: #5f5f5f, $alpha: 0.7) !important;
-    color: rgba($color: #5f5f5f, $alpha: 0.7);
+  border: 1px solid rgba($color: #5f5f5f, $alpha: 0.7) !important;
+  color: rgba($color: #5f5f5f, $alpha: 0.7);
 }
 
 .input {
@@ -212,14 +211,14 @@ button:disabled {
     text-align: center;
   }
 
-    &.w700 {
-        display: block;
-        width: 100%;
-        max-width: 660px;
-    }
+  &.w700 {
+    display: block;
+    width: 100%;
+    max-width: 660px;
+  }
 
-    &.textarea {
-        resize: none;
+  &.textarea {
+    resize: none;
 
     height: 100%;
     min-height: 150px;
@@ -235,9 +234,9 @@ button:disabled {
 }
 
 .clamp-text {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .scroll {
@@ -621,20 +620,20 @@ label {
       text-align: center;
     }
 
-      &-icon {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-bottom: 24px;
+    &-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 24px;
 
-          & svg {
-              height: 76px;
-              width: 76px;
-          }
+      & svg {
+        height: 76px;
+        width: 76px;
       }
+    }
 
-        &-content {
-            margin-top: 20px;
+    &-content {
+      margin-top: 20px;
 
       &-data {
         margin-top: 24px;

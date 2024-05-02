@@ -80,6 +80,15 @@
   & .profile-section-sidebar {
     width: 222px;
   }
+
+  &-footer-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+
+    margin: 28px;
+  }
 }
 
 .search-button {

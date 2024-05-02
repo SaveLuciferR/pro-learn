@@ -1,6 +1,5 @@
-const Table = ({columns, data}) => {
+const Table = ({columns, data, handleClickRow, selectRow}) => {
 
-    // console.log(columns)
     return (
         <div className={"parent_table"}>
             <table className={'table'}>
@@ -11,7 +10,7 @@ const Table = ({columns, data}) => {
                 </thead>
                 <tbody className={'table-body'}>
                 {data.map((item, i) =>
-                    <tr className={"table-body-content"}>
+                    <tr onClick={() => handleClickRow(i, item)} className={`table-body-content ${selectRow === i ? 'active' : ''}`}>
                         {columns.map((col, id) => <td key={id + i}>{col.cell(item)}</td>)}
                     </tr>
                 )}

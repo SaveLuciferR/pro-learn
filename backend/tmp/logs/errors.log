@@ -2727,3 +2727,13 @@
 =================
 [2024-05-02 14:57:08] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''q'' at line 12 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
 =================
+[2024-05-02 16:11:54] Текст ошибки: Undefined array key "" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 63
+=================
+[2024-05-02 16:11:54] Текст ошибки: Undefined array key "" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CourseController.php | Строка: 63
+=================
+[2024-05-02 17:14:38] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-2, 2' at line 12 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-05-02 17:14:41] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''NaN', 2' at line 12 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-05-02 17:15:27] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-2, 2' at line 12 | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
