@@ -5,13 +5,16 @@ import {Outlet, useParams} from 'react-router-dom';
 
 import axiosClient from "../axiosClient";
 import {useDispatch, useSelector} from "react-redux";
-import {setUserAuth, setUser, setNeedReloadPage, setActiveSidebar, setLanguages,
-    setCurrentLanguage} from "../redux/MainLayout/slice";
+import {
+    setUserAuth, setUser, setNeedReloadPage, setActiveSidebar, setLanguages,
+    setCurrentLanguage
+} from "../redux/MainLayout/slice";
 import SidebarProfile from "../components/Profile/SidebarProfile";
 import ModalWindow from '../components/Modal/ModalWindow';
+import CompilerTaskDescription from "../components/Compiler/CompilerTaskDescription";
 
 
-const MainLayout = ({isActiveSidebar, isCompiler}) => {
+const MainLayout = ({isActiveSidebar, isCompiler, success}) => {
 
     const {lang} = useParams();
 
@@ -43,7 +46,7 @@ const MainLayout = ({isActiveSidebar, isCompiler}) => {
 
     useEffect(() => {
         if (needReloadPage) {
-            axiosClient.post(`/user/auth`, {client2: localStorage.getItem('client'), })
+            axiosClient.post(`/user/auth`, {client2: localStorage.getItem('client'),})
                 .then(({data}) => {
                     dispatch(setUserAuth(data.auth));
                     dispatch(setUser(data.user));
@@ -62,15 +65,18 @@ const MainLayout = ({isActiveSidebar, isCompiler}) => {
                 <>
                     <Header language={language} languages={languages} layoutWords={layoutWords}/>
                     {activeSidebar ? <Sidebar/> : <></>}
+                    {/*{activeCompiler ? <CompilerTaskDescription/> : <></>}*/}
                     <div
                         className={`main ${activeSidebar ? 'active-sidebar' : ''} ${activeCompiler ? 'active-compiler' : ''}`}>
                         <>
                             {activeCompiler ?
-                                <Outlet context={
-                                    {
-                                        activeSidebar: [(v) => setActiveSidebar(v)],
-                                        activeCompiler: [(v) => setActiveCompiler(v)]
-                                    }}/>
+                                <>
+                                    <Outlet context={
+                                        {
+                                            activeSidebar: [(v) => setActiveSidebar(v)],
+                                            activeCompiler: [(v) => setActiveCompiler(v)]
+                                        }}/>
+                                </>
                                 :
                                 <div className="container">
                                     <Outlet context={{
@@ -81,7 +87,7 @@ const MainLayout = ({isActiveSidebar, isCompiler}) => {
                             {sidebarProfileActive ? <SidebarProfile/> : <></>}
                         </>
                     </div>
-                    <ModalWindow />
+                    <ModalWindow/>
                 </>
             }
         </>

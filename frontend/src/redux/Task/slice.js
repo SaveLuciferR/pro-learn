@@ -8,7 +8,7 @@ const initialState = {
         project_id: null,
         template_id: null,
         num_of_input_data: 3,
-        for_course: true,
+        for_course: false,
         main: {
             1: {}
         },
@@ -31,7 +31,9 @@ export const courseSlice = createSlice({
                 state.currentTaskEdit.difficulty = action.payload.difficulty;
                 // state.currentTaskEdit.slug = action.payload.slug;
                 state.currentTaskEdit.num_of_input_data = action.payload.num_of_input_data;
-                state.currentTaskEdit.for_course = action.payload.for_course;
+            },
+            setTaskForCourse(state, action) {
+                state.currentTaskEdit.for_course = action.payload;
             },
             setTaskProject(state, action) {
                 state.currentTaskEdit.project_id = action.payload;
@@ -49,10 +51,15 @@ export const courseSlice = createSlice({
                 if (state.currentTaskEdit.main[action.payload.lang] === undefined) {
                     state.currentTaskEdit.main[action.payload.lang] = {};
                 }
-                state.currentTaskEdit.main[action.payload.lang].content = action.payload.content;
                 state.currentTaskEdit.main[action.payload.lang].description = action.payload.description;
                 state.currentTaskEdit.main[action.payload.lang].keywords = action.payload.keywords;
                 state.currentTaskEdit.main[action.payload.lang].title = action.payload.title;
+            },
+            setTaskContentInfoLang(state, action) {
+                if (state.currentTaskEdit.main[action.payload.lang] === undefined) {
+                    state.currentTaskEdit.main[action.payload.lang] = {};
+                }
+                state.currentTaskEdit.main[action.payload.lang].content = action.payload.content;
             },
             addTaskInput(state, action) {
                 state.currentTaskEdit.input_output_data.map((item, i) => {
@@ -111,9 +118,11 @@ export const {
     setTask,
     setTaskProject,
     setTaskTemplate,
+    setTaskForCourse,
     setTaskMainInfo,
     setTaskMainInfoLang,
     setTaskMainLang,
+    setTaskContentInfoLang,
     setTaskSlug,
     setTaskStatus,
     addTaskInput,

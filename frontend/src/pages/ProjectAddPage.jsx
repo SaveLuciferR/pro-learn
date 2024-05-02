@@ -12,7 +12,7 @@ import {
 } from "../redux/Project/slice";
 import ProjectFile from "../components/Project/ProjectFile";
 
-const ProjectAddPage = () => {
+const ProjectAddPage = ({type, isTemplate = false}) => {
     // const [setActiveSidebar] = useOutletContext(activeSidebar);
     // setActiveSidebar(activeSidebar);
 

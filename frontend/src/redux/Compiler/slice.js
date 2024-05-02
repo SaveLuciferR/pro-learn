@@ -8,6 +8,8 @@ const initialState = {
         "                                               ",
         "Welcome to the Online Editor from the pro-learn team!"
     ],
+    shouldBeRunAtStart: false,
+    tasks: {},
     workspaceUser: 'workspace $user1:',
     files: {},
     currentFile: {
@@ -25,12 +27,18 @@ const initialState = {
     actionContext: {
         action: "",
         file: {
+            newFile: {
+                name: "",
+                path: "/",
+            },
+            newFolder: {
+                name: "",
+                path: "/",
+            },
             save: {
                 path: "",
             },
-            delete: {
-
-            },
+            delete: {},
             rename: {
                 path: "",
                 newName: "",
@@ -44,6 +52,9 @@ const initialState = {
     saveRenameFile: false,
     updateFiles: true,
     eventPointerFrame: true,
+    currentFolder: '/',
+    currentInputContent: '',
+    canBeExistElementProject: true,
 }
 
 
@@ -51,11 +62,17 @@ export const compilerSlice = createSlice({
         name: "compiler",
         initialState: initialState,
         reducers: {
-            addTerminalContent (state, action) {
+            addTerminalContent(state, action) {
                 state.terminalContent.push(action.payload);
             },
             setWorkspaceUser(state, action) {
                 state.workspaceUser = action.payload;
+            },
+            setShouldBeRunAtStart(state, action) {
+                state.shouldBeRunAtStart = action.payload;
+            },
+            setTasksProject(state, action) {
+                state.tasks = action.payload;
             },
             setCompilerFiles(state, action) {
                 state.files = action.payload;
@@ -82,32 +99,25 @@ export const compilerSlice = createSlice({
             },
             setCompilerCurrentFileName(state, action) {
                 state.currentFile.name = action.payload;
-            }
-            ,
+            },
             setCompilerCurrentFile(state, action) {
                 state.currentFile.file = action.payload;
-            }
-            ,
+            },
             setCompilerTabIndex(state, action) {
                 state.currentFile.tabIndex = action.payload;
-            }
-            ,
+            },
             addCompilerTab(state, action) {
                 state.tabs[action.payload.tabIndex] = action.payload.content;
-            }
-            ,
+            },
             deleteCompilerTab(state, action) {
                 delete state.tabs[action.payload];
-            }
-            ,
+            },
             setActiveTab(state, action) {
                 state.activeTab = action.payload;
-            }
-            ,
+            },
             setActionInActionContext(state, action) {
                 state.actionContext.action = action.payload;
-            }
-            ,
+            },
             setFileSavingInActionContext(state, action) {
                 state.actionContext.file.save = action.payload;
             },
@@ -117,8 +127,16 @@ export const compilerSlice = createSlice({
             setFileRenamingPathInActionContext(state, action) {
                 state.actionContext.file.rename.path = action.payload;
             },
-            setFileRenamingNameInActionContext (state, action) {
+            setFileRenamingNameInActionContext(state, action) {
                 state.actionContext.file.rename.newName = action.payload;
+            },
+            setNewFileInActionContext(state, action) {
+                state.actionContext.file.newFile.name = action.payload.name;
+                state.actionContext.file.newFile.path = action.payload.path;
+            },
+            setNewFolderInActionContext(state, action) {
+                state.actionContext.file.newFolder.name = action.payload.name;
+                state.actionContext.file.newFolder.path = action.payload.path;
             },
             setTypeContextMenu(state, action) {
                 state.typeContextMenu = action.payload;
@@ -132,12 +150,21 @@ export const compilerSlice = createSlice({
             setUpdateFiles(state, action) {
                 state.updateFiles = action.payload;
             },
-            setNeedReloadFrameCompiler (state, action) {
+            setNeedReloadFrameCompiler(state, action) {
                 state.needReloadFrameCompiler = action.payload;
             },
             setEventPointerFrame(state, action) {
                 state.eventPointerFrame = action.payload;
-            }
+            },
+            setCurrentFolder(state, action) {
+                state.currentFolder = action.payload;
+            },
+            setCurrentInputContent(state, action) {
+                state.currentInputContent = action.payload;
+            },
+            setCanBeExistElementProject(state, action) {
+                state.canBeExistElementProject = action.payload;
+            },
         }
     })
 ;
@@ -146,6 +173,8 @@ export const {
     addTerminalContent,
     setWorkspaceUser,
     setCompilerFiles,
+    setShouldBeRunAtStart,
+    setTasksProject,
     setNewBodyCompilerFiles,
     setCompilerCurrentFileName,
     setCompilerCurrentFile,
@@ -158,12 +187,17 @@ export const {
     setFileDeletingInActionContext,
     setFileRenamingPathInActionContext,
     setFileRenamingNameInActionContext,
+    setNewFileInActionContext,
+    setNewFolderInActionContext,
     setTypeContextMenu,
     setCanRenameFile,
     setSaveRenameFile,
     setUpdateFiles,
     setNeedReloadFrameCompiler,
     setEventPointerFrame,
+    setCurrentFolder,
+    setCurrentInputContent,
+    setCanBeExistElementProject,
 } = compilerSlice.actions;
 
 export default compilerSlice.reducer;

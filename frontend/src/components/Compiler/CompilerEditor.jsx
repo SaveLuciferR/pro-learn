@@ -1,5 +1,8 @@
 import {useEffect} from 'react';
 import {Editor, loader} from '@monaco-editor/react';
+import monacoThemes from 'monaco-themes/themes/themelist.json'
+// import monacoThemeData from 'monaco-themes/themes/Tomorrow-Night-Bright.json';
+import myThemeData from './Tomorrow-Night-Bright.json'
 import {useDispatch, useSelector} from 'react-redux';
 import {
     deleteCompilerTab,
@@ -8,8 +11,11 @@ import {
     setCompilerFiles,
     setNewBodyCompilerFiles,
 } from '../../redux/Compiler/slice';
+import {TfiLayoutTabWindow} from "react-icons/tfi";
+import CompilerEmptyWindow from "./CompilerEmptyWindow";
+import {VscDebugStart} from "react-icons/vsc";
 
-const CompilerEditor = () => {
+const CompilerEditor = ({isWebProject, handleOpenOutput}) => {
     const dispatch = useDispatch();
 
     const currentFile = useSelector((state) => state.compiler.currentFile.file);
@@ -35,73 +41,109 @@ const CompilerEditor = () => {
     };
 
     useEffect(() => {
-        loader
-            .init()
+        loader.init()
             .then((monaco) => {
-                import('monaco-themes/themes/Blackboard.json').then((data) => {
-                    monaco.editor.defineTheme('Blackboard', data);
-                });
+                monaco.editor.defineTheme('tomorrow-night-bright', myThemeData);
+                monaco.editor.setTheme('tomorrow-night-bright');
             })
-            .catch((error) => console.error('error'));
-    }, []);
+    }, [tabs]);
+
+    useEffect(() => {
+        let activeTabClosed = true;
+        console.log(tabs)
+        Object.keys(tabs).map(item => {
+            if (item === activeTab) {
+                activeTabClosed = false;
+            }
+        })
+
+        if (activeTabClosed) {
+            if (Object.keys(tabs).length === 0) {
+                dispatch(setActiveTab(''));
+                dispatch(setCompilerCurrentFile('', ''));
+            } else {
+                dispatch(setActiveTab(Object.keys(tabs)[0]));
+                dispatch(setCompilerCurrentFile(tabs[Object.keys(tabs)[0]].file, tabs[Object.keys(tabs)[0]].name));
+            }
+        }
+    }, [tabs])
 
     return (
         <>
             <div className="editor">
-                <div className="editor-tabs">
-                    {Object.keys(tabs).map((value) => (
-                        <div key={value} className={`editor-tab${activeTab === value ? ' active' : ''}`}>
-                            <p onClick={() => onClickTab(value)} className="editor-title">
-                                {tabs[value].name}
-                            </p>
-                            <button
-                                type="button"
-                                className="editor-tabs-close-button"
-                                onClick={() => onClickDeleteTab(value)}
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
+                <div className={`editor-tabs`}>
+                    <div className={`editor-tabs-file scroll`}>
+                        {Object.keys(tabs).map((value) => (
+                            <div key={value} className={`editor-tab${activeTab === value ? ' active' : ''}`}>
+                                <p onClick={() => onClickTab(value)} className="editor-title">
+                                    {tabs[value].name}
+                                </p>
+                                <button
+                                    type="button"
+                                    className="editor-tabs-close-button"
+                                    onClick={() => onClickDeleteTab(value)}
                                 >
-                                    <path
-                                        d="M18 6L6 18"
-                                        stroke="white"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M6 6L18 18"
-                                        stroke="white"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M12 4L4 12"
+                                            stroke="white"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M4 4L12 12"
+                                            stroke="white"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                    <div className={`editor-tabs-button`}>
+                        {isWebProject ?
+                            <button onClick={() => handleOpenOutput()} className={'btn btn-without_text'}>
+                                <TfiLayoutTabWindow/>
                             </button>
-                        </div>
-                    ))}
+                            :
+                            <button className={'btn btn-without_text'}><VscDebugStart className={"icont-24"}/></button>
+                        }
+                    </div>
                 </div>
                 <div className="editor-workspace">
                     <div className="editor-container">
-                        <Editor
-                            defaultLanguage="markdown"
-                            language={currentFile.language}
-                            value={currentFile.body}
-                            onChange={(v) => onChangeBodyFile(v, currentFile.path)}
-                            options={
-                                {
-                                    readOnly: Object.entries(currentFile).length === 0,
-                                    automaticLayout: true,
-                                    minimap: false,
+                        {activeTab.length === 0 ?
+                            <CompilerEmptyWindow/>
+                            :
+                            <Editor
+
+                                defaultLanguage="markdown"
+                                defaultValue={"Your code..."}
+                                language={currentFile.language}
+                                value={currentFile.body}
+                                onChange={(v) => onChangeBodyFile(v, currentFile.path)}
+                                options={
+                                    {
+                                        readOnly: Object.entries(currentFile).length === 0,
+                                        automaticLayout: true,
+                                        minimap: true,
+                                        fontSize: '14px',
+                                    }
                                 }
-                            }
-                            height={'100%'}
-                            theme="vs-dark"
-                        />
+                                height={'100%'}
+                                theme="vs-dark"
+                                // theme={monacoThemes["tomorrow-night-bright"]}
+                            />
+                        }
                     </div>
                 </div>
             </div>

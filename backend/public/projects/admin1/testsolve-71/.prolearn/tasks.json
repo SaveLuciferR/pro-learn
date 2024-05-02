@@ -6,6 +6,7 @@
     "start": {
       "name": "start",
       "command": "python main.py",
+      "data": [],
       "runAtStart": true,
       "restartOn": {
         "files": ["main.py"]

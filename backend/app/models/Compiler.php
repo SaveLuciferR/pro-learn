@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\models\AppModel;
 use core\Docker\Docker;
+use RedBeanPHP\R;
 
 class Compiler extends AppModel
 {
@@ -12,6 +13,11 @@ class Compiler extends AppModel
     public function getUrlPathProject($username, $project)
     {
         return PATH . '/public/projects/' . $username . '/' . $project; //
+    }
+
+    public function getLangProg()
+    {
+        return R::getAll('SELECT id, title, extension, code FROM langprog');
     }
 
     protected function getInfoDirectory($path, $url, $localPath = ""): array
@@ -34,7 +40,16 @@ class Compiler extends AppModel
             } else {
                 $tree[$v]['type'] = 'file';
                 $tree[$v]['path'] = $localPath . "/" . $v;
-                $tree[$v]['language'] = substr(strrchr($v, '.'), 1);
+                $tree[$v]['extension'] = substr(strrchr($v, '.'), 1);
+                foreach ($this->getLangProg() as $k => $l) {
+                    if ($l['extension'] === $tree[$v]['extension']) {
+                        $tree[$v]['language'] = $l['code'];
+                    }
+                }
+                if (!isset($tree[$v]['language'])) {
+                    $tree[$v]['language'] = $tree[$v]['extension'];
+                }
+//                $tree[$v]['language'] = substr(strrchr($v, '.'), 1);
                 if ($tree[$v]['language'] === 'png' ||
                     $tree[$v]['language'] === 'jpg' ||
                     $tree[$v]['language'] === 'svg' ||
@@ -91,75 +106,124 @@ class Compiler extends AppModel
         return USER_PROJECT . '/' . $user . '/' . $project; // . '/src'
     }
 
-    public function startOrUpdateDockerContainer($pathProject, $str = '')
+    public function getTasksForProject($pathProject)
+    {
+        if (is_dir($pathProject)) {
+            $files = scandir($pathProject);
+
+            $plFolder = array_search('.prolearn', $files);
+
+            if ($plFolder && is_dir($pathProject . '/' . $files[$plFolder])) {
+                $filesPLFolder = scandir($pathProject . '/' . $files[$plFolder]);
+                $tasks = array_search('tasks.json', $filesPLFolder);
+                if ($tasks && file_exists($pathProject . '/' . $files[$plFolder] . '/' . $filesPLFolder[$tasks])) {
+                    return json_decode(file_get_contents($pathProject . '/' . $files[$plFolder] . '/' . $filesPLFolder[$tasks]), true);
+                }
+            }
+            //TODO: что если нету тасков или папки .prolearn
+        } else {
+            header("HTTP/1.0 404 Not Found");
+            die;
+        }
+    }
+
+    public function startOrUpdateDockerContainer($pathProject, &$output, &$error, $data = [])
     {
         $retval = null;
         $output = array();
 
-        $docker = new Docker(md5($pathProject), $pathProject);
-        $docker->createImage($pathProject);
+        $tasks = $this->getTasksForProject($pathProject);
 
-        $commandPathProject = "cd " . $pathProject; //  . " && cd.."
-//        $commandDockerProject = 'docker-compose up --build -d'; //"C:\Program Files\Docker\Docker\resources\cli-plugins\docker-compose.exe"
+//        $_SESSION['docker'] = [];
+//        debug($tasks, 1);
 
-        $commandDockerProject = 'docker build . -t cpp_test:1.0.0';
-//        $commandDockerProject = 'docker run --rm -it cpp_test:1.0.0';
-
-
-        set_time_limit(0);
-        ob_implicit_flush(1);
-        ob_end_flush();
-
-        //output_buffering
-
-//        for ($i = 0; $i < 10; $i++) {
-//            echo $i . '<br />';
-//            flush();
-//            ob_flush();
-//            sleep(1);
-//        }
-
-        $cmd = $commandPathProject . ' && ' . $commandDockerProject;
-
-//        $cmd = 'ping 127.0.0.1';
-
-        $descriptorspec = array(
-            0 => array("pipe", "r"), // stdin is a pipe that the child will read from
-            1 => array("pipe", "w"), // stdout is a pipe that the child will write to
-            2 => array("pipe", "w") // stderr is a pipe that the child will write to
-        );
-//        flush();
-        $process = popen($cmd, 'r');
-//        echo "<pre>";
-        while (!feof($process)) {
-            echo json_encode(array('data' => fread($process, 4096)), JSON_UNESCAPED_SLASHES);
-            flush();
-            ob_flush();
+        $docker = new Docker(md5($pathProject), $pathProject, $tasks);
+        if (file_exists($pathProject . '/' . 'docker-compose.yml')) {
+            $docker->runDockerCompose();
+        } else {
+            $docker->createImage();
+            $docker->runContainer($data, $output, $error);
         }
 
-//        echo "</pre>";
 
+//        if (!isset($_SESSION['docker'])) {
+//            $_SESSION['docker'] = [];
+//        }
+//
+////        $_SESSION['docker'][0] = $docker;
+//        return array_push($_SESSION['docker'],
+//            array(
+//                'image' => $docker->getImage(),
+//                'tag' => $docker->getTag(),
+//                'container' => $docker->getContainer(),
+//                'ports' => $docker->getPorts(),
+//            )
+//        );
+    }
 
-//        echo json_encode(['proccess' => 5, 'data' => 'sdd']);
-//        flush();
-//        ob_flush();
-//        sleep(1);
-//        echo json_encode(['proccess' => 35, 'data' => '323']);
-//        flush();
-//        ob_flush();
-//        sleep(1);
-//        echo json_encode(['proccess' => 60, 'data' => '6545']);
-//        flush();
-//        ob_flush();
-//        sleep(1);
-//        echo json_encode(['proccess' => 100, 'success' => 1, 'data' => '6545']);
+    public function isWebProject($pathProject, $files, $tasks)
+    {
+        $dockerContent = '';
+        $dockerComposeContent = '';
+        //TODO проверить что таски не содержат веб проект\
+        foreach ($files as $k => $v) {
+            if ($k === 'Dockerfile' || $k === 'dockerfile') {
+                $dockerContent = file_get_contents($pathProject . '/' . $v['path']);
+            } else if ($k === 'docker-compose.yml') {
+                $dockerComposeContent = file_get_contents($pathProject . '/' . $v['path']);
+            }
+        }
 
-        exec($commandPathProject . " && " . $commandDockerProject, $output, $retval);
-        debug($output);
+        //TODO проверка что подтекст незакоммечен
+        if (str_contains($dockerContent, 'EXPOSE') || str_contains($dockerComposeContent, 'ports:')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-//        debug($pathProject, 1);
-        exec("docker system prune -f");
+    public function getSolveTask($userID, $slug)
+    {
+        return R::getRow("SELECT c.id, cd.title, cd.content, i.input_data, i.output_data
+                                FROM challenge c JOIN challenge_description cd ON cd.challenge_id = c.id
+                                JOIN inputoutputdata i ON i.challenge_id = c.id
+                                WHERE c.slug = ?", [$slug]);
+    }
 
-//        $imageDockerName = md5(session_id());
+    public function getDataSolutionTask($slug)
+    {
+        return R::getAll("SELECT i.id, i.input_data, i.output_data
+                                FROM challenge c JOIN inputoutputdata i ON i.challenge_id = c.id
+                                WHERE c.slug = ?", [$slug]);
+    }
+
+    public function saveSolvedTask($userID, $taskSlug)
+    {
+        $task = R::findOne('challenge', "slug = ?", [$taskSlug]);
+
+        R::begin();
+        try {
+            R::exec("UPDATE user_challenge SET success = 1 WHERE user_id = ? AND challenge_id = ?", [$userID, $task->id]);
+            R::commit();
+        } catch (\Exception $ex) {
+//            debug($ex);
+            R::rollback();
+            return false;
+        }
+    }
+
+    public function deleteDirectoryProject($dir)
+    {
+        if (is_dir($dir)) {
+            $files = scandir($dir);
+            foreach ($files as $file) {
+                if ($file != "." && $file != "..") {
+                    $this->deleteDirectoryProject($dir . '/' . $file);
+                }
+            }
+            rmdir($dir);
+        } else if (file_exists($dir)) {
+            unlink($dir);
+        }
     }
 }

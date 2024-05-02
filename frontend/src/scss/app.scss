@@ -21,7 +21,9 @@ body {
 
   &.active-compiler {
     display: flex;
-    padding: 100px 0px 0px 70px;
+    //flex-direction: column;
+    //height: 100%;
+    padding: 110px 0px 0px 70px;
   }
 }
 
