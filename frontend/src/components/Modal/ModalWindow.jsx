@@ -44,6 +44,42 @@ const ModalWindow = () => {
             strokeLinejoin="round"
           />
         </svg>
+        <div className="modal-window-icon" style={isIconShowed === true ? {} : { display: 'none' }}>
+          {iconType === 'success' ? (
+            <svg
+              width="97"
+              height="96"
+              viewBox="0 0 97 96"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="48.625" cy="48" r="40" stroke="#2EA043" strokeWidth="6" />
+              <path
+                d="M34.625 50L42.625 58L62.625 38"
+                stroke="#2EA043"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          ) : (
+            <svg
+              width="96"
+              height="96"
+              viewBox="0 0 96 96"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="48" cy="48" r="40" stroke="#DB5B42" strokeWidth="6" />
+              <path
+                d="M57.9999 38L38 57.9999M37.9999 37.9999L57.9998 57.9999"
+                stroke="#DB5B42"
+                strokeWidth="6"
+                strokeLinecap="round"
+              />
+            </svg>
+          )}
+        </div>
 
         <h1 className="modal-window-title">{title}</h1>
         <p

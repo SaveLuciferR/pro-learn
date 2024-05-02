@@ -10,7 +10,18 @@ import LoadingElement from '../../LoadingElement';
 const ProfileMainPage = () => {
   const { lang, username } = useParams();
   const [userData, setUserData] = useState([]);
-  const [completedCourse, setCompletedCourse] = useState([]);
+  const [listCourse, setListCourse] = useState([]);
+  let currentCourse = [];
+  let completeCourse = [];
+
+  const addCurrentCourse = (item) => {
+    console.log(item);
+    currentCourse.push(item);
+    console.log(currentCourse);
+  };
+  const addCompleteCourse = ({ item }) => {
+    completeCourse.push(item);
+  };
 
   useEffect(() => {
     axiosClient
@@ -20,15 +31,20 @@ const ProfileMainPage = () => {
       });
 
     axiosClient
-      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
+      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}/course-list`)
       .then(({ data }) => {
-        setCompletedCourse(data);
+        setListCourse(data.courses);
       });
   }, [lang, username]);
 
-  console.log(userData);
-  console.log(username);
-
+  useEffect(() => {
+    Object.keys(listCourse).map((i) => {
+      console.log(listCourse[i]);
+      return listCourse[i].success === '0'
+        ? addCurrentCourse(listCourse[i])
+        : addCompleteCourse(listCourse[i]);
+    });
+  }, [listCourse]);
   return (
     <>
       {Object.keys(userData).length === 0 ? (
@@ -36,9 +52,9 @@ const ProfileMainPage = () => {
       ) : (
         <div className="profile-section-main-cards">
           <ProfileInfo data={userData} />
-          <CurrentCourseMain data={userData} />
+          <CurrentCourseMain data={currentCourse} />
           <ProfileProjects data={userData} />
-          <CompleteCourseMain data={userData} />
+          <CompleteCourseMain data={completeCourse} />
         </div>
       )}
     </>

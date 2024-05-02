@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 const ProfileInfo = ({ data }) => {
   const navigate = useNavigate();
   const { lang, username } = useParams();
-  console.log(data);
+  // console.log(data);
   return (
     <div className="info-about">
       <div className="info-about-name">

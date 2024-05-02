@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 /* Переделать названия классов, сделать карточку рабочей */
 const CompleteCourseMain = ({ data }) => {
-  const [completeCourse, setCompleteCourse] = useState([]);
+  const [completeCourse, setCompleteCourse] = useState({});
 
   useEffect(() => {
-    setCompleteCourse(data.projects);
+    setCompleteCourse(data);
   }, [data]);
 
   // console.log(completeCourse)
@@ -17,7 +17,7 @@ const CompleteCourseMain = ({ data }) => {
       <Link to={'completed-courses'} className="currentcourse-title">
         Пройденные курсы
       </Link>
-      {completeCourse.length === 0 ? (
+      {Object.keys(completeCourse).length === 0 ? (
         <div className="profile-none">Нет завершенных курсов ):</div>
       ) : (
         <SliderMain data={completeCourse} sliderType="profileCompleteCourse" countSlide={1} />

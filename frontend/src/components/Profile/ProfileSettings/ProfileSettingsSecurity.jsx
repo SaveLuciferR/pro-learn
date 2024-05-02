@@ -1,20 +1,33 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { setShowWindow, setTitleText, setContentText } from '../../../redux/Modal/slice';
+import {
+  setShowWindow,
+  setTitleText,
+  setContentText,
+  setShowButtons,
+  setShowIcon,
+  setIconType,
+  setShowContent,
+} from '../../../redux/Modal/slice';
 import { useSelector, useDispatch } from 'react-redux';
+import axiosClient from '../../../axiosClient';
 
 const ProfileSettingsSecurity = () => {
   const dispatch = useDispatch();
 
   const buttonAnswer = useSelector((state) => state.modalElement.buttonAnswer);
+
   const currentUser = useSelector((state) => state.mainLayout.user);
 
   let temp = '';
   const { lang, username } = useParams();
   const [email, setEmail] = useState('');
   const [secondEmail, setSecondEmail] = useState('');
-  // const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [newRepeatPassword, setNewRepeatPassword] = useState('');
   const [isActiveChangePswd, setIsActiveChangePswd] = useState(false);
+  const [isErrorActive, setIsErrorActive] = useState(false);
 
   const swapEmails = () => {
     temp = email;
@@ -24,7 +37,6 @@ const ProfileSettingsSecurity = () => {
 
   const definePswd = () => {
     isActiveChangePswd ? console.log('123') : setIsActiveChangePswd(true);
-    console.log('click');
   };
 
   const modalDelete = () => {
@@ -37,11 +49,45 @@ const ProfileSettingsSecurity = () => {
     );
   };
 
+  const modalSuccefully = (type) => {
+    dispatch(
+      setTitleText(
+        `${type === 'password' ? 'Пароль был успешно изменён' : 'Почта была успешно изменена'}`,
+      ),
+    );
+    dispatch(setShowButtons(false));
+    dispatch(setIconType('success'));
+    dispatch(setShowIcon(true));
+    dispatch(setShowContent(false));
+    dispatch(setShowWindow(true));
+  };
+
   useEffect(() => {
     setEmail(currentUser.mail);
     setSecondEmail(currentUser.second_mail);
-    // setPassword(currentUser.password);
-  }, []);
+  }, [lang]);
+
+  const onClickSaveEmailSettings = () => {
+    axiosClient
+      .post(`/@${username}/settings/security`, {
+        mail: email,
+        second_mail: secondEmail,
+      })
+      .then(() => modalSuccefully('email'))
+      .catch(() => console.log('email error'));
+  };
+
+  const onClickSavePasswordSettings = () => {
+    newPassword === newRepeatPassword
+      ? axiosClient
+          .post(`/@${username}/settings/security`, {
+            old_password: password,
+            new_password: newPassword,
+          })
+          .then(() => modalSuccefully('password'))
+          .catch(() => console.log('password error'))
+      : setIsErrorActive(true);
+  };
 
   /* <div className="profile-settings-security-delete">
           <svg
@@ -144,7 +190,11 @@ const ProfileSettingsSecurity = () => {
               </svg>
               Поменять почты местами
             </button>
-            <button className="btn big secondary-blue" style={{ width: '250px' }}>
+            <button
+              onClick={() => onClickSaveEmailSettings()}
+              className="btn big secondary-blue"
+              style={{ width: '250px' }}
+            >
               Сохранить изменения
             </button>
           </div>
@@ -166,24 +216,55 @@ const ProfileSettingsSecurity = () => {
           </div>
           <div className="profile-settings-security-main_item">
             <p className="profile-settings-title">_Пароль</p>
-            <input className="input width100" type="password" name="password" />
+            <input
+              className="input width100"
+              type="password"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <p className="profile-settings-security-main-comment">
+              <span className="profile-settings-security-main-comment error">
+                {isErrorActive === true ? 'Введенный пароль не совпадает с текущим.' : ''}
+              </span>
+            </p>
             {isActiveChangePswd ? (
               <div className="profile-settings-security-main-change">
                 <p className="profile-settings-title">_Новый пароль</p>
-                <input className="input width100" type="password" name="newpassword" />
+                <input
+                  className="input width100"
+                  type="password"
+                  name="newpassword"
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
                 <p className="profile-settings-title">_Повторите новый пароль</p>
-                <input className="input width100" type="password" name="repeatpassword" />
+                <input
+                  className="input width100"
+                  type="password"
+                  name="repeatpassword"
+                  onChange={(e) => setNewRepeatPassword(e.target.value)}
+                />
               </div>
             ) : (
               <></>
             )}
-            <button
-              onClick={() => definePswd()}
-              style={{ width: '250px' }}
-              className="btn big secondary-blue"
-            >
-              Сменить пароль
-            </button>
+            {isActiveChangePswd === false ? (
+              <button
+                disabled={password === '' ? true : false}
+                onClick={() => definePswd()}
+                style={{ width: '270px' }}
+                className="btn big secondary-blue"
+              >
+                Сменить пароль
+              </button>
+            ) : (
+              <button
+                style={{ width: '270px' }}
+                className="btn big secondary-blue"
+                onClick={() => onClickSavePasswordSettings()}
+              >
+                Сохранить новый пароль
+              </button>
+            )}
           </div>
         </div>
       </div>

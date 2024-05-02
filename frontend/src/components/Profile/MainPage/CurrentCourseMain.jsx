@@ -6,7 +6,7 @@ const CurrentCourseMain = ({ data }) => {
   const [currentCourse, setCurrentCourse] = useState([]);
 
   useEffect(() => {
-    setCurrentCourse(data.currentCourse);
+    setCurrentCourse(data);
   }, [data]);
 
   return (
@@ -14,7 +14,7 @@ const CurrentCourseMain = ({ data }) => {
       <Link to={'current-courses'} className="currentcourse-title">
         Текущие курсы
       </Link>
-      {currentCourse.length === 0 ? (
+      {Object.keys(currentCourse).length === 0 ? (
         <div className="profile-none">Нет текущих курсов ):</div>
       ) : (
         <SliderMain data={currentCourse} sliderType="profileCurrentCourse" countSlide={1} />

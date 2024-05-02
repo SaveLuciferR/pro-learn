@@ -157,6 +157,12 @@
         &.accent {
           color: #797ef9;
         }
+
+        &.error {
+          color: #db5b42;
+          height: 19px;
+          font-weight: 300;
+        }
       }
 
       &-btn {

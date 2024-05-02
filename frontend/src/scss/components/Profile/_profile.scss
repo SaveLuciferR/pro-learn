@@ -112,7 +112,6 @@
       }
 
       &-name {
-        padding-left: 8px;
         font-weight: 400;
         font-size: 16px;
         color: rgba($color: #ffffff, $alpha: 0.8);
@@ -819,6 +818,7 @@
 
 .profile-projects-page {
   padding: 28px;
+  height: 100%;
   position: relative;
 
   &-header {
@@ -922,6 +922,7 @@
     }
 
     &-main {
+      height: 100%;
       // display: flex;
       // flex-wrap: wrap;
       // column-gap: 28px;

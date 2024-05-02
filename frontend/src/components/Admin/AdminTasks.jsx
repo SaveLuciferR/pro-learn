@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import axiosClient from '../../axiosClient';
 import Table from '../Table/Table';
+import axiosClient from '../../axiosClient';
 import { useNavigate } from 'react-router-dom';
 
-const AdminCourses = () => {
+const AdminTasks = () => {
   const navigate = useNavigate();
-  const [adminCourses, setAdminCourses] = useState([]);
+  const [adminTasks, setAdminTasks] = useState([]);
+
+  const countDifficulty = [1, 2, 3, 4, 5];
 
   const columns = [
     {
@@ -15,9 +17,9 @@ const AdminCourses = () => {
       cell: (props) => <p>#{props.getValue()}</p>,
     },
     {
-      accessorKey: 'slug',
-      header: 'Slug',
-      size: 498,
+      accessorKey: 'title',
+      header: 'Название',
+      size: 313,
       cell: (props) => <p title={props.getValue()}>{props.getValue()}</p>,
     },
     {
@@ -63,6 +65,26 @@ const AdminCourses = () => {
           {props.getValue()}
         </p>
       ),
+    },
+    {
+      accessorKey: 'difficulty',
+      header: 'Сложность',
+      size: 177,
+      cell: (props) => {
+        return (
+          <ul className="profile-difficulty-range">
+            {countDifficulty.map((i) => {
+              return (
+                <li
+                  className={`profile-difficulty-range-item${
+                    i <= props.getValue() ? ' active' : ''
+                  }`}
+                ></li>
+              );
+            })}
+          </ul>
+        );
+      },
     },
     {
       accessorKey: 'code',
@@ -158,27 +180,26 @@ const AdminCourses = () => {
   ];
 
   useEffect(() => {
-    axiosClient.get('admin/course').then(({ data }) => {
-      setAdminCourses(data.result.courses);
+    axiosClient.get('admin/task').then(({ data }) => {
+      setAdminTasks(data.result.tasks);
     });
   }, []);
-
   return (
     <>
       <div className="admin-header">
-        <h1>_Курсы</h1>
+        <h1>_Задачи</h1>
       </div>
       <div className="admin-main-header">
         <input type="search" placeholder="Поиск ..." className="input width1200" />
-        <button onClick={() => navigate('/admin-panel/course-creation')} className="admin-button">
-          Создать курс
+        <button className="admin-button" onClick={() => navigate('/admin-panel/task-creation')}>
+          Добавить задачу
         </button>
       </div>
       <div className="admin-content">
-        <Table data={adminCourses} columns={columns} />
+        <Table data={adminTasks} columns={columns} />
       </div>
     </>
   );
 };
 
-export default AdminCourses;
+export default AdminTasks;

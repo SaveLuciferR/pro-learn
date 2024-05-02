@@ -9,7 +9,7 @@ const ProfileProjects = ({ data }) => {
     setProjects(data.projects);
   }, [data]);
 
-  console.log(data);
+  // console.log(data);
   return (
     <div className="profile-projects">
       <div className="profile-projects-header">
