@@ -1,0 +1,102 @@
+.admin {
+  padding: 28px 28px 0 28px;
+  display: flex;
+  column-gap: 28px;
+
+  &-main {
+    padding: 28px;
+    background-color: #161b22;
+    border: 1px solid #5f5f5f;
+    border-radius: 12px;
+
+    min-height: 82vh;
+    width: 100%;
+    // min-width: 100vh;
+    &-header {
+      display: flex;
+      column-gap: 28px;
+    }
+  }
+
+  &-header {
+    position: relative;
+    padding: 0 0 28px 0;
+    text-align: center;
+    user-select: none;
+
+    & h1 {
+      font-size: 36px;
+    }
+    &-back {
+      top: 41.5px;
+      left: 28px;
+    }
+  }
+
+  &-search {
+    position: relative;
+    width: 100%;
+  }
+
+  &-button {
+    padding: 17px 28px;
+    width: 250px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 8px;
+
+    background-color: #797ef9;
+
+    transition: background-color 0.2s ease-out;
+
+    &:hover {
+      background-color: #5255bb;
+    }
+  }
+
+  &-content {
+    margin-top: 28px;
+  }
+
+  &-status {
+    display: flex;
+    column-gap: 6px;
+    align-items: center;
+
+    &.green {
+      color: #2ea043;
+    }
+
+    &.red{
+      color: #DB5B42;
+    }
+
+    & .svg {
+      padding: 2px;
+      background-color: rgba($color: #2d2d2d, $alpha: 0.5);
+      width: 24px;
+      height: 24px;
+      border-radius: 2px;
+    }
+  }
+
+  & .profile-section-sidebar {
+    width: 222px;
+  }
+
+  &-footer-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+
+    margin: 28px;
+  }
+}
+
+.search-button {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+}
