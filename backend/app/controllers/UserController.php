@@ -24,6 +24,8 @@ class UserController extends AppController
         ));
     }
 
+    //TODO Сделать повторный посыл кода
+
     public function loginAction()
     {
         $userParam = json_decode(file_get_contents("php://input"), true);
