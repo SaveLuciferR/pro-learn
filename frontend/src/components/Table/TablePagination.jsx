@@ -1,8 +1,8 @@
-import {IoChevronBackCircleOutline, IoChevronForwardCircleOutline} from "react-icons/io5";
-import {useEffect, useState} from "react";
+import { IoChevronBackCircleOutline, IoChevronForwardCircleOutline } from "react-icons/io5";
+import { useEffect, useState } from "react";
 
 
-const TablePagination = ({currentPage, setCurrentPage, amountNote, amountNoteOnPage}) => {
+const TablePagination = ({ currentPage, setCurrentPage, amountNote, amountNoteOnPage }) => {
 
     const [amountPage, setAmountPage] = useState(1);
 
@@ -29,16 +29,20 @@ const TablePagination = ({currentPage, setCurrentPage, amountNote, amountNoteOnP
     }
 
     return (
-        <div className={`table-pagination`}>
-            <IoChevronBackCircleOutline size={32} onClick={() => handleSlidePage(-1, amountPage)}/>
-            {Array(amountPage).fill('').map((item, i) =>
-                <button key={i + 1}
+        <>{amountPage <= 1 ? <></>
+            : <div className={`table-pagination`}>
+                <IoChevronBackCircleOutline size={32} onClick={() => handleSlidePage(-1, amountPage)} />
+                {Array(amountPage).fill('').map((item, i) =>
+                    <button key={i + 1}
                         onClick={() => setCurrentPage(i + 1)}
                         className={`btn slider-digit ${currentPage === i + 1 ? 'active' : ''}`}
-                        style={{fontSize: 18, margin: 0}}>{i + 1}</button>
-            )}
-            <IoChevronForwardCircleOutline size={32} onClick={() => handleSlidePage(1, amountPage)}/>
-        </div>
+                        style={{ fontSize: 18, margin: 0 }}>{i + 1}</button>
+                )}
+                <IoChevronForwardCircleOutline size={32} onClick={() => handleSlidePage(1, amountPage)} />
+            </div>
+        }
+        </>
+
     );
 }
 
