@@ -1,5 +1,5 @@
-import {Link, Outlet, useNavigate, useParams, useSearchParams} from 'react-router-dom';
-import {useEffect, useState} from "react";
+import { Link, Outlet, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
 import axiosClient from "../axiosClient";
 import LoadingElement from "../components/LoadingElement";
 import CourseLessonFewOption from "../components/Courses/CourseLessons/CourseLessonFewOption";
@@ -13,7 +13,7 @@ import ReactHtmlParser from 'html-react-parser'
 
 const CourseStudyPage = () => {
 
-    const {lang, slug} = useParams();
+    const { lang, slug } = useParams();
     const [searchParams, setSearchParams] = useSearchParams();
 
     const navigate = useNavigate();
@@ -63,8 +63,9 @@ const CourseStudyPage = () => {
                     return (
                         <Input
                             key={index}
+                            rightValue={node.children[0].data}
                             value={contentInputData[index]}
-                            setValue={(e) => setContentInputData(prevState => ({...prevState, [index]: e}))}
+                            setValue={(e) => setContentInputData(prevState => ({ ...prevState, [index]: e }))}
                             classes={'input input-data'}
                         />
                     );
@@ -74,7 +75,7 @@ const CourseStudyPage = () => {
             setLessons(prevState => {
                 return {
                     ...prevState,
-                    description: ReactHtmlParser(lesson.description, {replace})
+                    description: ReactHtmlParser(lesson.description, { replace })
                 };
             })
 
@@ -90,11 +91,12 @@ const CourseStudyPage = () => {
     const getLesson = (url) => {
         axiosClient
             .get(url)
-            .then(({data}) => {
+            .then(({ data }) => {
                 console.log(data);
                 setLessons(data.lesson);
                 setCanBePrevSlide(data.can_be_prev_lesson);
                 setCanBeNextSlide(data.can_be_next_lesson);
+                console.log(data.lesson)
 
                 setSuccessLesson(null);
                 setNextBlock(0);
@@ -118,7 +120,7 @@ const CourseStudyPage = () => {
 
     const handleCheckStudy = () => {
         axiosClient.get(`course/${slug}/lessons/study-check?block=${lesson.block}&lesson=${lesson.current_step}&answer=${answer}`)
-            .then(({data}) => {
+            .then(({ data }) => {
                 setSuccessCourse(data.course_success);
                 setSuccessLesson(data.success);
                 setSuccessBlock(data.block_success);
@@ -137,16 +139,16 @@ const CourseStudyPage = () => {
     const getLessonRender = () => {
         switch (lesson.code) {
             case 'theory':
-                return <CourseLessonTheory lesson={lesson}/>
+                return <CourseLessonTheory lesson={lesson} />
             case 'input-data':
                 return <CourseLessonInputData setLesson={(e) => setLessons(e)} lesson={lesson} answer={answer}
-                                              setAnswer={(e) => setAnswer(e)}/>
+                    setAnswer={(e) => setAnswer(e)} />
             case 'few-answer':
-                return <CourseLessonFewOption lesson={lesson} answer={answer} setAnswer={(e) => setAnswer(e)}/>
+                return <CourseLessonFewOption lesson={lesson} answer={answer} setAnswer={(e) => setAnswer(e)} />
             case 'one-answer':
-                return <CourseLessonOneAnswer lesson={lesson} answer={answer} setAnswer={(e) => setAnswer(e)}/>
+                return <CourseLessonOneAnswer lesson={lesson} answer={answer} setAnswer={(e) => setAnswer(e)} />
             case 'task':
-                return <CourseLessonTask lesson={lesson} slug={slug}/>;
+                return <CourseLessonTask lesson={lesson} slug={slug} />;
             default:
                 return null;
         }
@@ -155,7 +157,7 @@ const CourseStudyPage = () => {
     return (
         <>
             {Object.keys(lesson).length === 0 ?
-                <LoadingElement/>
+                <LoadingElement />
                 :
                 <div className="lessons">
                     <div className="lessons-header">
@@ -181,7 +183,7 @@ const CourseStudyPage = () => {
                     </div>
                     <div className="lessons-stage">
                         <button onClick={(e) => slideLesson(e, -1)}
-                                className={`btn slider-arrow ${!canBePrevSlide ? 'hidden' : ''}`}>
+                            className={`btn slider-arrow ${!canBePrevSlide ? 'hidden' : ''}`}>
                             <svg
                                 width="21"
                                 height="21"
@@ -195,7 +197,7 @@ const CourseStudyPage = () => {
                                     r="8.75"
                                     transform="matrix(-1 0 0 1 19.25 1.75)"
                                     stroke="white"
-                                    // strokeOpacity="0.6"
+                                // strokeOpacity="0.6"
                                 />
                                 <path
                                     d="M11.8125 7.875L9.1875 10.5L11.8125 13.125"
@@ -208,7 +210,7 @@ const CourseStudyPage = () => {
                         </button>
                         <p>{lesson.current_step}/{lesson.amount_steps}</p>
                         <button onClick={(e) => slideLesson(e, 1)}
-                                className={`btn slider-arrow ${!canBeNextSlide ? 'hidden' : ''}`}>
+                            className={`btn slider-arrow ${!canBeNextSlide ? 'hidden' : ''}`}>
                             <svg
                                 width="21"
                                 height="21"
@@ -217,7 +219,7 @@ const CourseStudyPage = () => {
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <circle cx="10.5" cy="10.5" r="8.75" stroke="white"
-                                    // strokeOpacity="0.6"
+                                // strokeOpacity="0.6"
                                 />
                                 <path
                                     d="M9.1875 7.875L11.8125 10.5L9.1875 13.125"
@@ -235,11 +237,11 @@ const CourseStudyPage = () => {
                                 <>
                                     {!successLesson ?
                                         <button onClick={() => handleCheckStudy()}
-                                                className="btn primary big">Проверить ответ
+                                            className="btn primary big">Проверить ответ
                                         </button>
                                         :
                                         <button onClick={() => goToNextLesson()}
-                                                className="btn primary big">Продолжить
+                                            className="btn primary big">Продолжить
                                         </button>
                                     }
                                 </>
@@ -248,12 +250,12 @@ const CourseStudyPage = () => {
                                     {successLesson ?
 
                                         <button onClick={() => goToNextLesson()}
-                                                className="btn primary big">Продолжить
+                                            className="btn primary big">Продолжить
                                         </button>
                                         :
                                         <>
                                             <button onClick={() => handleCheckStudy()}
-                                                    className="btn primary big">Проверить ответ
+                                                className="btn primary big">Проверить ответ
                                             </button>
                                         </>
                                     }

@@ -37,7 +37,7 @@ class User extends AppModel
             $user = R::findOne('user', 'mail = ?', [$email]);
 
             if ($user) {
-                if (password_verify($password, $user->password)) {
+                if (password_verify($password, $user->password) && $user->is_activated) {
                     foreach ($user as $k => $v) {
                         if (!$k != 'password') {
                             $_SESSION['user'][$k] = $v;
@@ -66,6 +66,79 @@ class User extends AppModel
         }
 
         return false;
+    }
+
+    public function newUser($data, &$error)
+    {
+        R::begin();
+        try {
+            $user = R::dispense("user");
+            $user->username = $data['username'];
+            $user->mail = $data['mail'];
+            $user->password = password_hash($data['password'], null);
+            $userID = R::store($user);
+            R::commit();
+            return $userID;
+        } catch (\Exception $ex) {
+            R::rollback();
+            $error = $ex->getMessage();
+            return false;
+        }
+    }
+
+    public function activateAccount($data, &$error)
+    {
+        R::begin();
+        try {
+            // debug($_SESSION['user_activation']['mail'], 1);
+            $user = R::findOne('user', 'mail = ?', [$_SESSION['user_activation']['mail']]);
+            if ($data['code'] === $user->activation_code) {
+                $user->activation_code = null;
+                $user->is_activated = true;
+                R::store($user);
+                R::commit();
+                return true;
+            }
+            else {
+                R::commit();
+                $error = 'InCorrectCode';
+                return false;
+            }
+        }
+        catch(\Exception $ex) {
+            R::rollback();
+            $error = $ex->getMessage();
+            return false;
+        }
+    }
+
+    public function deleteUser($id)
+    {
+        R::begin();
+        try {
+            $user = R::load('user', $id);
+            R::trash($user);
+            R::commit();
+            return true;
+        } catch (\Exception $ex) {
+            R::rollback();
+            return false;
+        }
+    }
+
+    public function setActivationCode($userID, $code)
+    {
+        R::begin();
+        try {
+            $user = R::load("user", $userID);
+            $user->activation_code = $code;
+            R::store($user);
+            R::commit();
+            return $userID;
+        } catch (\Exception $ex) {
+            R::rollback();
+            return false;
+        }
     }
 
     public function saveSession($data, $username)
@@ -137,7 +210,6 @@ class User extends AppModel
 
     public function getBlogCreatedUser($username, $lang)
     {
-
     }
 
     public function getTaskCreatedUser($username, $lang)
@@ -210,7 +282,7 @@ class User extends AppModel
     {
         $path = Cache::getInstance()->getCache($cacheKey) . '/' . $secondaryPath;
 
-//        debug($path);
+        //        debug($path);
 
         return $this->createProjectFileList($path);
     }
@@ -544,7 +616,7 @@ class User extends AppModel
             R::commit();
             return true;
         } catch (\Exception $ex) {
-//            debug($ex->getMessage());
+            //            debug($ex->getMessage());
             R::rollback();
             return $ex->getMessage();
         }
@@ -567,7 +639,7 @@ class User extends AppModel
             $UserID = R::store($user);
             return true;
         } catch (\Exception $ex) {
-//            debug($ex);
+            //            debug($ex);
             return $ex->getMessage();
         }
     }
@@ -690,7 +762,7 @@ class User extends AppModel
                                                                                          JOIN typestepcourse t ON t.id = s.typestepcourse_id
                                                                                          WHERE s.stage_course_id = ? AND sd.language_id = ?", [$blockDesc['id'], $lang]);
                 foreach ($blockDesc['lesson'] as $numStep => &$stepDesc) {
-//                    debug($blockDesc, 1);
+                    //                    debug($blockDesc, 1);
                     $stepDesc['answer_option'] = json_decode($stepDesc['answer_option'], true);
                 }
                 unset($course['main'][$lang]['block'][$numStage]['id']);
@@ -701,7 +773,7 @@ class User extends AppModel
         $course['category_prog'] = R::getAll("SELECT c.category_prog_id FROM course_categorylangprog c WHERE c.course_id = ?", [$course['id']]);
 
         unset($course['id'], $course['username']);
-//        debug($course, 1);
+        //        debug($course, 1);
         return $course;
     }
 
@@ -846,7 +918,6 @@ class User extends AppModel
         $flag = $this->saveInputOutputData($taskID, $data['input_output_data']);
 
         return $flag;
-
     }
 
     protected function saveInputOutputData($taskID, $data)
@@ -861,12 +932,12 @@ class User extends AppModel
             R::rollback();
             return false;
         }
-//        debug($amountData, 1);
+        //        debug($amountData, 1);
         if (count($amountData) > 0) {
             foreach ($amountData as $v) {
                 R::begin();
                 try {
-//                    debug($v, 1);
+                    //                    debug($v, 1);
                     $removeInput = R::load("inputoutputdata", $v['id']);
                     R::trash($removeInput);
                     R::commit();
@@ -881,7 +952,7 @@ class User extends AppModel
         foreach ($data as $index => $input) {
             R::begin();
             try {
-//                debug($input, 1);
+                //                debug($input, 1);
                 $addInput = R::dispense('inputoutputdata');
                 $addInput->challenge_id = $taskID;
                 $addInput->input_data = json_encode($input['input']);
@@ -901,7 +972,7 @@ class User extends AppModel
 
     protected function saveCourseDescription($courseID, $data)
     {
-//        debug($data, 1);
+        //        debug($data, 1);
         R::begin();
         try {
             $flag = true;
@@ -977,7 +1048,7 @@ class User extends AppModel
                 if ($v['num_stage'] > count($data[array_key_first($data)]['block'])) {
                     R::begin();
                     try {
-//                        debug($v['num_stage'], 1);
+                        //                        debug($v['num_stage'], 1);
                         $stage = R::findOne('stagecourse', 'num_stage = ? AND course_id = ?', [$v['num_stage'], $courseID]);
                         R::trash($stage);
                         R::commit();
@@ -1032,7 +1103,7 @@ class User extends AppModel
 
     protected function saveStepCourse($block, $slug, $langID, $stageID)
     {
-//        debug($block);
+        //        debug($block);
         $flag = true;
         $amountStep = R::getAll("SELECT s.num_step FROM stepcourse s WHERE s.stage_course_id = ?", [$stageID]);
 
@@ -1072,7 +1143,7 @@ class User extends AppModel
 
 
             if (count($block['lesson']) < count($amountStep)) {
-//                debug($block, 1);
+                //                debug($block, 1);
                 foreach ($amountStep as $v) {
                     if ($v['num_step'] > count($block['lesson'])) {
                         R::begin();
@@ -1090,13 +1161,13 @@ class User extends AppModel
             }
         }
 
-//        debug($block['lesson'], 1);
+        //        debug($block['lesson'], 1);
         return $flag;
     }
 
     protected function saveStepDescriptionCourse($langID, $slug, $stepID, $lesson)
     {
-//        debug($lesson, 1);
+        //        debug($lesson, 1);
         R::begin();
         try {
             R::exec("INSERT INTO stepcourse_description (language_id, step_course_id, title, description, answer_option, right_answer) VALUES (?, ?, ?, ?, ?, ?)", [
@@ -1113,7 +1184,7 @@ class User extends AppModel
         } catch (\Exception $ex) {
             R::rollback();
 
-//            debug($ex->getMessage(), 1);
+            //            debug($ex->getMessage(), 1);
 
             if (str_contains($ex->getMessage(), 'PRIMARY')) {
                 R::begin();

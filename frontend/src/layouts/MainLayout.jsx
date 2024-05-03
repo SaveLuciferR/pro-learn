@@ -7,7 +7,8 @@ import axiosClient from "../axiosClient";
 import {useDispatch, useSelector} from "react-redux";
 import {
     setUserAuth, setUser, setNeedReloadPage, setActiveSidebar, setLanguages,
-    setCurrentLanguage
+    setCurrentLanguage,
+    setNeedActivateAccount
 } from "../redux/MainLayout/slice";
 import SidebarProfile from "../components/Profile/SidebarProfile";
 import ModalWindow from '../components/Modal/ModalWindow';
@@ -50,6 +51,7 @@ const MainLayout = ({isActiveSidebar, isCompiler, success}) => {
                 .then(({data}) => {
                     dispatch(setUserAuth(data.auth));
                     dispatch(setUser(data.user));
+                    dispatch(setNeedActivateAccount(data.needActivateAccount));
                     console.log(data.user);
                 });
 

@@ -20,7 +20,7 @@ const ProfileCurrentCourses = () => {
 
   return (
     <>
-      {Object.keys(currentCourses).length === 0 ? (
+      {currentCourses === undefined || Object.keys(currentCourses).length === 0 ? (
         <LoadingElement />
       ) : (
         <div>

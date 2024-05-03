@@ -51,7 +51,7 @@
     // justify-content: center;
     // align-items: center;
     flex-direction: column;
-    gap: 36px;
+    gap: 20px;
     // background-color: #0d1117;
 
     &-item {
@@ -122,5 +122,21 @@
         &.success {
             color: #2ea043;
         }
+    }
+}
+
+.form {
+    &-hint {
+        padding-top: 12px;
+        
+        font-size: 13px;
+        opacity: 0.4;
+        
+    }
+
+    &_second-buttons {
+        display: flex;
+        gap: 12px;
+        align-items: center;
     }
 }

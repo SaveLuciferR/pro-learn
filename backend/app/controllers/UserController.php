@@ -8,6 +8,7 @@ use core\Cache;
 use core\Language;
 use foroco\BrowserDetection;
 use http\Header;
+use PHPMailer\PHPMailer\PHPMailer;
 
 /** @property User $model */
 
@@ -16,7 +17,11 @@ class UserController extends AppController
 {
     public function authAction()
     {
-        echo json_encode(array('auth' => $this->model->checkAuth(), 'user' => isset($_SESSION['user']) ? $_SESSION['user'] : []));
+        echo json_encode(array(
+            'auth' => $this->model->checkAuth(),
+            'needActivateAccount' => $_SESSION['user_activation']['activate'] ?? false,
+            'user' => isset($_SESSION['user']) ? $_SESSION['user'] : []
+        ));
     }
 
     public function loginAction()
@@ -25,6 +30,7 @@ class UserController extends AppController
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && $userParam) {
             if ($this->model->login($userParam)) {
                 $_SESSION['user']['success'] = true;
+                $_SESSION['user_activateion'] = [];
 
                 $userDevice = [];
                 if (isset($_SERVER['REMOTE_ADDR'])) {
@@ -56,6 +62,117 @@ class UserController extends AppController
             $viewWords = Language::$langView;
 
             echo json_encode(array('viewWords' => $viewWords), JSON_UNESCAPED_SLASHES);
+        } else {
+            header('HTTP/1.0 400 Bad Request');
+            die;
+        }
+    }
+
+    public function registerAction()
+    {
+        $userParam = json_decode(file_get_contents("php://input"), true);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $userParam) {
+            // debug(App::$app->getProperties(), 1);
+
+            $error = '';
+            //TODO Если аккаунт уже есть, но он не подтвержден
+            $userID = $this->model->newUser($userParam, $error);
+            if ($userID !== false) {
+                $mail = new PHPMailer(true);
+                try {
+                    //Enable verbose debug output
+                    $mail->SMTPDebug = 0; //SMTP::DEBUG_SERVER;
+
+                    //Send using SMTP
+                    $mail->isSMTP();
+
+                    //Set the SMTP server to send through
+                    $mail->Host = App::$app->getProperty('smtp_host');
+
+                    //Enable SMTP authentication
+                    $mail->SMTPAuth =  App::$app->getProperty('smtp_auth');
+
+                    //SMTP username
+                    $mail->Username = App::$app->getProperty('smtp_username');
+
+                    //SMTP password
+                    $mail->Password = App::$app->getProperty('smtp_password');
+
+                    //Enable TLS encryption;
+                    $mail->SMTPSecure = App::$app->getProperty('site_secure');
+
+                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+                    $mail->Port = App::$app->getProperty('smtp_port');
+
+                    //Recipients
+                    $mail->setFrom(App::$app->getProperty('smtp_from_email'), App::$app->getProperty('site_name'));
+
+                    // $mail->smtpConnect(array("ssl" => array(
+                    //     "verify_peer" => false,
+                    //     "verify_peer_name" => false,
+                    //     "allow_self_signed" => true
+                    // )));
+
+                    //Add a recipient
+                    $mail->addAddress($userParam['mail'], $userParam['username']);
+
+                    //Set email format to HTML
+                    $mail->isHTML(true);
+
+                    $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+
+                    $mail->Subject = 'Email verification';
+                    $mail->Body    = '<p>Your verification code is: <b style="font-size: 30px;">' . $verification_code . '</b></p>';
+                    // $mail->Mail
+
+                    if ($mail->send()) {
+                        $this->model->setActivationCode($userID, $verification_code);
+                        $_SESSION['user_activation'] = [];
+                        $_SESSION['user_activation']['activate'] = true;
+                        $_SESSION['user_activation']['mail'] = $userParam['mail'];
+                        echo json_encode(array('result' => true));
+                    } else {
+                        header('HTTP/1.0 400 Bad Request');
+                    }
+                } catch (\Exception $e) {
+                    $this->model->deleteUser($userID);
+                    header("HTTP/1.0 400 Bat Request");
+                    $error = "Невозможно отправить код с подтверждением на эту почту";
+                    echo json_encode(array('error' => $error));
+                }
+            } else {
+                header('HTTP/1.0 400 Bad Request');
+                if (str_contains($error, 'UniqueMail')) {
+                    $error = "Эта почта уже существует";
+                } else if (str_contains($error, 'UniqueUsername')) {
+                    $error = "Этот пользователь уже существует";
+                }
+                echo json_encode(array('error' => $error));
+            }
+        } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $viewWords = Language::$langView;
+
+            echo json_encode(array('viewWords' => $viewWords), JSON_UNESCAPED_SLASHES);
+        } else {
+            header('HTTP/1.0 400 Bad Request');
+            die;
+        }
+    }
+
+    public function confirmAction()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $data) {
+            $error = '';
+            $success = $this->model->activateAccount($data, $error);
+            if (!$success && str_contains($error, 'InCorrectCode')) {
+                header('HTTP/1.0 400 Bad Request');
+                $error = 'Не правильный код';
+                echo json_encode(array('error' => $error));
+                die;
+            }
+            $_SESSION['user_activation'] = [];
+            echo json_encode(array('success' => $success));
         } else {
             header('HTTP/1.0 400 Bad Request');
             die;
@@ -172,7 +289,7 @@ class UserController extends AppController
         } else if (isset($_GET['type']) && $_GET['type'] === 'all') {
             $otherTemplates = $this->model->getUserOtherTemplate(App::$app->getProperty('language')['id']);
             $templates = array_merge($otherTemplates, $templates);
-//            $templates = [];
+            //            $templates = [];
             $templates = array_values(array_column($templates, null, 'slug'));
         }
 
@@ -373,7 +490,7 @@ class UserController extends AppController
     public function saveFeedbackAction()
     {
         $_POST = json_decode(file_get_contents("php://input"), true);
-//        debug($_POST, 1);
+        //        debug($_POST, 1);
         if (!empty($_POST)) {
             $data['name'] = $_POST['name'];
             $data['email'] = $_POST['email'];
@@ -415,7 +532,7 @@ class UserController extends AppController
                 }
 
                 $v_parts = explode(";base64,", $v['content']);
-//                debug($v_parts[1]);
+                //                debug($v_parts[1]);
 
                 file_put_contents($pathProject . '/' . $v['fileName'], base64_decode($v_parts[1]));
             }
@@ -473,7 +590,7 @@ class UserController extends AppController
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST = json_decode(file_get_contents("php://input"), true);
                 if (!empty($_POST)) {
-//                    debug($_POST, 1);
+                    //                    debug($_POST, 1);
                     $data['username'] = $_POST['username'];
                     $data['avatar_img'] = $_POST['avatar_img'];
                     $data['heading_img'] = $_POST['heading_img'];
@@ -481,10 +598,10 @@ class UserController extends AppController
                     $data['last_name'] = $_POST['last_name'];
                     $data['first_name'] = $_POST['first_name'];
                     $data['country_address'] = $_POST['country_address'];
-//                    debug($data, 1);
+                    //                    debug($data, 1);
 
                     $updateTable = $this->model->updateNewGenericUserSettings($data, $_SESSION['user']['id']);
-//                    debug($updateTable, 1);
+                    //                    debug($updateTable, 1);
                     if ($updateTable !== true && str_contains($updateTable, 'UniqueUsername')) {
                         header('HTTP/1.0 400 UniqueUsername');
                         die;
@@ -555,7 +672,7 @@ class UserController extends AppController
                 }
             }
 
-            $profileSessions = $this->model->getSessions($_SESSION['user']['username']);
+            $profileSessions['session'] = $this->model->getSessions($_SESSION['user']['username']);
             $profileSessions['success'] = true;
 
             echo json_encode(array('profile_sessions' => $profileSessions), JSON_UNESCAPED_SLASHES);
@@ -697,8 +814,10 @@ class UserController extends AppController
 
     public function saveIconAction()
     {
-        if (isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'] && isset($_FILES['icon']) &&
-            file_exists($_FILES['icon']['tmp_name'][0]) && is_uploaded_file($_FILES['icon']['tmp_name'][0])) {
+        if (
+            isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'] && isset($_FILES['icon']) &&
+            file_exists($_FILES['icon']['tmp_name'][0]) && is_uploaded_file($_FILES['icon']['tmp_name'][0])
+        ) {
             $fileExt = explode("/", $_FILES['icon']['type'][0])[1];
             $fileExt = explode("+", $fileExt)[0];
             $fileName = md5($_SESSION['user']['username']) . '.' . $fileExt;
@@ -744,7 +863,6 @@ class UserController extends AppController
 
             echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
         } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-
         } else {
             header('HTTP/1.0 404 Not Found');
             die;

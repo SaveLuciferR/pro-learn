@@ -8,7 +8,7 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const {lang} = useParams();
+    const { lang } = useParams();
 
     const userAuth = useSelector((state) => state.mainLayout.userAuth);
 
@@ -17,13 +17,13 @@ const Login = () => {
     const [viewWords, setViewWords] = useState({});
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isAuth, setIsAuth] = useState('0');
+    const [errorText, setErrorText] = useState('');
 
 
     useEffect(() => {
         console.log(`${lang === undefined ? "/" : '/' + lang + '/'}user/login`);
         axiosClient.get(`${lang === undefined ? "/" : '/' + lang + '/'}user/login`)
-            .then(({data}) => {
+            .then(({ data }) => {
                 console.log(data);
                 setViewWords(data.viewWords);
             });
@@ -32,11 +32,11 @@ const Login = () => {
     const handleOnClickLogin = () => {
         if (email <= 0 || password <= 0) {
             console.log('Введите значение');
-            setIsAuth('1');
+            setErrorText(viewWords.tpl_user_login_enterLoginData);
             return;
         }
 
-        setIsAuth('0');
+        setErrorText('');
 
         axiosClient
             .post(`/user/login`, { email, password })
@@ -49,9 +49,9 @@ const Login = () => {
 
                 data.auth === true ? console.log('Успешный вход!') : console.log('Вход не был произведен');
             })
-            .catch(({response}) => {
+            .catch(({ response }) => {
                 console.log(response);
-                response.status === 401 ? setIsAuth('2') : console.log(response);
+                response.status === 401 ? setErrorText(viewWords.tpl_user_login_errorLogin) : console.log(response);
             });
     };
 
@@ -86,23 +86,24 @@ const Login = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                             <span>{viewWords.tpl_user_login_password}</span>
-                            {isAuth === '1' ? (
-                                <p className="form_input-message">{viewWords.tpl_user_login_enterLoginData}</p>
-                            ) : isAuth === '2' ? (
-                                <p className="form_input-message">{viewWords.tpl_user_login_errorLogin}</p>
-                            ) : (
-                                <p className="form_input-message"></p>
-                            )}
+                            <p className="form_input-message">{errorText}</p>
+
                         </div>
                     </div>
-                    <Link to="" className="modal_form-link">
-                        {viewWords.tpl_user_login_forgotPassword}
-                    </Link>
                     <label>
-                        <input className="real_checkbox" type="checkbox"/>
+                        <input className="real_checkbox" type="checkbox" />
                         <span className="custom_checkbox"></span>
                         <p>{viewWords.tpl_user_login_rememberMe}</p>
                     </label>
+                    <div className={"form_second-buttons"}>
+                        <Link to="/user/forgot-password" className="modal_form-link">
+                            {viewWords.tpl_user_login_forgotPassword}
+                        </Link>
+                        <p>или</p>
+                        <Link to="/user/register" className="modal_form-link">
+                            Нету аккаунта?
+                        </Link>
+                    </div>
                     <button onClick={() => handleOnClickLogin()} className="btn big primary" type="submit">
                         {viewWords.tpl_user_login_login}
                     </button>

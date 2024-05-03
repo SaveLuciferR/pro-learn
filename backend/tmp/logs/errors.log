@@ -3275,3 +3275,59 @@
 =================
 [2024-05-01 16:02:00] Текст ошибки: Cannot use object of type core\Docker\Docker as array | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 112
 =================
+[2024-05-03 15:39:52] Текст ошибки: syntax error, unexpected variable "$mail" | Файл: D:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 83
+=================
+[2024-05-03 16:18:57] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\phpmailer\phpmailer\src\SMTP.php | Строка: 1269
+=================
+[2024-05-03 16:18:57] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:18:57] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:18:57] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:28:45] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\phpmailer\phpmailer\src\SMTP.php | Строка: 1269
+=================
+[2024-05-03 16:28:45] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:28:45] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:28:45] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:28:45] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:54:40] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\phpmailer\phpmailer\src\SMTP.php | Строка: 1269
+=================
+[2024-05-03 16:54:40] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:54:40] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:54:40] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:54:40] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:54:40] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:54:40] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:59:40] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\phpmailer\phpmailer\src\SMTP.php | Строка: 1269
+=================
+[2024-05-03 16:59:40] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:59:40] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 16:59:40] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: D:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-03 19:18:57] Текст ошибки: Undefined array key "mail" | Файл: D:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 77
+=================
+[2024-05-03 19:19:32] Текст ошибки: Undefined array key "mail" | Файл: D:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 77
+=================
+[2024-05-03 19:19:41] Текст ошибки: Call to undefined method app\models\User::setActivationCode() | Файл: D:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 122
+=================
+[2024-05-03 19:37:01] Текст ошибки: substr(): Argument #2 ($offset) must be of type int, string given | Файл: D:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 133
+=================
+[2024-05-03 22:46:25] Текст ошибки: Trying to access array offset on value of type bool | Файл: D:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 93
+=================
+[2024-05-03 22:46:44] Текст ошибки: Trying to access array offset on value of type bool | Файл: D:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 93
+=================
+[2024-05-03 22:47:07] Текст ошибки: Trying to access array offset on value of type bool | Файл: D:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 93
+=================

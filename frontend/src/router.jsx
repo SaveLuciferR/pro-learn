@@ -17,10 +17,7 @@ import ProfileCompletedCourses from './components/Profile/CompletedCourses/Compl
 import ProfileCurrentCourses from './components/Profile/CurrentCourses/ProfileCurrentCourses';
 import CoursesPage from './pages/CoursePage';
 import CourseSinglePage from './pages/CourseSinglePage';
-import CourseLessonOneAnswer from './components/Courses/CourseLessons/CourseLessonOneAnswer';
 import CourseStudyPage from './pages/CourseStudyPage';
-import CourseLessonFewOption from './components/Courses/CourseLessons/CourseLessonFewOption';
-import CourseLessonInputData from './components/Courses/CourseLessons/CourseLessonInputData';
 import ProfileSettingsUserPage from './pages/ProfileSettingsUserPage';
 import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ProfileSettingsSecurity from './components/Profile/ProfileSettings/ProfileSettingsSecurity';
@@ -31,6 +28,9 @@ import CourseCreatePage from './pages/CourseCreatePage';
 import NotFoundPage from './components/NotFoundPage';
 import TaskCreatePage from "./pages/TaskCreatePage";
 import TaskSinglePage from "./pages/TaskSinglePage";
+import Register from './components/Forms/Register';
+import ForgotPassword from './components/Forms/ForgotPassword';
+import ConfirmAccount from './components/Forms/ConfirmAccount';
 
 
 const router = createBrowserRouter([
@@ -51,6 +51,18 @@ const router = createBrowserRouter([
       {
         path: 'user/login',
         element: <Login isActiveSidebar={false} />,
+      },
+      {
+        path: 'user/register',
+        element: <Register isActiveSidebar={false} />
+      },
+      {
+        path: 'user/forgot-password',
+        element: <ForgotPassword isActiveSidebar={false}/>
+      },
+      {
+        path: 'user/confirm-account',
+        element: <ConfirmAccount isActiveSidebar={false}/>
       },
       {
         path: 'user/feedback',
@@ -104,19 +116,19 @@ const router = createBrowserRouter([
       },
       {
         path: 'profile/:username/course-creation',
-        element: <CourseCreatePage/>
+        element: <CourseCreatePage />
       },
       {
         path: 'profile/:username/course-edit/:slug',
-        element: <CourseCreatePage type={'edit'}/>
+        element: <CourseCreatePage type={'edit'} />
       },
       {
         path: 'profile/:username/task-creation',
-        element: <TaskCreatePage/>
+        element: <TaskCreatePage />
       },
       {
         path: 'profile/:username/task-edit/:slug',
-        element: <TaskCreatePage type={'edit'}/>
+        element: <TaskCreatePage type={'edit'} />
       },
       {
         path: 'profile/:username/project/:project',
@@ -182,15 +194,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'task/:slug',
-        element: <TaskSinglePage/>
+        element: <TaskSinglePage />
       },
       {
         path: 'compiler/:username/:project',
-        element: <CompilerPage isSolve={false} isCompiler={true} isActiveSidebar={true}/>
+        element: <CompilerPage isSolve={false} isCompiler={true} isActiveSidebar={true} />
       },
       {
         path: 'compiler-task/:username/:project/:task',
-        element: <CompilerPage isSolve={true} isCompiler={true} isActiveSidebar={true}/>
+        element: <CompilerPage isSolve={true} isCompiler={true} isActiveSidebar={true} />
       },
     ],
   },

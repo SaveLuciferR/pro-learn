@@ -1,10 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
-import Table from '../../Table';
 import { useEffect, useState } from 'react';
 import axiosClient from '../../../axiosClient';
 import ModalWindow from '../../Modal/ModalWindow';
-import ModalWindowTask from '../../Modal/ModalWindowTask';
-
+// import Table from '../../T'
 const ProfileSettingsSessions = () => {
   const { lang, username } = useParams();
   const [sessions, setSessions] = useState([]);
@@ -13,7 +11,9 @@ const ProfileSettingsSessions = () => {
     axiosClient
       .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}/settings/session?`)
       .then(({ data }) => {
+        console.log(data);
         setSessions(data);
+
       });
   }, [lang, username]);
 
@@ -41,8 +41,8 @@ const ProfileSettingsSessions = () => {
       </div>
       <div className="profile-settings-sessions">
         <div className="profile-settings-sessions-main">
-          <Table />
-          <ModalWindowTask />
+          {/* <Table /> */}
+          <ModalWindow />
         </div>
       </div>
     </div>

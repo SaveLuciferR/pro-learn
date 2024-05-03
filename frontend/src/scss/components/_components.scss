@@ -179,8 +179,9 @@ a {
   &-data {
     display: inline-block;
     box-sizing: border-box;
-    min-width: 80px;
+    // min-width: 80px;
     text-align: center;
+    padding: 4px 8px;
   }
 
   &.border-dashed {

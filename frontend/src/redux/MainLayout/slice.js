@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
     userAuth: false,
     user: [],
+    needActivateAccount: false,
     sidebarProfileActive: false,
     needReloadPage: true,
     activeSidebar: true,
@@ -20,6 +21,9 @@ export const mainLayout = createSlice({
         reducers: {
             setUserAuth(state, action) {
                 state.userAuth = action.payload;
+            },
+            setNeedActivateAccount(state, action) {
+                state.needActivateAccount = action.payload;
             },
             setUser(state, action) {
                 state.user = action.payload;
@@ -51,6 +55,7 @@ export const mainLayout = createSlice({
 
 export const {
     setUserAuth,
+    setNeedActivateAccount,
     setUser,
     setSidebarProfileActive,
     setNeedReloadPage,

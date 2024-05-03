@@ -9,6 +9,5 @@ return array(
     'core\\' => array($vendorDir . '/core'),
     'app\\' => array($baseDir . '/app'),
     'RedBeanPHP\\' => array($vendorDir . '/gabordemooij/redbean/RedBeanPHP'),
-    'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
-    'Detection\\' => array($vendorDir . '/mobiledetect/mobiledetectlib/src'),
+    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
 );

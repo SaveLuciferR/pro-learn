@@ -37,6 +37,7 @@ const SidebarProfile = () => {
 
   const onClickRegister = () => {
     dispatch(setSidebarProfileActive(false));
+    navigate('user/register');
   };
 
   return (

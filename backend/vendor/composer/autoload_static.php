@@ -21,11 +21,7 @@ class ComposerStaticInit541083a105fda2bbcdd7728b0794a10e
         ),
         'P' => 
         array (
-            'Psr\\SimpleCache\\' => 16,
-        ),
-        'D' => 
-        array (
-            'Detection\\' => 10,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
     );
 
@@ -42,13 +38,9 @@ class ComposerStaticInit541083a105fda2bbcdd7728b0794a10e
         array (
             0 => __DIR__ . '/..' . '/gabordemooij/redbean/RedBeanPHP',
         ),
-        'Psr\\SimpleCache\\' => 
+        'PHPMailer\\PHPMailer\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
-        ),
-        'Detection\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/src',
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
     );
 

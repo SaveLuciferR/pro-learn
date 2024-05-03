@@ -19,10 +19,12 @@ const TaskCreateDataTab = ({title, activeInput}) => {
     const slideUp = useRef(null);
 
     const [isFocused, setIsFocused] = useState(false);
+
     const [rowFocus, setRowFocus] = useState(null);
     const [colFocus, setColFocus] = useState(null);
     const [activeSlideDown, setActiveSlideDown] = useState(true);
     const [activeSlideUp, setActiveSlideUp] = useState(true);
+    const [inputWidth, setInputWidth] = useState([[]]);
 
     const handleOnFocusInput = (row, col) => {
         setIsFocused(true);
@@ -109,6 +111,7 @@ const TaskCreateDataTab = ({title, activeInput}) => {
                                     </svg>
                                 </button>
                                 <input key={iData} className="task-create-main-data-item  input width110" type="text"
+                                    // style={{width}}
                                        name={`data ${i} ${iData}`} id={`data ${i} ${iData}`}
                                        placeholder="0" value={data}
                                        onFocus={() => handleOnFocusInput(i, iData)}
