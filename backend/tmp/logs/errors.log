@@ -3331,3 +3331,5 @@
 =================
 [2024-05-03 22:47:07] Текст ошибки: Trying to access array offset on value of type bool | Файл: D:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 93
 =================
+[2024-05-04 00:08:33] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 187 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 130
+=================
