@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 01 2024 г., 20:25
+-- Время создания: Май 03 2024 г., 23:11
 -- Версия сервера: 10.8.4-MariaDB
 -- Версия PHP: 8.1.9
 
@@ -487,7 +487,7 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`id`, `user_id`, `status_id`, `slug`, `icon`, `difficulty`, `date_of_publication`, `views`) VALUES
-(1, 1, 3, 'getting-started-in-javascript', '/public/uploads/course/getting-started-in-javascript.svg', 1, '2023-05-12', 0),
+(1, 1, 1, 'getting-started-in-javascript', '/public/uploads/course/getting-started-in-javascript.svg', 1, '2023-05-12', 0),
 (25, 2, 1, 'osnovy-fullstack-razrabotki', '/tmp/', 5, '2024-04-23', 0),
 (26, 2, 3, 'osnovy-fullstack-razrabotki-26', '/tmp/', 3, NULL, 0),
 (28, 2, 3, '33', '', 1, NULL, 0),
@@ -659,19 +659,20 @@ CREATE TABLE `Feedback` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `feedbackcategory_id` int(10) UNSIGNED NOT NULL,
+  `status_id` int(10) UNSIGNED NOT NULL DEFAULT 6,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Не просмотрено'
+  `date_of_departure` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `Feedback`
 --
 
-INSERT INTO `Feedback` (`id`, `user_id`, `feedbackcategory_id`, `name`, `email`, `text`, `status`) VALUES
-(3, NULL, 1, 'Вася', 'vasya@gmail.com', 'Пользователь Игорь оскорбил меня.', 'Не просмотрено'),
-(9, NULL, 2, 'dsads', 'user@mail.ru', 'ff;dsf\'kdsa', 'Не просмотрено');
+INSERT INTO `Feedback` (`id`, `user_id`, `feedbackcategory_id`, `status_id`, `name`, `email`, `text`, `date_of_departure`) VALUES
+(3, 1, 1, 5, 'Вася', 'vasya@gmail.com', 'Пользователь Игорь оскорбил меня.', '2024-04-10'),
+(9, NULL, 2, 6, 'dsads', 'user@mail.ru', 'ff;dsf\'kdsa', '2024-05-03');
 
 -- --------------------------------------------------------
 
@@ -943,7 +944,8 @@ INSERT INTO `project` (`id`, `user_id`, `slug`, `title`, `path_project`, `date_o
 (73, 1, 'testsolve-cpp', 'testSolve-cpp', NULL, '2024-04-22', 0, NULL),
 (75, 2, 'gfgfd', 'gfgfd', NULL, '2024-04-26', 1, NULL),
 (77, 2, 'pervyy-proekt-na-c', 'Первый проект на C++', NULL, '2024-04-29', 1, NULL),
-(78, 2, 'generator-zakaza', 'Генератор заказа', '/public/projects/user1/generator-zakaza', '2024-05-01', 0, 'Данный проект был создан на реакте и представляет собой генератор заказа, который можно будет скачать');
+(78, 2, 'generator-zakaza', 'Генератор заказа', '/public/projects/user1/generator-zakaza', '2024-05-01', 0, 'Данный проект был создан на реакте и представляет собой генератор заказа, который можно будет скачать'),
+(79, 2, 'sssssss', 'sssssss', NULL, '2024-05-01', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1034,7 +1036,7 @@ INSERT INTO `session` (`id`, `user_id`, `type_device`, `country_address`, `city_
 (2, 1, 'desktop', 'Colombia', 'Cartagena', '2024-04-02', '200.0.3.1'),
 (3, 2, 'unknown', 'Colombia', 'Cartagena', '2024-04-09', '200.0.3.1'),
 (4, 2, 'unknown', 'United States', 'Montgomery', '2024-04-26', '132.3.200.1'),
-(5, 1, 'unknown', 'United States', 'Montgomery', '2024-05-01', '132.3.200.1'),
+(5, 1, 'unknown', 'United States', 'Montgomery', '2024-05-03', '132.3.200.1'),
 (6, 3, 'unknown', 'United States', 'Montgomery', '2024-04-17', '132.3.200.1');
 
 -- --------------------------------------------------------
@@ -1111,7 +1113,9 @@ INSERT INTO `status` (`id`, `code`) VALUES
 (1, 'public'),
 (2, 'reject'),
 (3, 'draft'),
-(4, 'moderation');
+(4, 'moderation'),
+(5, 'check'),
+(6, 'uncheck');
 
 -- --------------------------------------------------------
 
@@ -1137,7 +1141,11 @@ INSERT INTO `status_description` (`language_id`, `status_id`, `title`) VALUES
 (1, 3, 'Черновик'),
 (2, 3, 'Draft'),
 (1, 4, 'На модерации'),
-(2, 4, 'On moderation');
+(2, 4, 'On moderation'),
+(1, 5, 'Просмотрено'),
+(2, 5, 'Viewed'),
+(1, 6, 'Не просмотрено'),
+(2, 6, 'Not viewed');
 
 -- --------------------------------------------------------
 
@@ -1302,22 +1310,24 @@ CREATE TABLE `user` (
   `all_profile_private` tinyint(1) NOT NULL DEFAULT 0,
   `personal_info_private` tinyint(1) NOT NULL DEFAULT 0,
   `look_current_course_private` tinyint(1) NOT NULL DEFAULT 0,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user'
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
+  `activation_code` int(10) UNSIGNED DEFAULT NULL,
+  `is_activated` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `mail`, `second_mail`, `password`, `avatar_img`, `heading_img`, `about_user`, `last_name`, `first_name`, `country_address`, `date_of_registration`, `mb_for_project`, `consecutive_days`, `all_profile_private`, `personal_info_private`, `look_current_course_private`, `role`) VALUES
-(1, 'admin1', 'admin1@mail.ru', 'admin@second.ru', '$2y$10$bmsbwRyKiHqGhsao1NKS0.3zNBmeSholPNPs6dzRbt9ngrEud5D4.', '/public/uploads/ava5.jpg', '/public/uploads/head1.jpg', 'Первый админ на сайте', 'First', 'Admin', 'Россия', '2023-02-01', 50, 1, 0, 0, 1, 'admin'),
-(2, 'user1', 'user1@mail.ru', 'admin@second.ru', '$2y$10$gWzhNmoueqVcAjR7xxE6pey1b8E0ibMcoiON6LnjQ27AuGcUNZglq', '', '', 'Первый пользователь', 'First', 'User32', 'Россия', '2023-05-10', 50, 1, 0, 1, 1, 'user'),
-(3, 'admin2', 'admin2@mail.ru', 'admin2@secondmail.ru', '$2y$10$l5LGx0FR2SIMPZca8fjfquZSRjGDS1Dc/BAmqmYWoQTAvqImhF.p6', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это второй админ', 'второй', 'админ', 'Россия', '2023-05-17', 50, 5, 1, 1, 1, 'admin'),
-(4, 'admin3\r\n', 'admin3@mail.ru', 'admin3@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это третий админ\r\n', 'третий', 'админ', 'Россия', '2023-05-17', 50, 1, 1, 1, 1, 'admin'),
-(5, 'user2', 'user2@mail.ru', 'user2@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это второй пользователь', 'второй', 'пользователь', 'Россия', '2023-05-12', 50, 10, 1, 1, 0, 'user'),
-(6, 'user3', 'user3@mail.ru', 'user3@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это третий пользователь\r\n', 'третий', 'пользователь', 'Россия', '2023-05-15', 200, 2, 0, 1, 0, 'user'),
-(7, 'user4', 'user4@mail.ru', 'user4@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это четвертый пользователь', 'четвертый', 'пользователь', 'Россия', '2023-05-20', 50, 2, 0, 0, 0, 'user'),
-(9, 's', 's@mail.ru', 's@mail.ru', 's', 's', NULL, 's', 's', 's', 's', '2023-06-21', 50, 1, 1, 0, 0, 'user');
+INSERT INTO `user` (`id`, `username`, `mail`, `second_mail`, `password`, `avatar_img`, `heading_img`, `about_user`, `last_name`, `first_name`, `country_address`, `date_of_registration`, `mb_for_project`, `consecutive_days`, `all_profile_private`, `personal_info_private`, `look_current_course_private`, `role`, `activation_code`, `is_activated`) VALUES
+(1, 'admin1', 'admin1@mail.ru', 'admin@second.ru', '$2y$10$bmsbwRyKiHqGhsao1NKS0.3zNBmeSholPNPs6dzRbt9ngrEud5D4.', '/public/uploads/ava5.jpg', '/public/uploads/head1.jpg', 'Первый админ на сайте', 'First', 'Admin', 'Россия', '2023-02-01', 50, 1, 0, 0, 1, 'admin', NULL, 1),
+(2, 'user1', 'user1@mail.ru', 'admin@second.ru', '$2y$10$gWzhNmoueqVcAjR7xxE6pey1b8E0ibMcoiON6LnjQ27AuGcUNZglq', '', '', 'Первый пользователь', 'First', 'User32', 'Россия', '2023-05-10', 50, 1, 0, 1, 1, 'user', NULL, 1),
+(3, 'admin2', 'admin2@mail.ru', 'admin2@secondmail.ru', '$2y$10$l5LGx0FR2SIMPZca8fjfquZSRjGDS1Dc/BAmqmYWoQTAvqImhF.p6', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это второй админ', 'второй', 'админ', 'Россия', '2023-05-17', 50, 5, 1, 1, 1, 'admin', NULL, 0),
+(4, 'admin3\r\n', 'admin3@mail.ru', 'admin3@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это третий админ\r\n', 'третий', 'админ', 'Россия', '2023-05-17', 50, 1, 1, 1, 1, 'admin', NULL, 0),
+(5, 'user2', 'user2@mail.ru', 'user2@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это второй пользователь', 'второй', 'пользователь', 'Россия', '2023-05-12', 50, 10, 1, 1, 0, 'user', NULL, 0),
+(6, 'user3', 'user3@mail.ru', 'user3@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это третий пользователь\r\n', 'третий', 'пользователь', 'Россия', '2023-05-15', 200, 2, 0, 1, 0, 'user', NULL, 0),
+(7, 'user4', 'user4@mail.ru', 'user4@secondmail.ru', '$2y$10$bNgYXU/KOi6kRuf8jDD1segXKQXlSa8YGC5tIydQ.qunDOzW8jfHO', '/public/uploads/ava2.jpg', '/public/uploads/heading2.jpg', 'это четвертый пользователь', 'четвертый', 'пользователь', 'Россия', '2023-05-20', 50, 2, 0, 0, 0, 'user', NULL, 0),
+(9, 's', 's@mail.ru', 's@mail.ru', 's', 's', NULL, 's', 's', 's', 's', '2023-06-21', 50, 1, 1, 0, 0, 'user', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1340,7 +1350,7 @@ INSERT INTO `user_challenge` (`user_id`, `challenge_id`, `project_id`, `success`
 (1, 1, 68, 0),
 (1, 27, 73, 1),
 (2, 27, NULL, 0),
-(2, 28, 77, 1);
+(2, 28, 79, 1);
 
 -- --------------------------------------------------------
 
@@ -1363,6 +1373,8 @@ CREATE TABLE `user_course` (
 INSERT INTO `user_course` (`user_id`, `course_id`, `success`, `current_step`, `current_stage`) VALUES
 (1, 47, 0, 7, 1),
 (2, 1, 0, 2, 2),
+(2, 25, 0, 0, 0),
+(2, 45, 0, 0, 0),
 (2, 47, 1, 4, 2);
 
 --
@@ -1562,7 +1574,8 @@ ALTER TABLE `documentation_description`
 ALTER TABLE `Feedback`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_id` (`feedbackcategory_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `status_id` (`status_id`);
 
 --
 -- Индексы таблицы `Feedbackcategory`
@@ -1864,7 +1877,7 @@ ALTER TABLE `language`
 -- AUTO_INCREMENT для таблицы `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT для таблицы `projecttemplate`
@@ -1888,7 +1901,7 @@ ALTER TABLE `stagecourse`
 -- AUTO_INCREMENT для таблицы `status`
 --
 ALTER TABLE `status`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `stepcourse`
@@ -2068,7 +2081,8 @@ ALTER TABLE `documentation_description`
 --
 ALTER TABLE `Feedback`
   ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`feedbackcategory_id`) REFERENCES `Feedbackcategory` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `feedback_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `Feedbackcategory_description`
