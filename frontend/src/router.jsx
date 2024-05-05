@@ -1,13 +1,17 @@
 import { createBrowserRouter } from 'react-router-dom';
+import Login from './components/Forms/Login';
+import Register from './components/Forms/Register.jsx';
+import ForgotPassword from './components/Forms/ForgotPassword';
+import ConfirmAccount from './components/Forms/ConfirmAccount';
 import MainLayout from './layouts/MainLayout';
+import AdminLayout from './layouts/AdminLayout';
 import BlogPage from './pages/BlogPage';
 import ProjectPage from './pages/ProjectPage';
 import ProjectAddPage from './pages/ProjectAddPage';
-import Login from './components/Forms/Login';
 import CompilerPage from './pages/CompilerPage';
+import Feedback from './components/Forms/Feedback';
 import ProfilePage from './pages/ProfilePage';
 import ProfileCreatedCourses from './components/Profile/CreatedCourses/CreatedCourses';
-import Feedback from './components/Forms/Feedback';
 import ProfileMainPage from './components/Profile/MainPage/ProfileMainPage';
 import ProfileQuestionsMain from './components/Profile/Questions/ProfileQuestionsMain';
 import ProfileUserTasks from './components/Profile/UserTasks/ProfileUserTasks';
@@ -15,18 +19,16 @@ import ProfileTasks from './components/Profile/UserTasks/ProfileTasks';
 import ProfileProjects from './components/Profile/Projects/ProfileProjects';
 import ProfileCompletedCourses from './components/Profile/CompletedCourses/CompletedCourses';
 import ProfileCurrentCourses from './components/Profile/CurrentCourses/ProfileCurrentCourses';
-import CoursesPage from './pages/CoursePage';
-import CourseSinglePage from './pages/CourseSinglePage';
-import CourseStudyPage from './pages/CourseStudyPage';
 import ProfileSettingsUserPage from './pages/ProfileSettingsUserPage';
 import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ProfileSettingsSecurity from './components/Profile/ProfileSettings/ProfileSettingsSecurity';
 import ProfileSettingsSessions from './components/Profile/ProfileSettings/ProfileSettingsSessions';
 import ProfileSettingsPrivacy from './components/Profile/ProfileSettings/ProfileSettingsPrivacy';
 import ProfileSettingsMadeByUser from './components/Profile/ProfileSettings/ProfileSettingsMadeByUser.jsx';
-import AdminLayout from './layouts/AdminLayout';
+import CoursesPage from './pages/CoursePage';
+import CourseSinglePage from './pages/CourseSinglePage';
+import CourseStudyPage from './pages/CourseStudyPage';
 import CourseCreatePage from './pages/CourseCreatePage';
-import NotFoundPage from './components/NotFoundPage';
 import TaskCreatePage from './pages/TaskCreatePage';
 import TaskSinglePage from './pages/TaskSinglePage';
 import AdminPage from './pages/AdminPage';
@@ -36,6 +38,7 @@ import AdminTasks from './components/Admin/AdminTasks.jsx';
 import AdminProjects from './components/Admin/AdminProjects.jsx';
 import AdminUsers from './components/Admin/AdminUsers.jsx';
 import AdminFeedback from './components/Admin/AdminFeedback.jsx';
+import NotFoundPage from './components/NotFoundPage';
 
 const router = createBrowserRouter([
   {
@@ -94,6 +97,18 @@ const router = createBrowserRouter([
       {
         path: 'user/login',
         element: <Login isActiveSidebar={false} />,
+      },
+      {
+        path: 'user/register',
+        element: <Register isActiveSidebar={false} />,
+      },
+      {
+        path: 'user/forgot-password',
+        element: <ForgotPassword isActiveSidebar={false} />,
+      },
+      {
+        path: 'user/confirm-account',
+        element: <ConfirmAccount isActiveSidebar={false} />,
       },
       {
         path: 'user/feedback',
@@ -221,7 +236,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'course/:slug/study',
-        element: <CourseStudyPage />
+        element: <CourseStudyPage />,
       },
       {
         path: 'task',
