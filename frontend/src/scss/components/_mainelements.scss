@@ -73,6 +73,7 @@
   &_title {
     font-weight: 700;
     font-size: 24px;
+    text-wrap: nowrap;
     color: #ffffff;
     text-decoration: none;
     transition: color 0.3s;
@@ -91,6 +92,70 @@
 
     background-color: #0d1117;
     box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.7);
+  }
+}
+
+@media (max-width: 430px) {
+  .header {
+    &_warpper {
+      padding: 25px 25px;
+    }
+
+    &_leftside {
+      column-gap: 40px;
+    }
+
+    &_rightside {
+      column-gap: 14px;
+    }
+
+    &_title {
+      font-size: 20px;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .header {
+    &_warpper {
+      padding: 20px 20px;
+    }
+
+    &_leftside {
+      column-gap: 40px;
+    }
+
+    &_rightside {
+      column-gap: 14px;
+    }
+
+    &_icons {
+      column-gap: 14px;
+
+      &__icon {
+        height: 25px;
+        width: 25px;
+
+        & svg {
+          height: 25px;
+          width: 25px;
+        }
+      }
+    }
+
+    &_title {
+      font-size: 20px;
+    }
+
+    &_category {
+      display: none;
+    }
+
+    &_lang {
+      & .dropdown {
+        font-size: 14px;
+      }
+    }
   }
 }
 
@@ -137,6 +202,33 @@
   }
 }
 
+@media (max-width: 768px) {
+  .sidebar {
+    width: 50px;
+
+    &_btngroup {
+      padding: 12px;
+      row-gap: 10px;
+    }
+
+    &_btn {
+      width: 28px;
+      height: 28px;
+
+      &__item svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .sidebar {
+    display: none;
+  }
+}
+
 /* FOOTER */
 
 .footer {
@@ -150,6 +242,7 @@
   background-color: #161b22;
 
   transition: 0.3s ease-in-out;
+  border-top: 1px solid #5f5f5f;
 
   &:hover {
     margin-top: 0;
@@ -199,5 +292,66 @@
     justify-content: center;
     align-items: center;
     column-gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    &-content {
+      padding: 25px 70px;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .footer {
+    height: 159px;
+    margin-top: 139px;
+
+    &-wrapper {
+      height: 159px;
+      margin-top: -159px;
+    }
+
+    &-content {
+      padding: 12px 60px;
+      flex-direction: column;
+
+      height: 139px;
+    }
+
+    &-icons {
+      &__item {
+        width: 44px;
+        height: 44px;
+
+        & svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+
+    &-feedback {
+      flex-direction: column;
+      row-gap: 8px;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .footer {
+    &-content,
+    &-content button {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .footer {
+    &-content {
+      padding: 12px 30px;
+    }
   }
 }

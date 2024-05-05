@@ -156,14 +156,14 @@ a {
     border: 1px solid #797ef9;
 
     &-error {
-      border: 1px solid #FF2C2C;
+      border: 1px solid #ff2c2c;
     }
   }
 
   &.output-search {
     font-size: 14px;
     padding: 4px 8px;
-    border: 1px solid #0D0D0D;
+    border: 1px solid #0d0d0d;
 
     transition: all 0.4s ease-in-out;
 
@@ -347,6 +347,21 @@ a {
       &:active {
         background-color: #181f2a;
       }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .dropdown {
+    & .select > span.small {
+      width: 50px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    & .dropdown-menu li {
+      padding: 6px 8px;
     }
   }
 }
@@ -695,13 +710,13 @@ label {
 
     &:before {
       position: absolute;
-      content: '';
+      content: "";
       width: 26px;
       height: 26px;
       border-radius: 50%;
       left: 4px;
       bottom: 4px;
-      background-color: #FFFFFF;
+      background-color: #ffffff;
       transition: 0.4s;
     }
   }

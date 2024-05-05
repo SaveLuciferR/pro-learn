@@ -34,3 +34,21 @@ body {
 }
 
 @import "./components/all";
+
+@media (max-width: 430px) {
+  .main {
+    padding: 89px 28px 28px 28px;
+    &.active-sidebar {
+      padding: 89px 28px 28px 28px;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .main {
+    padding: 77px 28px 28px 28px;
+    &.active-sidebar {
+      padding: 77px 28px 28px 28px;
+    }
+  }
+}

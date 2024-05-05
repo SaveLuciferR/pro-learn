@@ -39,6 +39,7 @@ import AdminProjects from './components/Admin/AdminProjects.jsx';
 import AdminUsers from './components/Admin/AdminUsers.jsx';
 import AdminFeedback from './components/Admin/AdminFeedback.jsx';
 import NotFoundPage from './components/NotFoundPage';
+import MainMenu from './components/MainMenu.jsx';
 
 const router = createBrowserRouter([
   {
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
     path: '/:lang?',
     element: <MainLayout isActiveSidebar={true} isCompiler={false} />,
     children: [
+      {
+        path: '',
+        element: <MainMenu isActiveSidebar={false} />,
+      },
       {
         path: 'user/login',
         element: <Login isActiveSidebar={false} />,
