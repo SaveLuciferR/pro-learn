@@ -11,7 +11,7 @@ class Course extends AppModel
     public function getCourseForUser($username, $lang)
     {
         return R::getAll("SELECT c.id, uc.success,
-                                    c.slug, c.icon, c.difficulty, cd.excerpt, uc.current_stage, u.username,
+                                    c.slug, c.icon, c.difficulty, cd.title, cd.excerpt, uc.current_stage, u.username,
                                     u.role, c.date_of_publication, c.views,
                                     (SELECT COUNT(sc.id)
                                     FROM stagecourse sc 
@@ -55,7 +55,7 @@ class Course extends AppModel
     public function getAllCourse($lang)
     {
         return R::getAll("SELECT c.id,
-                                    c.slug, c.icon, c.difficulty, cd.excerpt, u.username,
+                                    c.slug, c.icon, c.difficulty, cd.title, cd.excerpt, u.username,
                                     u.role, c.date_of_publication, c.views,
                                     (SELECT COUNT(sc.id)
                                     FROM stagecourse sc 
