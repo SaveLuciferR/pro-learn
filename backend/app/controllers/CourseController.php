@@ -17,17 +17,17 @@ class CourseController extends AppController
             $course['user_course'] = $this->model->getCourseForUser($_SESSION['user']['username'], App::$app->getProperty('language')['id']);
 
             foreach ($course['user_course'] as $k => $v) {
-                $course[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
-                $course[$k]['tags'] = $this->model->getCourseTagByID($k);
-                $course[$k]['language'] = $this->model->getCourseLangProgByID($k);
+                $course['user_course'][$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+                $course['user_course'][$k]['tags'] = $this->model->getCourseTagByID($v['id']);
+                $course['user_course'][$k]['language'] = $this->model->getCourseLangProgByID($v['id']);
             }
         }
 
         $course['all_course'] = $this->model->getAllCourse(App::$app->getProperty('language')['id']);
         foreach ($course['all_course'] as $k => $v) {
-            $course[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
-            $course[$k]['tags'] = $this->model->getCourseTagByID($k);
-            $course[$k]['language'] = $this->model->getCourseLangProgByID($k);
+            $course['all_course'][$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            $course['all_course'][$k]['tags'] = $this->model->getCourseTagByID($v['id']);
+            $course['all_course'][$k]['language'] = $this->model->getCourseLangProgByID($v['id']);
         }
 
         echo json_encode(array('course' => $course), JSON_UNESCAPED_SLASHES);

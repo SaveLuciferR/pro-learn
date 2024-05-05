@@ -38,6 +38,7 @@ class User extends AppModel
 
             if ($user) {
                 if (password_verify($password, $user->password) && $user->is_activated) {
+                    $_SESSION['user'] = [];
                     foreach ($user as $k => $v) {
                         if (!$k != 'password') {
                             $_SESSION['user'][$k] = $v;
