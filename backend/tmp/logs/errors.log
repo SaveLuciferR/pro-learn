@@ -3331,3 +3331,135 @@
 =================
 [2024-05-03 22:47:07] Текст ошибки: Trying to access array offset on value of type bool | Файл: D:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 93
 =================
+[2024-05-05 14:55:58] Текст ошибки: Undefined array key "mainFolderProject" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 554
+=================
+[2024-05-05 14:56:01] Текст ошибки: Undefined array key "mainFolderProject" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 554
+=================
+[2024-05-05 14:56:56] Текст ошибки: Undefined array key "mainFolderProject" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 554
+=================
+[2024-05-05 15:00:25] Текст ошибки: Undefined array key "mainFolderProject" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 554
+=================
+[2024-05-05 15:03:40] Текст ошибки: Undefined array key "mainFolderProject" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 556
+=================
+[2024-05-05 15:46:09] Текст ошибки: Undefined array key "tmp_file" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 900
+=================
+[2024-05-05 15:46:12] Текст ошибки: Undefined array key "tmp_file" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 900
+=================
+[2024-05-05 15:46:30] Текст ошибки: Undefined array key "tmp_file" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 900
+=================
+[2024-05-05 15:47:22] Текст ошибки: Undefined array key "tmp_file" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 903
+=================
+[2024-05-05 16:34:24] Текст ошибки: Undefined array key "mainFolderProject" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 520
+=================
+[2024-05-05 16:38:34] Текст ошибки: Undefined array key "mainFolderProject" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 520
+=================
+[2024-05-05 16:38:40] Текст ошибки: Undefined array key "mainFolderProject" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 520
+=================
+[2024-05-05 16:49:18] Текст ошибки: Undefined array key "secondaryPathProject" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 520
+=================
+[2024-05-05 16:53:37] Текст ошибки: Undefined array key "secondaryPathProject" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 521
+=================
+[2024-05-05 16:53:52] Текст ошибки: Undefined array key "secondaryPathProject" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 521
+=================
+[2024-05-05 16:59:40] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 373
+=================
+[2024-05-05 16:59:40] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 373
+=================
+[2024-05-05 17:00:11] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 373
+=================
+[2024-05-05 17:01:08] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 373
+=================
+[2024-05-05 17:01:13] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 373
+=================
+[2024-05-05 17:01:13] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 373
+=================
+[2024-05-05 17:36:45] Текст ошибки: Undefined array key "mainFolderProject" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 464
+=================
+[2024-05-05 17:46:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-05 17:46:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-05 17:46:23] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-05 17:49:02] Текст ошибки: Метод app\controllers\UserController::projectForEditAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-05-05 17:49:02] Текст ошибки: Метод app\controllers\UserController::projectForEditAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-05-05 18:03:25] Текст ошибки: copy(): The first argument to copy() function cannot be a directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 958
+=================
+[2024-05-05 18:03:25] Текст ошибки: copy(): The first argument to copy() function cannot be a directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 958
+=================
+[2024-05-05 18:07:51] Текст ошибки: copy(): The first argument to copy() function cannot be a directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 960
+=================
+[2024-05-05 18:07:51] Текст ошибки: copy(): The first argument to copy() function cannot be a directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 960
+=================
+[2024-05-05 18:10:28] Текст ошибки: copy(C:\OSPanel\domains\pro-learn\backend/tmp/project/24c9e15e52afc47c225b757e7bee1f9d/e470f9f24fae3807a5355bee7b1f3b54/./../.dockerignore/.env): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 962
+=================
+[2024-05-05 18:10:28] Текст ошибки: copy(C:\OSPanel\domains\pro-learn\backend/tmp/project/24c9e15e52afc47c225b757e7bee1f9d/e470f9f24fae3807a5355bee7b1f3b54/./../.dockerignore/.env): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 962
+=================
+[2024-05-05 18:10:33] Текст ошибки: copy(C:\OSPanel\domains\pro-learn\backend/tmp/project/24c9e15e52afc47c225b757e7bee1f9d/e470f9f24fae3807a5355bee7b1f3b54/./../.dockerignore/.env): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 962
+=================
+[2024-05-05 18:10:34] Текст ошибки: copy(C:\OSPanel\domains\pro-learn\backend/tmp/project/24c9e15e52afc47c225b757e7bee1f9d/e470f9f24fae3807a5355bee7b1f3b54/./../.dockerignore/.env): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 962
+=================
+[2024-05-05 18:12:58] Текст ошибки: copy(C:\OSPanel\domains\pro-learn\backend/tmp/project/24c9e15e52afc47c225b757e7bee1f9d/e470f9f24fae3807a5355bee7b1f3b54/./../.dockerignore/.env): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 962
+=================
+[2024-05-05 18:12:58] Текст ошибки: copy(C:\OSPanel\domains\pro-learn\backend/tmp/project/24c9e15e52afc47c225b757e7bee1f9d/e470f9f24fae3807a5355bee7b1f3b54/./../.dockerignore/.env): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 962
+=================
+[2024-05-05 18:13:13] Текст ошибки: copy(C:\OSPanel\domains\pro-learn\backend/tmp/project/24c9e15e52afc47c225b757e7bee1f9d/e470f9f24fae3807a5355bee7b1f3b54/./../.dockerignore/.env): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 962
+=================
+[2024-05-05 18:13:13] Текст ошибки: copy(C:\OSPanel\domains\pro-learn\backend/tmp/project/24c9e15e52afc47c225b757e7bee1f9d/e470f9f24fae3807a5355bee7b1f3b54/./../.dockerignore/.env): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 962
+=================
+[2024-05-05 18:14:32] Текст ошибки: copy(C:\OSPanel\domains\pro-learn\backend/tmp/project/24c9e15e52afc47c225b757e7bee1f9d/e470f9f24fae3807a5355bee7b1f3b54/./../.dockerignore/.env): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 962
+=================
+[2024-05-05 18:14:32] Текст ошибки: copy(C:\OSPanel\domains\pro-learn\backend/tmp/project/24c9e15e52afc47c225b757e7bee1f9d/e470f9f24fae3807a5355bee7b1f3b54/./../.dockerignore/.env): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 962
+=================
+[2024-05-05 18:17:26] Текст ошибки: mkdir(): File exists | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 957
+=================
+[2024-05-05 18:18:02] Текст ошибки: mkdir(): File exists | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 957
+=================
+[2024-05-05 19:03:51] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-05 19:05:13] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-05 19:05:35] Текст ошибки: Метод app\controllers\UserController::saveEditProjectAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-05-05 19:05:54] Текст ошибки: Undefined property: app\models\User::$route | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 302
+=================
+[2024-05-05 19:06:46] Текст ошибки: unlink(/.idea): No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 608
+=================
+[2024-05-05 19:09:06] Текст ошибки: unlink(/.idea): No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 608
+=================
+[2024-05-05 19:10:28] Текст ошибки: unlink(/.idea): No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 609
+=================
+[2024-05-05 19:20:05] Текст ошибки: Undefined array key "slug" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 612
+=================
+[2024-05-05 19:21:17] Текст ошибки: unlink(/.idea): No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 618
+=================
+[2024-05-05 19:23:51] Текст ошибки: Undefined array key "slug" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 574
+=================
+[2024-05-05 20:06:02] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 394
+=================
+[2024-05-05 20:18:02] Текст ошибки: Invalid or uninitialized Zip object | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 436
+=================
+[2024-05-05 20:18:52] Текст ошибки: Invalid or uninitialized Zip object | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 436
+=================
+[2024-05-05 20:20:38] Текст ошибки: Invalid or uninitialized Zip object | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 438
+=================
+[2024-05-05 20:20:59] Текст ошибки: Invalid or uninitialized Zip object | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 435
+=================
+[2024-05-05 20:28:04] Текст ошибки: Invalid or uninitialized Zip object | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 437
+=================
+[2024-05-05 20:29:16] Текст ошибки: Invalid or uninitialized Zip object | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 438
+=================
+[2024-05-05 20:29:40] Текст ошибки: Invalid or uninitialized Zip object | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 438
+=================
+[2024-05-05 20:31:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-05 20:31:18] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-05 20:31:58] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-05 21:01:41] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-05 21:01:41] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================

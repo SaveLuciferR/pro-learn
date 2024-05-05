@@ -90,7 +90,7 @@ class UserController extends AppController
                     $mail->Host = App::$app->getProperty('smtp_host');
 
                     //Enable SMTP authentication
-                    $mail->SMTPAuth =  App::$app->getProperty('smtp_auth');
+                    $mail->SMTPAuth = App::$app->getProperty('smtp_auth');
 
                     //SMTP username
                     $mail->Username = App::$app->getProperty('smtp_username');
@@ -122,7 +122,7 @@ class UserController extends AppController
                     $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
 
                     $mail->Subject = 'Email verification';
-                    $mail->Body    = '<p>Your verification code is: <b style="font-size: 30px;">' . $verification_code . '</b></p>';
+                    $mail->Body = '<p>Your verification code is: <b style="font-size: 30px;">' . $verification_code . '</b></p>';
                     // $mail->Mail
 
                     if ($mail->send()) {
@@ -407,6 +407,56 @@ class UserController extends AppController
         echo json_encode(array('projectInfo' => $projectInfo, 'filesInfo' => $filesProject, 'readmeFile' => $readmeFile), JSON_UNESCAPED_SLASHES);
     }
 
+    public function projectDownloadAction()
+    {
+        $project = $this->model->getProjectInfoBySlug($this->route['slug'], $this->route['username']);
+
+        if (!$project) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found Project', true, 404);
+            die;
+        }
+
+        $rootPath = USER_PROJECT . '/' . $this->route['username'] . '/' . $this->route['slug'];
+        $fileName = $this->route['username'] . '-' . $this->route['slug'] . '.zip';
+        $dist = DOWNLOAD_CACHE . '/' . $fileName;
+        $zip = new \ZipArchive();
+        if ($zip->open($dist, \ZipArchive::CREATE | \ZipArchive::OVERWRITE)) {
+            $files = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($rootPath),
+                \RecursiveIteratorIterator::LEAVES_ONLY
+            );
+
+//            debug($dist, 1);
+
+            foreach ($files as $name => $file) {
+                if (!$file->isDir()) {
+//                    debug($name, 1);
+                    $filePath = $file->getRealPath();
+                    $relativePath = substr($filePath, strlen($rootPath) + 1);
+                    $zip->addFile($filePath, $relativePath);
+                }
+            }
+            if ($zip->close()) {
+                header('Content-Type: application/zip');
+                header('Content-Disposition: attachment; filename="' . basename($dist) . '"');
+                readfile($dist);
+            }
+        }
+
+//        echo json_encode(array('downloadUrl' => $dist, 'fileName' => $fileName));
+    }
+
+
+    protected function getDir($path)
+    {
+
+    }
+
+    public function projectDeleteAction()
+    {
+
+    }
+
     public function addProjectAction()
     {
         if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
@@ -414,19 +464,20 @@ class UserController extends AppController
             die;
         }
 
-        $this->deleteAllCacheProject();
+//        $this->deleteAllCacheProject();
 
         $cache = Cache::getInstance();
 
-        $_POST = json_decode(file_get_contents("php://input"), true);
+//        $_POST = json_decode(file_get_contents("php://input"), true);
         if (!empty($_POST)) {
-            $files = $_POST['uploadInfoFiles'];
+//            $files = $_POST['uploadInfoFiles'];
 
-            $mainFolder = $_POST['mainFolderProject'];
+//            $mainFolder = $_POST['mainFolderProject'];
+            $files = $_FILES;
             $username = $_POST['username'];
             $newProject = $_POST['newProject'];
 
-            $keyCache = $username . '/' . $mainFolder;
+            $keyCache = $username . '/' . md5(session_id());
             //TODO: Сделать так, чтобы проект пользователя сохранялся лишь по его нику из роутера в кеш.
 
             $userCacheProjectFolder = PROJECT_CACHE . "/" . md5($username);
@@ -434,7 +485,7 @@ class UserController extends AppController
                 mkdir($userCacheProjectFolder);
             }
 
-            $userCacheProjectFolder .= "/" . md5($mainFolder);
+            $userCacheProjectFolder .= "/" . md5(session_id());
             if (!is_dir($userCacheProjectFolder)) {
                 mkdir($userCacheProjectFolder);
             }
@@ -444,14 +495,14 @@ class UserController extends AppController
                 $this->deleteDirectoryProject($data);
             } else if ($newProject) { // Новый проект
                 // debug($files, 1);
-                $this->pushProject($cache, $keyCache, $mainFolder, $userCacheProjectFolder, $files);
+                $this->pushProject($cache, $keyCache, md5(session_id()), $userCacheProjectFolder, $files);
             } else { // Не новый проект и кеш не закончилсяx
-                $this->pushProject($cache, $keyCache, $mainFolder, $userCacheProjectFolder, $files);
+                $this->pushProject($cache, $keyCache, md5(session_id()), $userCacheProjectFolder, $files);
             }
         }
     }
 
-    public function saveProjectAction()
+    public function saveNewProjectAction()
     {
         if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
             header('HTTP/1.0 404 Not Found');
@@ -460,7 +511,7 @@ class UserController extends AppController
 
         $_POST = json_decode(file_get_contents("php://input"), true);
         if (!empty($_POST)) {
-            $projectPath = Cache::getInstance()->getCache($_POST['username'] . '/' . $_POST['mainFolderProject']);
+            $projectPath = Cache::getInstance()->getCache($_POST['username'] . '/' . md5(session_id()));
 
             $data = [];
             $data['title'] = $_POST['nameProject'];
@@ -473,12 +524,60 @@ class UserController extends AppController
                 die;
             }
 
-            Cache::getInstance()->deleteCache($_POST['username'] . '/' . $_POST['mainFolderProject']);
+            Cache::getInstance()->deleteCache($_POST['username'] . '/' . md5(session_id()));
             // rmdir(PROJECT_CACHE . '/' . md5($_POST['username']) . '/' . md5($_POST['mainFolderProject']));
             rmdir(PROJECT_CACHE . '/' . md5($_POST['username']));
 
             echo json_encode(array('slug' => $slug));
         }
+    }
+
+    public function saveEditProjectAction()
+    {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+
+        $_POST = json_decode(file_get_contents("php://input"), true);
+        if (!empty($_POST)) {
+
+            $projectPath = Cache::getInstance()->getCache($_POST['username'] . '/' . md5($this->route['slug']));
+
+            $data = [];
+            $data['title'] = $_POST['nameProject'];
+            $data['desc'] = $_POST['descProject'];
+            $data['private'] = $_POST['privacyProject'];
+            $data['slug'] = $this->route['slug'];
+
+            $slug = $this->model->editProject($data, $projectPath, $_POST['username']);
+            if (!$slug) {
+                header($_SERVER['SERVER_PROTOCOL'] . ' 400 Not Found', true, 400);
+                die;
+            }
+            Cache::getInstance()->deleteCache($_POST['username'] . '/' . md5($this->route['slug']));
+            // rmdir(PROJECT_CACHE . '/' . md5($_POST['username']) . '/' . md5($_POST['mainFolderProject']));
+            rmdir(PROJECT_CACHE . '/' . md5($_POST['username']));
+
+            echo json_encode(array('slug' => $slug));
+        }
+    }
+
+    public function projectForEditAction()
+    {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+
+
+        $project = $this->model->getProjectInfoBySlug($this->route['slug'], $this->route['username']);
+        $cache = Cache::getInstance();
+        $keyCache = $_SESSION['user']['username'] . '/' . md5($project['slug']);
+        $cache->setCache($keyCache, PROJECT_CACHE . '/' . md5($_SESSION['user']['username']) . '/' . md5($project['slug']), 3600);
+        $this->pushProjectInCache($project, USER_PROJECT . '/' . $_SESSION['user']['username'] . '/' . $this->route['slug']);
+
+        echo json_encode(array('project' => $project), JSON_UNESCAPED_SLASHES);
     }
 
     public function feedbackCategoryAction()
@@ -512,29 +611,61 @@ class UserController extends AppController
             die;
         }
 
+//        $_POST = json_decode(file_get_contents("php://input"), true);
+//        debug($_POST, 1);
+        if (!empty($_POST) && $_FILES) {
+            $cache = Cache::getInstance();
+            $pathProject = $cache->getCache(
+                $_SESSION['user']['username'] . '/' .
+                ($_POST['type'] === 'edit' ? $_POST['slug'] : md5(session_id()))
+            );
+            $pathProject = $cache->getCache(
+                    $_SESSION['user']['username'] . '/' .
+                    ($_POST['type'] === 'edit' ? md5($_POST['slug']) : md5(session_id()))
+                ) . $_POST['secondaryPathProject'];
+            foreach ($_FILES['newFilesInfo']['tmp_name'] as $k => $v) {
+                move_uploaded_file($v, $pathProject . $_FILES['newFilesInfo']['name'][$k]);
+            }
+//            foreach ($_POST['newFilesInfo'] as $k => $v) {
+//                if ($v['path'] !== 'undefined') {
+//                    foreach ($v['path'] as $key => $folder) {
+//                        if ($folder === 'undefined') {
+//                            continue;
+//                        }
+//
+//                        if (is_dir($pathProject . '/' . $folder)) {
+//                            $pathProject = $pathProject . '/' . $folder;
+//                        }
+//                    }
+//                }
+//
+//                $v_parts = explode(";base64,", $v['content']);
+//                //                debug($v_parts[1]);
+//
+//                file_put_contents($pathProject . '/' . $v['fileName'], base64_decode($v_parts[1]));
+//            }
+        }
+    }
+
+    public function deleteFileAction()
+    {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+
         $_POST = json_decode(file_get_contents("php://input"), true);
         if (!empty($_POST)) {
             $cache = Cache::getInstance();
+            $pathProject = $cache->getCache(
+                $_SESSION['user']['username'] . '/' .
+                ($_POST['type'] === 'edit' ? md5($_POST['slug']) : md5(session_id()))
+            );
 
-            $pathProject = $cache->getCache($_POST['username'] . '/' . $_POST['mainFolderProject']);
-
-            foreach ($_POST['newFilesInfo'] as $k => $v) {
-                if ($v['path'] !== 'undefined') {
-                    foreach ($v['path'] as $key => $folder) {
-                        if ($folder === 'undefined') {
-                            continue;
-                        }
-
-                        if (is_dir($pathProject . '/' . $folder)) {
-                            $pathProject = $pathProject . '/' . $folder;
-                        }
-                    }
-                }
-
-                $v_parts = explode(";base64,", $v['content']);
-                //                debug($v_parts[1]);
-
-                file_put_contents($pathProject . '/' . $v['fileName'], base64_decode($v_parts[1]));
+            if (is_dir($pathProject . $_POST['path'])) {
+                $this->deleteDirectoryProject($pathProject . $_POST['path']);
+            } else {
+                unlink($pathProject . $_POST['path']);
             }
         }
     }
@@ -549,12 +680,16 @@ class UserController extends AppController
         $_POST = json_decode(file_get_contents("php://input"), true);
         if (!empty($_POST)) {
 
-            $mainFolder = $_POST['mainFolderProject'];
+//            $mainFolder = $_POST['mainFolderProject'];
             $username = $_POST['username'];
 
             // debug($files, 1);
-
-            $keyCache = $username . '/' . $mainFolder;
+            $keyCache = $username . '/' . ($_POST['type'] === 'edit' ? md5($_POST['slug']) : md5(session_id()));
+            $cache = Cache::getInstance();
+            if (!$cache->getCache($keyCache)) {
+                header('HTTP/1.0 404 Not Found');
+                die;
+            }
 
             $path = "";
 
@@ -562,10 +697,6 @@ class UserController extends AppController
                 $this->model->getFilesProjectInCache($keyCache, $path, $_POST['secondaryPathProject']) :
                 $this->model->getFilesProjectInCache($keyCache, $path);
 
-            if (!$filesProject) {
-                header('HTTP/1.0 404 Not Found');
-                die;
-            }
 
             // $readmeFile = "";
 
@@ -893,29 +1024,86 @@ class UserController extends AppController
         return false;
     }
 
+    protected function pushProjectInCache($project, $pathProject, $pathCache = '')
+    {
+//        debug($pathProject, 1);
+        if ($pathCache === '') {
+            $pathCache = PROJECT_CACHE . '/' . md5($_SESSION['user']['username']);
+            if (!file_exists($pathCache)) {
+                mkdir($pathCache);
+            }
+            $pathCache .= '/' . md5($project['slug']);
+            if (!file_exists($pathCache)) {
+                mkdir($pathCache);
+            }
+        }
+
+        if (is_dir($pathProject)) {
+            $files = scandir($pathProject);
+//            debug($files, 1);
+            foreach ($files as $k => $v) {
+                if ($v !== '.' && $v !== '..' && !file_exists($pathCache . '/' . $v)) {
+                    if (is_dir($pathProject . '/' . $v)) {
+                        mkdir($pathCache . '/' . $v);
+                        $this->pushProjectInCache($project, $pathProject . '/' . $v, $pathCache . '/' . $v);
+                    } else {
+                        copy($pathProject . '/' . $v, $pathCache . '/' . $v);
+                    }
+                }
+            }
+        }
+    }
+
     protected function pushProject($cache, $keyCache, $mainFolder, $userCacheProjectFolder, $files)
     {
-        foreach ($files as $k => $v) {
+        if (!$files) {
+            return;
+        }
+
+        foreach ($files['uploadInfoFiles']['tmp_name'] as $k => $v) {
             $currentPathFile = $userCacheProjectFolder;
-
-            foreach ($v['path'] as $key => $folder) {
-                if ($folder == $mainFolder) {
-                    continue;
+            $path = explode('/', $files['uploadInfoFiles']['full_path'][$k]);
+            array_shift($path);
+            array_pop($path);
+            if ($path) {
+                foreach ($path as $pk => $pv) {
+                    if (!(is_dir($currentPathFile . '/' . $pv))) {
+                        mkdir($currentPathFile . '/' . $pv);
+                    }
+                    $currentPathFile = $currentPathFile . "/" . $pv;
                 }
-
-                if (!(is_dir($currentPathFile . '/' . $folder))) {
-                    mkdir($currentPathFile . '/' . $folder);
-                }
-
-                $currentPathFile = $currentPathFile . "/" . $folder;
             }
 
-            $v_parts = explode(";base64,", $v['content']);
-            // debug($currentPathFile, 1);
+            move_uploaded_file($v, $currentPathFile . '/' . $files['uploadInfoFiles']['name'][$k]);
 
-            file_put_contents($currentPathFile . '/' . $v['fileName'], base64_decode($v_parts[1]));
         }
 
         $cache->setCache($keyCache, $userCacheProjectFolder, 7200);
     }
+
+//    protected function pushProject($cache, $keyCache, $mainFolder, $userCacheProjectFolder, $files)
+//    {
+//        foreach ($files as $k => $v) {
+//            $currentPathFile = $userCacheProjectFolder;
+//
+//            foreach ($v['path'] as $key => $folder) {
+//                if ($folder == $mainFolder) {
+//                    continue;
+//                }
+//
+//                if (!(is_dir($currentPathFile . '/' . $folder))) {
+//                    mkdir($currentPathFile . '/' . $folder);
+//                }
+//
+//                $currentPathFile = $currentPathFile . "/" . $folder;
+//            }
+//
+//            $v_parts = explode(";base64,", $v['content']);
+//            // debug($currentPathFile, 1);
+//
+//            file_put_contents($currentPathFile . '/' . $v['fileName'], base64_decode($v_parts[1]));
+//        }
+//
+//        $cache->setCache($keyCache, $userCacheProjectFolder, 7200);
+//    }
 }

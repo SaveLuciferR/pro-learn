@@ -11,8 +11,9 @@ import {
     setMainFolderAddProject, setAddNewFiles
 } from "../redux/Project/slice";
 import ProjectFile from "../components/Project/ProjectFile";
+import {setTitleText} from "../redux/Modal/slice";
 
-const ProjectAddPage = ({type, isTemplate = false}) => {
+const ProjectAddPage = ({type = 'create', isTemplate = false}) => {
     // const [setActiveSidebar] = useOutletContext(activeSidebar);
     // setActiveSidebar(activeSidebar);
 
@@ -25,13 +26,13 @@ const ProjectAddPage = ({type, isTemplate = false}) => {
     if (!userAuth) navigate('/');
 
     let baseURL = axiosClient.defaults.baseURL;
-    const {username} = useParams();
+    const {username, slug, lang} = useParams();
 
     const readmeFileInAddProject = useSelector(state => state.project.readmeFileInAddProject);
     const newTableAddProject = useSelector(state => state.project.newTableAddProject);
     const filesAddProject = useSelector(state => state.project.filesAddProject);
     const secondaryPathProject = useSelector(state => state.project.secondaryPathProjectAddProject);
-    const mainFolderProject = useSelector(state => state.project.mainFolderAddProject);
+    // const mainFolderProject = useSelector(state => state.project.mainFolderAddProject);
     const newFilesAddProject = useSelector(state => state.project.newFilesAddProject);
     const mainFolderNewFileAddProject = useSelector(state => state.project.mainFolderNewFileAddProject);
     const addNewFiles = useSelector(state => state.project.addNewFiles);
@@ -45,6 +46,7 @@ const ProjectAddPage = ({type, isTemplate = false}) => {
     const [uploadInfoFiles, setUploadInfoFiles] = useState({});
     const [isMainFolder, setIsMainFolder] = useState(false);
     const [beforeFolder, setBeforeFolder] = useState("");
+    const [needUpdateTable, setNeedUpdateTable] = useState(false);
     // const [secondaryPathProject, setSecondaryPathProject] = useState("");
     // const [mainFolderProject, setMainFolderProject] = useState("");
     const [newProject, setNewProject] = useState(true);
@@ -66,9 +68,14 @@ const ProjectAddPage = ({type, isTemplate = false}) => {
             `/@${username}/project-add`,
             {
                 uploadInfoFiles,
-                mainFolderProject,
+                // mainFolderProject,
                 newProject,
                 username,
+            },
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
             }
         )
             .then(({data}) => {
@@ -80,19 +87,54 @@ const ProjectAddPage = ({type, isTemplate = false}) => {
             .catch((err) => {
                 console.log(err)
                 setHaveFiles(false);
+            })
+            .finally(() => {
+                setUploadInfoFiles({});
             });
         setFilesAdded(false);
     }
 
+    const handleFileDelete = (e, path, fileName) => {
+        e.stopPropagation();
+        path = path === undefined ? '/' : '/' + path + '/';
+        path += fileName;
+        axiosClient.post(`/@${username}/project-add/delete-file`, {path, type, slug})
+            .then((data) => {
+
+            })
+            .catch((err) => {
+
+            })
+            .finally(() => {
+                setNeedUpdateTable(true);
+            })
+        console.log(path, fileName);
+        //TODO Modal confirm
+    }
+
+    useEffect(() => {
+        if (Object.keys(uploadInfoFiles).length !== 0) {
+            axiosAddProject();
+        }
+    }, [uploadInfoFiles])
+
     const axiosNewFiles = async () => {
-        console.log(newFilesInfo);
-        await axiosClient.post(`/@${username}/project-add/new-files`, {
-            newFilesInfo,
-            mainFolderProject,
-            username
-        })
+        await axiosClient.post(`/@${username}/project-add/new-files`,
+            {
+                type,
+                slug,
+                newFilesInfo,
+                secondaryPathProject: secondaryPathProject === undefined ? '/' : '/' + secondaryPathProject + '/',
+                // mainFolderProject,
+                username
+            },
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }
+        )
             .then(({data}) => {
-                console.log(newFilesInfo);
                 console.log(data);
                 setHaveFiles(true);
 
@@ -103,31 +145,51 @@ const ProjectAddPage = ({type, isTemplate = false}) => {
 
                 dispatch(setAddNewFiles(false));
             })
+            .finally(() => {
+                setNeedUpdateTable(true);
+                setNewFilesInfo([]);
+            })
     }
 
-    useEffect(() => {
-        if (filesAdded) {
-            // console.log(uploadInfoFiles);
-            axiosAddProject();
-        }
-    }, [filesAdded]);
+    // useEffect(() => {
+    //     if (filesAdded) {
+    //         // console.log(uploadInfoFiles);
+    //         // axiosAddProject();
+    //     }
+    // }, [filesAdded]);
 
     useEffect(() => {
-        if (addNewFiles) {
-            console.log(newFilesInfo);
+        console.log(newFilesInfo);
+        if (newFilesInfo.length !== 0) {
             axiosNewFiles();
         }
-    }, [addNewFiles]);
+    }, [newFilesInfo]);
 
     useEffect(() => {
-        if (newTableAddProject) {
+        if (type === 'edit') {
+            axiosClient.get(`/@${username}/project-edit/${slug}`)
+                .then((res) => {
+                    console.log(res.data.project)
+                    setNeedUpdateTable(true);
+                    setNameProject(res.data.project.title)
+                    setDescProject(res.data.project.description)
+                    setPrivacyProject(res.data.project.private);
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        } else {
             axiosClient.post(`/@${username}/project-add/get-project-in-cache` + "/", {
+                type: 'create',
                 username,
-                mainFolderProject,
+                // mainFolderProject,
                 secondaryPathProject: secondaryPathProject === undefined ? '' : secondaryPathProject
             })
                 .then(({data}) => {
                     // dispatch(setReadmeFileInAddProject(data.readmeFile));
+                    setHaveFiles(data.filesInfo.length !== 0);
+                    // setHaveFiles(true);
                     dispatch(setFilesAddProject(data.filesInfo));
                     setIsMainFolder(secondaryPathProject === undefined);
                     dispatch(setNewTableAddProject(false));
@@ -137,13 +199,40 @@ const ProjectAddPage = ({type, isTemplate = false}) => {
                     console.log(err);
                 });
         }
-    }, [secondaryPathProject, username, newTableAddProject]);
+    }, [])
+
+    useEffect(() => {
+        if (newTableAddProject || needUpdateTable) {
+            axiosClient.post(`/@${username}/project-add/get-project-in-cache` + "/", {
+                type: type,
+                slug: slug,
+                username,
+                // mainFolderProject,
+                secondaryPathProject: secondaryPathProject === undefined ? '' : secondaryPathProject
+            })
+                .then(({data}) => {
+                    // console.log(data);
+                    // dispatch(setReadmeFileInAddProject(data.readmeFile));
+                    setHaveFiles(data.filesInfo.length !== 0);
+                    dispatch(setFilesAddProject(data.filesInfo));
+                    setIsMainFolder(secondaryPathProject === undefined);
+                    dispatch(setNewTableAddProject(false));
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            setNewTableAddProject(false);
+            setNeedUpdateTable(false);
+        }
+    }, [secondaryPathProject, username, newTableAddProject, needUpdateTable]);
 
     const handleFileSelected = (e) => {
-        const currentFiles = Array.from(e.target.files);
-
-        dispatch(setMainFolderAddProject(currentFiles[0].webkitRelativePath.split('/')[0]));
-        setUploadInfoFiles(getStructureUploadFiles(currentFiles));
+        // const currentFiles = Array.from(e.target.files);
+        //
+        // dispatch(setMainFolderAddProject(currentFiles[0].webkitRelativePath.split('/')[0]));
+        // setUploadInfoFiles(getStructureUploadFiles(currentFiles));
+        console.log(e);
+        setUploadInfoFiles(Array.from(e));
     }
 
     const getStructureUploadFiles = (files, newFile = false) => {
@@ -184,18 +273,40 @@ const ProjectAddPage = ({type, isTemplate = false}) => {
             return;
         }
 
-        axiosClient.post(`/@${username}/project-save`, {mainFolderProject, username, nameProject, descProject, privacyProject})
-            .then(({data}) => {
-                // console.log(data);
-                navigate('/' + username + '/project/' + data.slug);
-            });
+        if (type === 'edit') {
+            axiosClient.post(`/@${username}/project-save-edit/${slug}`, {
+                username,
+                nameProject,
+                descProject,
+                privacyProject,
+            })
+                .then((res) => {
+                    console.log(res);
+                    navigate(`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/project/${slug}`)
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        } else {
+            axiosClient.post(`/@${username}/project-save-new`, {
+                // mainFolderProject,
+                username,
+                nameProject,
+                descProject,
+                privacyProject
+            })
+                .then(({data}) => {
+                    // console.log(data);
+                    navigate('/profile/' + username + '/project/' + data.slug);
+                });
+        }
     }
 
     return (
         <div className="project">
             <div className="project__container">
                 <div className="project__inner">
-                    <h1 className="markdown-h1 project__add-title">Создать проект</h1>
+                    <h1 className="markdown-h1 project__add-title">{type === 'edit' ? 'Изменить проект' : 'Создать проект'}</h1>
 
                     <div className="project__add-body">
 
@@ -261,46 +372,49 @@ const ProjectAddPage = ({type, isTemplate = false}) => {
                                         isAddProject={true}
                                         getStructureUploadFiles={(files, newFile) => getStructureUploadFiles(files, newFile)}
                                         setNewFilesInfo={(files) => setNewFilesInfo(files)}
+                                        handleFileDelete={handleFileDelete}
                                     />
                             ) :
                             <></>
                         }
 
                         <div className="project__add-body_files">
-                            <div className="project__add-body_files-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
-                                     fill="none">
-                                    <path
-                                        d="M11.5447 3.04024L11.2102 3.41188V3.41188L11.5447 3.04024ZM14.5138 5.71241L14.1793 6.08406L14.5138 5.71241ZM16.2405 7.61557L15.7837 7.81899V7.81899L16.2405 7.61557ZM2.37868 15.6213L2.73223 15.2678L2.73223 15.2678L2.37868 15.6213ZM15.6213 15.6213L15.2678 15.2678L15.2678 15.2678L15.6213 15.6213ZM10.5 16H7.5V17H10.5V16ZM2 10.5V7.5H1V10.5H2ZM16 10.1722V10.5H17V10.1722H16ZM11.2102 3.41188L14.1793 6.08406L14.8483 5.34076L11.8792 2.66859L11.2102 3.41188ZM17 10.1722C17 8.90039 17.0101 8.1146 16.6972 7.41215L15.7837 7.81899C15.9899 8.28189 16 8.81206 16 10.1722H17ZM14.1793 6.08406C15.1903 6.99393 15.5776 7.35609 15.7837 7.81899L16.6972 7.41215C16.3844 6.70971 15.7936 6.19154 14.8483 5.34076L14.1793 6.08406ZM7.52234 2C8.70396 2 9.16544 2.00772 9.57779 2.16595L9.93605 1.23233C9.31049 0.992281 8.62823 1 7.52234 1V2ZM11.8792 2.66859C11.0612 1.9324 10.5615 1.47235 9.93605 1.23233L9.57779 2.16595C9.9902 2.32421 10.3364 2.62546 11.2102 3.41188L11.8792 2.66859ZM7.5 16C6.07165 16 5.05069 15.9989 4.27481 15.8946C3.51331 15.7922 3.06319 15.5987 2.73223 15.2678L2.02513 15.9749C2.57285 16.5226 3.26917 16.7684 4.14156 16.8857C4.99956 17.0011 6.09992 17 7.5 17V16ZM1 10.5C1 11.9001 0.998938 13.0004 1.11429 13.8584C1.23158 14.7308 1.4774 15.4271 2.02513 15.9749L2.73223 15.2678C2.40128 14.9368 2.20776 14.4867 2.10538 13.7252C2.00106 12.9493 2 11.9283 2 10.5H1ZM10.5 17C11.9001 17 13.0004 17.0011 13.8584 16.8857C14.7308 16.7684 15.4271 16.5226 15.9749 15.9749L15.2678 15.2678C14.9368 15.5987 14.4867 15.7922 13.7252 15.8946C12.9493 15.9989 11.9283 16 10.5 16V17ZM16 10.5C16 11.9283 15.9989 12.9493 15.8946 13.7252C15.7922 14.4867 15.5987 14.9368 15.2678 15.2678L15.9749 15.9749C16.5226 15.4271 16.7684 14.7308 16.8857 13.8584C17.0011 13.0004 17 11.9001 17 10.5H16ZM2 7.5C2 6.07165 2.00106 5.05069 2.10538 4.27481C2.20776 3.51331 2.40128 3.06319 2.73223 2.73223L2.02513 2.02513C1.4774 2.57285 1.23158 3.26917 1.11429 4.14156C0.998938 4.99956 1 6.09992 1 7.5H2ZM7.52234 1C6.11477 1 5.00899 0.998947 4.14744 1.11425C3.27189 1.23143 2.57324 1.47701 2.02513 2.02513L2.73223 2.73223C3.0628 2.40167 3.51432 2.20791 4.2801 2.10542C5.05988 2.00105 6.08659 2 7.52234 2V1Z"
-                                        fill="white"/>
-                                    <path
-                                        d="M9.75 1.875V3.75C9.75 5.51777 9.75 6.40165 10.2992 6.95083C10.8483 7.5 11.7322 7.5 13.5 7.5H16.5"
-                                        stroke="white"/>
-                                </svg>
-                                <form method="post">
-                                    <button className="btn file" type="submit" name="" id="">Добавить README.md</button>
-                                </form>
-                            </div>
-                            <div className="project__add-body_files-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
-                                     fill="none">
-                                    <path
-                                        d="M11.5447 3.04024L11.2102 3.41188V3.41188L11.5447 3.04024ZM14.5138 5.71241L14.1793 6.08406L14.5138 5.71241ZM16.2405 7.61557L15.7837 7.81899V7.81899L16.2405 7.61557ZM2.37868 15.6213L2.73223 15.2678L2.73223 15.2678L2.37868 15.6213ZM15.6213 15.6213L15.2678 15.2678L15.2678 15.2678L15.6213 15.6213ZM10.5 16H7.5V17H10.5V16ZM2 10.5V7.5H1V10.5H2ZM16 10.1722V10.5H17V10.1722H16ZM11.2102 3.41188L14.1793 6.08406L14.8483 5.34076L11.8792 2.66859L11.2102 3.41188ZM17 10.1722C17 8.90039 17.0101 8.1146 16.6972 7.41215L15.7837 7.81899C15.9899 8.28189 16 8.81206 16 10.1722H17ZM14.1793 6.08406C15.1903 6.99393 15.5776 7.35609 15.7837 7.81899L16.6972 7.41215C16.3844 6.70971 15.7936 6.19154 14.8483 5.34076L14.1793 6.08406ZM7.52234 2C8.70396 2 9.16544 2.00772 9.57779 2.16595L9.93605 1.23233C9.31049 0.992281 8.62823 1 7.52234 1V2ZM11.8792 2.66859C11.0612 1.9324 10.5615 1.47235 9.93605 1.23233L9.57779 2.16595C9.9902 2.32421 10.3364 2.62546 11.2102 3.41188L11.8792 2.66859ZM7.5 16C6.07165 16 5.05069 15.9989 4.27481 15.8946C3.51331 15.7922 3.06319 15.5987 2.73223 15.2678L2.02513 15.9749C2.57285 16.5226 3.26917 16.7684 4.14156 16.8857C4.99956 17.0011 6.09992 17 7.5 17V16ZM1 10.5C1 11.9001 0.998938 13.0004 1.11429 13.8584C1.23158 14.7308 1.4774 15.4271 2.02513 15.9749L2.73223 15.2678C2.40128 14.9368 2.20776 14.4867 2.10538 13.7252C2.00106 12.9493 2 11.9283 2 10.5H1ZM10.5 17C11.9001 17 13.0004 17.0011 13.8584 16.8857C14.7308 16.7684 15.4271 16.5226 15.9749 15.9749L15.2678 15.2678C14.9368 15.5987 14.4867 15.7922 13.7252 15.8946C12.9493 15.9989 11.9283 16 10.5 16V17ZM16 10.5C16 11.9283 15.9989 12.9493 15.8946 13.7252C15.7922 14.4867 15.5987 14.9368 15.2678 15.2678L15.9749 15.9749C16.5226 15.4271 16.7684 14.7308 16.8857 13.8584C17.0011 13.0004 17 11.9001 17 10.5H16ZM2 7.5C2 6.07165 2.00106 5.05069 2.10538 4.27481C2.20776 3.51331 2.40128 3.06319 2.73223 2.73223L2.02513 2.02513C1.4774 2.57285 1.23158 3.26917 1.11429 4.14156C0.998938 4.99956 1 6.09992 1 7.5H2ZM7.52234 1C6.11477 1 5.00899 0.998947 4.14744 1.11425C3.27189 1.23143 2.57324 1.47701 2.02513 2.02513L2.73223 2.73223C3.0628 2.40167 3.51432 2.20791 4.2801 2.10542C5.05988 2.00105 6.08659 2 7.52234 2V1Z"
-                                        fill="white"/>
-                                    <path
-                                        d="M9.75 1.875V3.75C9.75 5.51777 9.75 6.40165 10.2992 6.95083C10.8483 7.5 11.7322 7.5 13.5 7.5H16.5"
-                                        stroke="white"/>
-                                </svg>
-                                <form method="post">
-                                    <button className="btn file" type="sumbit" name="" id="">Добавить .ignore</button>
-                                </form>
-                            </div>
+                            {/*<div className="project__add-body_files-item">*/}
+                            {/*    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"*/}
+                            {/*         fill="none">*/}
+                            {/*        <path*/}
+                            {/*            d="M11.5447 3.04024L11.2102 3.41188V3.41188L11.5447 3.04024ZM14.5138 5.71241L14.1793 6.08406L14.5138 5.71241ZM16.2405 7.61557L15.7837 7.81899V7.81899L16.2405 7.61557ZM2.37868 15.6213L2.73223 15.2678L2.73223 15.2678L2.37868 15.6213ZM15.6213 15.6213L15.2678 15.2678L15.2678 15.2678L15.6213 15.6213ZM10.5 16H7.5V17H10.5V16ZM2 10.5V7.5H1V10.5H2ZM16 10.1722V10.5H17V10.1722H16ZM11.2102 3.41188L14.1793 6.08406L14.8483 5.34076L11.8792 2.66859L11.2102 3.41188ZM17 10.1722C17 8.90039 17.0101 8.1146 16.6972 7.41215L15.7837 7.81899C15.9899 8.28189 16 8.81206 16 10.1722H17ZM14.1793 6.08406C15.1903 6.99393 15.5776 7.35609 15.7837 7.81899L16.6972 7.41215C16.3844 6.70971 15.7936 6.19154 14.8483 5.34076L14.1793 6.08406ZM7.52234 2C8.70396 2 9.16544 2.00772 9.57779 2.16595L9.93605 1.23233C9.31049 0.992281 8.62823 1 7.52234 1V2ZM11.8792 2.66859C11.0612 1.9324 10.5615 1.47235 9.93605 1.23233L9.57779 2.16595C9.9902 2.32421 10.3364 2.62546 11.2102 3.41188L11.8792 2.66859ZM7.5 16C6.07165 16 5.05069 15.9989 4.27481 15.8946C3.51331 15.7922 3.06319 15.5987 2.73223 15.2678L2.02513 15.9749C2.57285 16.5226 3.26917 16.7684 4.14156 16.8857C4.99956 17.0011 6.09992 17 7.5 17V16ZM1 10.5C1 11.9001 0.998938 13.0004 1.11429 13.8584C1.23158 14.7308 1.4774 15.4271 2.02513 15.9749L2.73223 15.2678C2.40128 14.9368 2.20776 14.4867 2.10538 13.7252C2.00106 12.9493 2 11.9283 2 10.5H1ZM10.5 17C11.9001 17 13.0004 17.0011 13.8584 16.8857C14.7308 16.7684 15.4271 16.5226 15.9749 15.9749L15.2678 15.2678C14.9368 15.5987 14.4867 15.7922 13.7252 15.8946C12.9493 15.9989 11.9283 16 10.5 16V17ZM16 10.5C16 11.9283 15.9989 12.9493 15.8946 13.7252C15.7922 14.4867 15.5987 14.9368 15.2678 15.2678L15.9749 15.9749C16.5226 15.4271 16.7684 14.7308 16.8857 13.8584C17.0011 13.0004 17 11.9001 17 10.5H16ZM2 7.5C2 6.07165 2.00106 5.05069 2.10538 4.27481C2.20776 3.51331 2.40128 3.06319 2.73223 2.73223L2.02513 2.02513C1.4774 2.57285 1.23158 3.26917 1.11429 4.14156C0.998938 4.99956 1 6.09992 1 7.5H2ZM7.52234 1C6.11477 1 5.00899 0.998947 4.14744 1.11425C3.27189 1.23143 2.57324 1.47701 2.02513 2.02513L2.73223 2.73223C3.0628 2.40167 3.51432 2.20791 4.2801 2.10542C5.05988 2.00105 6.08659 2 7.52234 2V1Z"*/}
+                            {/*            fill="white"/>*/}
+                            {/*        <path*/}
+                            {/*            d="M9.75 1.875V3.75C9.75 5.51777 9.75 6.40165 10.2992 6.95083C10.8483 7.5 11.7322 7.5 13.5 7.5H16.5"*/}
+                            {/*            stroke="white"/>*/}
+                            {/*    </svg>*/}
+                            {/*    <form method="post">*/}
+                            {/*        <button className="btn file" type="submit" name="" id="">Добавить README.md</button>*/}
+                            {/*    </form>*/}
+                            {/*</div>*/}
+                            {/*<div className="project__add-body_files-item">*/}
+                            {/*    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"*/}
+                            {/*         fill="none">*/}
+                            {/*        <path*/}
+                            {/*            d="M11.5447 3.04024L11.2102 3.41188V3.41188L11.5447 3.04024ZM14.5138 5.71241L14.1793 6.08406L14.5138 5.71241ZM16.2405 7.61557L15.7837 7.81899V7.81899L16.2405 7.61557ZM2.37868 15.6213L2.73223 15.2678L2.73223 15.2678L2.37868 15.6213ZM15.6213 15.6213L15.2678 15.2678L15.2678 15.2678L15.6213 15.6213ZM10.5 16H7.5V17H10.5V16ZM2 10.5V7.5H1V10.5H2ZM16 10.1722V10.5H17V10.1722H16ZM11.2102 3.41188L14.1793 6.08406L14.8483 5.34076L11.8792 2.66859L11.2102 3.41188ZM17 10.1722C17 8.90039 17.0101 8.1146 16.6972 7.41215L15.7837 7.81899C15.9899 8.28189 16 8.81206 16 10.1722H17ZM14.1793 6.08406C15.1903 6.99393 15.5776 7.35609 15.7837 7.81899L16.6972 7.41215C16.3844 6.70971 15.7936 6.19154 14.8483 5.34076L14.1793 6.08406ZM7.52234 2C8.70396 2 9.16544 2.00772 9.57779 2.16595L9.93605 1.23233C9.31049 0.992281 8.62823 1 7.52234 1V2ZM11.8792 2.66859C11.0612 1.9324 10.5615 1.47235 9.93605 1.23233L9.57779 2.16595C9.9902 2.32421 10.3364 2.62546 11.2102 3.41188L11.8792 2.66859ZM7.5 16C6.07165 16 5.05069 15.9989 4.27481 15.8946C3.51331 15.7922 3.06319 15.5987 2.73223 15.2678L2.02513 15.9749C2.57285 16.5226 3.26917 16.7684 4.14156 16.8857C4.99956 17.0011 6.09992 17 7.5 17V16ZM1 10.5C1 11.9001 0.998938 13.0004 1.11429 13.8584C1.23158 14.7308 1.4774 15.4271 2.02513 15.9749L2.73223 15.2678C2.40128 14.9368 2.20776 14.4867 2.10538 13.7252C2.00106 12.9493 2 11.9283 2 10.5H1ZM10.5 17C11.9001 17 13.0004 17.0011 13.8584 16.8857C14.7308 16.7684 15.4271 16.5226 15.9749 15.9749L15.2678 15.2678C14.9368 15.5987 14.4867 15.7922 13.7252 15.8946C12.9493 15.9989 11.9283 16 10.5 16V17ZM16 10.5C16 11.9283 15.9989 12.9493 15.8946 13.7252C15.7922 14.4867 15.5987 14.9368 15.2678 15.2678L15.9749 15.9749C16.5226 15.4271 16.7684 14.7308 16.8857 13.8584C17.0011 13.0004 17 11.9001 17 10.5H16ZM2 7.5C2 6.07165 2.00106 5.05069 2.10538 4.27481C2.20776 3.51331 2.40128 3.06319 2.73223 2.73223L2.02513 2.02513C1.4774 2.57285 1.23158 3.26917 1.11429 4.14156C0.998938 4.99956 1 6.09992 1 7.5H2ZM7.52234 1C6.11477 1 5.00899 0.998947 4.14744 1.11425C3.27189 1.23143 2.57324 1.47701 2.02513 2.02513L2.73223 2.73223C3.0628 2.40167 3.51432 2.20791 4.2801 2.10542C5.05988 2.00105 6.08659 2 7.52234 2V1Z"*/}
+                            {/*            fill="white"/>*/}
+                            {/*        <path*/}
+                            {/*            d="M9.75 1.875V3.75C9.75 5.51777 9.75 6.40165 10.2992 6.95083C10.8483 7.5 11.7322 7.5 13.5 7.5H16.5"*/}
+                            {/*            stroke="white"/>*/}
+                            {/*    </svg>*/}
+                            {/*    <form method="post">*/}
+                            {/*        <button className="btn file" type="sumbit" name="" id="">Добавить .ignore</button>*/}
+                            {/*    </form>*/}
+                            {/*</div>*/}
                         </div>
 
                         <div className="project__add-buttons">
                             <form method="post">
                                 <label className="input-file  btn primary big width300px">
-                                    <input onChange={(e) => handleFileSelected(e)} type="file" name="project"
+                                    <input onChange={(e) => handleFileSelected(e.target.files)}
+                                           type="file"
+                                           name="project"
                                            multiple={true} directory={""} webkitdirectory={""}/>
                                     <div className="input-file-text">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21"
@@ -322,9 +436,9 @@ const ProjectAddPage = ({type, isTemplate = false}) => {
                         </div>
 
                         <div className="project__add-body_desc-files">
-                            Перетащите сюда или выберите папку с проектом
+                            Выберите папку с проектом
                             <br/>
-                            (Вы можете загружать несколько папок)
+                            (Вы можете загружать несколько папок последователь)
                         </div>
                     </div>
 

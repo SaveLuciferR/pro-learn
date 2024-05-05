@@ -39,7 +39,7 @@ class User extends AppModel
             if ($user) {
                 if (password_verify($password, $user->password) && $user->is_activated) {
                     foreach ($user as $k => $v) {
-                        if (!$k != 'password') {
+                        if ($k !== 'password') {
                             $_SESSION['user'][$k] = $v;
                         }
                     }
@@ -98,14 +98,12 @@ class User extends AppModel
                 R::store($user);
                 R::commit();
                 return true;
-            }
-            else {
+            } else {
                 R::commit();
                 $error = 'InCorrectCode';
                 return false;
             }
-        }
-        catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             R::rollback();
             $error = $ex->getMessage();
             return false;
@@ -287,6 +285,29 @@ class User extends AppModel
         return $this->createProjectFileList($path);
     }
 
+    public function editProject($data, $pathProject, $username)
+    {
+        R::begin();
+        try {
+            $project = R::findOne('project', 'slug = ?', [$data['slug']]);
+            $project->title = $data['title'];
+            $project->description = $data['desc'];
+            $project->private = $data['private'];
+            $projectID = R::store($project);
+
+            R::commit();
+//            $this->deleteCacheProjectDir();
+            $this->copyCacheProject(
+                Cache::getInstance()->getCache($_SESSION['user']['username'] . '/' . md5($data['slug'])),
+                USER_PROJECT . '/' . $_SESSION['user']['username'] . '/' . $data['slug']
+            );
+            return $project->slug;
+        } catch (\Exception $ex) {
+            R::rollback();
+            return false;
+        }
+    }
+
     public function saveNewProject($data, $pathProject, $username)
     {
         R::begin();
@@ -396,7 +417,8 @@ class User extends AppModel
             foreach ($directoryInfo as $k => $v) {
                 $temp = [];
 
-                if (str_contains($v, '.')) {
+//                if (str_contains($v, '.')) {
+                if (!is_dir($path . '/' . $v)) {
                     $temp['type'] = substr(strrchr($v, '.'), 1);
                 } else {
                     $temp['type'] = "directory";
