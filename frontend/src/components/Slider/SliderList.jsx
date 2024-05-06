@@ -4,10 +4,8 @@ import CompleteCourseMainContent from '../Profile/MainPage/CompleteCourseMainCon
 import ProfileCoursesItem from '../Profile/CurrentCourses/ProfileCourseItem';
 import ProfileProjectItem from '../Profile/Projects/ProfileProjectItem';
 import ProfileTask from '../Profile/UserTasks/ProfileTask';
-import ProfileCreateCourseSliderContent from '../Profile/CreatedCourses/ProfileCreateCourseSliderContent';
-import ProfileCompletedCoursesItem from '../Profile/CompletedCourses/CompletedCoursesItem';
 
-const SliderList = ({ type, items, index }) => {
+const SliderList = ({ type, items, index, viewWords}) => {
 
   const cards = () => {
     switch (type) {
@@ -26,7 +24,7 @@ const SliderList = ({ type, items, index }) => {
 
       case 'profileCompletedCourses':
         return items.map((slide, index) =>
-            <ProfileCourseItem key={index} data={slide} index={index}
+            <ProfileCoursesItem key={index} data={slide} index={index}
                                viewWords={viewWords}
                                isContinue={false}
                                isCreated={false}
@@ -39,13 +37,13 @@ const SliderList = ({ type, items, index }) => {
 
       case 'currentCourse':
         return items.map((slide, index) => (
-            <ProfileCourseItem key={index} data={slide} index={index} viewWords={viewWords}
+            <ProfileCoursesItem key={index} data={slide} index={index} viewWords={viewWords}
                                isContinue={true} isCreated={false}/>
         ));
 
       case 'createdCourses':
         return items.map((slide, index) => (
-            <ProfileCourseItem key={index} data={slide} index={index} viewWords={viewWords}
+            <ProfileCoursesItem key={index} data={slide} index={index} viewWords={viewWords}
                                isContinue={false} isCreated={true}/>
         ));
 

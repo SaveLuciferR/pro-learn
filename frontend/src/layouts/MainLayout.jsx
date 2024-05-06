@@ -32,6 +32,8 @@ const MainLayout = ({isActiveSidebar, isCompiler, success}) => {
     // const [activeSidebar, setActiveSidebar] = useState(isActiveSidebar);
     const [activeCompiler, setActiveCompiler] = useState(isCompiler);
 
+    const [viewWords, setViewWords] = useState({});
+
     const activeSidebar = useSelector(state => state.mainLayout.activeSidebar);
     useEffect(() => {
         dispatch(setActiveSidebar(isActiveSidebar));
@@ -40,10 +42,12 @@ const MainLayout = ({isActiveSidebar, isCompiler, success}) => {
     useEffect(() => {
         axiosClient.post(`${lang === undefined ? "/" : '/' + lang + '/'}language`)
             .then(({data}) => {
+                // console.log(data)
                 setLanguage(data.language);
                 dispatch(setLanguages(data.languages));
                 setLayoutWords(data.layoutWords);
                 dispatch(setCurrentLanguage(lang));
+                setViewWords(data.layoutWords);
             });
     }, [lang]);
 
@@ -91,7 +95,7 @@ const MainLayout = ({isActiveSidebar, isCompiler, success}) => {
                                     />
                                 </div>
                             )}
-                            {sidebarProfileActive ? <SidebarProfile/> : <></>}
+                            {sidebarProfileActive ? <SidebarProfile viewWords={viewWords}/> : <></>}
                         </>
                     </div>
                     <Footer/>

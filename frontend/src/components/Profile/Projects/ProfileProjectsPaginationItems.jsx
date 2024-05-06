@@ -13,16 +13,17 @@ const ProfileProjectspaginationItems = ({currentItems}) => {
         });
     }, [currentItems]);
 
-    return
-    <>
-        {projects.length === 0 ?
-            <div>Loading...</div>
-            :
-            <div className="profile-projects-page-main-content">
-                {projects}
-            </div>
-        }
-    </>
+    return (
+        <>
+            {projects.length === 0 ?
+                <div>Loading...</div>
+                :
+                <div className="profile-projects-page-main-content">
+                    {projects}
+                </div>
+            }
+        </>
+    );
 };
 
 export default ProfileProjectspaginationItems;
