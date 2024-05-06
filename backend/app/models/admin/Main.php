@@ -18,7 +18,7 @@ class Main extends \app\models\AppModel
 
     public function getFeedbackCountModer()
     {
-        return R::count('feedback');//TODO изменить бд на status_id
+        return R::count('feedback');
     }
 
     public function getCourseCount()

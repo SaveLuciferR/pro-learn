@@ -44,9 +44,9 @@ const Header = ({ language, languages, layoutWords }) => {
             <Link to="/" className="header_title">
               Pro-Learn
             </Link>
-            <div className="header_category">
+            {/* <div className="header_category">
               <p className="header_category__item">Новости</p>
-            </div>
+            </div> */}
           </div>
           <div className="header_rightside">
             {/* Часть с сменой языка, поиском и аккаунтом */}

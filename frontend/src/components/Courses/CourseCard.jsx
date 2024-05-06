@@ -1,21 +1,28 @@
 import img from '../../image 7.png';
+import {useState} from "react";
+import {Link} from "react-router-dom";
 
-const CourseCard = () => {
+const CourseCard = ({obj}) => {
+    const getLangProg = () => {
+        let temp = '';
+        obj.language.map((item, i) => temp += item + ', ');
+        temp = temp.replace(/, $/, '');
+        return temp;
+    }
+
   return (
     <div className="courses-card">
       <div className="courses-card-header">
         <ul className="courses-card-header-tags">
-          <li className="courses-card-header-tag">#Python</li>
-          <li className="courses-card-header-tag">#Начинающим</li>
+          {obj.tags.map((item, i) => <li key={i} className="courses-card-header-tag">#{item.title}</li>)}
         </ul>
-        <p className="courses-card-header-status">Не начат</p>
+        {/*<p className="courses-card-header-status">Не начат</p>*/}
       </div>
       <div className="created-course-info">
-        <p className="courses-card-info-title">_Frontend-разработчик</p>
+        <Link to={`${obj.slug}`} className="courses-card-info-title">{obj.title}</Link>
         <div className="created-course-info-desc">
           <p className="courses-card-info-desc-text">
-            // Python просто выучить, даже если вы никогда не программировали. В этом курсе Вы
-            разработаете 3 проекта для портфолио. Много полезной информации
+            // {obj.excerpt}
           </p>
           <img src={img} className="courses-card-info-desc-img"></img>
         </div>
@@ -23,11 +30,9 @@ const CourseCard = () => {
       <div className="profile-difficulty">
         <p>_Сложность: </p>
         <ul className="profile-difficulty-range">
-          <li className="profile-difficulty-range-item active"></li>
-          <li className="profile-difficulty-range-item active"></li>
-          <li className="profile-difficulty-range-item active"></li>
-          <li className="profile-difficulty-range-item"></li>
-          <li className="profile-difficulty-range-item"></li>
+          {Array(5).fill('').map((item, i) =>
+              <li className={`profile-difficulty-range-item ${i < obj.difficulty ? 'active' : ''}`}></li>
+          )}
         </ul>
       </div>
       <div className="courses-card-cards">
@@ -54,7 +59,7 @@ const CourseCard = () => {
               fill="white"
             />
           </svg>
-          <p>Количество блоков: 3</p>
+          <p>Количество блоков: {obj.amount_stage}</p>
         </div>
         <div className="courses-card-card">
           <svg
@@ -83,7 +88,7 @@ const CourseCard = () => {
               fill="white"
             />
           </svg>
-          <p>Количество уроков: 8</p>
+          <p>Количество уроков: {obj.amount_step}</p>
         </div>
         <div className="courses-card-card">
           <svg
@@ -112,7 +117,7 @@ const CourseCard = () => {
               fill="white"
             />
           </svg>
-          <p>3 финальных проекта</p>
+          <p>{obj.final_projects} финальных проекта</p>
         </div>
       </div>
       <div className="profile-completed-card-stat">
@@ -133,7 +138,7 @@ const CourseCard = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <p className="currentcourse-course-info-rate-like-text">12</p>
+            <p className="currentcourse-course-info-rate-like-text">{obj.like}</p>
           </div>
           <div className="created-course-stat-rate-dislike">
             <svg
@@ -151,13 +156,13 @@ const CourseCard = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <p className="currentcourse-course-info-rate-dislike-text">2</p>
+            <p className="currentcourse-course-info-rate-dislike-text">{obj.dislike}</p>
           </div>
         </div>
       </div>
       <div className="created-course-bottom">
-        <p className="created-course-bottom-date">&gt; John Johnson, Администрация, 28.06.2023</p>
-        <p className="created-course-bottom-lang">// Язык: Python</p>
+        <p className="created-course-bottom-date">&gt; {obj.username}, {obj.role === 'admin' ? 'Администратор' : 'Пользователь'}, {obj.date_of_publication}</p>
+        <p className="created-course-bottom-lang">// Язык: {getLangProg()}</p>
       </div>
     </div>
   );

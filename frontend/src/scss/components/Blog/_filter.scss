@@ -74,8 +74,33 @@
     font-size: 24px;
     font-weight: 500;
   }
+
+  &-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    background-color: rgba($color: #000000, $alpha: 0.6);
+  }
 }
 
 .filter.active {
   transform: translateX(0px);
+}
+
+@media (max-width: 768px) {
+  .filter {
+    width: 300px;
+  }
+}
+
+@media (max-width: 430px) {
+  .filter {
+    width: 100%;
+  }
 }

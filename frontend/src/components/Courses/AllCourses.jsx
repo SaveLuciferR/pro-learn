@@ -1,6 +1,6 @@
 import CourseCard from './CourseCard';
 
-const AllCourses = () => {
+const AllCourses = ({courses}) => {
   return (
     <div className="courses-all">
       <div className="courses-all-title">
@@ -25,12 +25,7 @@ const AllCourses = () => {
         </button>
       </div>
       <div className="courses-all-main">
-        <CourseCard />
-        <CourseCard />
-        <CourseCard />
-        <CourseCard />
-        <CourseCard />
-        <CourseCard />
+          {courses.map((item, i) => <CourseCard key={i} obj={item}/>)}
       </div>
       <div className="courses-all-bottom">
         <p className="courses-all-bottom-showed">Показано 10 из 100 курсов</p>

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ const Sidebar = () => {
       <div className="sidebar__container">
         <div className="sidebar_btngroup">
           {/* Часть с кнопками навигации */}
-          <div className="sidebar_btn">
+          <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}course`} className="sidebar_btn">
             <div className="sidebar_btn__item">
               {/* Курсы */}
               <svg
@@ -29,8 +29,8 @@ const Sidebar = () => {
                 <path d="M15 21L15 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
             </div>
-          </div>
-          <div className="sidebar_btn">
+          </Link>
+          <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}task`} className="sidebar_btn">
             <div className="sidebar_btn__item">
               {/* Практика */}
               <svg
@@ -60,8 +60,8 @@ const Sidebar = () => {
                 />
               </svg>
             </div>
-          </div>
-          <div className="sidebar_btn">
+          </Link>
+          <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}blog`} className="sidebar_btn">
             <div className="sidebar_btn__item">
               {/* Сообщество */}
               <svg
@@ -100,7 +100,7 @@ const Sidebar = () => {
                 />
               </svg>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </nav>

@@ -5,6 +5,8 @@ use core\Router;
 Router::add('^admin/?$', ['controller' => 'Main', 'action' => 'index', 'admin_prefix' => 'admin']); // Главная страница админки
 Router::add('^admin/course/edit/(?P<slug>[a-z-0-9]+)/?$', ['controller' => 'Course', 'action' => 'edit', 'admin_prefix' => 'admin']); // Страницы админки
 Router::add('^admin/task/edit/(?P<slug>[a-z-0-9]+)/?$', ['controller' => 'Task', 'action' => 'edit', 'admin_prefix' => 'admin']); // Страницы админки
+Router::add('^admin/feedback/(?P<id>[0-9]+)/?$', ['controller' => 'Feedback', 'action' => 'view', 'admin_prefix' => 'admin']); // Страницы админки
+
 
 Router::add('^admin/(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?/?$', ['admin_prefix' => 'admin']); // Страницы админки
 

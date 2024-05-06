@@ -157,6 +157,7 @@
     &-name {
       display: flex;
       justify-content: space-between;
+      overflow: hidden;
 
       &-leftside {
         display: flex;
@@ -411,7 +412,7 @@
     &-text {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       width: 100%;
       padding-right: 4px;
 
@@ -453,7 +454,7 @@
     }
 
     &-delete {
-      display: flex;
+      display: none;
       column-gap: 8px;
       color: #db5b42;
 
@@ -1003,4 +1004,449 @@
   font-size: 28px;
   text-align: center;
   color: rgba($color: #ffffff, $alpha: 0.6);
+}
+//1440
+// @media (max-width: 1440px) {
+//   .profile {
+//     &-section {
+//       padding: 28px 0;
+//       column-gap: 20px;
+
+//       &-main {
+//         max-width: 1090px;
+//         &-cards {
+//           padding: 28px 20px;
+//         }
+//       }
+//     }
+//   }
+// }
+//1024
+@media (max-width: 1440px) {
+  .profile {
+    &-section {
+      padding: 28px 0;
+      column-gap: 20px;
+
+      &-sidebar {
+        display: none;
+      }
+
+      &-main {
+        margin: 0 auto;
+        max-width: 1090px;
+        width: 905px;
+        &-cards {
+          padding: 28px 20px;
+        }
+      }
+    }
+  }
+
+  .info {
+    &-about {
+      padding: 18px;
+      height: 255px;
+
+      &-name {
+        &-leftside {
+          column-gap: 10px;
+        }
+        &-photo {
+          width: 55px;
+          height: 55px;
+        }
+
+        &-nameblock {
+          width: 170px;
+
+          &-nickname {
+            font-size: 20px;
+
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+          &-realname {
+            font-size: 14px;
+
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+
+        &-status {
+          font-size: 14px;
+        }
+      }
+
+      &-bio {
+        padding-top: 12px;
+        &-title {
+          font-size: 16px;
+        }
+
+        &-text {
+          font-size: 14px;
+          height: 80px;
+
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+
+      &-bottom {
+        padding-top: 12px;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .currentcourse {
+    padding: 18px;
+    height: 255px;
+    width: 417px;
+
+    &-course {
+      &-content {
+        width: 381px;
+      }
+
+      &-image {
+        width: 100px;
+      }
+
+      &-info {
+        &-rate {
+          padding-top: 12px;
+        }
+      }
+    }
+
+    &-progress {
+      padding-top: 16px;
+
+      &-text {
+        padding-top: 8px;
+      }
+    }
+
+    &-title,
+    & a {
+      font-size: 20px;
+    }
+
+    &-course {
+      padding-top: 23px;
+
+      &-info {
+        &-title {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  .profile-projects {
+    padding: 18px;
+    height: 255px;
+    width: 417px;
+
+    &-content {
+      width: 381px;
+    }
+
+    &-header {
+      &-title {
+        font-size: 20px;
+      }
+
+      &-linkall {
+        font-size: 14px;
+      }
+    }
+
+    &-info {
+      &-text {
+        &-name {
+          height: 27px;
+          width: 250px;
+
+          font-size: 18px;
+
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
+        &-access {
+          font-size: 14px;
+        }
+      }
+    }
+
+    &-desc {
+      font-size: 14px;
+    }
+
+    &-bottom {
+      padding-top: 12px;
+    }
+  }
+}
+//768
+@media (max-width: 1024px) {
+  .profile {
+    &-section {
+      &-main {
+        margin: 0 auto;
+        max-width: 571px;
+        &-cards {
+          flex-direction: column;
+          gap: 20px;
+
+          padding: 28px 20px;
+        }
+      }
+    }
+  }
+
+  .info {
+    &-about {
+      padding: 18px;
+      width: 100%;
+      // height: 295px;
+
+      &-bottom {
+        padding-top: 12px;
+        flex-direction: row;
+      }
+    }
+  }
+
+  .currentcourse {
+    padding: 18px;
+    width: 529px;
+
+    &-course {
+      &-content {
+        width: 489px;
+      }
+
+      &-image {
+        width: 120px;
+      }
+    }
+  }
+
+  .profile-projects {
+    padding: 18px;
+    width: 529px;
+
+    &-content {
+      width: 493px;
+    }
+
+    &-info {
+      &-text {
+        &-name {
+          width: 300px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 678px) {
+  .profile {
+    &-section {
+      &-main {
+        margin: 0 auto;
+        max-width: 571px;
+        width: 374px;
+        &-cards {
+          flex-direction: column;
+          gap: 20px;
+
+          padding: 28px 20px;
+        }
+      }
+    }
+  }
+
+  .info {
+    &-about {
+      height: inherit;
+      &-name {
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+
+        &-leftside {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        &-status {
+          padding-top: 8px;
+        }
+
+        &-edit {
+          position: absolute;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  .profile-section-main-difficulty {
+    font-size: 14px;
+    column-gap: 12px;
+  }
+
+  .profile-difficulty-range {
+    column-gap: 6px;
+
+    &-item {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  .currentcourse {
+    padding: 18px;
+    height: 255px;
+    width: 332px;
+
+    &-course {
+      padding-top: 20px;
+      &-content {
+        width: 296px;
+      }
+
+      &-image {
+        width: 100px;
+      }
+
+      &-info {
+        &-rate {
+          padding-top: 12px;
+
+          &-arrow {
+            width: 18px;
+            height: 18px;
+          }
+
+          &-like {
+            column-gap: 6px;
+            font-size: 14px;
+          }
+
+          &-dislike {
+            column-gap: 6px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    &-progress {
+      padding-top: 16px;
+
+      &-text {
+        padding-top: 8px;
+      }
+    }
+
+    &-title,
+    & a {
+      font-size: 20px;
+    }
+  }
+
+  .profile-projects {
+    padding: 18px;
+    width: 332px;
+
+    &-content {
+      width: 296px;
+    }
+
+    &-info {
+      &-text {
+        flex-direction: column;
+        align-items: baseline;
+        &-name {
+          width: 250px;
+        }
+      }
+    }
+
+    &-desc {
+      height: 80px;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .profile {
+    &-section {
+      &-main {
+        width: 319px;
+
+        &-cards {
+          padding: 20px;
+        }
+      }
+    }
+  }
+
+  .info {
+    &-about {
+      padding: 18px;
+      // width: 332px;
+      // height: 295px;
+
+      &-bottom {
+        padding-top: 12px;
+        flex-direction: row;
+      }
+    }
+  }
+
+  .currentcourse {
+    padding: 18px;
+    width: 277px;
+
+    &-course {
+      &-content {
+        width: 241px;
+      }
+
+      &-image {
+        display: none;
+      }
+    }
+  }
+
+  .profile-projects {
+    padding: 18px;
+    height: inherit;
+    width: 277px;
+
+    &-content {
+      width: 241px;
+    }
+
+    &-info {
+      &-text {
+        &-name {
+          width: 300px;
+        }
+      }
+    }
+  }
 }

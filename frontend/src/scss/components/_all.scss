@@ -1,7 +1,8 @@
 @import "./components";
+@import "./mainelements";
 @import "./markdown";
-@import "./header";
-@import "./sidebar";
+// @import "./header";
+// @import "./sidebar";
 @import "./Blog/blogMain";
 @import "./Blog/filter";
 @import "./Compiler/compiler";
@@ -18,3 +19,6 @@
 @import "./TextEditor/text-editor";
 @import "./slider";
 @import "./Task/taskSingle";
+@import "./Admin/admin";
+@import "./Table/table";
+@import "./MainMenu/mainmenu";
