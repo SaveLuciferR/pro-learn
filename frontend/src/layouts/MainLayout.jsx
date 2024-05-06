@@ -89,7 +89,6 @@ const MainLayout = ({isActiveSidebar, isCompiler, success}) => {
                             {sidebarProfileActive ? <SidebarProfile/> : <></>}
                         </>
                     </div>
-                    <ModalWindow/>
                 </>
             }
         </>

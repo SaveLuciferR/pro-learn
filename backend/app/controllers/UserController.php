@@ -446,15 +446,14 @@ class UserController extends AppController
 //        echo json_encode(array('downloadUrl' => $dist, 'fileName' => $fileName));
     }
 
-
-    protected function getDir($path)
-    {
-
-    }
-
     public function projectDeleteAction()
     {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
 
+        echo json_encode(array('success' => $this->model->deleteProject($_SESSION['user']['id'], $_SESSION['user']['username'], $this->route['slug'])));
     }
 
     public function addProjectAction()

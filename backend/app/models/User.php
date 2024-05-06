@@ -285,6 +285,22 @@ class User extends AppModel
         return $this->createProjectFileList($path);
     }
 
+    public function deleteProject($userID, $username, $slug)
+    {
+        R::begin();
+        try {
+            $project = R::findOne('project', 'user_id = ? AND slug = ?', [$userID, $slug]);
+            R::trash($project);
+            R::commit();
+            $this->deleteCacheProjectDir(USER_PROJECT . '/' . $username . '/' . $slug);
+            return true;
+        }
+        catch(\Exception $ex) {
+            R::rollback();
+            return false;
+        }
+    }
+
     public function editProject($data, $pathProject, $username)
     {
         R::begin();
