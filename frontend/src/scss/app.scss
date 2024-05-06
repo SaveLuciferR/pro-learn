@@ -4,6 +4,7 @@ body {
   font-family: "Fira Code", monospace;
   color: #ffffff;
   line-height: normal;
+  // background-color: #0d1117;
 }
 
 .main {
@@ -34,6 +35,15 @@ body {
 }
 
 @import "./components/all";
+
+@media (max-width: 768px) {
+  .main {
+    padding: 109px 28px 28px 28px;
+    &.active-sidebar {
+      padding: 109px 28px 28px 78px;
+    }
+  }
+}
 
 @media (max-width: 430px) {
   .main {

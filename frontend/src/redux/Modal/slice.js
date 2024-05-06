@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  showWindow: false,
-  titleText: '',
-  contentText: '',
-  iconType: '',
-  showButtons: true,
-  showContent: true,
-  showIcon: false,
-  buttonAnswer: false,
+  showWindow: false, //Показать/скрыть модальное окно
+  titleText: '', //Текст заголовка
+  contentText: '', //Текст контентной части (чаще для пояс)
+  iconType: '', //Тип иконки (изменяется условием)
+  showButtons: true, //Показать/скрыть кнопки (да/нет)
+  showContent: true, //Показать/скрыть контент
+  showIcon: false, //Показать/скрыть иконку
+  buttonAnswer: false, //Переменная, которая хранит ответ модального окна
 };
 
 export const modalElement = createSlice({

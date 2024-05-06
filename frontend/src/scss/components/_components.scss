@@ -137,6 +137,14 @@ a {
   }
 }
 
+@media (max-width: 375px) {
+  .btn {
+    &.big {
+      padding: 8px 16px;
+    }
+  }
+}
+
 .input {
   padding: 12px 20px;
 

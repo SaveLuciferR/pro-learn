@@ -1,7 +1,7 @@
 .modal_form {
     margin: auto;
-    height: 100%;
     margin-top: 200px;
+    height: 100%;
 
     display: flex;
     padding: 28px;
@@ -128,15 +128,47 @@
 .form {
     &-hint {
         padding-top: 12px;
-        
+
         font-size: 13px;
         opacity: 0.4;
-        
     }
 
     &_second-buttons {
         display: flex;
         gap: 12px;
         align-items: center;
+    }
+}
+
+@media (max-width: 430px) {
+    .modal_form {
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 375px) {
+    .modal_form {
+        margin-top: 50px;
+
+        & label {
+            font-size: 14px;
+        }
+    }
+
+    .form {
+        &_second-buttons {
+            flex-direction: column;
+            align-items: baseline;
+
+            & p {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    .modal_form {
+        padding: 20px;
     }
 }
