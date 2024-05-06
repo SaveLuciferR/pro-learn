@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import SliderUnder from './SliderUnder';
 import SliderList from './SliderList';
 
-const SliderMain = ({ data, sliderType, countSlide }) => {
+const SliderMain = ({ data, sliderType, countSlide, viewWords }) => {
   const [sliderItems, setSliderItems] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
   const [touchPosition, setTouchPosition] = useState(null);
@@ -58,7 +58,7 @@ const SliderMain = ({ data, sliderType, countSlide }) => {
 
   return (
     <div className={'slider'} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
-      <SliderList type={sliderType} items={sliderItems} index={slideIndex} />
+      <SliderList type={sliderType} items={sliderItems} index={slideIndex} viewWords={viewWords}/>
       <SliderUnder
         changeSlide={(e) => changeSlide(e)}
         goToSlide={(e) => goToSlide(e)}

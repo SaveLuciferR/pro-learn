@@ -33,9 +33,14 @@ Router::add('^(?P<lang>[a-z]+)?/?task/(?P<slug>[a-z0-9-]+)/?$', ['controller' =>
 Router::add('^(?P<lang>[a-z]+)?/?task/(?P<slug>[a-z0-9-]+)/solve/?$', ['controller' => 'Task', 'action' => 'solveTask']); // Запрос на начало или продолжение решения задачи
 
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project-add/?$', ['controller' => 'User', 'action' => 'addProject']); // Страница с добавлением проекта
-Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project-save/?$', ['controller' => 'User', 'action' => 'saveProject']); // Запрос с сохранением проекта
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project-save-new/?$', ['controller' => 'User', 'action' => 'saveNewProject']); // Запрос с сохранением проекта
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project-save-edit/(?P<slug>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'saveEditProject']); // Запрос с сохранением проекта
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project-add/new-files/?$', ['controller' => 'User', 'action' => 'addNewFiles']); // Запрос с добавлением нового файла
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project-add/get-project-in-cache/?$', ['controller' => 'User', 'action' => 'getProjectInCache']); // Запрос для получения проекта из кеша
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project-add/delete-file/?$', ['controller' => 'User', 'action' => 'deleteFile']); // Запрос для получения проекта из кеша
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project-edit/(?P<slug>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'projectForEdit']); // Запрос для получения проекта из кеша
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project-download/(?P<slug>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'projectDownload']); // Страница с проектом
+Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project-delete/(?P<slug>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'projectDelete']); // Страница с проектом
 
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project/(?P<slug>[a-z-0-9A-Z]+)/(?P<secondaryPath>[a-z-0-9A-Z/.]+)/?$', ['controller' => 'User', 'action' => 'project']); // Страница с вложенными папками проекта или файлом
 Router::add('^(?P<lang>[a-z]+)?/?@(?P<username>[a-z-0-9A-Z]+)/project/(?P<slug>[a-z-0-9A-Z]+)/?$', ['controller' => 'User', 'action' => 'project']); // Страница с проектом

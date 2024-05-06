@@ -1,7 +1,7 @@
 import img from '../../../header_bg.png';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const ProfileInfo = ({ data }) => {
+const ProfileInfo = ({ data, viewWords}) => {
   const navigate = useNavigate();
   const { lang, username } = useParams();
   console.log(data);
@@ -17,13 +17,13 @@ const ProfileInfo = ({ data }) => {
             <p className="info-about-name-nameblock-nickname">{data.username}</p>
             <p className="info-about-name-nameblock-realname">
               {data.last_name | (data.first_name === undefined)
-                ? '*Реальное имя скрыто'
+                ? `*${viewWords['tpl_profile_main-page_hidden-name']}`
                 : data.first_name + ' ' + data.last_name}
             </p>
           </div>
         </div>
         <p className="info-about-name-status">
-          {data.role === 'user' ? 'Пользователь' : 'Администратор'}
+          {viewWords[`tpl_profile_card_role-${data.role}`]}
         </p>
         <svg
           onClick={() => navigate(`../profile/${username}/settings/general`)}
@@ -48,20 +48,20 @@ const ProfileInfo = ({ data }) => {
         </svg>
       </div>
       <div className="info-about-bio">
-        <p className="info-about-bio-title">&gt; О себе</p>
+        <p className="info-about-bio-title">&gt; {viewWords['tpl_profile_main-page_about-me']}</p>
         <p className="info-about-bio-text">
           //{' '}
           {data.about_user === undefined
-            ? 'Пользователь предпочел скрыть информацию'
+            ? `${viewWords['tpl_profile_main-page_hidden-info']}`
             : data.about_user}
         </p>
       </div>
       <div className="info-about-bottom">
         <div className="info-about-bottom-dor">
-          <p>// Дата регистрации: {data.date_of_registration}</p>
+          <p>// {viewWords['tpl_profile_main-page_date-of-registration']}: {data.date_of_registration}</p>
         </div>
         <div className="info-about-bottom-country">
-          <p>Страна: {data.country_address === undefined ? '######' : data.country_address}</p>
+          <p>{viewWords['tpl_profile_main-page_country']}: {data.country_address === undefined ? '######' : data.country_address}</p>
         </div>
       </div>
     </div>

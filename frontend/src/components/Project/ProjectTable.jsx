@@ -8,6 +8,8 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 import {get} from "axios";
+import {FaFile, FaFolder} from "react-icons/fa";
+import {RiCloseCircleLine} from "react-icons/ri";
 
 const ProjectTable = ({
                           setBeforeFolder,
@@ -18,7 +20,8 @@ const ProjectTable = ({
                           setSecondaryPath,
                           isAddProject = false,
                           getStructureUploadFiles,
-                            setNewFilesInfo,
+                          setNewFilesInfo,
+                          handleFileDelete
                       }) => {
 
     const dispatch = useDispatch();
@@ -43,9 +46,10 @@ const ProjectTable = ({
     const handleFileSelected = (e) => {
         const currentFiles = Array.from(e.target.files);
 
-        dispatch(setMainFolderNewFileAddProject(secondaryPath));
+        // dispatch(setMainFolderNewFileAddProject(secondaryPath));
         // getStructureUploadFiles(currentFiles, true);
-        setNewFilesInfo(getStructureUploadFiles(currentFiles, true));
+        // setNewFilesInfo(getStructureUploadFiles(currentFiles, true));
+        setNewFilesInfo(currentFiles);
         // console.log(files);
         // dispatch(setNewFilesAddProject(getStructureUploadFiles(currentFiles, true)));
         // const files = getStructureUploadFiles(currentFiles, true);
@@ -75,8 +79,15 @@ const ProjectTable = ({
                     {obj.map((item, i) =>
                         <div key={i} className="project_files-body_item" onClick={() => setPath(item.fileName)}>
                             <div className="project_files-body_item-name">
-                                <ProjectSvg type={item.type}/>
+                                {/*<ProjectSvg type={item.type}/>*/}
+                                {item.type === 'directory' ? <FaFolder size={16}/> : <FaFile size={16}/>}
                                 <span>{item.fileName}</span>
+                                {isAddProject ?
+                                    <button className={'btn btn-red'} onClick={(e) => handleFileDelete(e, secondaryPath, item.fileName)}>
+                                        <RiCloseCircleLine size={16}/> Удалить</button>
+                                    :
+                                    <></>
+                                }
                             </div>
                             <span>{item.lastCommit}</span>
                         </div>

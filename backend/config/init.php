@@ -11,6 +11,7 @@ const CORE = ROOT . '/vendor/core';
 const HELPERS = ROOT . '/vendor/core/helpers';
 const CACHE = ROOT . '/tmp/cache';
 const PROJECT_CACHE = ROOT . '/tmp/project';
+const DOWNLOAD_CACHE = ROOT . '/tmp/download';
 const LOGS = ROOT . '/tmp/logs';
 const CONFIG = ROOT . '/config';
 const LAYOUT = 'pro-learn';

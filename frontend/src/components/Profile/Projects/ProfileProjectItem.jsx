@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 const ProfileProjectItem = ({ data }) => {
   const { lang, username } = useParams();
 
+  console.log(data);
+
   return (
     <div className="profile-projects-card">
       <div className="profile-projects-page-info">

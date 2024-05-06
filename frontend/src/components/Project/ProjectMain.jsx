@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 
 
 const ProjectMain = ({ projectInfo }) => {
+
+    const {username, project, lang} = useParams();
+    const navigate = useNavigate();
 
     const getLangProgProject = () => {
         let langString = "";
@@ -39,7 +42,7 @@ const ProjectMain = ({ projectInfo }) => {
                         <span>{projectInfo.info.private === 1 ? "Публичный" : "Приватный"}</span>
                     </div>
                 </div>
-                <button className="sidebar_btn">
+                <button className="sidebar_btn" onClick={() => navigate(`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/project-edit/${project}`)}>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_101_5259)">
                             <path d="M9.57207 2.71912L10.19 2.1012C11.2138 1.07739 12.8737 1.07739 13.8975 2.1012C14.9213 3.125 14.9213 4.78491 13.8975 5.80871L13.2796 6.42663M9.57207 2.71912C9.57207 2.71912 9.64931 4.03219 10.8079 5.19079C11.9665 6.34939 13.2796 6.42663 13.2796 6.42663M9.57207 2.71912L3.89125 8.39994C3.50647 8.78472 3.31408 8.9771 3.14863 9.18923C2.95345 9.43946 2.78612 9.71022 2.64959 9.99669C2.53385 10.2395 2.44782 10.4977 2.27574 11.0139L1.54657 13.2014M13.2796 6.42663L7.59877 12.1075C7.21399 12.4922 7.0216 12.6846 6.80947 12.8501C6.55924 13.0453 6.28849 13.2126 6.00202 13.3491C5.75916 13.4649 5.50105 13.5509 4.98482 13.723L2.79731 14.4521M2.79731 14.4521L2.26259 14.6304C2.00855 14.7151 1.72847 14.6489 1.53912 14.4596C1.34977 14.2702 1.28365 13.9902 1.36833 13.7361L1.54657 13.2014M2.79731 14.4521L1.54657 13.2014" stroke="white" />

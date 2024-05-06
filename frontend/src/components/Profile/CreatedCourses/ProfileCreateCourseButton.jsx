@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 
-const ProfileCreateCourseButton = ({ type }) => {
+const ProfileCreateCourseButton = ({ type, viewWords }) => {
   const navigate = useNavigate();
   const { lang, username } = useParams();
   return (

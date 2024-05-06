@@ -40,7 +40,7 @@ class User extends AppModel
                 if (password_verify($password, $user->password) && $user->is_activated) {
                     $_SESSION['user'] = [];
                     foreach ($user as $k => $v) {
-                        if (!$k != 'password') {
+                        if ($k !== 'password') {
                             $_SESSION['user'][$k] = $v;
                         }
                     }
@@ -99,14 +99,12 @@ class User extends AppModel
                 R::store($user);
                 R::commit();
                 return true;
-            }
-            else {
+            } else {
                 R::commit();
                 $error = 'InCorrectCode';
                 return false;
             }
-        }
-        catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             R::rollback();
             $error = $ex->getMessage();
             return false;
@@ -194,7 +192,7 @@ class User extends AppModel
 
     public function getCourseCreatedUser($username, $lang)
     {
-        return R::getAssoc("SELECT c.id, c.slug, cd.title, c.status, c.views,
+        return R::getAll("SELECT c.id, c.slug, cd.title, c.status, c.views,
                                 (SELECT COUNT(uc.user_id)
                                     FROM user_course uc
                                     WHERE uc.success = 1 AND uc.course_id = c.id) AS 'finish_users',
@@ -215,7 +213,7 @@ class User extends AppModel
 
     public function getTaskCreatedUser($username, $lang)
     {
-        return R::getAssoc("SELECT c.id, c.slug, cd.title, c.views, c.status,
+        return R::getAll("SELECT c.id, c.slug, cd.title, c.views, c.status,
                                 (SELECT COUNT(uc.user_id)
                                     FROM user_challenge uc
                                     WHERE uc.success = 1 AND uc.challenge_id = c.id) AS 'finish_users',
@@ -286,6 +284,45 @@ class User extends AppModel
         //        debug($path);
 
         return $this->createProjectFileList($path);
+    }
+
+    public function deleteProject($userID, $username, $slug)
+    {
+        R::begin();
+        try {
+            $project = R::findOne('project', 'user_id = ? AND slug = ?', [$userID, $slug]);
+            R::trash($project);
+            R::commit();
+            $this->deleteCacheProjectDir(USER_PROJECT . '/' . $username . '/' . $slug);
+            return true;
+        }
+        catch(\Exception $ex) {
+            R::rollback();
+            return false;
+        }
+    }
+
+    public function editProject($data, $pathProject, $username)
+    {
+        R::begin();
+        try {
+            $project = R::findOne('project', 'slug = ?', [$data['slug']]);
+            $project->title = $data['title'];
+            $project->description = $data['desc'];
+            $project->private = $data['private'];
+            $projectID = R::store($project);
+
+            R::commit();
+//            $this->deleteCacheProjectDir();
+            $this->copyCacheProject(
+                Cache::getInstance()->getCache($_SESSION['user']['username'] . '/' . md5($data['slug'])),
+                USER_PROJECT . '/' . $_SESSION['user']['username'] . '/' . $data['slug']
+            );
+            return $project->slug;
+        } catch (\Exception $ex) {
+            R::rollback();
+            return false;
+        }
     }
 
     public function saveNewProject($data, $pathProject, $username)
@@ -397,7 +434,8 @@ class User extends AppModel
             foreach ($directoryInfo as $k => $v) {
                 $temp = [];
 
-                if (str_contains($v, '.')) {
+//                if (str_contains($v, '.')) {
+                if (!is_dir($path . '/' . $v)) {
                     $temp['type'] = substr(strrchr($v, '.'), 1);
                 } else {
                     $temp['type'] = "directory";
@@ -474,7 +512,7 @@ class User extends AppModel
 
     public function getUserCourses($username, $lang)
     {
-        return R::getAssoc("SELECT c.id, uc.success,
+        return R::getAll("SELECT c.id, uc.success,
                                     c.slug, c.icon, c.difficulty, cd.title, cd.excerpt, uc.current_stage, u.username,
                                     u.role, c.date_of_publication, c.views,
                                     (SELECT COUNT(sc.id)
@@ -530,7 +568,7 @@ class User extends AppModel
 
     public function getCourseLangProgByID($id)
     {
-        return R::getAssoc("SELECT lp.id, lp.title
+        return R::getAll("SELECT lp.id, lp.title
                                 FROM course c JOIN course_categorylangprog cclp ON c.id = cclp.course_id
                                 JOIN langprog lp ON lp.id = cclp.lang_prog_id
                                 WHERE c.id = ?", [$id]);
@@ -545,7 +583,7 @@ class User extends AppModel
 
     public function getUserTasks($username, $lang)
     {
-        return R::getAssoc("SELECT c.id, uc.success, c.slug, c.difficulty, cd.title, cd.content, c.date_of_publication, c.views,
+        return R::getAll("SELECT c.id, uc.success, c.slug, c.difficulty, cd.title, cd.content, c.date_of_publication, c.views,
                                 (SELECT COUNT(uc.user_id)
                                     FROM user_challenge uc
                                     WHERE uc.success = 1 AND uc.challenge_id = c.id) AS 'finish_users',

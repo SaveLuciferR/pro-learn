@@ -5,12 +5,14 @@ import axiosClient from '../../axiosClient';
 const ProfileSidebarMain = () => {
   const { username, lang } = useParams();
   const [data, setData] = useState([]);
+  const [viewWords, setViewWords] = useState({});
 
   useEffect(() => {
     axiosClient
       .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
       .then(({ data }) => {
         setData(data.profileInfo);
+        setViewWords(data.viewWords);
       });
   }, [lang, username]);
 
@@ -35,7 +37,7 @@ const ProfileSidebarMain = () => {
             to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/current-courses`}
             className="profile-section-sidebar-tab-text"
           >
-            Текущие курсы
+            {viewWords['tpl_profile_current-courses_title']}
           </Link>
         </div>
         <div className="profile-section-sidebar-tab">
@@ -45,7 +47,7 @@ const ProfileSidebarMain = () => {
             }profile/${username}/completed-courses`}
             className="profile-section-sidebar-tab-text"
           >
-            Пройденные курсы
+            {viewWords['tpl_profile_completed-courses_title']}
           </Link>
         </div>
         <div className="profile-section-sidebar-tab">
@@ -53,7 +55,7 @@ const ProfileSidebarMain = () => {
             to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/created-courses`}
             className="profile-section-sidebar-tab-text"
           >
-            Созданные курсы
+            {viewWords['tpl_profile_created-courses_title']}
           </Link>
         </div>
         <div className="profile-section-sidebar-tab">
@@ -61,7 +63,7 @@ const ProfileSidebarMain = () => {
             to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/projects`}
             className="profile-section-sidebar-tab-text"
           >
-            Проекты
+            {viewWords['tpl_profile_project_title']}
           </Link>
         </div>
         <div className="profile-section-sidebar-tab">
@@ -69,7 +71,7 @@ const ProfileSidebarMain = () => {
             to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/user-tasks`}
             className="profile-section-sidebar-tab-text"
           >
-            Созданные задачи
+            {viewWords['tpl_profile_created-task_title']}
           </Link>
         </div>
         <div className="profile-section-sidebar-tab">
@@ -77,7 +79,7 @@ const ProfileSidebarMain = () => {
             to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/tasks`}
             className="profile-section-sidebar-tab-text"
           >
-            Задачи
+            {viewWords['tpl_profile_task_title']}
           </Link>
         </div>
       </div>

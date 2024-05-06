@@ -2,20 +2,19 @@ import { Link } from 'react-router-dom';
 import SliderMain from '../../Slider/SliderMain';
 import { useEffect, useState } from 'react';
 
-const ProfileProjects = ({ data }) => {
+const ProfileProjects = ({ data, viewWords }) => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     setProjects(data.projects);
   }, [data]);
 
-  console.log(data);
   return (
     <div className="profile-projects">
       <div className="profile-projects-header">
-        <p className="profile-projects-header-title">Проекты</p>
+        <p className="profile-projects-header-title">{viewWords['tpl_profile_project_title']}</p>
         <Link to={`projects`} className="profile-projects-header-linkall">
-          Посмотреть все
+          {viewWords['tpl_profile_main-page_project-all']}
           <svg
             width="21"
             height="21"
@@ -33,9 +32,9 @@ const ProfileProjects = ({ data }) => {
         </Link>
       </div>
       {projects.length === 0 ? (
-        <div className="profile-none">Нет проектов ):</div>
+        <div className="profile-none">{viewWords['tpl_profile_project_missing']} ):</div>
       ) : (
-        <SliderMain data={projects} sliderType="profileProjects" countSlide={1} />
+        <SliderMain data={projects} sliderType="profileProjects" countSlide={1} viewWords={viewWords}/>
       )}
     </div>
   );

@@ -55,10 +55,27 @@ a {
   }
 
   &-red {
+    display: flex;
+    gap: 4px;
+    align-items: center;
     color: #db5b42;
 
     &::before {
       background-color: #db5b42;
+    }
+
+    :hover {
+      &::before {
+        content: "";
+        bottom: -3px;
+        right: 0;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #ffffff;
+        transition: 0.2s;
+        transform: scaleX(0);
+      }
     }
   }
 
@@ -71,6 +88,7 @@ a {
     &:hover {
       background-color: #5255bb;
     }
+
   }
 
   &.secondary-blue {
@@ -164,14 +182,14 @@ a {
     border: 1px solid #797ef9;
 
     &-error {
-      border: 1px solid #ff2c2c;
+      border: 1px solid #FF2C2C;
     }
   }
 
   &.output-search {
     font-size: 14px;
     padding: 4px 8px;
-    border: 1px solid #0d0d0d;
+    border: 1px solid #0D0D0D;
 
     transition: all 0.4s ease-in-out;
 
@@ -373,6 +391,7 @@ a {
     }
   }
 }
+
 
 label {
   display: flex;
@@ -718,13 +737,13 @@ label {
 
     &:before {
       position: absolute;
-      content: "";
+      content: '';
       width: 26px;
       height: 26px;
       border-radius: 50%;
       left: 4px;
       bottom: 4px;
-      background-color: #ffffff;
+      background-color: #FFFFFF;
       transition: 0.4s;
     }
   }
@@ -746,5 +765,15 @@ label {
   &-24 {
     min-width: 24px;
     max-width: 24px;
+  }
+}
+
+.clamp {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  &.multiline {
+    white-space: normal;
   }
 }

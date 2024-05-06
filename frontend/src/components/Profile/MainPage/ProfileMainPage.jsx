@@ -8,41 +8,34 @@ import ProfileProjects from './ProfileProjects';
 import LoadingElement from '../../LoadingElement';
 
 const ProfileMainPage = () => {
-  const { lang, username } = useParams();
-  const [userData, setUserData] = useState([]);
-  const [completedCourse, setCompletedCourse] = useState([]);
+    const {lang, username} = useParams();
+    const [userData, setUserData] = useState([]);
+    const [viewWords, setViewWords] = useState({});
+    // const [completedCourse, setCompletedCourse] = useState([]);
 
-  useEffect(() => {
-    axiosClient
-      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
-      .then(({ data }) => {
-        setUserData(data.profileInfo);
-      });
+    useEffect(() => {
+        axiosClient
+            .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
+            .then(({data}) => {
+                console.log(data)
+                setUserData(data.profileInfo);
+                setViewWords(data.viewWords);
+            });
+    }, [lang, username]);
 
-    axiosClient
-      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
-      .then(({ data }) => {
-        setCompletedCourse(data);
-      });
-  }, [lang, username]);
-
-  console.log(userData);
-  console.log(username);
-
-  return (
-    <>
-      {Object.keys(userData).length === 0 ? (
-        <LoadingElement />
-      ) : (
-        <div className="profile-section-main-cards">
-          <ProfileInfo data={userData} />
-          <CurrentCourseMain data={userData} />
-          <ProfileProjects data={userData} />
-          <CompleteCourseMain data={userData} />
-        </div>
-      )}
-    </>
-  );
-};
+    return (
+        <>
+            {Object.keys(userData).length === 0 ? (
+                <LoadingElement/>
+            ) : (
+                <div className="profile-section-main-cards">
+                    <ProfileInfo data={userData} viewWords={viewWords}/>
+                    <CurrentCourseMain data={userData} viewWords={viewWords}/>
+                    <ProfileProjects data={userData} viewWords={viewWords}/>
+                    <CompleteCourseMain data={userData} viewWords={viewWords}/>
+                </div>
+            )}
+        </>
+    );};
 
 export default ProfileMainPage;
