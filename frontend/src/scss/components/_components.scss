@@ -742,3 +742,13 @@ label {
     max-width: 24px;
   }
 }
+
+.clamp {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  &.multiline {
+    white-space: normal;
+  }
+}

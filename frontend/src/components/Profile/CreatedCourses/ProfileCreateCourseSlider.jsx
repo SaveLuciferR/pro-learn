@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import axiosClient from '../../../axiosClient';
 import SliderMain from '../../Slider/SliderMain';
 
-const ProfileCreateCourse = () => {
+const ProfileCreateCourse = ({viewWords}) => {
   const { lang, username } = useParams();
   const currentUser = useSelector((state) => state.mainLayout.user);
   const [createdCourses, setCreatedCourses] = useState([]);
@@ -20,11 +20,13 @@ const ProfileCreateCourse = () => {
   // course-from-user
   return (
     <div className="created-course">
+      <div className={"profile-completed-page-main"}>
       {createdCourses.length === 0 ? (
         <div className="profile-none">Нет созданных курсов :(</div>
       ) : (
-        <SliderMain data={createdCourses} sliderType="createdCourses" countSlide={1} />
+        <SliderMain data={createdCourses} sliderType="createdCourses" countSlide={1} viewWords={viewWords}/>
       )}
+      </div>
     </div>
   );
 };

@@ -203,16 +203,27 @@ class UserController extends AppController
             die;
         }
         $profileInfo['date_of_registration'] = date('d.m.Y', strtotime($profileInfo['date_of_registration']));
+
         $profileInfo['projects'] = $this->model->getUserProjects($this->route['username']);
+        foreach ($profileInfo['projects'] as $k => $v) {
+            $profileInfo['projects'][$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+        }
 
         $userCourse = $this->model->getUserCourses($this->route['username'], App::$app->getProperty('language')['id']);
+        foreach ($userCourse as $k => $v) {
+            $userCourse[$k]['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            $userCourse[$k]['tags'] = $this->model->getCourseTagByID($k);
+            $userCourse[$k]['language'] = $this->model->getCourseLangProgByID($k);
+        }
 
         // Сортировка курсов на текущие и пройденнык
+        $profileInfo['completeCourse'] = [];
+        $profileInfo['currentCourse'] = [];
         foreach ($userCourse as $k => $v) {
             if ($v['success']) {
-                $profileInfo['completeCourse'][$k] = $v;
+                array_push($profileInfo['currentCourse'], $v);
             } else {
-                $profileInfo['currentCourse'][$k] = $v;
+                array_push($profileInfo['completeCourse'], $v);
             }
         }
 
@@ -252,7 +263,8 @@ class UserController extends AppController
         }
 
 
-        echo json_encode(array('profileInfo' => $profileInfo), JSON_UNESCAPED_SLASHES);
+//        debug($profileInfo, 1);
+        echo json_encode(array('profileInfo' => $profileInfo, 'viewWords' => Language::$langView), JSON_UNESCAPED_SLASHES);
     }
 
     public function projectListAction()

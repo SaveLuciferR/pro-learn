@@ -52,7 +52,7 @@ const MainLayout = ({isActiveSidebar, isCompiler, success}) => {
                     dispatch(setUserAuth(data.auth));
                     dispatch(setUser(data.user));
                     dispatch(setNeedActivateAccount(data.needActivateAccount));
-                    console.log(data.user);
+                    // console.log(data.user);
                 });
 
             dispatch(setNeedReloadPage(false));
@@ -86,7 +86,7 @@ const MainLayout = ({isActiveSidebar, isCompiler, success}) => {
                                         activeCompiler: [(v) => setActiveCompiler(v)]
                                     }}/>
                                 </div>}
-                            {sidebarProfileActive ? <SidebarProfile/> : <></>}
+                            {sidebarProfileActive ? <SidebarProfile viewWords={layoutWords}/> : <></>}
                         </>
                     </div>
                 </>

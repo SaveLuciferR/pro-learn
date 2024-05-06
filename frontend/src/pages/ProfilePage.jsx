@@ -13,14 +13,14 @@ const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
   activeCompiler[0](isCompiler);
 
   const currentUser = useSelector((state) => state.mainLayout.user);
-  // const [data, setData] = useState([]);
+
   const { lang, username } = useParams();
 
   // useEffect(() => {
   //   axiosClient
   //     .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
   //     .then(({ data }) => {
-  //       setData(data);
+  //       console.log(data)
   //     });
   // }, [lang, username]);
 

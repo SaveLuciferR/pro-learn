@@ -7,16 +7,18 @@ import LoadingElement from '../../LoadingElement';
 const ProfileCurrentCourses = () => {
   const { lang, username } = useParams();
   const [currentCourses, setCurrentCourses] = useState([]);
+  const [viewWords, setViewWords] = useState({});
 
   useEffect(() => {
     axiosClient
       .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
       .then(({ data }) => {
         setCurrentCourses(data.profileInfo.currentCourse);
+        setViewWords(data.viewWords);
       });
   }, [lang, username]);
 
-  console.log(currentCourses);
+  // console.log(currentCourses);
 
   return (
     <>
@@ -40,16 +42,16 @@ const ProfileCurrentCourses = () => {
                   stroke-linejoin="round"
                 />
               </svg>
-              <Link to={`../../profile/${username}`}>Профиль</Link>
+              <Link to={`../../profile/${username}`}>{viewWords['tpl_profile_back-profile']}</Link>
             </div>
-            <h1>_Текущие курсы</h1>
+            <h1>_{viewWords['tpl_profile_current-courses_title']}</h1>
           </div>
           <div className="profile-projects-page">
             <div className="profile-completed-page-main">
               {currentCourses.length === 0 ? (
-                <div className="profile-none">Нет текущих курсов :(</div>
+                <div className="profile-none">{viewWords['tpl_profile_current-courses_missing']} :(</div>
               ) : (
-                <SliderMain data={currentCourses} sliderType="currentCourse" countSlide={2} />
+                <SliderMain data={currentCourses} sliderType="currentCourse" countSlide={2} viewWords={viewWords}/>
               )}
             </div>
           </div>

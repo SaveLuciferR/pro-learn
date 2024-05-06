@@ -3463,3 +3463,19 @@
 =================
 [2024-05-05 21:01:41] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
 =================
+[2024-05-06 15:42:45] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'uc' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-05-06 15:42:45] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'uc' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-05-06 15:42:45] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'uc' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-05-06 15:42:45] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'uc' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-05-06 15:42:52] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'uc' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-05-06 15:42:52] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'uc' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-05-06 15:42:52] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'uc' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-05-06 15:42:52] Текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'uc' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================

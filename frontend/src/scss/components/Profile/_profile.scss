@@ -167,6 +167,7 @@
       &-nameblock {
         max-width: 200px;
         width: 200px;
+
         &-nickname {
           font-size: 24px;
           font-weight: 500;
@@ -273,6 +274,7 @@
     text-align: center;
     user-select: none;
   }
+
   & a {
     font-size: 28px;
     font-weight: 500;
@@ -294,9 +296,11 @@
 
     &-info {
       &-title {
+        max-width: 300px;
         font-size: 24px;
         font-weight: 500;
       }
+
       &-rate {
         padding-top: 20px;
         display: flex;
@@ -327,6 +331,7 @@
             user-select: none;
           }
         }
+
         &-arrow {
           padding: 2px;
           width: 20px;
@@ -416,6 +421,7 @@
       padding-right: 4px;
 
       &-name {
+        max-width: 350px;
         height: 52px;
         font-size: 20px;
         font-weight: 500;
@@ -482,7 +488,7 @@
 
 .created {
   &-course {
-    padding: 18px;
+    padding: 20px;
     height: 591px;
     width: calc(50% - 14px);
     border-radius: 12px;
@@ -520,10 +526,12 @@
           cursor: pointer;
         }
       }
+
       &-desc {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         &-text {
           height: 84px;
           margin-top: 17px;
@@ -564,6 +572,7 @@
       column-gap: 18px;
       font-size: 14px;
       font-weight: 300;
+
       &-rate {
         display: flex;
         column-gap: 14px;
@@ -621,6 +630,7 @@
       & h1 {
         font-size: 36px;
       }
+
       & .lessons-header-back {
         top: 41.5px;
         left: 28px;
@@ -649,6 +659,7 @@
       height: 97px;
       width: 97px;
     }
+
     &-text {
       padding-top: 28px;
       font-size: 24px;
@@ -799,6 +810,7 @@
 
     &-solution {
       font-size: 14px;
+
       &.end {
         display: flex;
         align-items: center;
@@ -941,6 +953,10 @@
     }
 
     &-about {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px
+    ;
       padding-top: 14px;
       font-size: 14px;
       color: rgba($color: #ffffff, $alpha: 0.6);
@@ -985,6 +1001,11 @@
     width: calc(50% - 14px);
     background-color: #0d1117;
     border-radius: 12px;
+
+    &.created-card {
+      padding: 0;
+      width: 100%;
+    }
 
     &-button {
       padding-top: 24px;

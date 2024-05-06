@@ -191,7 +191,7 @@ class User extends AppModel
 
     public function getCourseCreatedUser($username, $lang)
     {
-        return R::getAssoc("SELECT c.id, c.slug, cd.title, c.status, c.views,
+        return R::getAll("SELECT c.id, c.slug, cd.title, c.status, c.views,
                                 (SELECT COUNT(uc.user_id)
                                     FROM user_course uc
                                     WHERE uc.success = 1 AND uc.course_id = c.id) AS 'finish_users',
@@ -212,7 +212,7 @@ class User extends AppModel
 
     public function getTaskCreatedUser($username, $lang)
     {
-        return R::getAssoc("SELECT c.id, c.slug, cd.title, c.views, c.status,
+        return R::getAll("SELECT c.id, c.slug, cd.title, c.views, c.status,
                                 (SELECT COUNT(uc.user_id)
                                     FROM user_challenge uc
                                     WHERE uc.success = 1 AND uc.challenge_id = c.id) AS 'finish_users',
@@ -511,7 +511,7 @@ class User extends AppModel
 
     public function getUserCourses($username, $lang)
     {
-        return R::getAssoc("SELECT c.id, uc.success,
+        return R::getAll("SELECT c.id, uc.success,
                                     c.slug, c.icon, c.difficulty, cd.title, cd.excerpt, uc.current_stage, u.username,
                                     u.role, c.date_of_publication, c.views,
                                     (SELECT COUNT(sc.id)
@@ -567,7 +567,7 @@ class User extends AppModel
 
     public function getCourseLangProgByID($id)
     {
-        return R::getAssoc("SELECT lp.id, lp.title
+        return R::getAll("SELECT lp.id, lp.title
                                 FROM course c JOIN course_categorylangprog cclp ON c.id = cclp.course_id
                                 JOIN langprog lp ON lp.id = cclp.lang_prog_id
                                 WHERE c.id = ?", [$id]);
@@ -582,7 +582,7 @@ class User extends AppModel
 
     public function getUserTasks($username, $lang)
     {
-        return R::getAssoc("SELECT c.id, uc.success, c.slug, c.difficulty, cd.title, cd.content, c.date_of_publication, c.views,
+        return R::getAll("SELECT c.id, uc.success, c.slug, c.difficulty, cd.title, cd.content, c.date_of_publication, c.views,
                                 (SELECT COUNT(uc.user_id)
                                     FROM user_challenge uc
                                     WHERE uc.success = 1 AND uc.challenge_id = c.id) AS 'finish_users',

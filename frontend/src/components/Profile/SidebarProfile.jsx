@@ -5,7 +5,7 @@ import axiosClient from '../../axiosClient';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const SidebarProfile = () => {
+const SidebarProfile = ({viewWords}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const SidebarProfile = () => {
 
   const onClickLogout = () => {
     axiosClient
-      .post('/user/logout', { client: localStorage.getItem('client') })
+      .post('/user/logout')
       .then(({ data }) => {
         dispatch(setSidebarProfileActive(false));
         navigate(currentUrl);
@@ -47,10 +47,10 @@ const SidebarProfile = () => {
         {currentUser.length === 0 ? (
           <div className="sidebar_profile-empty">
             <button onClick={() => onClickLogin()} type="button" className="btn big primary ">
-              Авторизация
+              {viewWords['tpl_sidebar-profile_login']}
             </button>
             <button onClick={() => onClickRegister()} type="button" className="btn big primary ">
-              Регистрация
+              {viewWords['tpl_sidebar-profile_registration']}
             </button>
           </div>
         ) : (
@@ -112,14 +112,14 @@ const SidebarProfile = () => {
                 <img src={img} alt="" />
               </div>
               <Link to={'profile/' + currentUser.username} className="btn primary big">
-                Перейти в профиль
+                {viewWords['tpl_sidebar-profile_go_to_profile']}
               </Link>
               <button onClick={() => onClickLogout()} type="button" className="btn">
-                Выйти
+                {viewWords['tpl_sidebar-profile_logout']}
               </button>
 
               <div className="sidebar_profile-create">
-                <Link to={`/profile/${currentUser.username}/course-creation`} className="sidebar_profile-create_item">
+                <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${currentUser.username}/course-creation`} className="sidebar_profile-create_item">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="37"
@@ -129,9 +129,9 @@ const SidebarProfile = () => {
                   >
                     <path d="M21.4979 0V15.7724H37V21.3462H21.4979V37H15.3049V21.3462H0V15.7724H15.3049V0H21.4979Z" />
                   </svg>
-                  <span>Создать курс</span>
+                  <span>{viewWords['tpl_sidebar-profile_course-creation']}</span>
                 </Link>
-                <Link to={`/profile/${currentUser.username}/task-creation`} className="sidebar_profile-create_item">
+                <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${currentUser.username}/task-creation`} className="sidebar_profile-create_item">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="37"
@@ -141,9 +141,9 @@ const SidebarProfile = () => {
                   >
                     <path d="M21.4979 0V15.7724H37V21.3462H21.4979V37H15.3049V21.3462H0V15.7724H15.3049V0H21.4979Z" />
                   </svg>
-                  <span>Создать задачу</span>
+                  <span>{viewWords['tpl_sidebar-profile_task-creation']}</span>
                 </Link>
-                <Link to={"/"} className="sidebar_profile-create_item">
+                <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${currentUser.username}/project-creation`} className="sidebar_profile-create_item">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="37"
@@ -153,7 +153,7 @@ const SidebarProfile = () => {
                   >
                     <path d="M21.4979 0V15.7724H37V21.3462H21.4979V37H15.3049V21.3462H0V15.7724H15.3049V0H21.4979Z" />
                   </svg>
-                  <span>Создать блог</span>
+                  <span>{viewWords['tpl_sidebar-profile_project-creation']}</span>
                 </Link>
               </div>
             </div>

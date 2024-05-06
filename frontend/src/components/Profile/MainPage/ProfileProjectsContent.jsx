@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-const ProfileProjectsContent = ({ data }) => {
+const ProfileProjectsContent = ({ data, viewWords }) => {
   const { lang, username } = useParams();
   const navigate = useNavigate();
 
@@ -12,12 +12,12 @@ const ProfileProjectsContent = ({ data }) => {
             to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/project/${
               data.slug
             }`}
-            className="profile-projects-info-text-name"
+            className="profile-projects-info-text-name clamp"
           >
             _{data.title}
           </Link>
           <p className="profile-projects-info-text-access">
-            {data.private === '0' ? 'Публичный' : 'Приватный'}
+            {data.private === '0' ? viewWords['tpl_profile_project-card_public'] : viewWords['tpl_profile_project-card_private']}
           </p>
         </div>
         <svg
@@ -44,24 +44,24 @@ const ProfileProjectsContent = ({ data }) => {
       <p className="profile-projects-desc">// {data.description}</p>
       <div className="profile-projects-bottom">
         <p className="profile-projects-bottom-date">{data.date_of_publication}</p>
-        <div className="profile-projects-bottom-delete">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="9" cy="9" r="7.5" stroke="#DB5B42" />
-            <path
-              d="M10.875 7.12502L7.125 10.875M7.12498 7.125L10.875 10.875"
-              stroke="#DB5B42"
-              strokeLinecap="round"
-            />
-          </svg>
-          <p className="profile-projects-bottom-delete-text">Удалить</p>
-        </div>
-        <div className="profile-projects-bottom-lang">// Язык: Python</div>
+        {/*<div className="profile-projects-bottom-delete">*/}
+        {/*  <svg*/}
+        {/*    width="18"*/}
+        {/*    height="18"*/}
+        {/*    viewBox="0 0 18 18"*/}
+        {/*    fill="none"*/}
+        {/*    xmlns="http://www.w3.org/2000/svg"*/}
+        {/*  >*/}
+        {/*    <circle cx="9" cy="9" r="7.5" stroke="#DB5B42" />*/}
+        {/*    <path*/}
+        {/*      d="M10.875 7.12502L7.125 10.875M7.12498 7.125L10.875 10.875"*/}
+        {/*      stroke="#DB5B42"*/}
+        {/*      strokeLinecap="round"*/}
+        {/*    />*/}
+        {/*  </svg>*/}
+        {/*  <p className="profile-projects-bottom-delete-text">Удалить</p>*/}
+        {/*</div>*/}
+        <div className="profile-projects-bottom-lang">// {viewWords['tpl_profile_card_language']}: Python</div>
       </div>
     </div>
   );
