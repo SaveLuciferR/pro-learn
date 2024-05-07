@@ -2,19 +2,19 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axiosClient from '../../axiosClient';
 
-const ProfileSidebarMain = () => {
+const ProfileSidebarMain = ({ data, viewWords }) => {
   const { username, lang } = useParams();
-  const [data, setData] = useState([]);
-  const [viewWords, setViewWords] = useState({});
+  // const [data, setData] = useState([]);
+  // const [viewWords, setViewWords] = useState({});
 
-  useEffect(() => {
-    axiosClient
-      .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
-      .then(({ data }) => {
-        setData(data.profileInfo);
-        setViewWords(data.viewWords);
-      });
-  }, [lang, username]);
+  // useEffect(() => {
+  //   axiosClient
+  //     .get(`${lang === undefined ? '/' : '/' + lang + '/'}@${username}`)
+  //     .then(({ data }) => {
+  //       setData(data.profileInfo);
+  //       setViewWords(data.viewWords);
+  //     });
+  // }, [lang, username]);
 
   return (
     <div className="profile-section-sidebar">

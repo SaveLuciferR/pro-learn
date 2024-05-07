@@ -49,7 +49,7 @@ body {
   .main {
     padding: 89px 28px 28px 28px;
     &.active-sidebar {
-      padding: 89px 28px 28px 28px;
+      padding: 89px 0 28px 0;
     }
   }
 }
@@ -58,7 +58,7 @@ body {
   .main {
     padding: 77px 28px 28px 28px;
     &.active-sidebar {
-      padding: 77px 28px 28px 28px;
+      padding: 77px 0 28px 0;
     }
   }
 }
