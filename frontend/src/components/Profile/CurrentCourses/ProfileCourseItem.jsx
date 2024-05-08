@@ -134,8 +134,8 @@ const ProfileCoursesItem = ({ data, index, viewWords, isContinue, isCreated }) =
         </div>
       </div>
       <div className="profile-completed-card-stat">
-        <div className="created-course-stat-rate">
-          <div style={{ display: 'flex', columnGap: '14px' }}>
+        <div className="created-course-stat">
+          <div className="created-course-stat-rate">
             <div className="created-course-stat-rate-like">
               <svg
                 className="currentcourse-course-info-rate-arrow"
@@ -173,7 +173,6 @@ const ProfileCoursesItem = ({ data, index, viewWords, isContinue, isCreated }) =
               <p className="currentcourse-course-info-rate-dislike-text">{data.dislike}</p>
             </div>
           </div>
-
           {isCreated ? (
             <>
               <div className="created-course-stat-view">
