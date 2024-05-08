@@ -1,7 +1,11 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import img from '../../../avatar.png';
-import { useEffect, useState } from 'react';
 import axiosClient from '../../../axiosClient';
+import img from '../../../avatar.png';
+import ProfilePopUpSidebar from '../ProfilePopUpSidebar';
+import useOnClickOutside from '../../../hooks/useOnClickOutside';
+/* ICONS */
+import { FiMenu } from 'react-icons/fi';
 
 const ProfileSettingsUserMain = ({ data }) => {
   const [nickname, setNickname] = useState('');
@@ -9,6 +13,8 @@ const ProfileSettingsUserMain = ({ data }) => {
   const [lastName, setLastName] = useState('');
   const [infoAbout, setInfoAbout] = useState('');
   const [country, setCountry] = useState('');
+
+  const [isProfileSidebar, setIsProfileSidebar] = useState(false);
 
   useEffect(() => {
     console.log(data);
@@ -39,6 +45,13 @@ const ProfileSettingsUserMain = ({ data }) => {
   };
 
   const { username } = useParams();
+  const ref = useRef(null);
+
+  useOnClickOutside(ref, () => {
+    if (isProfileSidebar) {
+      setIsProfileSidebar(false);
+    }
+  });
   return (
     <div className="profile-settings-main">
       <div className="profile-settings-main-header">
@@ -98,6 +111,13 @@ const ProfileSettingsUserMain = ({ data }) => {
           <Link to={`../../profile/${username}`}>Профиль</Link>
         </div>
         <h1>_Настройки профиля</h1>
+        <div
+          className="profile-settings-header-menu"
+          onClick={() => setIsProfileSidebar(!isProfileSidebar)}
+        >
+          <FiMenu color="#ffffff" size={21} />
+          {isProfileSidebar ? <ProfilePopUpSidebar isSettings={true} /> : <></>}
+        </div>
       </div>
       <div className="profile-settings-main-main">
         <div className="profile-settings-main-main-avatar">
