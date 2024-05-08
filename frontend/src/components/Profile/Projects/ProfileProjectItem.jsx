@@ -14,6 +14,7 @@ const ProfileProjectItem = ({ data }) => {
               data.slug
             }`}
             className="profile-projects-info-text-name"
+            title={data.title}
           >
             _{data.title}
           </Link>
@@ -42,7 +43,9 @@ const ProfileProjectItem = ({ data }) => {
           </defs>
         </svg>
       </div>
-      <p className="profile-projects-card-desc">// {data.description}</p>
+      <p className="profile-projects-card-desc clamp multiline" title={data.description}>
+        // {data.description}
+      </p>
       <div className="profile-projects-bottom">
         <p className="profile-projects-bottom-date">{data.date_of_publication}</p>
         <div className="profile-projects-bottom-delete">

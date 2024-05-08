@@ -22,7 +22,7 @@
 
         &-background {
           position: relative;
-          overflow: hidden;
+          // overflow: hidden;
           max-width: 100%;
           height: 194px;
 
@@ -38,18 +38,33 @@
           }
         }
 
-        &-settings {
+        &-buttons {
           position: absolute;
-          display: flex;
           z-index: 2;
           right: 16px;
           top: 16px;
-          padding: 4px;
-          background-color: rgba(166, 166, 166, 0.3);
+
+          height: 28px;
+
+          background-color: rgba(166, 166, 166, 0.4);
           border-radius: 4px;
+        }
+
+        &-button {
+          width: 28px;
+          height: 28px;
+          padding: 4px;
+
+          transition: 0.2s ease-in-out;
+
+          &-menu {
+            display: none;
+          }
 
           &:hover {
             cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
           }
         }
       }
@@ -500,6 +515,8 @@
     }
 
     &-header {
+      position: relative;
+
       display: flex;
       justify-content: space-between;
 
@@ -507,6 +524,7 @@
         display: flex;
         column-gap: 20px;
         width: 485px;
+        height: 37px;
       }
 
       &-tag {
@@ -788,8 +806,7 @@
   }
 
   &-stat {
-    padding-top: 24px;
-    padding-bottom: 24px;
+    padding: 24px 0;
     display: flex;
     column-gap: 18px;
     font-size: 14px;
@@ -956,8 +973,7 @@
     &-about {
       display: flex;
       justify-content: space-between;
-      gap: 12px
-    ;
+      gap: 12px;
       padding-top: 14px;
       font-size: 14px;
       color: rgba($color: #ffffff, $alpha: 0.6);
@@ -1026,6 +1042,43 @@
   text-align: center;
   color: rgba($color: #ffffff, $alpha: 0.6);
 }
+
+.profile-popup {
+  position: absolute;
+  z-index: 2;
+  top: 44px;
+  right: 16px;
+
+  padding: 4px 8px;
+
+  width: 170px;
+
+  font-size: 14px;
+
+  background-color: #0d1117;
+  border-radius: 8px 0 8px 8px;
+
+  &-list {
+    & li {
+      padding: 4px 0;
+      border-bottom: 1px solid #242424;
+
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      &:first-child {
+        font-weight: 500;
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+}
 //1440
 // @media (max-width: 1440px) {
 //   .profile {
@@ -1042,6 +1095,8 @@
 //     }
 //   }
 // }
+
+/* MAIN PAGE PROFILE */
 //1024
 @media (max-width: 1440px) {
   .profile {
@@ -1057,6 +1112,15 @@
         margin: 0 auto;
         max-width: 1090px;
         width: 905px;
+
+        &-header {
+          &-button {
+            &-menu {
+              display: inline-block;
+            }
+          }
+        }
+
         &-cards {
           padding: 28px 20px;
         }
@@ -1231,6 +1295,16 @@
 
           padding: 28px 20px;
         }
+
+        &-header {
+          height: 150px;
+          &-background {
+            height: 150px;
+            & img {
+              height: 150px;
+            }
+          }
+        }
       }
     }
   }
@@ -1279,6 +1353,17 @@
       }
     }
   }
+
+  .created-courses-header {
+    & h1 {
+      font-size: 28px;
+    }
+
+    & .lessons-header-back {
+      top: 36px;
+      font-size: 14px;
+    }
+  }
 }
 
 @media (max-width: 678px) {
@@ -1293,6 +1378,16 @@
           gap: 20px;
 
           padding: 28px 20px;
+        }
+
+        &-header {
+          height: 120px;
+          &-background {
+            height: 120px;
+            & img {
+              height: 120px;
+            }
+          }
         }
       }
     }
@@ -1392,6 +1487,10 @@
     padding: 18px;
     width: 332px;
 
+    &-page {
+      padding: 28px 20px;
+    }
+
     &-content {
       width: 296px;
     }
@@ -1410,12 +1509,386 @@
       height: 80px;
     }
   }
+
+  .created-courses-header {
+    padding: 28px 20px 0 20px;
+
+    & h1 {
+      margin-top: 30px;
+
+      font-size: 24px;
+    }
+
+    & .lessons-header-back {
+      top: 28px;
+      font-size: 14px;
+    }
+  }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 480px) {
   .profile {
     &-section {
       &-main {
+        // margin: 0;
+        width: 319px;
+
+        &-cards {
+          padding: 20px;
+        }
+      }
+    }
+  }
+
+  .info {
+    &-about {
+      padding: 18px;
+      // width: 332px;
+      // height: 295px;
+
+      &-bottom {
+        padding-top: 12px;
+        flex-direction: row;
+      }
+    }
+  }
+
+  .currentcourse {
+    padding: 18px;
+    width: 277px;
+
+    &-course {
+      &-content {
+        width: 241px;
+      }
+
+      &-image {
+        display: none;
+      }
+    }
+  }
+
+  .profile-projects {
+    padding: 18px;
+    height: inherit;
+    width: 277px;
+
+    &-header {
+      column-gap: 12px;
+    }
+
+    &-content {
+      width: 241px;
+    }
+
+    &-info {
+      &-text {
+        &-name {
+          width: 300px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .profile {
+    &-section {
+      &-main {
+        margin: 0;
+        width: 100%;
+
+        &-cards {
+          padding: 20px;
+        }
+      }
+    }
+  }
+}
+
+/* COURSES PROFILE */
+
+@media (max-width: 1440px) {
+  .profile {
+    &-difficulty {
+      padding-top: 12px;
+
+      font-size: 16px;
+
+      &-range {
+        column-gap: 6px;
+
+        &-item {
+          width: 9px;
+          height: 9px;
+        }
+      }
+    }
+
+    &-completed {
+      &-card {
+        &-stat {
+          padding-top: 12px;
+
+          &-lang {
+            font-size: 13px;
+          }
+        }
+
+        &-about {
+          font-size: 13px;
+        }
+
+        &-progress {
+          padding-top: 10px;
+
+          &-value {
+            padding-top: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  .created-course {
+    height: 500px;
+    width: 410px;
+    &-header {
+      &-tags {
+        column-gap: 14px;
+
+        width: 370px;
+        height: 31px;
+      }
+
+      &-tag {
+        padding: 6px 12px;
+
+        font-size: 14px;
+      }
+    }
+
+    &-info {
+      padding-top: 8px;
+
+      &-title {
+        font-size: 24px;
+      }
+
+      &-desc {
+        &-text {
+          margin-top: 12px;
+
+          width: 300px;
+          height: 70px;
+
+          font-size: 14px;
+        }
+
+        &-img {
+          width: 70px;
+        }
+      }
+    }
+
+    &-stat {
+      &-view,
+      &-ended {
+        font-size: 14px;
+      }
+    }
+
+    &-cards {
+      padding-top: 12px;
+    }
+
+    &-card {
+      height: 111px;
+
+      font-size: 14px;
+
+      &-img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+
+  .created-button {
+    width: 410px;
+    height: 500px;
+  }
+
+  .profile-current {
+    &-card {
+      width: 410px;
+      height: 500px;
+
+      &.created-card {
+        height: 430px;
+        width: 377.5px;
+      }
+
+      &-button {
+        padding-top: 6px;
+
+        & > * {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .created-course {
+    margin: 0 auto;
+  }
+
+  .created-button {
+    margin: 0 auto;
+
+    height: 100px;
+
+    &-content {
+      display: flex;
+      align-items: center;
+      column-gap: 12px;
+
+      & svg {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    &-text {
+      padding-top: 0;
+    }
+  }
+
+  .profile-section-main-cards.created-page {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 678px) {
+  .profile-difficulty {
+    width: 292px;
+  }
+
+  .created-course {
+    margin: 0;
+
+    width: 332px;
+    height: 478px;
+
+    &-header {
+      &-tags {
+        width: 292px;
+      }
+    }
+
+    &-info {
+      &-title {
+        width: 292px;
+
+        font-size: 18px;
+      }
+
+      &-desc {
+        width: 292px;
+
+        &-text {
+          height: 74px;
+        }
+
+        &-img {
+          display: none;
+        }
+      }
+    }
+
+    &-cards {
+      flex-direction: column;
+      row-gap: 8px;
+
+      width: 292px;
+    }
+
+    &-card {
+      flex-wrap: nowrap;
+      column-gap: 8px;
+      justify-content: start;
+
+      padding: 0;
+
+      height: inherit;
+
+      text-align: left;
+
+      background-color: transparent;
+      border-radius: 0;
+
+      &-img {
+        width: 21px;
+        height: 21px;
+      }
+    }
+
+    &-stat {
+      flex-direction: column;
+      row-gap: 8px;
+
+      padding-top: 0;
+    }
+  }
+
+  .created-button {
+    width: 332px;
+    height: 80px;
+
+    &-content {
+      & svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    &-text {
+      font-size: 20px;
+    }
+  }
+
+  .profile-completed {
+    &-card {
+      &-about {
+        // flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .profile-current {
+    &-card {
+      width: 332px;
+      height: 478px;
+
+      &.created-card {
+        height: 408px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-difficulty {
+    width: 229px;
+  }
+
+  .profile {
+    &-section {
+      &-main {
+        // margin: 0;
         width: 319px;
 
         &-cards {
@@ -1465,9 +1938,285 @@
     &-info {
       &-text {
         &-name {
-          width: 300px;
+          width: 210px;
         }
       }
+    }
+  }
+
+  .created-course {
+    width: 277px;
+
+    &-header {
+      &-tags {
+        width: 229px;
+      }
+    }
+
+    &-stat {
+      flex-direction: column;
+      row-gap: 8px;
+      &-view {
+        & svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      &-ended {
+        & svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  .created-button {
+    width: 277px;
+
+    &-content {
+      & svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &-text {
+      font-size: 18px;
+    }
+  }
+
+  .profile-current {
+    &-card {
+      &.created-card {
+        width: 237px;
+      }
+    }
+  }
+
+  .profile-completed {
+    &-card {
+      &-about {
+        flex-direction: column;
+        padding-top: 8px;
+        gap: 6px;
+
+        font-size: 12px;
+      }
+
+      &-stat {
+        &-lang {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+/* PROJECTS */
+
+@media (max-width: 1540px) {
+  .profile-projects {
+    &-page {
+      &-info {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .profile-projects {
+    &-page {
+      &-main-content {
+        flex-direction: column;
+      }
+    }
+    &-card {
+      width: 100%;
+
+      &-button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 678px) {
+  .profile-projects {
+    &-card {
+      height: 200px;
+
+      &-button {
+        height: 80px;
+      }
+
+      &-desc {
+        height: 88px;
+        font-size: 14px;
+      }
+    }
+    &-info {
+      &-text {
+        &-name {
+          font-size: 16px;
+        }
+      }
+    }
+
+    &-page {
+      &-info {
+        position: relative;
+        &-text {
+          flex-direction: column;
+          align-items: baseline;
+          max-width: 268px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-projects {
+    &-card {
+      &-button {
+        height: 80px;
+
+        &-items {
+          font-size: 18px;
+          column-gap: 10px;
+
+          & svg {
+            width: 28px;
+            height: 28px;
+          }
+        }
+      }
+    }
+    //profile-projects-card-button-items
+
+    &-info {
+      &-text {
+        &-name {
+          // max-width: 210px;
+        }
+      }
+    }
+
+    &-page {
+      &-info {
+        &-text {
+          flex-direction: column;
+          align-items: baseline;
+
+          &-name {
+            max-width: 237px;
+            height: 54px;
+          }
+        }
+
+        & svg {
+        }
+      }
+    }
+  }
+}
+
+/* TASKS */
+
+@media (max-width: 1440px) {
+  .profile-tasks {
+    padding: 28px 20px;
+  }
+
+  .profile-task {
+    width: 410px;
+    height: 500px;
+    &-title {
+      padding-top: 16px;
+
+      font-size: 24px;
+    }
+
+    &-desc {
+      padding-top: 10px;
+
+      height: 150px;
+
+      font-size: 14px;
+    }
+
+    &-stat {
+      padding: 14px 0;
+      column-gap: 8px;
+    }
+
+    &-complete {
+      width: 410px;
+      height: 500px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .profile-tasks {
+    row-gap: 28px;
+  }
+
+  .profile-task {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 678px) {
+  .profile-task {
+    margin: 0;
+    padding: 20px;
+
+    width: 332px;
+
+    &-desc {
+      height: 130px;
+    }
+
+    &-stat {
+      padding: 11px 0;
+      flex-direction: column;
+      row-gap: 8px;
+    }
+
+    & button {
+      font-size: 14px;
+    }
+
+    &-complete {
+      width: 332px;
+
+      &-stat {
+        flex-direction: column;
+        align-items: baseline;
+        row-gap: 8px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-task {
+    width: 277px;
+    height: 490px;
+
+    &-title {
+      font-size: 18px;
+    }
+
+    &-complete {
+      width: 277px;
     }
   }
 }

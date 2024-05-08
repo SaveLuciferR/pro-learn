@@ -27,8 +27,8 @@ const ProfileUserTaskItem = () => {
           </defs>
         </svg>
       </div>
-      <p className="profile-task-title">_Самописный калькулятор</p>
-      <p className="profile-task-desc">
+      <p className="profile-task-title clamp">_Самописный калькулятор</p>
+      <p className="profile-task-desc clamp multiline">
         // Напишите программу, которая считывает с клавиатуры два целых числа и строку. Если эта
         строка является обозначением одной из четырёх математических операций (+, -, *, /), то
         выведите результат применения этой операции к введённым ранее числам, в противном случае

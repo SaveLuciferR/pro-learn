@@ -2,15 +2,15 @@ import img from '../../../image 7.png';
 import {Link} from "react-router-dom";
 import ProgressBar from "../../Component/ProgressBar";
 
-const ProfileCoursesItem = ({data, index, viewWords, isContinue, isCreated}) => {
-    // console.log(index);
-    // console.log(data)
+const ProfileCoursesItem = ({ data, index, viewWords, isContinue, isCreated }) => {
+  // console.log(index);
+  // console.log(data)
 
-    const getLanguage = () => {
-        let temp = '';
-        data.language.map((item, i) => temp += item.title + ', ');
-        return temp.replace(/, $/, '');
-    }
+  const getLanguage = () => {
+    let temp = '';
+    data.language.map((item, i) => (temp += item.title + ', '));
+    return temp.replace(/, $/, '');
+  };
 
     return (
         <div className={`profile-current-card ${isCreated ? 'created-card' : ''}`}>
@@ -18,9 +18,7 @@ const ProfileCoursesItem = ({data, index, viewWords, isContinue, isCreated}) => 
                 {data.tags.map((item, i) => <li key={i} className="created-course-header-tag">#{item.title}</li>)}
             </ul>
             <div className="created-course-info">
-                <h1 className="created-course-info-title clamp">
-                    <Link to={`../../course/${data.slug}`}>{data.title}</Link>
-                </h1>
+                <h1 className="created-course-info-title clamp">{data.title}</h1>
                 <div className="created-course-info-desc">
                     <p className="created-course-info-desc-text clamp multiline">// {data.excerpt}</p>
                     <img src={data.icon} className="created-course-info-desc-img"/>
