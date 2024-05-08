@@ -53,8 +53,8 @@ const ProjectAddPage = ({type = 'create', isTemplate = false}) => {
     const [newFilesInfo, setNewFilesInfo] = useState([]); //{'fileName': 'text.txt', 'content': "new-file", 'path': undefined}
 
     const privacySettings = {
-        0: "Публичный",
-        1: "Приватный"
+        '0': "Публичный",
+        '1': "Приватный"
     };
 
     const dropdownClick = () => dropdownMenuActive ? setDropdownMenuActive(false) : setDropdownMenuActive(true);

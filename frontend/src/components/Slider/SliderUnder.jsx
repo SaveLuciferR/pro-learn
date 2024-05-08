@@ -8,9 +8,10 @@ const SliderUnder = ({ goToSlide, changeSlide, pagesType, items, indx, countSlid
           key={`dot-${i}`}
           className={`slider-dot ${indx === i ? 'active' : ''}`}
           onClick={() => goToSlide(i)}
-        ></div>,
+        ></div>
       );
     }
+    console.log(dots);
     return dots;
   };
 
@@ -19,9 +20,13 @@ const SliderUnder = ({ goToSlide, changeSlide, pagesType, items, indx, countSlid
 
     for (let i = 0; i < items.length / countSlide; i++) {
       digits.push(
-        <div key={`digit-${i}`} className={`slider-digit ${indx === i ? 'active' : ''}`}>
+        <button
+            key={`digit-${i}`}
+            className={`btn slider-digit ${indx === i ? 'active' : ''}`}
+          onClick={() => goToSlide(i)}
+        >
           {i + 1}
-        </div>,
+        </button>
       );
     }
     return digits;

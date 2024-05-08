@@ -15,7 +15,7 @@ import {TfiLayoutTabWindow} from "react-icons/tfi";
 import CompilerEmptyWindow from "./CompilerEmptyWindow";
 import {VscDebugStart} from "react-icons/vsc";
 
-const CompilerEditor = ({isWebProject, handleOpenOutput}) => {
+const CompilerEditor = ({isWebProject, handleOpenOutput, handleStartDocker}) => {
     const dispatch = useDispatch();
 
     const currentFile = useSelector((state) => state.compiler.currentFile.file);
@@ -115,7 +115,7 @@ const CompilerEditor = ({isWebProject, handleOpenOutput}) => {
                                 <TfiLayoutTabWindow/>
                             </button>
                             :
-                            <button className={'btn btn-without_text'}><VscDebugStart className={"icont-24"}/></button>
+                            <button onClick={() => handleStartDocker()} className={'btn btn-without_text'}><VscDebugStart className={"icon-24"}/></button>
                         }
                     </div>
                 </div>

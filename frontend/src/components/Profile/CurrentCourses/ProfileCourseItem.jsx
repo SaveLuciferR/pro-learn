@@ -1,5 +1,6 @@
 import img from '../../../image 7.png';
 import {Link} from "react-router-dom";
+import ProgressBar from "../../Component/ProgressBar";
 
 const ProfileCoursesItem = ({data, index, viewWords, isContinue, isCreated}) => {
     // console.log(index);
@@ -17,7 +18,9 @@ const ProfileCoursesItem = ({data, index, viewWords, isContinue, isCreated}) => 
                 {data.tags.map((item, i) => <li key={i} className="created-course-header-tag">#{item.title}</li>)}
             </ul>
             <div className="created-course-info">
-                <h1 className="created-course-info-title clamp">{data.title}</h1>
+                <h1 className="created-course-info-title clamp">
+                    <Link to={`../../course/${data.slug}`}>{data.title}</Link>
+                </h1>
                 <div className="created-course-info-desc">
                     <p className="created-course-info-desc-text clamp multiline">// {data.excerpt}</p>
                     <img src={data.icon} className="created-course-info-desc-img"/>
@@ -227,8 +230,7 @@ const ProfileCoursesItem = ({data, index, viewWords, isContinue, isCreated}) => 
                 <></>
                 :
                 <div className="profile-completed-card-progress">
-                    <div className="profile-completed-card-progress-bar"></div>
-                    <p className="profile-completed-card-progress-value">{data.current_stage}/{data.amount_stage}</p>
+                    <ProgressBar progress={data.current_stage} maxProgress={data.amount_stage} haveLabel={true}/>
                 </div>
             }
             {

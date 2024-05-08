@@ -127,13 +127,27 @@ class Compiler extends AppModel
         }
     }
 
+    public function dockerExists($pathProject)
+    {
+        if (file_exists($pathProject . '/' . 'docker-compose.yml')) {
+            return true;
+        } else if (file_exists($pathProject . '/' . 'Dockerfile') || file_exists($pathProject . '/' . 'dockerfile')) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function startOrUpdateDockerContainer($pathProject, &$output, &$error, $data = [])
     {
         $retval = null;
         $output = array();
 
         $tasks = $this->getTasksForProject($pathProject);
-
+        if (!$this->dockerExists($pathProject)) {
+            return -1;
+        }
 //        $_SESSION['docker'] = [];
 //        debug($tasks, 1);
 

@@ -263,6 +263,36 @@ class User extends AppModel
                                 WHERE p.slug = ? AND u.username = ? AND p.private = 0", [$slug, $username]);
     }
 
+    public function getTemplateInfoBySlugByLang($lang, $slug, $username)
+    {
+        if ($this->checkAuth() && $_SESSION['user']['username'] == $username) {
+            return R::getRow("SELECT t.id, td.title, td.description, t.private, t.slug, u.username, u.role, t.for_project
+                                FROM projecttemplate t JOIN user u ON t.user_id = u.id
+                                JOIN projecttemplate_description td ON td.projecttemplate_id = t.id
+                                WHERE t.slug = ? AND u.username = ? AND td.language_id = ?", [$slug, $username, $lang]);
+        }
+
+        return R::getRow("SELECT t.id, td.title, td.description, t.private, t.slug, u.username, u.role, t.for_project
+                                FROM projecttemplate t JOIN user u ON t.user_id = u.id
+                                JOIN projecttemplate_description td ON td.projecttemplate_id = t.id
+                                WHERE t.slug = ? AND u.username = ? AND td.language_id = ? AND t.private = 0 AND t.for_project = 1", [$slug, $username, $lang]);
+    }
+
+    public function getTemplateInfoBySlug($slug, $userID)
+    {
+        $template = R::getRow("SELECT id, slug, for_project, private FROM projecttemplate WHERE slug = ? AND user_id = ?", [$slug, $userID]);
+
+        if (!$template) {
+            return false;
+        }
+
+        $template['main'] = R::getAssoc("SELECT td.language_id, td.title AS 'name', td.description AS 'desc'
+                                            FROM projecttemplate_description td
+                                            WHERE td.projecttemplate_id = ?", [$template['id']]);
+
+        return $template;
+    }
+
     public function getProjectLangsByID($id)
     {
         return R::getAll("SELECT lp.id, lp.title
@@ -270,9 +300,13 @@ class User extends AppModel
                                 WHERE plp.project_id = ?", [$id]);
     }
 
-    public function getFilesProject($project, &$path, $secondaryPath = "")
+    public function getFilesProject($isTemplate, $project, &$path, $secondaryPath = "")
     {
-        $path = USER_PROJECT . '/' . $project['username'] . '/' . $project['slug'] . '/' . $secondaryPath; // . '/src/'
+        $path = USER_PROJECT;
+        if ($isTemplate) {
+            $path = TEMPLATE;
+        }
+        $path .= '/' . $project['username'] . '/' . $project['slug'] . '/' . $secondaryPath; // . '/src/'
 
         return $this->createProjectFileList($path);
     }
@@ -295,8 +329,7 @@ class User extends AppModel
             R::commit();
             $this->deleteCacheProjectDir(USER_PROJECT . '/' . $username . '/' . $slug);
             return true;
-        }
-        catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             R::rollback();
             return false;
         }
@@ -325,13 +358,104 @@ class User extends AppModel
         }
     }
 
+    public function editTemplate($data, $projectPath, $username)
+    {
+        R::begin();
+        try {
+            $template = R::findOne('projecttemplate', 'slug = ?', [$data['slug']]);
+            $template->private = $data['private'];
+            $template->for_project = $data['forProject'] ? 1 : 0;
+            $templateID = R::store($template);
+            R::commit();
+//            $this->deleteCacheProjectDir();
+            $this->copyCacheProject(
+                Cache::getInstance()->getCache($_SESSION['user']['username'] . '/' . md5('template') . md5($data['slug'])),
+                TEMPLATE . '/' . $_SESSION['user']['username'] . '/' . $data['slug']
+            );
+            $this->saveTemplateDescription('edit', $data['info'], $templateID);
+            return $template->slug;
+        } catch (\Exception $ex) {
+            R::rollback();
+            return false;
+        }
+    }
+
+    public function saveNewTemplate($data, $projectPath, $username)
+    {
+        R::begin();
+        try {
+            $template = R::dispense('projecttemplate');
+            // $project->user_id = $_SESSION['user']['id'];
+            $template->user_id = $_SESSION['user']['id'];
+            $template->private = $data['private'];
+            $template->for_project = $data['forProject'] ? 1 : 0;
+            $templateID = R::store($template);
+
+            $template->slug = AppModel::createSlug('project', 'slug', $data['info']['1']['name'], $template);
+
+            R::store($template);
+
+            $distPath = TEMPLATE . '/' . $username;
+            if (!file_exists($distPath)) {
+                mkdir($distPath);
+            }
+
+            $distPath .= '/' . $template->slug;
+            if (!file_exists($distPath)) {
+                mkdir($distPath);
+            }
+
+            $this->copyCacheProject($projectPath, $distPath); // . '/src'
+
+            // $this->deleteCacheProjectDir($pathProject);
+
+            $slug = $template->slug;
+
+            R::commit();
+            $this->saveTemplateDescription('new', $data['info'], $templateID);
+            return $slug;
+        } catch (\Exception $ex) {
+            debug($ex);
+            return false;
+        }
+    }
+
+    public function saveTemplateDescription($type, $data, $templateID)
+    {
+        R::begin();
+        try {
+            foreach ($data as $langID => $item) {
+                if ($type !== 'edit') {
+                    R::exec("INSERT INTO projecttemplate_description (language_id, projecttemplate_id, title, description) VALUES (?, ?, ?, ?)", [
+                        $langID,
+                        $templateID,
+                        $item['name'],
+                        $item['desc'],
+                    ]);
+                } else {
+                    R::exec("UPDATE projecttemplate_description SET title = ?, description = ? WHERE language_id = ? AND projecttemplate_id = ?", [
+                        $item['name'],
+                        $item['desc'],
+                        $langID,
+                        $templateID,
+                    ]);
+                }
+            }
+            R::commit();
+        } catch (\Exception $ex) {
+            R::rollback();
+            debug($ex);
+            return false;
+        }
+    }
+
     public function saveNewProject($data, $pathProject, $username)
     {
         R::begin();
         try {
             $project = R::dispense('project');
             // $project->user_id = $_SESSION['user']['id'];
-            $project->user_id = 2;
+            $project->user_id = $_SESSION['user']['id'];
             $project->title = $data['title'];
             $project->private = $data['private'];
             $project->description = $data['desc'];

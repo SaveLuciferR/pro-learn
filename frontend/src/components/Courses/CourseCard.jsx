@@ -2,16 +2,16 @@ import img from '../../image 7.png';
 import {useState} from "react";
 import {Link} from "react-router-dom";
 
-const CourseCard = ({obj}) => {
+const CourseCard = ({obj, isSlider, viewWords}) => {
     const getLangProg = () => {
         let temp = '';
-        obj.language.map((item, i) => temp += item + ', ');
+        obj.language.map((item, i) => temp += item.title + ', ');
         temp = temp.replace(/, $/, '');
         return temp;
     }
 
   return (
-    <div className="courses-card">
+    <div className={`courses-card ${isSlider ? 'slider-card' : ''}`}>
       <div className="courses-card-header">
         <ul className="courses-card-header-tags">
           {obj.tags.map((item, i) => <li key={i} className="courses-card-header-tag">#{item.title}</li>)}
@@ -19,7 +19,9 @@ const CourseCard = ({obj}) => {
         {/*<p className="courses-card-header-status">Не начат</p>*/}
       </div>
       <div className="created-course-info">
-        <Link to={`${obj.slug}`} className="courses-card-info-title">{obj.title}</Link>
+        <div className="courses-card-info-title clamp">
+          <Link to={`${obj.slug}`} >{obj.title}</Link>
+        </div>
         <div className="created-course-info-desc">
           <p className="courses-card-info-desc-text">
             // {obj.excerpt}
@@ -28,7 +30,7 @@ const CourseCard = ({obj}) => {
         </div>
       </div>
       <div className="profile-difficulty">
-        <p>_Сложность: </p>
+        <p>_{viewWords['tpl_course-card_dif']}: </p>
         <ul className="profile-difficulty-range">
           {Array(5).fill('').map((item, i) =>
               <li className={`profile-difficulty-range-item ${i < obj.difficulty ? 'active' : ''}`}></li>
@@ -59,7 +61,7 @@ const CourseCard = ({obj}) => {
               fill="white"
             />
           </svg>
-          <p>Количество блоков: {obj.amount_stage}</p>
+          <p>{viewWords['tpl_course-card_amount-block']}: {obj.amount_stage}</p>
         </div>
         <div className="courses-card-card">
           <svg
@@ -88,7 +90,7 @@ const CourseCard = ({obj}) => {
               fill="white"
             />
           </svg>
-          <p>Количество уроков: {obj.amount_step}</p>
+          <p>{viewWords['tpl_course-card_amount-lesson']}: {obj.amount_step}</p>
         </div>
         <div className="courses-card-card">
           <svg
@@ -117,7 +119,7 @@ const CourseCard = ({obj}) => {
               fill="white"
             />
           </svg>
-          <p>{obj.final_projects} финальных проекта</p>
+          <p>{obj.final_projects} {viewWords['tpl_course-card_finish-project']}</p>
         </div>
       </div>
       <div className="profile-completed-card-stat">
@@ -161,8 +163,8 @@ const CourseCard = ({obj}) => {
         </div>
       </div>
       <div className="created-course-bottom">
-        <p className="created-course-bottom-date">&gt; {obj.username}, {obj.role === 'admin' ? 'Администратор' : 'Пользователь'}, {obj.date_of_publication}</p>
-        <p className="created-course-bottom-lang">// Язык: {getLangProg()}</p>
+        <p className="created-course-bottom-date">&gt; {obj.username}, {viewWords[`tpl_course-card_role-${obj.role}`]}, {obj.date_of_publication}</p>
+        <p className="created-course-bottom-lang">// {viewWords['tpl_course-card_language']}: {getLangProg()}</p>
       </div>
     </div>
   );

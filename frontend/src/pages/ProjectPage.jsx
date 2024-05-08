@@ -7,7 +7,7 @@ import ProjectFile from "../components/Project/ProjectFile";
 import ProjectMain from "../components/Project/ProjectMain";
 import ProjectReadme from "../components/Project/ProjectReadme";
 import {saveAs} from 'file-saver';
-import ModalWindow from "../components/Modal/ModalWindow";
+import ModalWindowConfirm from "../components/Modal/ModalWindowConfirm";
 
 const ProjectPage = ({isActiveSidebar}) => {
 
@@ -142,7 +142,7 @@ const ProjectPage = ({isActiveSidebar}) => {
                             }
                         </div>
                     </div>
-                    <ModalWindow
+                    <ModalWindowConfirm
                         isOpen={isOpenModal}
                         setIsOpen={setIsOpenModal}
                         isContentShowed={true}

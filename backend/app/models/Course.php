@@ -37,6 +37,11 @@ class Course extends AppModel
                                WHERE u.username = ? AND cd.language_id = ?", [$username, $lang]);
     }
 
+    public function getAmountBlockInCourse($id)
+    {
+        return R::count('stagecourse', 'course_id = ?', [$id]);
+    }
+
     public function getCourseLangProgByID($id)
     {
         return R::getAll("SELECT lp.id, lp.title

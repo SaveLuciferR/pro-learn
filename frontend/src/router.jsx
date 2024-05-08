@@ -40,6 +40,8 @@ import AdminUsers from './components/Admin/AdminUsers.jsx';
 import AdminFeedback from './components/Admin/AdminFeedback.jsx';
 import NotFoundPage from './components/NotFoundPage';
 import MainMenu from './components/MainMenu.jsx';
+import TemplateAddPage from "./pages/TemplateAddPage";
+import TemplatePage from "./pages/TemplatePage";
 
 const router = createBrowserRouter([
   {
@@ -195,15 +197,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'profile/:username/template/:template',
-        element: <ProjectPage isActiveSidebar={false} isTemplate={true} />,
+        element: <TemplatePage isActiveSidebar={false}/>,
       },
       {
         path: 'profile/:username/template-creation',
-        element: <ProjectAddPage isActiveSidebar={false} isTemplate={true} />,
+        element: <TemplateAddPage isActiveSidebar={false}/>,
       },
       {
         path: 'profile/:username/template-edit/:slug',
-        element: <ProjectAddPage isActiveSidebar={false} type={'edit'} isTemplate={true} />,
+        element: <TemplateAddPage isActiveSidebar={false} type={'edit'}/>,
       },
       {
         path: 'profile/:username/settings/general',

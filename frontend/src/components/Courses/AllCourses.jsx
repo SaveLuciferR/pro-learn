@@ -1,12 +1,12 @@
 import CourseCard from './CourseCard';
 
-const AllCourses = ({courses}) => {
+const AllCourses = ({courses, viewWords}) => {
   return (
     <div className="courses-all">
       <div className="courses-all-title">
-        _Все курсы
+        _{viewWords['tpl_course-page_course-all']}
         <button className="courses-all-filter">
-          Фильтр
+            {viewWords['tpl_course-page_filter_title']}
           <svg
             width="24"
             height="24"
@@ -25,7 +25,7 @@ const AllCourses = ({courses}) => {
         </button>
       </div>
       <div className="courses-all-main">
-          {courses.map((item, i) => <CourseCard key={i} obj={item}/>)}
+          {courses.map((item, i) => <CourseCard key={i} obj={item} viewWords={viewWords}/>)}
       </div>
       <div className="courses-all-bottom">
         <p className="courses-all-bottom-showed">Показано 10 из 100 курсов</p>

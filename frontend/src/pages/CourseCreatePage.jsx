@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrentCourse, setCurrentCourseEdit, setCurrentCourseMainInfo} from "../redux/Course/slice";
 import axiosClient from "../axiosClient";
-import {useMatch, useParams} from "react-router-dom";
+import {useMatch, useNavigate, useParams} from "react-router-dom";
 
 
 const CourseCreatePage = ({type = 'create'}) => {
@@ -18,10 +18,12 @@ const CourseCreatePage = ({type = 'create'}) => {
     // const dropdownClick3 = () => setDropdownActive3(!dropdownActive3);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const {slug, username, lang} = useParams();
 
     const course = useSelector(state => state.course.currentCourseEdit);
+    const userAuth = useSelector(state => state.mainLayout.userAuth);
 
     const [successToGetCourse, setSuccessToGetCourse] = useState(false);
     const [uploadIcon, setUploadIcon] = useState(null);
@@ -34,6 +36,12 @@ const CourseCreatePage = ({type = 'create'}) => {
     const [icon, setIcon] = useState('');
     const [categoryLang, setCategoryLang] = useState([]);
     const [status, setStatus] = useState("draft");
+
+    useEffect(() => {
+        if (!userAuth) {
+            navigate('/user/login');
+        }
+    }, [userAuth])
 
     useEffect(() => {
         if (type === 'edit') {

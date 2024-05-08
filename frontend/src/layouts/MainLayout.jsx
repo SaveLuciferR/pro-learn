@@ -15,7 +15,7 @@ import {
     setNeedActivateAccount
 } from "../redux/MainLayout/slice";
 import SidebarProfile from "../components/Profile/SidebarProfile";
-import ModalWindow from '../components/Modal/ModalWindow';
+import ModalWindowConfirm from '../components/Modal/ModalWindowConfirm';
 import Footer from '../components/Footer';
 
 const MainLayout = ({isActiveSidebar, isCompiler, success}) => {
@@ -99,7 +99,7 @@ const MainLayout = ({isActiveSidebar, isCompiler, success}) => {
                         </>
                     </div>
                     <Footer/>
-                    <ModalWindow/>
+                    <ModalWindowConfirm/>
                 </>
             )}
         </>

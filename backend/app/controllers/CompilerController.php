@@ -50,7 +50,14 @@ class CompilerController extends AppController
         $output = [];
         $error = [];
 //        debug($_SESSION, 1);
-        $index = $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']), $output, $error);
+        $index = $this->model->startOrUpdateDockerContainer(
+            $this->model->getPathProject($this->route['username'], $this->route['slug']), $output, $error
+        );
+
+        if ($index === -1) {
+            header('HTTP/1.0 204 No Content');
+            die;
+        }
 
 //        debug($_SESSION['docker'], 1);
 

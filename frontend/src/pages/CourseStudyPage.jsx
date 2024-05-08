@@ -1,5 +1,5 @@
-import { Link, Outlet, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from "react";
+import {Link, Outlet, useNavigate, useParams, useSearchParams} from 'react-router-dom';
+import {useEffect, useState} from "react";
 import axiosClient from "../axiosClient";
 import LoadingElement from "../components/LoadingElement";
 import CourseLessonFewOption from "../components/Courses/CourseLessons/CourseLessonFewOption";
@@ -10,13 +10,17 @@ import CourseLessonTask from "../components/Courses/CourseLessons/CourseLessonTa
 import Input from "../components/Component/Input";
 import React from 'react';
 import ReactHtmlParser from 'html-react-parser'
+import ModalWindow from "../components/Modal/ModalWindow";
+import {useSelector} from "react-redux";
 
 const CourseStudyPage = () => {
 
-    const { lang, slug } = useParams();
+    const {lang, slug} = useParams();
     const [searchParams, setSearchParams] = useSearchParams();
 
     const navigate = useNavigate();
+
+    const user = useSelector(state => state.mainLayout.user);
 
     const [lesson, setLessons] = useState({});
     const [canBeNextSlide, setCanBeNextSlide] = useState(false);
@@ -38,14 +42,14 @@ const CourseStudyPage = () => {
         let url = '';
         if (searchParams.get('block') !== null && searchParams.get('lesson') !== null) {
             url = `${lang === undefined ? '/' : '/' + lang + '/'}course/${slug}/lessons?block=${searchParams.get('block')}&lesson=${searchParams.get('lesson')}`;
-            // setBlockParam(searchParams.get('block'));
-            // setLessonParam(searchParams.get('lesson'));
+            setBlockParam(searchParams.get('block'));
+            setLessonParam(searchParams.get('lesson'));
         } else {
             url = `${lang === undefined ? '/' : '/' + lang + '/'}course/${slug}/lessons`;
         }
 
         getLesson(url);
-    }, []);
+    }, [lang]);
 
     useEffect(() => {
         let temp = '';
@@ -65,7 +69,7 @@ const CourseStudyPage = () => {
                             key={index}
                             rightValue={node.children[0].data}
                             value={contentInputData[index]}
-                            setValue={(e) => setContentInputData(prevState => ({ ...prevState, [index]: e }))}
+                            setValue={(e) => setContentInputData(prevState => ({...prevState, [index]: e}))}
                             classes={'input input-data'}
                         />
                     );
@@ -75,7 +79,7 @@ const CourseStudyPage = () => {
             setLessons(prevState => {
                 return {
                     ...prevState,
-                    description: ReactHtmlParser(lesson.description, { replace })
+                    description: ReactHtmlParser(lesson.description, {replace})
                 };
             })
 
@@ -85,14 +89,16 @@ const CourseStudyPage = () => {
 
     useEffect(() => {
         const url = `${lang === undefined ? '/' : '/' + lang + '/'}course/${slug}/lessons?block=${searchParams.get('block')}&lesson=${searchParams.get('lesson')}`;
+        setBlockParam(searchParams.get('block'));
+        setLessonParam(searchParams.get('lesson'));
         getLesson(url);
-    }, [searchParams])
+    }, [searchParams, lang])
 
     const getLesson = (url) => {
         axiosClient
             .get(url)
-            .then(({ data }) => {
-                console.log(data);
+            .then(({data}) => {
+                // console.log(data);
                 setLessons(data.lesson);
                 setCanBePrevSlide(data.can_be_prev_lesson);
                 setCanBeNextSlide(data.can_be_next_lesson);
@@ -106,21 +112,27 @@ const CourseStudyPage = () => {
                 }
             })
             .catch((err) => {
-                console.log(err);
+                if (err.response.status === 404 || err.response.status === 500) {
+                    navigate(`${lang === undefined ? '/' : '/' + lang + '/'}page/not-found`);
+                }
             })
     }
 
     const slideLesson = (e, to) => {
         e.preventDefault();
         if (to === 1 && canBeNextSlide || to === -1 && canBePrevSlide) {
-            // console.log(Number(lessonParam) + to, to);
-            // navigate(`?block=${blockParam}&lesson=${Number(lessonParam) + to}`);
+            console.log(Number(lessonParam), lesson.amount_steps)
+            if (Number(lessonParam) === Number(lesson.amount_steps) && to === 1) {
+                navigate(`?block=${Number(blockParam) + 1}&lesson=1`);
+            } else {
+                navigate(`?block=${blockParam}&lesson=${Number(lessonParam) + to}`);
+            }
         }
     }
 
     const handleCheckStudy = () => {
         axiosClient.get(`course/${slug}/lessons/study-check?block=${lesson.block}&lesson=${lesson.current_step}&answer=${answer}`)
-            .then(({ data }) => {
+            .then(({data}) => {
                 setSuccessCourse(data.course_success);
                 setSuccessLesson(data.success);
                 setSuccessBlock(data.block_success);
@@ -139,146 +151,171 @@ const CourseStudyPage = () => {
     const getLessonRender = () => {
         switch (lesson.code) {
             case 'theory':
-                return <CourseLessonTheory lesson={lesson} />
+                return <CourseLessonTheory lesson={lesson}/>
             case 'input-data':
                 return <CourseLessonInputData setLesson={(e) => setLessons(e)} lesson={lesson} answer={answer}
-                    setAnswer={(e) => setAnswer(e)} />
+                                              setAnswer={(e) => setAnswer(e)}/>
             case 'few-answer':
-                return <CourseLessonFewOption lesson={lesson} answer={answer} setAnswer={(e) => setAnswer(e)} />
+                return <CourseLessonFewOption lesson={lesson} answer={answer} setAnswer={(e) => setAnswer(e)}/>
             case 'one-answer':
-                return <CourseLessonOneAnswer lesson={lesson} answer={answer} setAnswer={(e) => setAnswer(e)} />
+                return <CourseLessonOneAnswer lesson={lesson} answer={answer} setAnswer={(e) => setAnswer(e)}/>
             case 'task':
-                return <CourseLessonTask lesson={lesson} slug={slug} />;
+                return <CourseLessonTask lesson={lesson} slug={slug}/>;
             default:
                 return null;
         }
     }
 
+    const handleCloseModalSuccessCourse = () => {
+        navigate(`${lang === undefined ? '/' : '/' + lang + '/'}profile/${user.username}/completed-courses`);
+    }
+
     return (
         <>
             {Object.keys(lesson).length === 0 ?
-                <LoadingElement />
+                <LoadingElement/>
                 :
-                <div className="lessons">
-                    <div className="lessons-header">
-                        <div className="lessons-header-back">
-                            <svg
-                                width="21"
-                                height="21"
-                                viewBox="0 0 21 21"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M13.125 4.375L7.875 10.5L13.125 16.625"
-                                    stroke="white"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                            <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}course/${slug}`}>Блоки</Link>
+                <>
+                    <div className="lessons">
+                        <div className="lessons-header">
+                            <div className="lessons-header-back">
+                                <svg
+                                    width="21"
+                                    height="21"
+                                    viewBox="0 0 21 21"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M13.125 4.375L7.875 10.5L13.125 16.625"
+                                        stroke="white"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                                <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}course/${slug}`}>Блоки</Link>
+                            </div>
+
+                            <p className="lessons-header-title">_{lesson.title}</p>
                         </div>
-
-                        <p className="lessons-header-title">_{lesson.title}</p>
-                    </div>
-                    <div className="lessons-stage">
-                        <button onClick={(e) => slideLesson(e, -1)}
-                            className={`btn slider-arrow ${!canBePrevSlide ? 'hidden' : ''}`}>
-                            <svg
-                                width="21"
-                                height="21"
-                                viewBox="0 0 21 21"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <circle
-                                    cx="8.75"
-                                    cy="8.75"
-                                    r="8.75"
-                                    transform="matrix(-1 0 0 1 19.25 1.75)"
-                                    stroke="white"
-                                // strokeOpacity="0.6"
-                                />
-                                <path
-                                    d="M11.8125 7.875L9.1875 10.5L11.8125 13.125"
-                                    stroke="white"
-                                    // strokeOpacity="0.6"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                        </button>
-                        <p>{lesson.current_step}/{lesson.amount_steps}</p>
-                        <button onClick={(e) => slideLesson(e, 1)}
-                            className={`btn slider-arrow ${!canBeNextSlide ? 'hidden' : ''}`}>
-                            <svg
-                                width="21"
-                                height="21"
-                                viewBox="0 0 21 21"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <circle cx="10.5" cy="10.5" r="8.75" stroke="white"
-                                // strokeOpacity="0.6"
-                                />
-                                <path
-                                    d="M9.1875 7.875L11.8125 10.5L9.1875 13.125"
-                                    stroke="white"
-                                    // strokeOpacity="0.6"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                    <div className="lessons-btn">
-                        {
-                            lesson.code === 'theory' ?
-                                <>
-                                    {!successLesson ?
-                                        <button onClick={() => handleCheckStudy()}
-                                            className="btn primary big">Проверить ответ
-                                        </button>
-                                        :
-                                        <button onClick={() => goToNextLesson()}
-                                            className="btn primary big">Продолжить
-                                        </button>
-                                    }
-                                </>
-                                :
-                                <>
-                                    {successLesson ?
-
-                                        <button onClick={() => goToNextLesson()}
-                                            className="btn primary big">Продолжить
-                                        </button>
-                                        :
-                                        <>
+                        <div className="lessons-stage">
+                            <button onClick={(e) => slideLesson(e, -1)}
+                                    className={`btn slider-arrow ${!canBePrevSlide ? 'hidden' : ''}`}>
+                                <svg
+                                    width="21"
+                                    height="21"
+                                    viewBox="0 0 21 21"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <circle
+                                        cx="8.75"
+                                        cy="8.75"
+                                        r="8.75"
+                                        transform="matrix(-1 0 0 1 19.25 1.75)"
+                                        stroke="white"
+                                        // strokeOpacity="0.6"
+                                    />
+                                    <path
+                                        d="M11.8125 7.875L9.1875 10.5L11.8125 13.125"
+                                        stroke="white"
+                                        // strokeOpacity="0.6"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <p>{lesson.current_step}/{lesson.amount_steps}</p>
+                            <button onClick={(e) => slideLesson(e, 1)}
+                                    className={`btn slider-arrow ${!canBeNextSlide ? 'hidden' : ''}`}>
+                                <svg
+                                    width="21"
+                                    height="21"
+                                    viewBox="0 0 21 21"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <circle cx="10.5" cy="10.5" r="8.75" stroke="white"
+                                        // strokeOpacity="0.6"
+                                    />
+                                    <path
+                                        d="M9.1875 7.875L11.8125 10.5L9.1875 13.125"
+                                        stroke="white"
+                                        // strokeOpacity="0.6"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="lessons-btn">
+                            {
+                                lesson.code === 'theory' ?
+                                    <>
+                                        {!successLesson ?
                                             <button onClick={() => handleCheckStudy()}
-                                                className="btn primary big">Проверить ответ
+                                                    className="btn primary big">Проверить ответ
                                             </button>
-                                        </>
-                                    }
-                                    {
-                                        successLesson === null ? <></> :
+                                            :
+                                            <button onClick={() => goToNextLesson()}
+                                                    className="btn primary big">Продолжить
+                                            </button>
+                                        }
+                                    </>
+                                    :
+                                    <>
+                                        {successLesson ?
+
+                                            <button onClick={() => goToNextLesson()}
+                                                    className="btn primary big">Продолжить
+                                            </button>
+                                            :
                                             <>
-                                                {
-                                                    successLesson ?
-                                                        <p className="form_input-message success">Ответ
-                                                            правильный!</p>
-                                                        :
-                                                        <p className="form_input-message">Ответ
-                                                            неправильный!</p>
-                                                }
+                                                <button onClick={() => handleCheckStudy()}
+                                                        className="btn primary big">Проверить ответ
+                                                </button>
                                             </>
-                                    }
-                                </>
-                        }
+                                        }
+                                        {
+                                            successLesson === null ? <></> :
+                                                <>
+                                                    {
+                                                        successLesson ?
+                                                            <p className="form_input-message success">Ответ
+                                                                правильный!</p>
+                                                            :
+                                                            <p className="form_input-message">Ответ
+                                                                неправильный!</p>
+                                                    }
+                                                </>
+                                        }
+                                    </>
+                            }
+                        </div>
+                        <div className="lessons-main">
+                            {getLessonRender()}
+                        </div>
                     </div>
-                    <div className="lessons-main">
-                        {getLessonRender()}
-                    </div>
-                </div>
+                    <ModalWindow
+                        titleText={"Поздравляем! Вы прошли блок курса!"}
+                        isContentShowed={false}
+                        isOpen={successBlock}
+                        setIsOpen={setSuccessBlock}
+                        progress={lesson.block}
+                        maxProgress={lesson.amount_block}
+                        haveLabel={true}
+                    />
+                    <ModalWindow
+                        titleText={"Поздравляем! Вы прошли курс!"}
+                        isContentShowed={false}
+                        isOpen={successCourse}
+                        setIsOpen={setSuccessCourse}
+                        progress={lesson.amount_block}
+                        maxProgress={lesson.amount_block}
+                        haveLabel={true}
+                        handleClose={handleCloseModalSuccessCourse}
+                    />
+                </>
             }
         </>
     );

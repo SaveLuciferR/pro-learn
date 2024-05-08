@@ -1,23 +1,43 @@
-import {setButtonAnswer, setShowWindow} from '../../redux/Modal/slice';
-import {useSelector, useDispatch} from 'react-redux';
+import {GiConfirmed} from "react-icons/gi";
+import ProgressBar from "../Component/ProgressBar";
+import {IoIosCheckmarkCircleOutline} from "react-icons/io";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
+import {useRef} from "react";
+
 
 const ModalWindow = ({
                          isOpen,
                          setIsOpen,
+                         haveLabel,
                          isContentShowed,
-                         isButtonsShowed,
+                         progress,
+                         maxProgress,
                          titleText,
                          contentText,
-                         handleOk,
-                         handleCancel
+                         handleClose
                      }) => {
+
+    const ref = useRef(null);
+
+    const closeModal = () => {
+        if (typeof handleClose === 'function') {
+            handleClose();
+        }
+        setIsOpen(false);
+    }
+
+    useOnClickOutside(ref, () => {
+        if (isOpen) {
+            closeModal();
+        }
+    });
 
     return (
         <div className="modal" style={isOpen === true ? {} : {display: 'none'}}>
-            <div className="modal-window">
+            <div ref={ref} className="modal-window">
                 <svg
                     className="modal-window-close"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => closeModal()}
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -40,6 +60,9 @@ const ModalWindow = ({
                     />
                 </svg>
 
+                <div className={"modal-window-check-mark"}>
+                    <IoIosCheckmarkCircleOutline size={80} color={`#2ea043`}/>
+                </div>
                 <h1 className="modal-window-title">{titleText}</h1>
                 <p
                     className="modal-window-content"
@@ -47,20 +70,15 @@ const ModalWindow = ({
                 >
                     {contentText}
                 </p>
-                <div
-                    className="modal-window-buttons"
-                    style={isButtonsShowed === true ? {} : {display: 'none'}}
-                >
-                    <button onClick={() => handleOk()} className="btn big secondary-blue">
-                        Да, удалить
-                    </button>
-                    <button onClick={() => handleCancel()} className="btn big secondary-blue">
-                        Отмена
-                    </button>
+                <div className="modal-window-progress-bar">
+                    <ProgressBar
+                        haveLabel={haveLabel}
+                        progress={progress}
+                        maxProgress={maxProgress}/>
                 </div>
             </div>
         </div>
     );
-};
+}
 
 export default ModalWindow;

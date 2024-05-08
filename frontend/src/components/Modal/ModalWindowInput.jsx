@@ -1,4 +1,6 @@
 import {Link} from "react-router-dom";
+import {useRef} from "react";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 
 const ModalWindowInput = ({
@@ -12,9 +14,18 @@ const ModalWindowInput = ({
                               content,
                               setContent
                           }) => {
+
+    const ref = useRef(null);
+
+    useOnClickOutside(ref, () => {
+        if (isOpen) {
+            setIsOpen(false);
+        }
+    });
+
     return (
         <div className="modal" style={isOpen === true ? {} : {display: 'none'}}>
-            <div className="modal-window">
+            <div ref={ref} className="modal-window">
                 <svg
                     className="modal-window-close"
                     onClick={() => setIsOpen(false)}

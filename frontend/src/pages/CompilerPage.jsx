@@ -18,6 +18,8 @@ import {
 import Splitter, {SplitDirection} from '@devbookhq/splitter';
 import CompilerTaskDescription from "../components/Compiler/CompilerTaskDescription";
 import CompilerEmptyWindow from "../components/Compiler/CompilerEmptyWindow";
+import CompilerCreateDocker from "../components/Compiler/CompilerCreateDocker";
+import ModalCreateProject from "../components/Modal/ModalCreateProject";
 
 const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
 
@@ -46,6 +48,7 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
     const [dockerIsStart, setDockerIsStart] = useState(false);
     const [solveTask, setSolveTask] = useState({});
     const [successSolutionTask, setSuccessSolutionTask] = useState(null);
+    const [createDockerContainer, setCreateDockerContainer] = useState(false);
 
     const sendRequestTerminal = (req) => {
         setDockerIsStart(false);
@@ -137,17 +140,27 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
     }, [task, lang])
 
     useEffect(() => {
+        if (createDockerContainer) {
+
+        }
+    }, [createDockerContainer])
+
+    useEffect(() => {
         if (shouldBeRunAtStart) {
             // startDockerContainer(`http://api.pro-learn.my/compiler/@${username}/${project}/start-docker-session`);
             axiosClient.get(`${lang === undefined ? "/" : '/' + lang + '/'}compiler/@${username}/${project}/start-docker-session`)
-                .then(({data}) => {
-                    console.log(data.task);
+                .then((res) => {
+                    console.log(res);
+                    if (res.status === 204) {
+                        setCreateDockerContainer(true);
+                    }
                     // setSolveTask(data.task);
                 })
                 .catch((res) => {
                     console.log(res);
                 });
             setDockerIsStart(true);
+            setShouldBeRunAtStart(false);
         }
     }, [shouldBeRunAtStart])
 
@@ -209,8 +222,19 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                                                     dispatch(setEventPointerFrame(false))
                                                 }}
                                             >
-                                                <CompilerEditor isWebProject={isWebProject} handleOpenOutput={() => setIsOpenOutput(!isOpenOutput)}/>
-                                                <CompilerConsole sendRequestTerminal={sendRequestTerminal}/>
+                                                {createDockerContainer ?
+                                                    <CompilerCreateDocker/>
+                                                    :
+                                                    <>
+                                                        <CompilerEditor
+                                                            isWebProject={isWebProject}
+                                                            handleOpenOutput={() => setIsOpenOutput(!isOpenOutput)}
+                                                            handleStartDocker={() => setShouldBeRunAtStart(true)}
+                                                        />
+
+                                                        <CompilerConsole sendRequestTerminal={sendRequestTerminal}/>
+                                                    </>
+                                                }
                                             </Splitter>
                                         </div>
                                         {
@@ -226,8 +250,10 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                     </Splitter>
                 </Splitter>
             </div>
+            <ModalCreateProject/>
         </>
-    );
+    )
+        ;
 };
 
 export default CompilerPage;

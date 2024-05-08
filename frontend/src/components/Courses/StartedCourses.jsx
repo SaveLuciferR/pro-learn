@@ -1,10 +1,10 @@
 import CourseCard from './CourseCard';
 import SliderMain from "../Slider/SliderMain";
 
-const StartedCourses = ({courses}) => {
+const StartedCourses = ({courses, viewWords}) => {
     return (
         <div className="courses-started">
-            <h1 className="courses-started-title">_Начатые курсы</h1>
+            <h1 className="courses-started-title">_{viewWords['tpl_course-page_started-title']}</h1>
             <div className="courses-started-main">
                 {/*  <CourseCard />*/}
                 {/*  <CourseCard />*/}
@@ -13,8 +13,10 @@ const StartedCourses = ({courses}) => {
                 {/*  <div className="courses-slider">(слайдер)</div>*/}
                 <SliderMain
                     data={courses}
+                    pagesType={'digits'}
                     sliderType={"currentCoursePage"}
                     countSlide={2}
+                    viewWords={viewWords}
                 />
             </div>
         </div>

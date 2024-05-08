@@ -1,6 +1,7 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import axiosClient from "../../axiosClient";
 import {Link, useParams} from "react-router-dom";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 
 const ModalWindowTask = (
@@ -32,9 +33,17 @@ const ModalWindowTask = (
         }
     }, [isOpen])
 
+    const ref = useRef(null);
+
+    useOnClickOutside(ref, () => {
+        if (isOpen) {
+            setIsOpen(false);
+        }
+    });
+
     return (
         <div className="modal" style={isOpen === true ? {} : {display: 'none'}}>
-            <div className="modal-window">
+            <div ref={ref} className="modal-window">
                 <svg
                     className="modal-window-close"
                     onClick={() => setIsOpen(false)}

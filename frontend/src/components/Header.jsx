@@ -9,6 +9,7 @@ const Header = ({ language, languages, layoutWords }) => {
   // console.log(layoutWords.tpl_footer_feedback_btn);
 
   let url = useLocation().pathname;
+  let search = useLocation().search;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sidebarProfileActive = useSelector((state) => state.mainLayout.sidebarProfileActive);
@@ -21,13 +22,13 @@ const Header = ({ language, languages, layoutWords }) => {
     e.persist();
 
     if (language.base === '1') {
-      navigate(`${e.target.getAttribute('data-id')}${url}`);
+      navigate(`${e.target.getAttribute('data-id')}${url}${search}`);
     } else if (languages[e.target.getAttribute('data-id')].base === '1') {
       url = url.replace(`/${language.code}`, '');
-      navigate(url);
+      navigate(url + search);
     } else {
       url = url.replace(`/${language.code}`, `/${e.target.getAttribute('data-id')}`);
-      navigate(url);
+      navigate(url + search);
     }
   };
 

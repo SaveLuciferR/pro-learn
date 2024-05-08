@@ -15,13 +15,14 @@ const CoursePage = ({isActiveSidebar, isCompiler}) => {
     const [courses, setCourses] = useState([]);
     const [userCoursesComplete, setUserCoursesComplete] = useState([]);
     const [userCoursesCurrent, setUserCoursesCurrent] = useState([]);
+    const [viewWords, setViewWords] = useState({});
 
     useEffect(() => {
         axiosClient.get(`${lang === undefined ? '/' : '/' + lang + '/'}course`)
             .then((res) => {
                 setCourses(res.data.course.all_course);
                 if (res.data.course.user_course !== undefined) {
-                    console.log(res.data.course.user_course)
+                    // console.log(res.data)
                     let currentCourse = []
                     let completeCourse = [];
                     res.data.course.user_course.map((item, i) => {
@@ -34,41 +35,40 @@ const CoursePage = ({isActiveSidebar, isCompiler}) => {
                     setUserCoursesCurrent(currentCourse);
                     setUserCoursesComplete(completeCourse);
                 }
+                setViewWords(res.data.viewWords);
             })
             .catch((error) => {
                 console.log(error);
             });
-    }, []);
+    }, [lang]);
 
     return (
         <div className="courses">
             <div className="courses-header">
-                <p className="courses-header-title">_Курсы</p>
+                <p className="courses-header-title">_{viewWords['tpl_course-page_title']}</p>
 
                 {courses.length === 0 ?
-                    <p className="courses-header-desc">// Курсы не найдены :(</p>
+                    <p className="courses-header-desc">// {viewWords['tpl_course-page_not-found']} :(</p>
                     :
                     <p className="courses-header-desc">
-                        // Цель этого раздела - предоставить как можно более грамотную и структурированную
-                        информацию для обучения языков программирования и смежным технологиям.
+                        // {viewWords['tpl_course-page_desc']}
                     </p>
                 }
             </div>
             {userCoursesCurrent.length === 0 ?
                 <></>
                 :
-                <StartedCourses courses={userCoursesCurrent}/>
+                <StartedCourses courses={userCoursesCurrent} viewWords={viewWords}/>
             }
             {userCoursesComplete.length === 0 ?
                 <></>
                 :
-                <></>
-                // <CompletedCourses courses={userCoursesComplete}/>
+                <CompletedCourses courses={userCoursesComplete} viewWords={viewWords}/>
             }
             {courses.length === 0 ?
                 <></>
                 :
-                <AllCourses courses={courses}/>
+                <AllCourses courses={courses} viewWords={viewWords}/>
             }
         </div>
     );

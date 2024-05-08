@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axiosClient from '../../../axiosClient';
-import ModalWindow from '../../Modal/ModalWindow';
+import ModalWindowConfirm from '../../Modal/ModalWindowConfirm';
 // import Table from '../../T'
 const ProfileSettingsSessions = () => {
   const { lang, username } = useParams();
@@ -42,7 +42,7 @@ const ProfileSettingsSessions = () => {
       <div className="profile-settings-sessions">
         <div className="profile-settings-sessions-main">
           {/* <Table /> */}
-          <ModalWindow />
+          <ModalWindowConfirm />
         </div>
       </div>
     </div>

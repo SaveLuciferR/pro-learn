@@ -223,9 +223,10 @@ class UserController extends AppController
         $profileInfo['currentCourse'] = [];
         foreach ($userCourse as $k => $v) {
             if ($v['success']) {
-                array_push($profileInfo['currentCourse'], $v);
-            } else {
+                $v['current_stage'] = $v['amount_stage'];
                 array_push($profileInfo['completeCourse'], $v);
+            } else {
+                array_push($profileInfo['currentCourse'], $v);
             }
         }
 
@@ -384,6 +385,40 @@ class UserController extends AppController
         echo json_encode(array('tasks' => $tasks), JSON_UNESCAPED_SLASHES);
     }
 
+    public function templateAction()
+    {
+        $path = "";
+        $templateTemp = $this->model->getTemplateInfoBySlugByLang(App::$app->getProperty('language')['id'], $this->route['slug'], $this->route['username']);
+
+        if (!$templateTemp) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found Project', true, 404);
+            die;
+        }
+
+        $filesProject = isset($this->route['secondaryPath']) ?
+            $this->model->getFilesProject(true, $templateTemp, $path, $this->route['secondaryPath']) :
+            $this->model->getFilesProject(true, $templateTemp, $path);
+
+        if ($filesProject === false) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            die;
+        }
+
+        $template = [];
+        $template['info'] = $templateTemp;
+
+//        $projectInfo['languagesProgProject'] = $this->model->getProjectLangsByID($project['id']);
+//        $projectInfo['info'] = $project;
+
+
+        $readmeFile = "";
+
+        if (file_exists($path . "/README.md")) {
+            $readmeFile = file_get_contents($path . "/README.md");
+        }
+
+        echo json_encode(array('template' => $template, 'filesInfo' => $filesProject, 'readmeFile' => $readmeFile), JSON_UNESCAPED_SLASHES);
+    }
 
     public function projectAction()
     {
@@ -398,8 +433,8 @@ class UserController extends AppController
         $project['date_of_publication'] = date('d.m.Y', strtotime($project['date_of_publication']));
 
         $filesProject = isset($this->route['secondaryPath']) ?
-            $this->model->getFilesProject($project, $path, $this->route['secondaryPath']) :
-            $this->model->getFilesProject($project, $path);
+            $this->model->getFilesProject(false, $project, $path, $this->route['secondaryPath']) :
+            $this->model->getFilesProject(false, $project, $path);
 
         if ($filesProject === false) {
             header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
@@ -490,7 +525,6 @@ class UserController extends AppController
             $username = $_POST['username'];
             $newProject = $_POST['newProject'];
 
-            $keyCache = $username . '/' . md5(session_id());
             //TODO: Сделать так, чтобы проект пользователя сохранялся лишь по его нику из роутера в кеш.
 
             $userCacheProjectFolder = PROJECT_CACHE . "/" . md5($username);
@@ -498,20 +532,58 @@ class UserController extends AppController
                 mkdir($userCacheProjectFolder);
             }
 
-            $userCacheProjectFolder .= "/" . md5(session_id());
+            $folder = md5(session_id());
+//            debug($folder);
+            if (isset($_POST['template']) && $_POST['template']) {
+                $folder = md5('template') . $folder;
+//                debug($folder);
+            }
+
+            $userCacheProjectFolder .= "/" . $folder;
             if (!is_dir($userCacheProjectFolder)) {
                 mkdir($userCacheProjectFolder);
             }
+            $keyCache = $username . '/' . $folder;
             $data = '';
 
             if ((!$newProject) && (!$cache->getCache($keyCache, $data))) { // Не новый проект и закончился кеш
                 $this->deleteDirectoryProject($data);
             } else if ($newProject) { // Новый проект
                 // debug($files, 1);
-                $this->pushProject($cache, $keyCache, md5(session_id()), $userCacheProjectFolder, $files);
+                $this->pushProject($cache, $keyCache, $folder, $userCacheProjectFolder, $files);
             } else { // Не новый проект и кеш не закончилсяx
-                $this->pushProject($cache, $keyCache, md5(session_id()), $userCacheProjectFolder, $files);
+                $this->pushProject($cache, $keyCache, $folder, $userCacheProjectFolder, $files);
             }
+        }
+    }
+
+    public function saveNewTemplateAction()
+    {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+
+        $_POST = json_decode(file_get_contents("php://input"), true);
+        if (!empty($_POST)) {
+            $projectPath = Cache::getInstance()->getCache($_POST['username'] . '/' . md5('template') . md5(session_id()));
+
+            $data = [];
+            $data['info'] = $_POST['infoTemplate'];
+            $data['forProject'] = $_POST['forProject'];
+            $data['private'] = $_POST['privacyProject'];
+
+            $slug = $this->model->saveNewTemplate($data, $projectPath, $_POST['username']);
+            if (!$slug) {
+                header($_SERVER['SERVER_PROTOCOL'] . ' 400 Not Found', true, 400);
+                die;
+            }
+
+            Cache::getInstance()->deleteCache($_POST['username'] . '/' . md5('template') . md5(session_id()));
+            // rmdir(PROJECT_CACHE . '/' . md5($_POST['username']) . '/' . md5($_POST['mainFolderProject']));
+//            rmdir(PROJECT_CACHE . '/' . md5($_POST['username']));
+
+            echo json_encode(array('slug' => $slug));
         }
     }
 
@@ -539,7 +611,38 @@ class UserController extends AppController
 
             Cache::getInstance()->deleteCache($_POST['username'] . '/' . md5(session_id()));
             // rmdir(PROJECT_CACHE . '/' . md5($_POST['username']) . '/' . md5($_POST['mainFolderProject']));
-            rmdir(PROJECT_CACHE . '/' . md5($_POST['username']));
+//            rmdir(PROJECT_CACHE . '/' . md5($_POST['username']));
+
+            echo json_encode(array('slug' => $slug));
+        }
+    }
+
+    public function saveEditTemplateAction()
+    {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+
+        $_POST = json_decode(file_get_contents("php://input"), true);
+        if (!empty($_POST)) {
+
+            $projectPath = Cache::getInstance()->getCache($_POST['username'] . '/' . md5('template') . md5($this->route['slug']));
+
+            $data = [];
+            $data['info'] = $_POST['infoTemplate'];
+            $data['forProject'] = $_POST['forProject'];
+            $data['private'] = $_POST['privacyProject'];
+            $data['slug'] = $this->route['slug'];
+
+            $slug = $this->model->editTemplate($data, $projectPath, $_POST['username']);
+            if (!$slug) {
+                header($_SERVER['SERVER_PROTOCOL'] . ' 400 Not Found', true, 400);
+                die;
+            }
+            Cache::getInstance()->deleteCache($_POST['username'] . '/' . md5('template') . md5($this->route['slug']));
+            // rmdir(PROJECT_CACHE . '/' . md5($_POST['username']) . '/' . md5($_POST['mainFolderProject']));
+//            rmdir(PROJECT_CACHE . '/' . md5($_POST['username']));
 
             echo json_encode(array('slug' => $slug));
         }
@@ -570,10 +673,27 @@ class UserController extends AppController
             }
             Cache::getInstance()->deleteCache($_POST['username'] . '/' . md5($this->route['slug']));
             // rmdir(PROJECT_CACHE . '/' . md5($_POST['username']) . '/' . md5($_POST['mainFolderProject']));
-            rmdir(PROJECT_CACHE . '/' . md5($_POST['username']));
+//            rmdir(PROJECT_CACHE . '/' . md5($_POST['username']));
 
             echo json_encode(array('slug' => $slug));
         }
+    }
+
+    public function templateForEditAction()
+    {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+
+
+        $template = $this->model->getTemplateInfoBySlug($this->route['slug'], $_SESSION['user']['id']);
+        $cache = Cache::getInstance();
+        $keyCache = $_SESSION['user']['username'] . '/' . md5('template') . md5($template['slug']);
+        $cache->setCache($keyCache, PROJECT_CACHE . '/' . md5($_SESSION['user']['username']) . '/' . md5('template') . md5($template['slug']), 3600);
+        $this->pushProjectInCache(true, $template, TEMPLATE . '/' . $_SESSION['user']['username'] . '/' . $this->route['slug']);
+
+        echo json_encode(array('template' => $template), JSON_UNESCAPED_SLASHES);
     }
 
     public function projectForEditAction()
@@ -588,7 +708,7 @@ class UserController extends AppController
         $cache = Cache::getInstance();
         $keyCache = $_SESSION['user']['username'] . '/' . md5($project['slug']);
         $cache->setCache($keyCache, PROJECT_CACHE . '/' . md5($_SESSION['user']['username']) . '/' . md5($project['slug']), 3600);
-        $this->pushProjectInCache($project, USER_PROJECT . '/' . $_SESSION['user']['username'] . '/' . $this->route['slug']);
+        $this->pushProjectInCache(false, $project, USER_PROJECT . '/' . $_SESSION['user']['username'] . '/' . $this->route['slug']);
 
         echo json_encode(array('project' => $project), JSON_UNESCAPED_SLASHES);
     }
@@ -628,14 +748,14 @@ class UserController extends AppController
 //        debug($_POST, 1);
         if (!empty($_POST) && $_FILES) {
             $cache = Cache::getInstance();
-            $pathProject = $cache->getCache(
-                $_SESSION['user']['username'] . '/' .
-                ($_POST['type'] === 'edit' ? $_POST['slug'] : md5(session_id()))
-            );
-            $pathProject = $cache->getCache(
-                    $_SESSION['user']['username'] . '/' .
-                    ($_POST['type'] === 'edit' ? md5($_POST['slug']) : md5(session_id()))
-                ) . $_POST['secondaryPathProject'];
+
+            $folder = $_POST['type'] === 'edit' ? md5($_POST['slug']) : md5(session_id());
+            if (isset($_POST['template']) && $_POST['template']) {
+                $folder = md5('template') . $folder;
+            }
+
+            $pathProject = $cache->getCache($_SESSION['user']['username'] . '/' . $folder) . $_POST['secondaryPathProject'];
+
             foreach ($_FILES['newFilesInfo']['tmp_name'] as $k => $v) {
                 move_uploaded_file($v, $pathProject . $_FILES['newFilesInfo']['name'][$k]);
             }
@@ -670,10 +790,12 @@ class UserController extends AppController
         $_POST = json_decode(file_get_contents("php://input"), true);
         if (!empty($_POST)) {
             $cache = Cache::getInstance();
-            $pathProject = $cache->getCache(
-                $_SESSION['user']['username'] . '/' .
-                ($_POST['type'] === 'edit' ? md5($_POST['slug']) : md5(session_id()))
-            );
+            $folder = $_POST['type'] === 'edit' ? md5($_POST['slug']) : md5(session_id());
+            if (isset($_POST['template']) && $_POST['template']) {
+                $folder = md5('template') . $folder;
+            }
+
+            $pathProject = $cache->getCache($_SESSION['user']['username'] . '/' . $folder);
 
             if (is_dir($pathProject . $_POST['path'])) {
                 $this->deleteDirectoryProject($pathProject . $_POST['path']);
@@ -696,8 +818,14 @@ class UserController extends AppController
 //            $mainFolder = $_POST['mainFolderProject'];
             $username = $_POST['username'];
 
+            $folder = $_POST['type'] === 'edit' ? md5($_POST['slug']) : md5(session_id());
+            if (isset($_POST['template']) && $_POST['template']) {
+                $folder = md5('template') . $folder;
+//                debug($folder);
+            }
+
             // debug($files, 1);
-            $keyCache = $username . '/' . ($_POST['type'] === 'edit' ? md5($_POST['slug']) : md5(session_id()));
+            $keyCache = $username . '/' . $folder;
             $cache = Cache::getInstance();
             if (!$cache->getCache($keyCache)) {
                 header('HTTP/1.0 404 Not Found');
@@ -1037,7 +1165,7 @@ class UserController extends AppController
         return false;
     }
 
-    protected function pushProjectInCache($project, $pathProject, $pathCache = '')
+    protected function pushProjectInCache($isTemplate, $project, $pathProject, $pathCache = '')
     {
 //        debug($pathProject, 1);
         if ($pathCache === '') {
@@ -1045,7 +1173,11 @@ class UserController extends AppController
             if (!file_exists($pathCache)) {
                 mkdir($pathCache);
             }
-            $pathCache .= '/' . md5($project['slug']);
+            if ($isTemplate) {
+                $pathCache .= '/' . md5('template') . md5($project['slug']);
+            } else {
+                $pathCache .= '/' . md5($project['slug']);
+            }
             if (!file_exists($pathCache)) {
                 mkdir($pathCache);
             }
@@ -1058,7 +1190,7 @@ class UserController extends AppController
                 if ($v !== '.' && $v !== '..' && !file_exists($pathCache . '/' . $v)) {
                     if (is_dir($pathProject . '/' . $v)) {
                         mkdir($pathCache . '/' . $v);
-                        $this->pushProjectInCache($project, $pathProject . '/' . $v, $pathCache . '/' . $v);
+                        $this->pushProjectInCache($isTemplate, $project, $pathProject . '/' . $v, $pathCache . '/' . $v);
                     } else {
                         copy($pathProject . '/' . $v, $pathCache . '/' . $v);
                     }

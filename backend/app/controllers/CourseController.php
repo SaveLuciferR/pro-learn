@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\controllers\AppController;
 use core\App;
+use core\Language;
 
 class CourseController extends AppController
 {
@@ -30,7 +31,7 @@ class CourseController extends AppController
             $course['all_course'][$k]['language'] = $this->model->getCourseLangProgByID($v['id']);
         }
 
-        echo json_encode(array('course' => $course), JSON_UNESCAPED_SLASHES);
+        echo json_encode(array('course' => $course, 'viewWords' => Language::$langView), JSON_UNESCAPED_SLASHES);
     }
 
 
@@ -144,6 +145,10 @@ class CourseController extends AppController
                         $userCourse['current_stage'], $userCourse['current_step']);
                     $lesson['current_step'] = $userCourse['current_step'];
                 }
+                if (!isset($lesson['current_stage_id'])) {
+                    header("HTTP/1.0 404 Not Found");
+                    die;
+                }
                 $lesson = array_merge($lesson, $this->model->getAmountStepInStageCourse($lesson['current_stage_id']));
                 unset($lesson['current_stage_id']);
 
@@ -153,6 +158,7 @@ class CourseController extends AppController
 
                 $lesson['answer_option'] = json_decode($lesson['answer_option'], true);
             }
+
 
             if ($lesson) {
                 if ($lesson['code'] === 'task') {
@@ -164,6 +170,10 @@ class CourseController extends AppController
                     $taskForStepCourse['project'] = $this->model->getProjectForTask($taskForStepCourse['id']);
                     $lesson['task'] = $taskForStepCourse;
                 }
+            }
+            $lesson['amount_block'] = $this->model->getAmountBlockInCourse($course['id']);
+            if ((string)$lesson['amount_block'] === $lesson['block'] && $lesson['amount_steps'] === $lesson['current_step']) {
+                $canBeNextLesson = false;
             }
             echo json_encode(array(
                 'lesson' => $lesson,
@@ -259,7 +269,7 @@ class CourseController extends AppController
                             $nextStep = 1;
                         } else {
                             $courseSuccess = true;
-                            $this->model->saveUserCourse($_SESSION['user']['id'], $course['id'], true, $_GET['block'], $_GET['lesson']);
+                            $this->model->saveUserCourse($_SESSION['user']['id'], $course['id'], true, $_GET['block'] + 1, 0);
                         }
                     }
                 }
