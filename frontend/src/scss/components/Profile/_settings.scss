@@ -162,6 +162,10 @@
         flex-direction: column;
         row-gap: 16px;
         width: 100%;
+
+        & button {
+          width: 250px;
+        }
       }
 
       &-change {
@@ -184,6 +188,15 @@
         column-gap: 8px;
         align-items: center;
       }
+    }
+
+    &-buttons {
+      padding-top: 12px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 12px;
+
+      max-width: 300px;
     }
 
     &-delete {
@@ -259,6 +272,12 @@
         display: inline-block;
       }
     }
+
+    &-privacy {
+      &-main {
+        padding: 28px 60px 0;
+      }
+    }
   }
 }
 
@@ -330,6 +349,32 @@
         }
       }
     }
+
+    &-security {
+      height: inherit;
+      &-main {
+        flex-direction: column;
+
+        &_item {
+          padding-top: 8px;
+        }
+      }
+
+      &-delete {
+        top: 36px;
+      }
+    }
+
+    &-privacy {
+      &-main {
+        flex-direction: column;
+        row-gap: 28px;
+
+        &_item {
+          margin: 0 auto;
+        }
+      }
+    }
   }
 }
 
@@ -397,6 +442,37 @@
         }
       }
     }
+
+    &-security {
+      padding: 28px 20px;
+
+      &-main {
+        padding-top: 0;
+        &_item {
+          & button {
+            width: 100%;
+          }
+        }
+      }
+
+      &-delete {
+        top: 28px;
+        font-size: 14px;
+      }
+
+      &-buttons {
+        max-width: 500px;
+        & button {
+          width: 100%;
+        }
+      }
+    }
+
+    &-privacy {
+      &-main {
+        padding: 28px 0 0 0;
+      }
+    }
   }
 }
 
@@ -407,6 +483,17 @@
     &-main-main {
       &-bottom {
         & input.input.w531 {
+          width: inherit;
+        }
+      }
+    }
+
+    &-privacy {
+      &-main {
+        padding: 28px 0 0 0;
+        row-gap: 28px;
+
+        &_item {
           width: inherit;
         }
       }

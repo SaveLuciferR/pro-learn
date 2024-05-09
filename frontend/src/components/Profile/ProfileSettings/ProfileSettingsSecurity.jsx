@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { setShowWindow, setTitleText, setContentText } from '../../../redux/Modal/slice';
 import { useSelector, useDispatch } from 'react-redux';
+/* ICONS */
+import { IoSwapHorizontal } from 'react-icons/io5';
+import { MdKeyboardArrowLeft } from 'react-icons/md';
+import { RiCloseCircleLine } from 'react-icons/ri';
 
 const ProfileSettingsSecurity = () => {
   const dispatch = useDispatch();
@@ -64,38 +68,12 @@ const ProfileSettingsSecurity = () => {
     <div>
       <div className="created-courses-header">
         <div className="lessons-header-back">
-          <svg
-            width="21"
-            height="21"
-            viewBox="0 0 21 21"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M13.125 4.375L7.875 10.5L13.125 16.625"
-              stroke="white"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+          <MdKeyboardArrowLeft color="#ffffff" size={21} />
           <Link to={`../../profile/${username}`}>Профиль</Link>
         </div>
         <h1>_Настройки безопасности</h1>
         <button className="profile-settings-security-delete" onClick={() => modalDelete()}>
-          <svg
-            width="21"
-            height="21"
-            viewBox="0 0 21 21"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="10.5" cy="10.5" r="8.75" stroke="#DB5B42" />
-            <path
-              d="M12.6875 8.3125L8.3125 12.6875M8.31248 8.31248L12.6875 12.6875"
-              stroke="#DB5B42"
-              strokeLinecap="round"
-            />
-          </svg>
+          <RiCloseCircleLine color="#db5b42" size={21} />
           <p>Удалить аккаунт</p>
         </button>
       </div>
@@ -112,41 +90,10 @@ const ProfileSettingsSecurity = () => {
             />
             <p className="profile-settings-security-main-comment">
               <span className="profile-settings-security-main-comment accent">
-                // Это ваша основная почта.
+                // Это ваша основная почта.{' '}
               </span>
               Её можно сменить, если у Вас есть запасная почта.
             </p>
-            <button
-              onClick={() => swapEmails()}
-              className="btn big secondary-blue profile-settings-security-main-btn"
-            >
-              <svg
-                width="21"
-                height="21"
-                viewBox="0 0 21 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M15.75 7L5.25 7M5.25 7L8.85938 3.5M5.25 7L8.85938 10.5"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M5.25 14L15.75 14M15.75 14L12.1406 10.5M15.75 14L12.1406 17.5"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              Поменять почты местами
-            </button>
-            <button className="btn big secondary-blue" style={{ width: '250px' }}>
-              Сохранить изменения
-            </button>
           </div>
           <div className="profile-settings-security-main_item">
             <p className="profile-settings-title">_Запасная почта</p>
@@ -159,7 +106,7 @@ const ProfileSettingsSecurity = () => {
             />
             <p className="profile-settings-security-main-comment">
               <span className="profile-settings-security-main-comment accent">
-                // Это ваша запасная почта.
+                // Это ваша запасная почта.{' '}
               </span>
               Её можно изменить или поменять местами с основной.
             </p>
@@ -179,12 +126,22 @@ const ProfileSettingsSecurity = () => {
             )}
             <button
               onClick={() => definePswd()}
-              style={{ width: '250px' }}
+              // style={{ width: '250px' }}
               className="btn big secondary-blue"
             >
               Сменить пароль
             </button>
           </div>
+        </div>
+        <div className="profile-settings-security-buttons">
+          <button
+            onClick={() => swapEmails()}
+            className="btn big secondary-blue profile-settings-security-main-btn"
+          >
+            <IoSwapHorizontal size={21} color="#ffffff" />
+            Поменять почты местами
+          </button>
+          <button className="btn big secondary-blue">Сохранить изменения</button>
         </div>
       </div>
     </div>
