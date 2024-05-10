@@ -1,38 +1,46 @@
 import img from '../../image 7.png';
-import {useState} from "react";
-import {Link} from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const CourseCard = ({obj}) => {
-    const getLangProg = () => {
-        let temp = '';
-        obj.language.map((item, i) => temp += item + ', ');
-        temp = temp.replace(/, $/, '');
-        return temp;
-    }
+const CourseCard = ({ obj }) => {
+  const getLangProg = () => {
+    let temp = '';
+    obj.language.map((item, i) => (temp += item + ', '));
+    temp = temp.replace(/, $/, '');
+    return temp;
+  };
 
   return (
     <div className="courses-card">
       <div className="courses-card-header">
         <ul className="courses-card-header-tags">
-          {obj.tags.map((item, i) => <li key={i} className="courses-card-header-tag">#{item.title}</li>)}
+          {obj.tags.map((item, i) => (
+            <li key={i} className="courses-card-header-tag">
+              #{item.title}
+            </li>
+          ))}
         </ul>
         {/*<p className="courses-card-header-status">Не начат</p>*/}
       </div>
       <div className="created-course-info">
-        <Link to={`${obj.slug}`} className="courses-card-info-title">{obj.title}</Link>
-        <div className="created-course-info-desc">
-          <p className="courses-card-info-desc-text">
-            // {obj.excerpt}
-          </p>
+        <Link to={`${obj.slug}`} className="courses-card-info-title">
+          {obj.title}
+        </Link>
+        <div className="courses-card-info-desc">
+          <p className="courses-card-info-desc-text clamp multiline">// {obj.excerpt}</p>
           <img src={img} className="courses-card-info-desc-img"></img>
         </div>
       </div>
       <div className="profile-difficulty">
         <p>_Сложность: </p>
         <ul className="profile-difficulty-range">
-          {Array(5).fill('').map((item, i) =>
-              <li className={`profile-difficulty-range-item ${i < obj.difficulty ? 'active' : ''}`}></li>
-          )}
+          {Array(5)
+            .fill('')
+            .map((item, i) => (
+              <li
+                className={`profile-difficulty-range-item ${i < obj.difficulty ? 'active' : ''}`}
+              ></li>
+            ))}
         </ul>
       </div>
       <div className="courses-card-cards">
@@ -117,7 +125,7 @@ const CourseCard = ({obj}) => {
               fill="white"
             />
           </svg>
-          <p>{obj.final_projects} финальных проекта</p>
+          <p>Финальных проектов: {obj.final_projects}</p>
         </div>
       </div>
       <div className="profile-completed-card-stat">
@@ -160,9 +168,12 @@ const CourseCard = ({obj}) => {
           </div>
         </div>
       </div>
-      <div className="created-course-bottom">
-        <p className="created-course-bottom-date">&gt; {obj.username}, {obj.role === 'admin' ? 'Администратор' : 'Пользователь'}, {obj.date_of_publication}</p>
-        <p className="created-course-bottom-lang">// Язык: {getLangProg()}</p>
+      <div className="tasks-card-bottom">
+        <p className="tasks-card-bottom-info">
+          &gt; {obj.username}, {obj.role === 'admin' ? 'Администратор' : 'Пользователь'},{' '}
+          {obj.date_of_publication}
+        </p>
+        <p className="tasks-card-bottom-lang">// Язык: {getLangProg()}</p>
       </div>
     </div>
   );
