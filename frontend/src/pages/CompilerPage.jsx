@@ -49,6 +49,13 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
     const [solveTask, setSolveTask] = useState({});
     const [successSolutionTask, setSuccessSolutionTask] = useState(null);
     const [createDockerContainer, setCreateDockerContainer] = useState(false);
+    const [runDocker, setRunDocker] = useState(false);
+
+    const [outputDocker, setOutputDocker] = useState('');
+    const [errorDocker, setErrorDocker] = useState('');
+    const [portsDocker, setPortsDocker] = useState([]);
+    const [dockerIsLoading, setDockerIsLoading] = useState(false);
+    const [taskIsLoading, setTaskIsLoading] = useState(false);
 
     const sendRequestTerminal = (req) => {
         setDockerIsStart(false);
@@ -146,7 +153,8 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
     }, [createDockerContainer])
 
     useEffect(() => {
-        if (shouldBeRunAtStart) {
+        if (shouldBeRunAtStart || runDocker) {
+            setDockerIsLoading(true)
             // startDockerContainer(`http://api.pro-learn.my/compiler/@${username}/${project}/start-docker-session`);
             axiosClient.get(`${lang === undefined ? "/" : '/' + lang + '/'}compiler/@${username}/${project}/start-docker-session`)
                 .then((res) => {
@@ -154,15 +162,22 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                     if (res.status === 204) {
                         setCreateDockerContainer(true);
                     }
+                    setOutputDocker(res.data.output);
+                    setErrorDocker(res.data.error);
+                    setPortsDocker(res.data.ports);
                     // setSolveTask(data.task);
                 })
                 .catch((res) => {
                     console.log(res);
-                });
+                })
+                .finally(() => {
+                    setRunDocker(false);
+                    dispatch(setShouldBeRunAtStart(false));
+                    setDockerIsLoading(false);
+                })
             setDockerIsStart(true);
-            setShouldBeRunAtStart(false);
         }
-    }, [shouldBeRunAtStart])
+    }, [shouldBeRunAtStart, runDocker])
 
     return (
         <>
@@ -195,7 +210,7 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                             dispatch(setEventPointerFrame(false))
                         }}
                     >
-                        <CompilerSidebar/>
+                        <CompilerSidebar dockerIsLoading={dockerIsLoading} taskIsLoading={taskIsLoading}/>
                         <div className="compiler">
                             <div className="compiler-container">
                                 <div className="compiler-blocks">
@@ -222,24 +237,31 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                                                     dispatch(setEventPointerFrame(false))
                                                 }}
                                             >
-                                                {createDockerContainer ?
-                                                    <CompilerCreateDocker/>
-                                                    :
-                                                    <>
-                                                        <CompilerEditor
-                                                            isWebProject={isWebProject}
-                                                            handleOpenOutput={() => setIsOpenOutput(!isOpenOutput)}
-                                                            handleStartDocker={() => setShouldBeRunAtStart(true)}
-                                                        />
+                                                {/*{createDockerContainer ?*/}
+                                                {/*    <CompilerCreateDocker/>*/}
+                                                {/*    :*/}
+                                                <>
+                                                    <CompilerEditor
+                                                        isWebProject={isWebProject}
+                                                        handleOpenOutput={() => setIsOpenOutput(!isOpenOutput)}
+                                                        handleStartDocker={() => setRunDocker(true)}
+                                                    />
 
-                                                        <CompilerConsole sendRequestTerminal={sendRequestTerminal}/>
-                                                    </>
-                                                }
+                                                    <CompilerConsole sendRequestTerminal={sendRequestTerminal}
+                                                                     taskIsLoading={taskIsLoading}
+                                                                     setTaskIsLoading={setTaskIsLoading}
+                                                                     output={outputDocker}
+                                                                     setOutput={setOutputDocker}
+                                                                     error={errorDocker}
+                                                                     setError={setErrorDocker}
+                                                    />
+                                                </>
+                                                {/*}*/}
                                             </Splitter>
                                         </div>
                                         {
                                             isWebProject && isOpenOutput ?
-                                                <CompilerOutput/>
+                                                <CompilerOutput ports={portsDocker}/>
                                                 :
                                                 <></>
                                         }

@@ -14,7 +14,7 @@ import ProjectFile from "../components/Project/ProjectFile";
 import {setTitleText} from "../redux/Modal/slice";
 import Switch from "../components/Component/Switch";
 import CourseCreateTab from "../components/Courses/CourseCreate/CourseCreateTab";
-import TemplateAddTab from "../components/Profile/Projects/TemplateAddTab";
+import TemplateAddTab from "../components/Project/TemplateAddTab";
 import LoadingElement from "../components/LoadingElement";
 
 const TemplateAddPage = ({type = 'create'}) => {

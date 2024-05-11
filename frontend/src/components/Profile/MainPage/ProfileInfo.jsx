@@ -10,14 +10,14 @@ const ProfileInfo = ({ data, viewWords}) => {
       <div className="info-about-name">
         <div className="info-about-name-leftside">
           <div className="info-about-name-photo">
-            <img src={`api.pro-learn.my` + data.avatar_img} alt="profile-avatar" />
+            <img src={data.avatar_img} alt="profile-avatar" />
             {/* настроить стили, чтобы изображение не искажалось */}
           </div>
           <div className="info-about-name-nameblock">
             <p className="info-about-name-nameblock-nickname">{data.username}</p>
             <p className="info-about-name-nameblock-realname">
-              {data.last_name | (data.first_name === undefined)
-                ? `*${viewWords['tpl_profile_main-page_hidden-name']}`
+              {(data.last_name === undefined) | (data.first_name === undefined)
+                ? `*${viewWords['tpl_profile_hidden-name']}`
                 : data.first_name + ' ' + data.last_name}
             </p>
           </div>

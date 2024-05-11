@@ -2,14 +2,14 @@ import {useEffect, useState} from 'react';
 import ProfileProjectItem from './ProfileProjectItem';
 import ProfileProjectsButton from './ProfileProjectsButton';
 
-const ProfileProjectspaginationItems = ({currentItems}) => {
+const ProfileProjectspaginationItems = ({currentItems, viewWords}) => {
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
-        setProjects((prevState) => [<ProfileProjectsButton/>]);
+        setProjects((prevState) => [<ProfileProjectsButton viewWords={viewWords}/>]);
         // console.log(projects);
         currentItems.map((slide, i) => {
-            setProjects((prevState) => [...prevState, <ProfileProjectItem key={i} data={slide}/>]);
+            setProjects((prevState) => [...prevState, <ProfileProjectItem viewWords={viewWords} key={i} data={slide}/>]);
         });
     }, [currentItems]);
 

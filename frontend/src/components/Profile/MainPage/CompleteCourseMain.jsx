@@ -17,7 +17,7 @@ const CompleteCourseMain = ({ data, viewWords }) => {
       <Link to={'completed-courses'} className="currentcourse-title">
           {viewWords['tpl_profile_completed-courses_title']}
       </Link>
-      {completeCourse.length === 0 ? (
+      {completeCourse === undefined || completeCourse.length === 0 ? (
         <div className="profile-none">{viewWords['tpl_profile_completed-courses_missing']} ):</div>
       ) : (
         <SliderMain data={completeCourse} sliderType="profileCompleteCourse" countSlide={1} viewWords={viewWords}/>

@@ -27,6 +27,7 @@ const CompilerSidebarList = ({folder, compilerFiles, tab, localPath, showNav}) =
             />
         ) : (
             <div
+                draggable={true}
                 className={"compiler-sidebar-element_file"}
                 data-project-element={localPath + '/' + folder}
                 key={compilerFiles[key].path}
@@ -70,6 +71,7 @@ const CompilerSidebarList = ({folder, compilerFiles, tab, localPath, showNav}) =
     return (
         <>
             <div
+                draggable={true}
                 onContextMenu={(e) => showNav(e, localPath + '/' + folder, 'dir', folder)}
                 onClick={() => handleOnClickFolder(localPath + '/' + folder)}
                 className="compiler__folder-main has-file compiler-sidebar-element_file"

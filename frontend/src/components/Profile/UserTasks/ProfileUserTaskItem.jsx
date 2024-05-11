@@ -1,4 +1,4 @@
-const ProfileUserTaskItem = () => {
+const ProfileUserTaskItem = ({viewWords}) => {
   return (
     <div className="profile-task">
       <div className="created-course-header">
@@ -36,7 +36,7 @@ const ProfileUserTaskItem = () => {
         ноль делить нельзя!».
       </p>
       <div className="profile-difficulty">
-        <p>_Сложность: </p>
+        <p>_{viewWords['tpl_profile_card_dif']}: </p>
         <ul className="profile-difficulty-range">
           <li className="profile-difficulty-range-item active"></li>
           <li className="profile-difficulty-range-item active"></li>
@@ -101,7 +101,7 @@ const ProfileUserTaskItem = () => {
               stroke="white"
             />
           </svg>
-          <p>Просмотры: 1k</p>
+          <p>{viewWords['tpl_profile_card_view']}: 1k</p>
         </div>
         <div className="created-course-stat-ended">
           <svg
@@ -122,13 +122,13 @@ const ProfileUserTaskItem = () => {
               strokeLinecap="round"
             />
           </svg>
-          <p>Решили: 64</p>
+          <p>{viewWords['tpl_profile_card_finished']}: 64</p>
         </div>
       </div>
       <button className="btn big primary">Решить задачу</button>
       <div className="created-course-bottom">
         <p className="created-course-bottom-date">28.06.2023</p>
-        <p className="created-course-bottom-lang">// Язык: Python</p>
+        <p className="created-course-bottom-lang">// {viewWords['tpl_profile_card_language']}: Python</p>
       </div>
       <div className="currentcourse-slider">(слайдер)</div>
     </div>

@@ -1,4 +1,4 @@
-import CourseCreateBlock from "../../Courses/CourseCreate/CourseCreateBlock";
+import CourseCreateBlock from "../Courses/CourseCreate/CourseCreateBlock";
 import {useEffect, useState} from "react";
 
 

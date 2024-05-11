@@ -1,25 +1,28 @@
-const ProfileTask = ({ data, index }) => {
+import {Link} from "react-router-dom";
+
+const ProfileTask = ({ data, index, isCreated, viewWords}) => {
   const countDifficulty = [1, 2, 3, 4, 5];
 
   const listDifficulty = countDifficulty.map((i) => {
     return (
       <li
-        className={`profile-difficulty-range-item${i <= data[index].difficulty ? ' active' : ''}`}
+        className={`profile-difficulty-range-item${i <= data.difficulty ? ' active' : ''}`}
       ></li>
     );
   });
 
   return (
-    <div className="profile-task-complete">
+    <div className={`profile-current-card ${isCreated ? 'created-card' : ''}`}>
       <ul className="created-course-header-tags">
-        {data[index].tags.map((item) => {
+        {data.tags.map((item) => {
           return <li className="created-course-header-tag">#{item.title}</li>;
         })}
       </ul>
-      <p className="profile-task-title clamp">_{data[index].title}</p>
-      <p className="profile-task-desc clamp multiline">// {data[index].content}</p>
+      <p className="profile-task-title clamp">_{data.title}</p>
+      <div className={"profile-task-desc clamp multiline"} dangerouslySetInnerHTML={{__html: data.content}}/>
+      {/*<p className="profile-task-desc clamp multiline">// {data.content}</p>*/}
       <div className="profile-difficulty">
-        <p>_Сложность: </p>
+        <p>_{viewWords['tpl_profile_card_dif']}: </p>
         <ul className="profile-difficulty-range">{listDifficulty}</ul>
       </div>
       <div className="profile-task-stat">
@@ -40,7 +43,7 @@ const ProfileTask = ({ data, index }) => {
                 strokeLinejoin="round"
               />
             </svg>
-            <p className="currentcourse-course-info-rate-like-text">{data[index].like}</p>
+            <p className="currentcourse-course-info-rate-like-text">{data.like}</p>
           </div>
           <div className="created-course-stat-rate-dislike">
             <svg
@@ -58,7 +61,7 @@ const ProfileTask = ({ data, index }) => {
                 strokeLinejoin="round"
               />
             </svg>
-            <p className="currentcourse-course-info-rate-dislike-text">{data[index].dislike}</p>
+            <p className="currentcourse-course-info-rate-dislike-text">{data.dislike}</p>
           </div>
         </div>
         <div className="created-course-stat-view">
@@ -78,7 +81,7 @@ const ProfileTask = ({ data, index }) => {
               stroke="white"
             />
           </svg>
-          <p>Просмотры: {data[index].views}</p>
+          <p>{viewWords['tpl_profile_card_view']}: {data.views}</p>
         </div>
         <div className="created-course-stat-ended">
           <svg
@@ -99,13 +102,13 @@ const ProfileTask = ({ data, index }) => {
               strokeLinecap="round"
             />
           </svg>
-          <p>Решили: {data[index].finish_users}</p>
+          <p>{viewWords['tpl_profile_card_finished']}: {data.finish_users}</p>
         </div>
       </div>
       <div className="profile-task-complete-stat">
-        <button className="btn big primary">Решить задачу</button>
-        {data[index].success === '0' ? (
-          <div className="profile-task-complete-solution">Задача не решена</div>
+        <Link to={`../../task/${data.slug}`} className="btn big primary">{viewWords['tpl_profile_task_goto-solve']}</Link>
+        {data.success === '0' ? (
+          <div className="profile-task-complete-solution">{viewWords['tpl_profile_task_solve-unsuccess']}</div>
         ) : (
           <div className="profile-task-complete-solution end">
             <svg
@@ -123,14 +126,18 @@ const ProfileTask = ({ data, index }) => {
                 strokeLinejoin="round"
               />
             </svg>
-            <p>Задача решена</p>
+            <p>{viewWords['tpl_profile_task_solve-success']}</p>
           </div>
         )}
       </div>
       <div className="created-course-bottom">
-        <p className="created-course-bottom-date">{data[index].date_of_publication}</p>
+        {data.date_of_publication !== null ?
+            <p className="created-course-bottom-date">{data.date_of_publication}</p>
+            :
+            <p className="created-course-bottom-date">{viewWords['tpl_profile_card_not-publish']}</p>
+        }
         <p className="created-course-bottom-lang">
-          {/* // Язык: {data[index].language.map((key) => {})} */}
+          {/* // Язык: {data.language.map((key) => {})} */}
         </p>
       </div>
     </div>

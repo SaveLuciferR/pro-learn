@@ -2,12 +2,19 @@ import {useEffect, useRef, useState} from "react";
 import {useParams} from "react-router-dom";
 import axiosClient from "../../axiosClient";
 import LoadingElement from "../LoadingElement";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
-const ModalCreateProject = () => {
+const ModalCreateProject = ({
+                                isOpen,
+                                setIsOpen,
+                                handleGotoCompiler,
+                                handleGotoCreate,
+                                currentTemplate,
+                                setCurrentTemplate
+                            }) => {
 
     const {lang} = useParams();
 
-    const [isOpen, setIsOpen] = useState(true);
     const [search, setSearch] = useState('');
     const [type, setType] = useState('all');
     const [templates, setTemplates] = useState([]);
@@ -21,6 +28,12 @@ const ModalCreateProject = () => {
                 setTemplates(res.data.templates);
             })
     }, [lang, type, search])
+
+    useOnClickOutside(ref, () => {
+        if (isOpen) {
+            closeModal();
+        }
+    })
 
     const closeModal = () => {
         setIsOpen(false);
@@ -66,9 +79,15 @@ const ModalCreateProject = () => {
                             onChange={(e) => setSearch(e.target.value)}
                         />
                         <div className={"modal-window-sidebar-buttons"}>
-                            <button onClick={() => setType('all')} className={`btn ${type === 'all' ? 'active' : ''}`}>Все шаблоны</button>
-                            <button onClick={() => setType('user')} className={`btn ${type === 'user' ? 'active' : ''}`}>Шаблоны пользователей</button>
-                            <button onClick={() => setType('admin')} className={`btn ${type === 'admin' ? 'active' : ''}`}>Шаблоны администраторов</button>
+                            <button onClick={() => setType('all')}
+                                    className={`btn ${type === 'all' ? 'active' : ''}`}>Все шаблоны
+                            </button>
+                            <button onClick={() => setType('user')}
+                                    className={`btn ${type === 'user' ? 'active' : ''}`}>Шаблоны пользователей
+                            </button>
+                            <button onClick={() => setType('admin')}
+                                    className={`btn ${type === 'admin' ? 'active' : ''}`}>Шаблоны администраторов
+                            </button>
                         </div>
                     </div>
                     <div className={"modal-window-templates-content scroll"}>
@@ -77,7 +96,9 @@ const ModalCreateProject = () => {
                             :
                             <>
                                 {templates.map((item, i) => (
-                                    <div key={i} className={"modal-template-card"}>
+                                    <div key={i}
+                                         className={`modal-template-card ${currentTemplate === item.id ? 'active' : ''}`}
+                                         onClick={() => setCurrentTemplate(item.id)}>
                                         <p className={"modal-template-card-title clamp"}>{item.title}</p>
                                         <p className={"modal-template-card-content clamp multiline"}>{item.description}</p>
                                         <div className="profile-completed-card-about">
@@ -85,10 +106,13 @@ const ModalCreateProject = () => {
                                         </div>
                                     </div>
                                 ))}
-
                             </>
                         }
                     </div>
+                </div>
+                <div className={"modal-window-templates-buttons"}>
+                    <button className={"btn big secondary-blue"} onClick={() => handleGotoCompiler()}>Перейти в компилятор</button>
+                    <button className={"btn big secondary-blue"} onClick={() => handleGotoCreate()}>Перейти к добавлению проекта</button>
                 </div>
             </div>
         </div>

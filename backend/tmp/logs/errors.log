@@ -3757,3 +3757,117 @@
 =================
 [2024-05-08 16:47:50] Текст ошибки: Undefined array key "slug" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 709
 =================
+[2024-05-09 14:27:13] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 159
+=================
+[2024-05-09 14:27:13] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-09 14:27:13] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\App.php | Строка: 19
+=================
+[2024-05-09 14:28:07] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 196 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 14:38:16] Текст ошибки: Undefined variable $debug | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 130
+=================
+[2024-05-09 14:47:50] Текст ошибки: Undefined variable $inputData | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 136
+=================
+[2024-05-09 14:48:29] Текст ошибки: Undefined variable $errors | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 156
+=================
+[2024-05-09 14:50:49] Текст ошибки: Too few arguments to function core\Docker\Docker::createImage(), 0 passed in C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php on line 157 and exactly 2 expected | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 107
+=================
+[2024-05-09 14:51:15] Текст ошибки: syntax error, unexpected token "&" | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 157
+=================
+[2024-05-09 15:11:12] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 196 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 15:12:07] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 196 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 15:15:45] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 196 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 15:16:04] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 196 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 15:16:22] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 196 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 15:16:36] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 196 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 15:17:35] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 196 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 15:19:22] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 196 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 15:29:05] Текст ошибки: Undefined variable $output | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 71
+=================
+[2024-05-09 15:29:07] Текст ошибки: Undefined variable $output | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 71
+=================
+[2024-05-09 16:14:10] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-09 16:20:24] Текст ошибки: Unsupported operand types: array - int | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php | Строка: 68
+=================
+[2024-05-09 16:20:27] Текст ошибки: Unsupported operand types: array - int | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php | Строка: 68
+=================
+[2024-05-09 16:41:05] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 196 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 16:43:12] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 196 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 16:45:36] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 196 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 17:08:32] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 198 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 17:09:04] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 198 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 17:09:59] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 198 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 17:10:16] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 198 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 17:11:08] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 198 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 17:33:32] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 198 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 17:38:52] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 198 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 17:39:52] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 198 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 17:40:46] Текст ошибки: Too few arguments to function app\models\Compiler::startOrUpdateDockerContainer(), 1 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 198 and at least 3 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 142
+=================
+[2024-05-09 18:19:13] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-09 18:19:30] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-09 18:19:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-09 18:20:26] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-10 15:35:55] Текст ошибки: Not Found language 'profile' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-05-10 15:36:39] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-10 15:36:45] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-10 15:37:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-10 15:37:04] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-10 15:39:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-10 15:39:43] Текст ошибки: Not Found language 'profile' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-05-10 15:39:46] Текст ошибки: Not Found language 'profile' | Файл: C:\OSPanel\domains\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-05-10 15:45:31] Текст ошибки: Undefined array key "name" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 208
+=================
+[2024-05-10 15:45:53] Текст ошибки: move_uploaded_file(http://api.pro-learn.my/public/uploads/profile/SaveLuciferR2024/05/blog-bg.jpg): Failed to open stream: HTTP wrapper does not support writeable connections | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 209
+=================
+[2024-05-10 15:46:56] Текст ошибки: move_uploaded_file(C:\OSPanel\domains\pro-learn\backend/public/uploads/profile/SaveLuciferR2024/05/benefits-photo.jpg): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 209
+=================
+[2024-05-10 15:51:18] Текст ошибки: move_uploaded_file(C:\OSPanel\domains\pro-learn\backend/public/uploads/profile/SaveLuciferR/2024/05): Failed to open stream: No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 220
+=================
+[2024-05-10 15:52:14] Текст ошибки: move_uploaded_file(): The second argument to copy() function cannot be a directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 220
+=================
+[2024-05-10 15:54:23] Текст ошибки: date(): Argument #2 ($timestamp) must be of type ?int, string given | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 221
+=================
+[2024-05-10 16:07:51] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\QueryWriter\AQueryWriter.php | Строка: 233
+=================
+[2024-05-10 16:17:07] Текст ошибки: Undefined array key "ava" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 220
+=================
+[2024-05-10 16:17:10] Текст ошибки: Undefined array key "ava" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 220
+=================
+[2024-05-10 16:17:21] Текст ошибки: Undefined array key "ava" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 220
+=================
+[2024-05-10 17:48:56] Текст ошибки: Undefined array key "second_mail" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 972
+=================

@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 
-const ProfileProjectItem = ({ data }) => {
+const ProfileProjectItem = ({ data, viewWords}) => {
   const { lang, username } = useParams();
 
   console.log(data);
@@ -19,7 +19,7 @@ const ProfileProjectItem = ({ data }) => {
             _{data.title}
           </Link>
           <p className="profile-projects-info-text-access">
-            {data.private === 0 ? 'Публичный' : 'Приватный'}
+            {data.private === 0 ? viewWords['tpl_profile_project-card_public'] : viewWords['tpl_profile_project-card_private']}
           </p>
         </div>
         <svg
@@ -65,7 +65,7 @@ const ProfileProjectItem = ({ data }) => {
           </svg>
           <p className="profile-projects-bottom-delete-text">Удалить</p>
         </div>
-        <div className="profile-projects-bottom-lang">// Язык: Python</div>
+        <div className="profile-projects-bottom-lang">// {viewWords['tpl_profile_card_language']}: Python</div>
       </div>
     </div>
   );

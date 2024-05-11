@@ -1,10 +1,12 @@
-const BlogFilter = ({currentFilter, activeFilter}) => {//Фильтр для страницы со статьями
+
+
+const BlogFilter = ({isOpen, setIsOpen, titleText, data, search, setSearch}) => {//Фильтр для страницы со статьями
 
   return (
-    <div className={`filter${currentFilter ? ' active' : ''}`}>{/* Тернарный оператор на раздачу активного класса */}
+    <div className={`filter${isOpen ? ' active' : ''}`}>{/* Тернарный оператор на раздачу активного класса */}
       <div className="filter_container">
         <div className="filter_header">
-          <button type="button" onClick={() => activeFilter(false)}>{/* Изменение state при клике */}
+          <button type="button" onClick={() => setIsOpen(false)}>{/* Изменение state при клике */}
           <svg
             className="filter_close"
             width="24"

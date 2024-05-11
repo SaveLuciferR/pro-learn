@@ -74,7 +74,7 @@ const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
               </button>
             </div>
             {isProfileSidebar ? <ProfilePopUpSidebar viewWords={viewWords} /> : <></>}
-            <img src={img} alt="background-image" />
+            <img src={profileData.heading_img} alt="background-image" />
           </div>
         </div>
         <Outlet />

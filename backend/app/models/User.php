@@ -235,14 +235,20 @@ class User extends AppModel
 
     public function savePrivacySettingUser($data, $id)
     {
+        R::begin();
         try {
             $user = R::load('user', $id);
-            $user->all_profile_private = $data['all_profile_private'] ? 1 : 0;
-            $user->personal_info_private = $data['personal_info_private'] ? 1 : 0;
-            $user->look_current_course_private = $data['look_current_course_private'] ? 1 : 0;
+//            $user->all_profile_private = $data['all_profile_private'] ? 1 : 0;
+//            $user->personal_info_private = $data['personal_info_private'] ? 1 : 0;
+//            $user->look_current_course_private = $data['look_current_course_private'] ? 1 : 0;
+            $user->all_profile_private = $data['all_profile_private'] === '1' ? 1 : 0;
+            $user->personal_info_private = $data['personal_info_private'] === '1' ? 1 : 0;
+            $user->look_current_course_private = $data['look_current_course_private'] === '1' ? 1 : 0;
             R::store($user);
+            R::commit();
             return true;
         } catch (\Exception $ex) {
+            R::rollback();
             debug($ex);
             return false;
         }
@@ -333,6 +339,42 @@ class User extends AppModel
             R::rollback();
             return false;
         }
+    }
+
+    public function createProjectWithName($title, $src)
+    {
+        R::begin();
+        try {
+            $project = R::dispense('project');
+//            debug($data, 1);
+            $project->title = $title;
+            $project->user_id = $_SESSION['user']['id'];
+            $project->private = true;
+            $projectID = R::store($project);
+            $project->slug = self::createSlug('project', 'slug', $title, $projectID);
+            R::store($project);
+            R::commit();
+        } catch (\Exception $ex) {
+            debug($ex);
+            R::rollback();
+            return false;
+        }
+
+        if ($project->slug !== '') {
+            if (!is_dir(USER_PROJECT . '/' . $_SESSION['user']['username'])) {
+                mkdir(USER_PROJECT . '/' . $_SESSION['user']['username']);
+            }
+
+
+            $this->copyCacheProject($src, USER_PROJECT . '/' . $_SESSION['user']['username'] . '/' . $project->slug);
+
+            return $project->slug;
+        }
+    }
+
+    public function getTemplateByID($id)
+    {
+        return R::getRow("SELECT t.slug, u.username FROM projecttemplate t JOIN user u ON u.id = t.user_id WHERE t.id = ?", [$id]);
     }
 
     public function editProject($data, $pathProject, $username)
@@ -767,6 +809,7 @@ class User extends AppModel
     {
         R::begin();
         try {
+//            debug($data, 1);
             $user = R::load('user', $id);
             $user->username = $data['username'];
             $user->avatar_img = $data['avatar_img'];

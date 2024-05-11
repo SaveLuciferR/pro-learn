@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import LoadingElement from '../../LoadingElement';
 import ProfileProjectspaginationItems from './ProfileProjectsPaginationItems';
 
-const ProfileProjectsPagination = ({itemsPerPage, data}) => {
+const ProfileProjectsPagination = ({itemsPerPage, data, viewWords}) => {
     const [currentItems, setCurrentItems] = useState([]); //работа с пагинацией
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
@@ -30,7 +30,7 @@ const ProfileProjectsPagination = ({itemsPerPage, data}) => {
                 <>
                     {pageCount === 0 ? <div>loading...</div> :
                         <>
-                            <ProfileProjectspaginationItems currentItems={currentItems}/>
+                            <ProfileProjectspaginationItems currentItems={currentItems} viewWords={viewWords}/>
                             <ReactPaginate
                                 nextLabel=">"
                                 previousLabel="<"

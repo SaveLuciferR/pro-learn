@@ -42,6 +42,8 @@ import NotFoundPage from './components/NotFoundPage';
 import MainMenu from './components/MainMenu.jsx';
 import TemplateAddPage from "./pages/TemplateAddPage";
 import TemplatePage from "./pages/TemplatePage";
+import AdminMain from "./components/Admin/AdminMain";
+import AdminUserSingle from "./components/Admin/AdminUserSingle";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +58,10 @@ const router = createBrowserRouter([
         path: '',
         element: <AdminPage />,
         children: [
+          {
+            path: '',
+            element: <AdminMain/>
+          },
           {
             path: 'blog',
             element: <AdminBlog />,
@@ -74,7 +80,16 @@ const router = createBrowserRouter([
           },
           {
             path: 'users',
-            element: <AdminUsers />,
+            children: [
+              {
+                path: '',
+                element: <AdminUsers />,
+              },
+              {
+                path: ':username',
+                element: <AdminUserSingle/>
+              }
+            ]
           },
           {
             path: 'feedback',

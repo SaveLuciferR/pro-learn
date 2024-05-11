@@ -142,7 +142,6 @@ class Compiler extends AppModel
     public function startOrUpdateDockerContainer($pathProject, &$output, &$error, $data = [])
     {
         $retval = null;
-        $output = array();
 
         $tasks = $this->getTasksForProject($pathProject);
         if (!$this->dockerExists($pathProject)) {
@@ -153,26 +152,26 @@ class Compiler extends AppModel
 
         $docker = new Docker(md5($pathProject), $pathProject, $tasks);
         if (file_exists($pathProject . '/' . 'docker-compose.yml')) {
-            $docker->runDockerCompose();
+            $docker->runDockerCompose($output, $error);
         } else {
-            $docker->createImage();
+            $docker->createImage($output, $error);
             $docker->runContainer($data, $output, $error);
         }
 
 
-//        if (!isset($_SESSION['docker'])) {
-//            $_SESSION['docker'] = [];
-//        }
-//
-////        $_SESSION['docker'][0] = $docker;
-//        return array_push($_SESSION['docker'],
-//            array(
-//                'image' => $docker->getImage(),
-//                'tag' => $docker->getTag(),
-//                'container' => $docker->getContainer(),
-//                'ports' => $docker->getPorts(),
-//            )
-//        );
+        if (!isset($_SESSION['docker'])) {
+            $_SESSION['docker'] = [];
+        }
+
+//        $_SESSION['docker'][0] = $docker;
+        return array_push($_SESSION['docker'],
+            array(
+                'image' => $docker->getImage(),
+                'tag' => $docker->getTag(),
+                'container' => $docker->getContainer(),
+                'ports' => $docker->getPorts(),
+            )
+        );
     }
 
     public function isWebProject($pathProject, $files, $tasks)

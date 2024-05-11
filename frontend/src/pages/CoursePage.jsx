@@ -17,6 +17,10 @@ const CoursePage = ({isActiveSidebar, isCompiler}) => {
     const [userCoursesCurrent, setUserCoursesCurrent] = useState([]);
     const [viewWords, setViewWords] = useState({});
 
+    const [searchFilter, setSearchFilter] = useState();
+    const [categoryCourse, setCategoryCourse] = useState([]);
+
+
     useEffect(() => {
         axiosClient.get(`${lang === undefined ? '/' : '/' + lang + '/'}course`)
             .then((res) => {
@@ -68,7 +72,13 @@ const CoursePage = ({isActiveSidebar, isCompiler}) => {
             {courses.length === 0 ?
                 <></>
                 :
-                <AllCourses courses={courses} viewWords={viewWords}/>
+                <AllCourses
+                    courses={courses}
+                    viewWords={viewWords}
+                    search={searchFilter}
+                    setSearch={setSearchFilter}
+
+                />
             }
         </div>
     );

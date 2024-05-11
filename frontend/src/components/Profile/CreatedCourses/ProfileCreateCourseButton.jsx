@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import {useParams, useNavigate, Link} from 'react-router-dom';
 
 const ProfileCreateCourseButton = ({ type, viewWords }) => {
   const navigate = useNavigate();
@@ -6,12 +6,13 @@ const ProfileCreateCourseButton = ({ type, viewWords }) => {
   return (
     <>
       {type === 'course' ? (
-        <button
-          onClick={() => {
-            navigate(
-              `${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/course-creation`,
-            );
-          }}
+        <Link
+            to={`../../profile/${username}/course-creation`}
+          // onClick={() => {
+          //   navigate(
+          //     `${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/course-creation`,
+          //   );
+          // }}
           className="created-button"
         >
           <div className="created-button-content">
@@ -29,11 +30,13 @@ const ProfileCreateCourseButton = ({ type, viewWords }) => {
                 fillOpacity="0.6"
               />
             </svg>
-            <p className="created-button-text">Создать курс</p>
+            <p className="created-button-text">{viewWords['tpl_profile_created-courses_button']}</p>
           </div>
-        </button>
+        </Link>
       ) : (
-        <div className="created-button">
+        <Link
+            to={`../../profile/${username}/task-creation`}
+            className="created-button">
           <div className="created-button-content">
             <svg
               className="created-button-img"
@@ -49,9 +52,9 @@ const ProfileCreateCourseButton = ({ type, viewWords }) => {
                 fillOpacity="0.6"
               />
             </svg>
-            <p className="created-button-text">Создать задачу</p>
+            <p className="created-button-text">{viewWords['tpl_profile_created-task_button']}</p>
           </div>
-        </div>
+        </Link>
       )}
     </>
   );

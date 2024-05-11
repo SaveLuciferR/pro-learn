@@ -31,7 +31,7 @@ const ProfileProjects = ({ data, viewWords }) => {
           </svg>
         </Link>
       </div>
-      {projects.length === 0 ? (
+      {projects === undefined || projects.length === 0 ? (
         <div className="profile-none">{viewWords['tpl_profile_project_missing']} ):</div>
       ) : (
         <SliderMain data={projects} sliderType="profileProjects" countSlide={1} viewWords={viewWords}/>

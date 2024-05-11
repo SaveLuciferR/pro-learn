@@ -32,7 +32,7 @@ class UserController extends AppController
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && $userParam) {
             if ($this->model->login($userParam)) {
                 $_SESSION['user']['success'] = true;
-                $_SESSION['user_activateion'] = [];
+                $_SESSION['user_activation'] = [];
 
                 $userDevice = [];
                 if (isset($_SERVER['REMOTE_ADDR'])) {
@@ -197,6 +197,35 @@ class UserController extends AppController
         }
     }
 
+    public function uploadAvatarAction()
+    {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+
+        if (isset($_FILES['img'])) {
+
+            $mas = ['profile', $_SESSION['user']['username'], date('Y', time()), date('m', time())];
+            $endPath = WWW . '/uploads';
+
+            foreach ($mas as $k => $v) {
+                $endPath .= '/' . $v;
+                if (!file_exists($endPath)) {
+                    mkdir($endPath);
+                }
+            }
+
+//            $endPath = WWW . '/uploads/profile/' . $_SESSION['user']['username'] . '/' . date('Y', time()) . '/' . date('m', time()) . '/' . $_FILES['img']['name'];
+            move_uploaded_file($_FILES['img']['tmp_name'], $endPath . '/' . $_FILES['img']['name']);
+            $url = UPLOADS . '/profile' . '/' . $_SESSION['user']['username'] . '/' . date('Y', time()) . '/' . date('m', time()) . '/' . $_FILES['img']['name'];
+            echo json_encode(array('url' => $url));
+            return;
+        }
+
+        echo json_encode(array('url' => ''));
+    }
+
     public function profileAction()
     {
         $profileInfo = $this->model->getUserInfo($this->route['username']);
@@ -263,6 +292,7 @@ class UserController extends AppController
             foreach ($profileInfo['projects'] as $k => $v) {
                 if ($v['private']) unset($profileInfo['projects'][$k]);
             }
+            $profileInfo['projects'] = array_values($profileInfo['projects']);
         }
 
 
@@ -284,6 +314,8 @@ class UserController extends AppController
                 if ($v['private']) unset($projects[$k]);
             }
         }
+
+        $projects = array_values($projects);
 
         echo json_encode(array('projects' => $projects), JSON_UNESCAPED_SLASHES);
     }
@@ -365,6 +397,32 @@ class UserController extends AppController
         }
 
         echo json_encode(array('tasks' => $tasks), JSON_UNESCAPED_SLASHES);
+    }
+
+    public function templateToProjectAction()
+    {
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'])) {
+            header('HTTP/1.0 404 Not Found');
+            die;
+        }
+
+        $_POST = json_decode(file_get_contents("php://input"), true);
+        $slug = '';
+        if (!empty($_POST)) {
+            $template = $this->model->getTemplateByID($_POST['template']);
+            if (!$template) {
+                header('HTTP/1.0 404 Not Found');
+                die;
+            }
+            Cache::getInstance()->setCache($_SESSION['user']['username'] . '/' . md5(session_id()), PROJECT_CACHE . '/' . md5($_SESSION['user']['username']) . '/' . md5(session_id()));
+            $this->pushProjectInCache(false, array('slug' => session_id()), TEMPLATE . '/' . $template['username'] . '/' . $template['slug']);
+            if ($_POST['isCreate']) {
+                $slug = $this->model->createProjectWithName($_POST['titleProject'], Cache::getInstance()->getCache($_SESSION['user']['username'] . '/' . md5(session_id())));
+                Cache::getInstance()->deleteCache($_SESSION['user']['username'] . '/' . md5(session_id()));
+            }
+        }
+
+        echo json_encode(array('slug' => $slug));
     }
 
     public function taskListAction()
@@ -885,7 +943,7 @@ class UserController extends AppController
             $profileGeneral = array_merge($profile, $profileGeneral);
             $profileGeneral['success'] = true;
 
-            echo json_encode(array('profile_general' => $profileGeneral), JSON_UNESCAPED_SLASHES);
+            echo json_encode(array('profile_general' => $profileGeneral, 'viewWords' => Language::$langView), JSON_UNESCAPED_SLASHES);
         } else {
             header('HTTP/1.0 404 Not Found');
             die;
@@ -929,7 +987,7 @@ class UserController extends AppController
             die;
         }
 
-        echo json_encode(array('profile_security' => $profileSecurity), JSON_UNESCAPED_SLASHES);
+        echo json_encode(array('profile_security' => $profileSecurity, 'viewWords' => Language::$langView), JSON_UNESCAPED_SLASHES);
     }
 
     public function sessionAction()
@@ -1007,7 +1065,7 @@ class UserController extends AppController
             die;
         }
 
-        echo json_encode(array('profile_privacy' => $profilePrivacy), JSON_UNESCAPED_SLASHES);
+        echo json_encode(array('profile_privacy' => $profilePrivacy, 'viewWords' => Language::$langView), JSON_UNESCAPED_SLASHES);
     }
 
     public function typeLessonAction()

@@ -7,7 +7,7 @@ import {VscChevronLeft, VscChevronRight, VscDebugStart} from "react-icons/vsc";
 import {GrRefresh} from "react-icons/gr";
 import {IoIosArrowForward} from "react-icons/io";
 
-const CompilerOutput = () => {
+const CompilerOutput = ({ports}) => {
     const [activeTab, setActiveTab] = useState(0);
 
     const {username, project} = useParams();
@@ -18,7 +18,7 @@ const CompilerOutput = () => {
 
     const needReloadFrameCompiler = useSelector(state => state.compiler.needReloadFrameCompiler);
     const eventPointer = useSelector(state => state.compiler.eventPointerFrame);
-    const [path, setPath] = useState("http://localhost:9876");
+    const [path, setPath] = useState(`http://localhost:80`);
     // const outputFrame = useSelector(state => state.compiler.outputFrame);
 
     // const onClickTab = (index) => {
@@ -28,6 +28,12 @@ const CompilerOutput = () => {
     // useEffect(() => {
     //
     // }, []);
+
+    useEffect(() => {
+        if (ports.length !== 0) {
+            setPath(`http://localhost:${ports[0]}`)
+        }
+    }, [ports])
 
     useEffect(() => {
         if (needReloadFrameCompiler) {

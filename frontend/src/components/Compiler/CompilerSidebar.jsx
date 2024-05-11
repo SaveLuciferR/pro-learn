@@ -33,8 +33,10 @@ import ReactDOM, {createRoot} from "react-dom/client";
 import {createPortal} from "react-dom";
 import {Context, ContextProvider} from "../../context";
 import useKeypress from "../../hooks/useKeypress";
+import LoadingElement from "../LoadingElement";
+import {string} from "react-table/src/sortTypes";
 
-const CompilerSidebar = () => {
+const CompilerSidebar = ({dockerIsLoading, taskIsLoading}) => {
     const dispatch = useDispatch();
     // const {inputCompilerFileElement} = useContext(Context);
 
@@ -106,16 +108,24 @@ const CompilerSidebar = () => {
 
     const findSavingFile = (pathIndex, files = compilerFiles) => {
         let body = '';
+        let temp = '';
         Object.keys(files).map((key) => {
-            if (files[key].type === 'directory') {
-                body = findSavingFile(pathIndex, files[key].children);
-            }
+            // console.log(files[key].path, pathIndex)
             if (files[key].path === pathIndex) {
-                body = files[key].body;
+                console.log(files);
+                temp = files[key].body;
+            } else if (files[key].type === 'directory') {
+                console.log(files[key].path, pathIndex)
+                temp = findSavingFile(pathIndex, files[key].children);
             }
+            if (temp !== '') {
+                body = temp;
+            }
+            return '';
         });
 
-        console.log(body)
+        // console.log(temp)
+        // console.log(body)
 
         return body;
     };
@@ -149,6 +159,30 @@ const CompilerSidebar = () => {
         }
     }, [actionContext.action, saveRenameFile, canRenameFile]);
 
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        console.log(e.target)
+        if (e.target.className === 'compiler__folder-main') {
+            e.target.style.backgroundColor = '#fffff';
+        }
+    }
+
+    const handleDragLeave = (e) => {
+
+    }
+
+    const handleDragEnd = (e) => {
+
+    }
+
+    const handleDragStart = (e) => {
+
+    }
+
+    const handleDrag = (e) => {
+        e.preventDefault();
+    }
+
     const getFilesStructure = Object.keys(compilerFiles).map((key) =>
         compilerFiles[key].type === 'directory' ? (
             <CompilerSidebarList
@@ -166,6 +200,12 @@ const CompilerSidebar = () => {
                 onContextMenu={(e) => showNav(e, compilerFiles[key].path, 'file', key)}
                 onClick={() => handleOnClickFile(key, compilerFiles[key], '/')}
                 style={{display: 'flex', alignItems: 'center', columnGap: '4px', margin: '2px 0'}}
+                draggable={true}
+                onDragOver={(e) => handleDragOver(e)}
+                onDragLeave={(e) => handleDragLeave(e)}
+                onDragEnd={(e) => handleDragEnd(e)}
+                onDragStart={(e) => handleDragStart(e)}
+                onDrop={(e) => handleDrag(e)}
             >
                 <FaFile className={"icon-24"}/>
                 {key}
@@ -195,7 +235,7 @@ const CompilerSidebar = () => {
         splitPath.shift();
         if (splitPath[0] === '') {
             Object.keys(compilerFiles).map(item => {
-                if (item === content) {
+                if (item.toLowerCase() === content.toLowerCase()) {
                     canBeExist = false;
                 }
             });
@@ -211,8 +251,8 @@ const CompilerSidebar = () => {
             console.log(folder)
 
             Object.keys(folder).map(item => {
-                console.log(item, content)
-                if (item === content) {
+                // console.log(item, content)
+                if (item.toLowerCase() === content.toLowerCase()) {
                     canBeExist = false;
                 }
             });
@@ -355,17 +395,20 @@ const CompilerSidebar = () => {
                                     <p>Files</p>
                                 </button>
                                 <div className={"collapse-header-buttons"}>
-                                    <button onClick={() => {}} className={"btn btn-without_text"}>
+                                    <button onClick={() => {
+                                    }} className={"btn btn-without_text"}>
                                         <VscCloudDownload/></button>
                                     <button onClick={() => handleAddNewFile()} className={"btn btn-without_text"}>
                                         <VscNewFile/>
                                     </button>
                                     <button onClick={() => handleAddNewFolder()} className={"btn btn-without_text"}>
                                         <VscNewFolder/></button>
-                                    <button onClick={() =>{}} className={"btn btn-without_text"}>
+                                    <button onClick={() => {
+                                    }} className={"btn btn-without_text"}>
                                         <VscRefresh/>
                                     </button>
-                                    <button onClick={() =>{}} className={"btn btn-without_text"}>
+                                    <button onClick={() => {
+                                    }} className={"btn btn-without_text"}>
                                         <VscCollapseAll/></button>
                                 </div>
                             </div>
@@ -453,6 +496,22 @@ const CompilerSidebar = () => {
                             />
                         </svg>
                     </div>
+                    {dockerIsLoading ?
+                        <div>
+                            <p>Контейнер запускается</p>
+                            <LoadingElement/>
+                        </div>
+                        :
+                        <></>
+                    }
+                    {taskIsLoading ?
+                        <div>
+                            <p>Запуск задачи</p>
+                            <LoadingElement/>
+                        </div>
+                        :
+                        <></>
+                    }
                 </div>
             </div>
             <CompilerContextMenu context={context} setContext={(v) => setContext(v)} xyPos={xyPosition}/>

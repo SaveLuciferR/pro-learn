@@ -651,6 +651,10 @@ label {
 
     transition: all 0.3s ease-in;
 
+    &.active {
+      border: 1px solid #797ef9;
+    }
+
     &-title {
       font-size: 18px;
       //padding-bottom: 12px;
@@ -709,8 +713,15 @@ label {
         column-gap: 32px;
         row-gap: 24px;
         flex-wrap: wrap;
+      }
 
+      &-buttons {
+        margin-top: 32px;
 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
       }
     }
 

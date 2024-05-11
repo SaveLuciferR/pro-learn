@@ -48,9 +48,15 @@ const SliderList = ({ type, items, index, viewWords}) => {
                                isContinue={false} isCreated={true}/>
         ));
 
+      case 'createdTasks':
+        return items.map((slide, index) => (
+            <ProfileTask key={index} data={slide} index={index} viewWords={viewWords}
+                         isContinue={false} isCreated={true}/>
+        ));
+
       case 'profileTasks':
-        return Object.keys(items).map((slide, index) => (
-            <ProfileTask key={index} data={items} index={slide}/>
+        return items.map((slide, index) => (
+            <ProfileTask key={index} data={slide} index={slide} viewWords={viewWords} isCreated={false}/>
         ));
       case 'currentCoursePage':
             return items.map((slide, i) => <CourseCard key={i} obj={slide} isSlider={true} viewWords={viewWords}/>)

@@ -27,7 +27,7 @@ class CompilerController extends AppController
         }
 
         $tasks = $this->model->getTasksForProject($pathProject);
-        $shouldBeRunAtStart = true;
+        $shouldBeRunAtStart = false;
 
         if (isset($tasks['tasks'])) {
             foreach ($tasks['tasks'] as $k => $task) {
@@ -38,17 +38,43 @@ class CompilerController extends AppController
             }
         }
 
-        //TODO JSON не сохраняется, а приходит пустым!!!
-
         $isWebProject = $this->model->isWebProject($pathProject, $fileStructure, $tasks);
 
         echo json_encode(array('fileStructure' => $fileStructure, 'isWebProject' => $isWebProject, 'path' => $pathProject, 'tasks' => $tasks, 'shouldBeRunAtStart' => $shouldBeRunAtStart), JSON_UNESCAPED_SLASHES);
     }
 
+    public function startTaskAction()
+    {
+        if (isset($_GET['task'])) {
+            $output = '';
+            $error = '';
+            $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
+            $task = [];
+            $tasks = $this->model->getTasksForProject($pathProject);
+            foreach ($tasks['tasks'] as $k => $v) {
+                if ($k === $_GET['task']) {
+                    $task = $v;
+                }
+            }
+            if (!isset($task['data'])) {
+                $task['data'] = [];
+            }
+
+            $index = $this->model->startOrUpdateDockerContainer($pathProject, $output, $error, $task['data']);
+
+            if ($index === -1) {
+                header('HTTP/1.0 204 No Content');
+                die;
+            }
+
+            echo json_encode(array('output' => $output, 'error' => $error));
+        }
+    }
+
     public function startDockerSessionAction()
     {
-        $output = [];
-        $error = [];
+        $output = '';
+        $error = '';
 //        debug($_SESSION, 1);
         $index = $this->model->startOrUpdateDockerContainer(
             $this->model->getPathProject($this->route['username'], $this->route['slug']), $output, $error
@@ -59,16 +85,18 @@ class CompilerController extends AppController
             die;
         }
 
+
+//        debug($index);
 //        debug($_SESSION['docker'], 1);
 
-//            debug($index);
-//            debug($_SESSION['docker'], 1);
-//        if (isset($_SESSION['docker'][$index])) {
-//            echo json_encode(array('ports' => $_SESSION['docker'][$index]['ports']));
-//        } else {
-//            echo json_encode(array('ports' => null));
-//        }
+//            debug(, 1);
+        if (isset($_SESSION['docker'][count($_SESSION['docker']) - 1])) {
+            $ports = $_SESSION['docker'][count($_SESSION['docker']) - 1]['ports'];
+        } else {
+            $ports = null;
+        }
 
+        echo json_encode(array('output' => $output, 'error' => $error, 'ports' => $ports));
     }
 
     public function portsProjectAction()
@@ -180,9 +208,11 @@ class CompilerController extends AppController
         $_POST = json_decode(file_get_contents("php://input"), true);
 
         if ((empty($_POST)) || empty($_POST['file'])) {
-            header('HTTP/1.0 400 Bad Requst');
+            header('HTTP/1.0 400 Bad Request');
             die;
         }
+
+//        debug($_POST, 1);
 
         $file = $_POST['file']['save'];
         $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
@@ -191,7 +221,7 @@ class CompilerController extends AppController
 
         file_put_contents($pathProject . $file['path'], $file['body']);
 
-        $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']));
+//        $this->model->startOrUpdateDockerContainer($this->model->getPathProject($this->route['username'], $this->route['slug']));
     }
 
     public function deleteAction()

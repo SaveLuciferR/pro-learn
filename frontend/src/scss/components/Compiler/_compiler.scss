@@ -123,6 +123,7 @@ div .compiler-sidebar-icon {
   border-radius: 8px;
 
   &_item {
+    cursor: pointer;
     width: 200px;
     padding: 6px 12px;
 
@@ -408,6 +409,8 @@ div .compiler-sidebar-icon {
     display: flex;
     column-gap: 36px;
     align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
 
     & button {
       width: 18px;
@@ -425,6 +428,7 @@ div .compiler-sidebar-icon {
     position: relative;
     box-sizing: border-box;
     padding: 16px 20px;
+    //margin-bottom: 100px;
 
     height: 100%;
     width: 100%;
@@ -447,12 +451,13 @@ div .compiler-sidebar-icon {
       padding: 12px 8px;
       width: 75%;
 
-      margin-bottom: 400px;
+      margin-bottom: 300px;
     }
 
     &-item {
       margin: 12px 0;
       word-wrap: break-word;
+      font-size: 14px;
     }
 
     &-user {

@@ -3,104 +3,173 @@ import {useCallback, useEffect, useRef, useState} from "react";
 import useKeypress from "../../hooks/useKeypress";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import DOMPurify from 'dompurify';
-import {addTerminalContent} from "../../redux/Compiler/slice";
+import {
+    addTerminalContent, setFileDeletingInActionContext,
+    setFileRenamingNameInActionContext,
+    setFileRenamingPathInActionContext, setFileSavingInActionContext, setTypeContextMenu
+} from "../../redux/Compiler/slice";
+import CompilerContextMenuTasks from "./CompilerContextMenuTasks";
+import axiosClient from "../../axiosClient";
+import {useParams} from "react-router-dom";
 
-const AlwaysScrollToBottom = () => {
+const AlwaysScrollToBottom = ({output, error}) => {
     const elementRef = useRef();
-    useEffect(() => elementRef.current.scrollIntoView(), []);
+    // useEffect(() => elementRef.current.scrollIntoView(), [output, error]);
     return <input ref={elementRef} type={"text"} className={'console-text-input'}/>
 }
 
-const InlineEditText = ({setIsRequest, isActive, setIsActive, text, setText}) => {
-    const [inputValue, setInputValue] = useState(text);
+// const InlineEditText = ({setIsRequest, isActive, setIsActive, text, setText}) => {
+//     const [inputValue, setInputValue] = useState(text);
+//
+//     const wrapperRef = useRef(null);
+//     const textRef = useRef(null);
+//     const inputRef = useRef(null);
+//
+//     const enter = useKeypress('Enter');
+//     const esc = useKeypress('esc');
+//
+//     useOnClickOutside(wrapperRef, () => {
+//         if (isActive) {
+//             setText(inputValue);
+//             setIsActive(false);
+//         }
+//     });
+//
+//     const onEnter = useCallback(() => {
+//         if (enter) {
+//             setText(inputValue);
+//             setIsRequest(true);
+//             setIsActive(false);
+//         }
+//     }, [enter, inputValue, setText]);
+//
+//     const onEsc = useCallback(() => {
+//         if (esc) {
+//             setText('');
+//             setIsActive(false);
+//         }
+//     }, [esc, inputValue, setText]);
+//
+//     useEffect(() => {
+//         if (isActive) {
+//             inputRef.current.focus();
+//             onEnter();
+//             onEsc();
+//         }
+//     }, [onEnter, onEsc, isActive]);
+//
+//     const handleInputChange = useCallback(event => {
+//         setInputValue(DOMPurify.sanitize(event.target.value));
+//     }, [setInputValue]);
+//
+//     const handleSpanClick = useCallback(() => {
+//         setIsActive(true)
+//     }, [setIsActive]);
+//
+//     return (
+//         <span className={"console-text-input  inline-text"} ref={wrapperRef}>
+//             <span ref={textRef} onClick={handleSpanClick}
+//                   className={`inline-text_copy inline-text_copy--${!isActive ? "active" : "hidden"}`}>
+//                 {text}
+//             </span>
+//             <input
+//                 ref={inputRef}
+//                 style={{minWidth: Math.ceil(inputValue.length) + "ch"}} value={inputValue} onChange={handleInputChange}
+//                 className={`input inline-text_input inline-text_input--${isActive ? 'active' : 'hidden'}`}
+//             />
+//         </span>
+//     );
+//
+// }
 
-    const wrapperRef = useRef(null);
-    const textRef = useRef(null);
-    const inputRef = useRef(null);
-
-    const enter = useKeypress('Enter');
-    const esc = useKeypress('esc');
-
-    useOnClickOutside(wrapperRef, () => {
-        if (isActive) {
-            setText(inputValue);
-            setIsActive(false);
-        }
-    });
-
-    const onEnter = useCallback(() => {
-        if (enter) {
-            setText(inputValue);
-            setIsRequest(true);
-            setIsActive(false);
-        }
-    }, [enter, inputValue, setText]);
-
-    const onEsc = useCallback(() => {
-        if (esc) {
-            setText('');
-            setIsActive(false);
-        }
-    }, [esc, inputValue, setText]);
-
-    useEffect(() => {
-        if (isActive) {
-            inputRef.current.focus();
-            onEnter();
-            onEsc();
-        }
-    }, [onEnter, onEsc, isActive]);
-
-    const handleInputChange = useCallback(event => {
-        setInputValue(DOMPurify.sanitize(event.target.value));
-    }, [setInputValue]);
-
-    const handleSpanClick = useCallback(() => {
-        setIsActive(true)
-    }, [setIsActive]);
-
-    return (
-        <span className={"console-text-input  inline-text"} ref={wrapperRef}>
-            <span ref={textRef} onClick={handleSpanClick}
-                  className={`inline-text_copy inline-text_copy--${!isActive ? "active" : "hidden"}`}>
-                {text}
-            </span>
-            <input
-                ref={inputRef}
-                style={{minWidth: Math.ceil(inputValue.length) + "ch"}} value={inputValue} onChange={handleInputChange}
-                className={`input inline-text_input inline-text_input--${isActive ? 'active' : 'hidden'}`}
-            />
-        </span>
-    );
-
-}
-
-const CompilerConsole = ({sendRequestTerminal}) => {
+const CompilerConsole = ({
+                             sendRequestTerminal,
+                             error,
+                             setError,
+                             output,
+                             setOutput,
+                             setTaskIsLoading,
+                             taskIsLoading
+                         }) => {
 
     const dispatch = useDispatch();
 
+    const {username, project} = useParams();
+
     const terminalContent = useSelector(state => state.compiler.terminalContent);
-    const workspaceUser = useSelector(state => state.compiler.workspaceUser);
+    const tasks = useSelector(state => state.compiler.tasks)
+    // const workspaceUser = useSelector(state => state.compiler.workspaceUser);
 
-    const [terminalInput, setTerminalInput] = useState("");
-    const [isActiveInput, setIsActiveInput] = useState(false);
-    const [isRequest, setIsRequest] = useState(false);
+    const [context, setContext] = useState(false);
+    const [positionContext, setPositionContext] = useState({x: 0, y: 0})
+
+    // const [textTerminal, setTextTerminal] = useState('');
+    // const [terminalInput, setTerminalInput] = useState("");
+    // const [isActiveInput, setIsActiveInput] = useState(false);
+    // const [isRequest, setIsRequest] = useState(false);
+
+    // useEffect(() => {
+    //     console.log(terminalContent);
+    // }, [terminalContent])
 
     useEffect(() => {
-        console.log(terminalContent);
-    }, [terminalContent])
+        // setTextTerminal(prevState => prevState + output);
+        const text = output.split('\n');
+        text.map((item) => {
+            dispatch(addTerminalContent(item));
+        });
+    }, [output])
+
 
     useEffect(() => {
-        if (isRequest) {
-            dispatch(addTerminalContent(workspaceUser + " " + terminalInput));
-            sendRequestTerminal(terminalInput);
+        // setTextTerminal(prevState => prevState + error);
+        const text = error.split('\n');
+        text.map((item) => {
+            dispatch(addTerminalContent(item));
+        });
+    }, [error])
+
+    // useEffect(() => {
+    //     if (isRequest) {
+    //         dispatch(addTerminalContent(workspaceUser + " " + terminalInput));
+    //         sendRequestTerminal(terminalInput);
+    //     }
+    // }, [isRequest])
+
+    const showNav = (event) => {
+        event.preventDefault();
+        setContext(true);
+        const positionChange = {
+            x: event.pageY,
+            y: event.pageX,
+        };
+        setPositionContext(positionChange);
+
+        setContext(true)
+    };
+
+    const handleClickTask = (key) => {
+        if (!taskIsLoading) {
+            setTaskIsLoading(true);
+            axiosClient.get(`/compiler/@${username}/${project}/start-task&task=${key}`)
+                .then((res) => {
+                    setOutput(res.data.output);
+                    setError(res.data.error)
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+                .finally(() => {
+                    setTaskIsLoading(false);
+                })
+            setContext(false);
         }
-    }, [isRequest])
+    }
 
     return (
         <div className="console">
             <div className="console-bar">
-                <div className="console-info">
+                <div className="console-info scroll">
                     <div className="console-dev">
                         <svg
                             width="18"
@@ -127,7 +196,7 @@ const CompilerConsole = ({sendRequestTerminal}) => {
                         </svg>
                         <p>dev</p>
                     </div>
-                    <button type="button">
+                    <button onClick={(e) => showNav(e)} type="button">
                         <svg
                             width="18"
                             height="19"
@@ -175,16 +244,21 @@ const CompilerConsole = ({sendRequestTerminal}) => {
             <div className="console-text scroll">
                 <div className="console-text-div">
                     {terminalContent.map(item => <p className={'console-text-item'}>{item}</p>)}
-                    <div>
-                        <label onClick={() => setIsActiveInput(true)} className="console-text-user">{workspaceUser}</label>
-                        {/*<p className="console-text-item">{terminalInput}</p>*/}
-                        <InlineEditText setIsRequest={setIsRequest} isActive={isActiveInput}
-                                        setIsActive={setIsActiveInput} text={terminalInput} setText={setTerminalInput}/>
-                        {/*<input onChange={(e) => setTerminalInput(e.target.value)} value={terminalInput} type={"hidden"} className={'input console-text-input'}/>*/}
-                    </div>
-                    {/*<AlwaysScrollToBottom/>*/}
+                    {/*<p className={'console-text-item'}>*/}
+                    {/*    {textTerminal}*/}
+                    {/*</p>*/}
+                    {/*<div>*/}
+                    {/*<label onClick={() => setIsActiveInput(true)} className="console-text-user">{workspaceUser}</label>*/}
+                    {/*<p className="console-text-item">{terminalInput}</p>*/}
+                    {/*<InlineEditText setIsRequest={setIsRequest} isActive={isActiveInput}*/}
+                    {/*                setIsActive={setIsActiveInput} text={terminalInput} setText={setTerminalInput}/>*/}
+                    {/*<input onChange={(e) => setTerminalInput(e.target.value)} value={terminalInput} type={"hidden"} className={'input console-text-input'}/>*/}
+                    {/*</div>*/}
+                    <AlwaysScrollToBottom output={output} error={error}/>
                 </div>
             </div>
+            <CompilerContextMenuTasks context={context} setContext={setContext} xyPos={positionContext} tasks={tasks}
+                                      handleClickTask={handleClickTask}/>
         </div>
     );
 }
