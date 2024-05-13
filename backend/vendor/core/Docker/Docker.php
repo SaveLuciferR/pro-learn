@@ -175,7 +175,7 @@ class Docker
 //            }
             fclose($pipes[0]);
 
-            $output .= stream_get_contents($pipes[1]);
+//            $output .= stream_get_contents($pipes[1]);
             fclose($pipes[1]);
 
             $error .= stream_get_contents($pipes[2]);
@@ -189,6 +189,8 @@ class Docker
 //                echo json_encode(array('data' => 'Error: ' . $error), JSON_UNESCAPED_SLASHES);
 //            }
         }
+//        debug(1, 1);
+
 
 //        $process = popen($cmd, 'r');
 //        debug($cmd, 1);
@@ -237,7 +239,8 @@ class Docker
             }
             fclose($pipes[0]);
 
-            $output .= stream_get_contents($pipes[1]);
+//            debug(stream_get_contents($pipes[1]));
+            $output = stream_get_contents($pipes[1]);
             fclose($pipes[1]);
 
             $error .= stream_get_contents($pipes[2]);

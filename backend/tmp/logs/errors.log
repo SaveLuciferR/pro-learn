@@ -3871,3 +3871,21 @@
 =================
 [2024-05-10 17:48:56] Текст ошибки: Undefined array key "second_mail" | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\UserController.php | Строка: 972
 =================
+[2024-05-12 18:11:17] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 178
+=================
+[2024-05-12 18:11:31] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 178
+=================
+[2024-05-12 18:23:08] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 242
+=================
+[2024-05-12 18:25:52] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 242
+=================
+[2024-05-12 18:26:58] Текст ошибки: Array to string conversion | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 243
+=================
+[2024-05-12 18:31:13] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 181
+=================
+[2024-05-12 18:39:23] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 181
+=================
+[2024-05-12 18:41:05] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 181
+=================
+[2024-05-12 18:42:14] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 181
+=================

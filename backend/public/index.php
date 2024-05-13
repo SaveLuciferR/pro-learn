@@ -9,6 +9,7 @@ header('Set-Cookie; SameSite=Strict; Secure', true);
 
 session_set_cookie_params(0, '/', '.api.pro-learn.my', false, false);
 ini_set('session.cookie_samesite', 'Strict');
+ini_set('max_execution_time', '180');
 //ini_set('max_file_uploads', '500');
 
 if (PHP_MAJOR_VERSION < 8) {

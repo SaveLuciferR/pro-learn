@@ -102,7 +102,7 @@ const TaskSinglePage = ({courseTask, courseSlug, forCourse = false}) => {
                             </ul>
                         </div>
                         <p className="profile-task-title">_{task.title}</p>
-                        <div className="profile-task-desc" dangerouslySetInnerHTML={{__html: task.content}}>
+                        <div className="task-single-desc" dangerouslySetInnerHTML={{__html: task.content}}>
                             {/*{console.log(task.content)}*/}
                         </div>
                         {task.template.length === 0 ?

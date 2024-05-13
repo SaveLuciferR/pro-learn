@@ -45,7 +45,7 @@ const CompilerTaskDescription = ({courseSlug, obj, solvedTask, success}) => {
                             onClick={() => solvedTask()}>Проверить
                         задачу
                     </button>
-                    {courseSlug !== undefined && courseSlug !== 'undefined' ?
+                    {courseSlug !== undefined && courseSlug !== null && courseSlug !== 'undefined' ?
                         <Link className={"btn big secondary-blue"} type={'button'}
                               to={`${lang === undefined ? '/' : '/' + lang + '/'}course/${courseSlug}/study`}>
                             Вернуться к курсу

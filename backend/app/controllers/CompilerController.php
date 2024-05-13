@@ -15,13 +15,14 @@ class CompilerController extends AppController
 //        $fileStructure['blog-bg.jpg']['body'] = utf8_encode($fileStructure['blog-bg.jpg']['body']);
 
         //TODO Причина не отправки проекта транспортной компании является json_encode, он не может первести контент картинки в объект JSON, можно кодировать контент картинки в utf8 и тогда все будет норм, но стоит переделать получение информации о картинки, как о файле
+        //TODO Картинки в редакторе
 
 //        debug($fileStructure, 1);
 //        debug(json_encode($fileStructure), 1);
 
 //        debug(json_last_error(), 1);
 
-        if (!$fileStructure) {
+        if ($fileStructure === false) {
             header('HTTP/1.0 404 Not Found');
             die;
         }
@@ -108,7 +109,7 @@ class CompilerController extends AppController
 
     public function checkSolutionTaskAction()
     {
-        $output = [];
+        $output = '';
         $success = true;
         $error = "";
         $taskInputOutputData = $this->model->getDataSolutionTask($this->route['slugTask']);
@@ -124,7 +125,6 @@ class CompilerController extends AppController
             $temp = implode(PHP_EOL, $v['output_data']);
             if (is_array($output)) $output = implode(PHP_EOL, $output);
             if (trim($output) !== trim($temp)) {
-//                debug($output);
                 $success = false;
                 break;
             }
@@ -134,7 +134,7 @@ class CompilerController extends AppController
             $this->model->saveSolvedTask($_SESSION['user']['id'], $this->route['slugTask']);
         }
 
-        echo json_encode(array('success' => $success), JSON_UNESCAPED_SLASHES);
+        echo json_encode(array('success' => $success, 'error' => $error, 'output' => $output), JSON_UNESCAPED_SLASHES);
     }
 
     public function solveTaskAction()
@@ -155,8 +155,10 @@ class CompilerController extends AppController
                 header('HTTP/1.0 404 Not Found');
                 die;
             }
-        } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+        }
+        else {
+            header("HTTP/1.0 400 Bad Request");
+            die;
         }
     }
 

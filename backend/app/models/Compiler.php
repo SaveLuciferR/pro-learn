@@ -20,9 +20,12 @@ class Compiler extends AppModel
         return R::getAll('SELECT id, title, extension, code FROM langprog');
     }
 
-    protected function getInfoDirectory($path, $url, $localPath = ""): array
+    protected function getInfoDirectory($path, $url, $localPath = ""): array|false
     {
         $files = scandir($path);
+        if ($files === false) {
+            return false;
+        }
 
 //        debug($files, 1);
         array_shift($files);
@@ -147,7 +150,7 @@ class Compiler extends AppModel
         if (!$this->dockerExists($pathProject)) {
             return -1;
         }
-//        $_SESSION['docker'] = [];
+        $_SESSION['docker'] = [];
 //        debug($tasks, 1);
 
         $docker = new Docker(md5($pathProject), $pathProject, $tasks);

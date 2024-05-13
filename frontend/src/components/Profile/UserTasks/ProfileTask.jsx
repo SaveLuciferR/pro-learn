@@ -18,7 +18,7 @@ const ProfileTask = ({ data, index, isCreated, viewWords}) => {
           return <li className="created-course-header-tag">#{item.title}</li>;
         })}
       </ul>
-      <p className="profile-task-title clamp">_{data.title}</p>
+      <Link to={`../../task/${data.slug}`} className="profile-task-title clamp">_{data.title}</Link>
       <div className={"profile-task-desc clamp multiline"} dangerouslySetInnerHTML={{__html: data.content}}/>
       {/*<p className="profile-task-desc clamp multiline">// {data.content}</p>*/}
       <div className="profile-difficulty">

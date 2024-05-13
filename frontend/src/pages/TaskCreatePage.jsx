@@ -112,7 +112,8 @@ const TaskCreatePage = ({type}) => {
     }
 
     const canBeViewDataProject = (item, i) => {
-        return !Boolean(item.private)
+        return item.private === '0';
+        return true;
     }
 
     const canBeViewDataTemplate = (item, i) => {

@@ -107,6 +107,8 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
         axiosClient.post(`/compiler/@${username}/${project}/${task}/check-solution-task`, [])
             .then(({data}) => {
                 setSuccessSolutionTask(data.success);
+                setOutputDocker(data.output);
+                setErrorDocker(data.error);
                 // if (data.success && )
             })
             .catch((res) => {

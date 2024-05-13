@@ -14,7 +14,7 @@ class TaskController extends AppController
     public function viewAction()
     {
         $task = $this->model->getTaskBySlug($this->route['slug'], App::$app->getProperty('language')['id']);
-        if (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $task['username']) || !$task) {
+        if (!$task || (!(isset($_SESSION['user']) && $_SESSION['user']['username'] === $task['username']) && $task['for_course'] === '1')) {
             header("HTTP/1.0 404 Not Found");
             die;
         }
@@ -59,7 +59,7 @@ class TaskController extends AppController
 
             echo json_encode(array('result' => $result), JSON_UNESCAPED_SLASHES);
         } else {
-            header('HTTP/1.0 401 Not Authorized');
+            header('HTTP/1.0 401 Unauthorized');
             die;
         }
     }
