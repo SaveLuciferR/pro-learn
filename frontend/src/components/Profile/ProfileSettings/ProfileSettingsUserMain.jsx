@@ -1,9 +1,14 @@
-import {Link, useParams} from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import img from '../../../avatar.png';
-import {useEffect, useState} from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axiosClient from '../../../axiosClient';
+
+import ProfilePopUpSidebar from '../ProfilePopUpSidebar';
+import useOnClickOutside from '../../../hooks/useOnClickOutside';
+
+/* ICONS */
+import { FiMenu } from 'react-icons/fi';
 import {FaFileImage, FaImage} from "react-icons/fa";
-import axios from "axios";
 
 const ProfileSettingsUserMain = ({data, viewWords}) => {
     const [nickname, setNickname] = useState('');
@@ -17,7 +22,10 @@ const ProfileSettingsUserMain = ({data, viewWords}) => {
     const [ava, setAva] = useState(null);
     const [head, setHead] = useState(null);
 
-    useEffect(() => {
+  const [isProfileSidebar, setIsProfileSidebar] = useState(false);
+
+
+  useEffect(() => {
         // console.log(data);
         setNickname(data.username);
         setLastName(data.last_name);

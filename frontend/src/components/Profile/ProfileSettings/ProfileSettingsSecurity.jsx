@@ -1,14 +1,19 @@
-import {useState, useEffect} from 'react';
-import {Link, useParams} from 'react-router-dom';
-import {setShowWindow, setTitleText, setContentText} from '../../../redux/Modal/slice';
-import {useSelector, useDispatch} from 'react-redux';
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { setShowWindow, setTitleText, setContentText } from '../../../redux/Modal/slice';
+import { useSelector, useDispatch } from 'react-redux';
 import axiosClient from "../../../axiosClient";
 
-const ProfileSettingsSecurity = () => {
-    const dispatch = useDispatch();
+/* ICONS */
+import { IoSwapHorizontal } from 'react-icons/io5';
+import { MdKeyboardArrowLeft } from 'react-icons/md';
+import { RiCloseCircleLine } from 'react-icons/ri';
 
-    const buttonAnswer = useSelector((state) => state.modalElement.buttonAnswer);
-    const currentUser = useSelector((state) => state.mainLayout.user);
+const ProfileSettingsSecurity = () => {
+  const dispatch = useDispatch();
+
+  const buttonAnswer = useSelector((state) => state.modalElement.buttonAnswer);
+  const currentUser = useSelector((state) => state.mainLayout.user);
 
     let temp = '';
     const {lang, username} = useParams();

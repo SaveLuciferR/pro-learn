@@ -29,6 +29,7 @@ import CoursesPage from './pages/CoursePage';
 import CourseSinglePage from './pages/CourseSinglePage';
 import CourseStudyPage from './pages/CourseStudyPage';
 import CourseCreatePage from './pages/CourseCreatePage';
+import TaskPage from './pages/TaskPage';
 import TaskCreatePage from './pages/TaskCreatePage';
 import TaskSinglePage from './pages/TaskSinglePage';
 import AdminPage from './pages/AdminPage';
@@ -262,7 +263,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'task',
-        element: <></>,
+        element: <TaskPage isActiveSidebar={true} isCompiler={false} />,
       },
       {
         path: 'task/:slug',
