@@ -60,10 +60,15 @@
   }
 
   &-main {
+    margin: 0 auto;
+
     padding-top: 31px;
+
     display: flex;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 20px;
+
+    max-width: 1200px;
   }
 
   &-bottom {
@@ -145,11 +150,10 @@
 
 .courses-card {
   padding: 20px;
-  //width: calc(50% - 16px);
-  max-width: 704px;
+
+  max-width: calc(50% - 10px);
   box-sizing: border-box;
   width: 100%;
-  //width: 100%;
   //height: 528px;
   border: 1px solid #5f5f5f;
   border-radius: 12px;
@@ -164,11 +168,11 @@
     justify-content: space-between;
     align-items: center;
 
+    height: 37px;
+
     &-tags {
       display: flex;
       column-gap: 20px;
-
-      height: 37px;
     }
 
     &-tag {
@@ -184,8 +188,9 @@
 
   &-info {
     &-title {
-      max-width: 350px;
+      max-width: calc(100% - 150px);
       width: 100%;
+
       font-size: 28px;
       font-weight: 500;
     }
@@ -196,9 +201,13 @@
       justify-content: space-between;
 
       height: 96px;
+
       &-text {
         padding-top: 17px;
+
         width: 372px;
+        height: 100px;
+
         font-size: 16px;
         font-weight: 400;
       }
@@ -232,17 +241,24 @@
 /* ИНФОРМАЦИЯ О КУРСЕ */
 
 .course {
-  margin-top: 65px;
+  padding: 65px 0 40px 0;
+  margin: 0 auto;
+
+  width: 1200px;
 }
 
 .course-info {
-  width: 100%;
   padding: 32px;
+
+  max-width: 1200px;
+  width: 100%;
+
   border: 1px solid #5f5f5f;
   border-radius: 12px;
 
   &-button {
     padding-top: 32px;
+    height: 66px;
   }
 
   &-header {
@@ -260,10 +276,14 @@
     padding-top: 25px;
     display: flex;
     align-items: center;
-    column-gap: 45px;
+    justify-content: space-between;
 
     &-text {
       width: 800px;
+
+      &-desc {
+        min-height: 100px;
+      }
 
       &-cards {
         padding-top: 32px;
@@ -277,7 +297,7 @@
         flex-wrap: wrap;
         row-gap: 12px;
         justify-content: center;
-        width: 245px;
+        max-width: 245px;
         text-align: center;
         background-color: rgba($color: #2d2d2d, $alpha: 0.6);
         border-radius: 8px;
@@ -285,12 +305,21 @@
     }
 
     &-img {
+      margin: auto 0;
       height: 305px;
       width: 305px;
     }
   }
 
   &-bottom {
+    padding-top: 20px;
+
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+
     &-stat {
       display: flex;
       justify-content: space-between;
@@ -320,6 +349,7 @@
   }
 
   &-item {
+    max-width: 1200px;
     width: 100%;
 
     &-header {
@@ -393,40 +423,23 @@
     }
   }
 }
-//Изменение размеров карточек для нормального
-//представления на странице
 
-@media (max-width: 1560px) {
-  .courses {
-    &-card {
-      max-width: 680px;
-    }
-  }
-}
-
-@media (max-width: 1512px) {
-  .courses {
-    &-card {
-      max-width: 640px;
-    }
-  }
-}
-@media (max-width: 1440px) {
-  .courses {
-    &-card {
-      max-width: 584px;
-    }
-  }
-}
+/* ADAPTIVE */
+//Страница со всеми курсами
 
 @media (max-width: 1320px) {
   .courses {
     &-card {
-      max-width: 540px;
-
+      &-info-title {
+        max-width: calc(100% - 120px);
+      }
       &-info-desc {
         &-img {
           width: 120px;
+        }
+
+        &-text {
+          height: 80px;
         }
       }
 
@@ -437,18 +450,20 @@
         }
       }
     }
+
+    &-all-main {
+      gap: 20px;
+    }
   }
 }
 
-@media (max-width: 1232px) {
-  .courses-all-main {
-    flex-direction: column;
-  }
+@media (max-width: 1060px) {
+  .courses {
+    &-all-main {
+    }
 
-  .courses-card {
-    margin: 0 auto;
-
-    max-width: 704px;
+    &-card {
+    }
   }
 }
 
@@ -577,5 +592,262 @@
 @media (max-width: 320px) {
   .courses-card-info-desc-img {
     height: 50px;
+  }
+}
+
+//Отдельная страница курса
+
+@media (max-width: 1320px) {
+  .course {
+    width: inherit;
+    &-info {
+      &-main {
+        &-img {
+          height: 270px;
+          width: 270px;
+        }
+
+        &-text {
+          &-cards {
+            column-gap: 12px;
+            justify-content: space-between;
+          }
+          &-card {
+            padding: 28px 50px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1060px) {
+  .course {
+    &-info {
+      &-main {
+        &-img {
+          height: 230px;
+          width: 230px;
+        }
+
+        &-text {
+          &-card {
+            padding: 24px 40px;
+
+            & svg {
+              width: 36px;
+              height: 36px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 990px) {
+  .course {
+    &-info {
+      &-header {
+        &-title {
+          font-size: 28px;
+        }
+      }
+
+      &-main {
+        &-img {
+          height: 180px;
+          width: 180px;
+        }
+      }
+    }
+
+    &-blocks {
+      margin-top: 50px;
+      &-title {
+        font-size: 28px;
+      }
+
+      &-item {
+        &-header {
+          &-title {
+            font-size: 20px;
+          }
+
+          & svg {
+            width: 30px;
+            height: 30px;
+          }
+        }
+
+        &-lessons-item {
+          &-status {
+            & svg {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 940px) {
+  .course {
+    &-info {
+      &-main {
+        &-text {
+          &-cards {
+            flex-direction: column;
+            row-gap: 12px;
+          }
+
+          &-card {
+            padding: 0;
+
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: start;
+            column-gap: 12px;
+
+            text-align: left;
+
+            background-color: transparent;
+
+            & svg {
+              width: 30px;
+              height: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 910px) {
+  .course {
+    &-info {
+      &-bottom {
+        flex-direction: column;
+        row-gap: 12px;
+
+        &-left {
+          flex-direction: column;
+          row-gap: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .course {
+    &-info {
+      &-header {
+        flex-direction: column-reverse;
+        row-gap: 12px;
+        align-items: baseline;
+
+        &-title {
+          text-align: center;
+        }
+      }
+
+      &-main {
+        padding-top: 20px;
+
+        &-text {
+          &-cards {
+            padding-top: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 690px) {
+  .course-blocks-item {
+    &-lessons-item-status {
+      & p {
+        display: none;
+      }
+    }
+
+    &-header-l {
+      column-gap: 24px;
+    }
+  }
+}
+
+@media (max-width: 645px) {
+  .course {
+    &-info {
+      &-main {
+        flex-direction: column-reverse;
+        row-gap: 12px;
+
+        &-text {
+          width: inherit;
+
+          &-card {
+            max-width: inherit;
+          }
+        }
+
+        &-img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .course {
+    &-info {
+      padding: 12px;
+
+      &-button {
+        padding-top: 24px;
+        height: inherit;
+      }
+    }
+
+    &-blocks {
+      &-item {
+        &-header {
+          padding: 12px;
+        }
+        &-lessons {
+          &-item {
+            padding: 12px;
+          }
+        }
+
+        &-bottom {
+          padding: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .course-info-header-title {
+    font-size: 24px;
+  }
+
+  .course-blocks-item-header {
+    &-l {
+      column-gap: 12px;
+    }
+
+    &-title {
+      font-size: 16px;
+    }
   }
 }

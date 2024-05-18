@@ -1,40 +1,24 @@
+/* ICONS */
+import { IoMdClose } from 'react-icons/io';
+import { FiSearch } from 'react-icons/fi';
 
-
-const BlogFilter = ({isOpen, setIsOpen, titleText, data, search, setSearch}) => {//Фильтр для страницы со статьями
+const BlogFilter = ({ isOpen, setIsOpen, titleText, data, search, setSearch }) => {
+  //Фильтр для страницы со статьями
 
   return (
-    <div className={`filter${isOpen ? ' active' : ''}`}>{/* Тернарный оператор на раздачу активного класса */}
+    <div className={`filter${isOpen ? ' active' : ''}`}>
+      {/* Тернарный оператор на раздачу активного класса */}
       <div className="filter_container">
         <div className="filter_header">
-          <button type="button" onClick={() => setIsOpen(false)}>{/* Изменение state при клике */}
-          <svg
-            className="filter_close"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M18 6L6 18"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M6 6L18 18"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>{/* Иконка закрытия фильтра (Х) */}
+          <button type="button" onClick={() => setIsOpen(false)}>
+            {/* Изменение state при клике */}
+            <IoMdClose size={24} color="#ffffff" />
           </button>
           <h2 className="filter_title">Фильтр</h2>
         </div>
         <h3 className="filter_category">&gt; Категория статей</h3>
-        <div className="filter_checkbox">{/* Чекбоксы стилизованы */}
+        <div className="filter_checkbox">
+          {/* Чекбоксы стилизованы */}
           <div className="filter_checkbox__item">
             <label>
               <input className="real_checkbox" type="checkbox" />
@@ -88,32 +72,10 @@ const BlogFilter = ({isOpen, setIsOpen, titleText, data, search, setSearch}) => 
             </label>
           </div>
         </div>
-        <div className="filter_search">{/* Строка поиска */}
-          <input
-            className="filter_search__item"
-            type="text"
-            placeholder="Поиск по никнейму..."
-          />
-          <svg className="filter_search__icon"
-            width="20"
-            height="21"
-            viewBox="0 0 20 21"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M9.16667 16.3333C12.8486 16.3333 15.8333 13.3486 15.8333 9.66667C15.8333 5.98477 12.8486 3 9.16667 3C5.48477 3 2.5 5.98477 2.5 9.66667C2.5 13.3486 5.48477 16.3333 9.16667 16.3333Z"
-              stroke="white"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M17.5 18L13.875 14.375"
-              stroke="white"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        <div className="filter_search">
+          {/* Строка поиска */}
+          <input className="filter_search__item" type="text" placeholder="Поиск по никнейму..." />
+          <FiSearch size={20} color="#5f5f5f" className="filter_search__icon" />
         </div>
       </div>
     </div>
