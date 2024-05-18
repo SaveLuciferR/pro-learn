@@ -236,6 +236,14 @@
     background-color: rgba($color: #2d2d2d, $alpha: 0.6);
     border-radius: 8px;
   }
+
+  &-bottom {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+  }
 }
 
 /* ИНФОРМАЦИЯ О КУРСЕ */
@@ -457,12 +465,55 @@
   }
 }
 
-@media (max-width: 1060px) {
+@media (max-width: 1050px) {
   .courses {
-    &-all-main {
+    &-card {
+      &-info {
+        &-title {
+          font-size: 24px;
+        }
+      }
+      &-cards {
+        padding-top: 32px;
+
+        flex-direction: column;
+        row-gap: 12px;
+      }
+
+      &-card {
+        padding: 0;
+
+        justify-content: start;
+        column-gap: 12px;
+
+        height: inherit;
+
+        background-color: transparent;
+
+        & svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
+
+      &-bottom {
+        flex-direction: column;
+        row-gap: 12px;
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .courses {
+    &-all {
+      &-main {
+        flex-direction: column;
+      }
     }
 
     &-card {
+      max-width: 584px;
     }
   }
 }

@@ -176,7 +176,7 @@ const CourseCard = ({ obj, isSlider, viewWords }) => {
           </div>
         </div>
       </div>
-      <div className="created-course-bottom">
+      <div className="courses-card-bottom">
         <p className="created-course-bottom-date">
           &gt; {obj.username}, {viewWords[`tpl_course-card_role-${obj.role}`]},{' '}
           {obj.date_of_publication}
