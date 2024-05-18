@@ -3889,3 +3889,79 @@
 =================
 [2024-05-12 18:42:14] Текст ошибки: Maximum execution time of 60 seconds exceeded | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 181
 =================
+[2024-05-13 15:57:42] Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'u.role' in 'field list' | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 206
+=================
+[2024-05-13 18:22:47] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-13 18:40:13] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-13 19:02:39] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 577
+=================
+[2024-05-13 19:02:41] Текст ошибки: Файл или директория не была найдена | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\User.php | Строка: 577
+=================
+[2024-05-14 12:18:31] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-17 12:56:33] Текст ошибки: Метод app\controllers\CompilerController::copyAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-05-17 12:59:53] Текст ошибки: Метод app\controllers\CompilerController::pastAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-05-17 12:59:55] Текст ошибки: Метод app\controllers\CompilerController::pastAction не найден | Файл: C:\OSPanel\domains\pro-learn\backend\vendor\core\Router.php | Строка: 95
+=================
+[2024-05-17 13:13:56] Текст ошибки: copy(): The second argument to copy() function cannot be a directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php | Строка: 282
+=================
+[2024-05-17 13:14:38] Текст ошибки: copy(): The second argument to copy() function cannot be a directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php | Строка: 282
+=================
+[2024-05-17 13:20:05] Текст ошибки: copy(): The second argument to copy() function cannot be a directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php | Строка: 287
+=================
+[2024-05-17 13:21:06] Текст ошибки: copy(): The second argument to copy() function cannot be a directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php | Строка: 287
+=================
+[2024-05-17 18:31:24] Текст ошибки: mkdir(): No such file or directory | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 243
+=================
+[2024-05-17 18:32:35] Текст ошибки: Too few arguments to function app\models\Compiler::copyFileOrDir(), 3 passed in C:\OSPanel\domains\pro-learn\backend\app\controllers\CompilerController.php on line 296 and exactly 4 expected | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 230
+=================
+[2024-05-17 18:45:08] Текст ошибки: Cannot use [] for reading | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 25
+=================
+[2024-05-17 18:45:08] Текст ошибки: Cannot use [] for reading | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 25
+=================
+[2024-05-17 18:45:10] Текст ошибки: Cannot use [] for reading | Файл: C:\OSPanel\domains\pro-learn\backend\app\models\Compiler.php | Строка: 25
+=================
+[2024-05-17 19:33:02] Текст ошибки: No connection to DataBase | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\DataBase.php | Строка: 54
+=================
+[2024-05-17 19:33:02] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-17 19:33:11] Текст ошибки: No connection to DataBase | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\DataBase.php | Строка: 54
+=================
+[2024-05-17 19:47:23] Текст ошибки: No connection to DataBase | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\DataBase.php | Строка: 54
+=================
+[2024-05-17 19:48:02] Текст ошибки: No connection to DataBase | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\DataBase.php | Строка: 54
+=================
+[2024-05-17 19:48:24] Текст ошибки: No connection to DataBase | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\DataBase.php | Строка: 54
+=================
+[2024-05-17 19:48:25] Текст ошибки: No connection to DataBase | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\DataBase.php | Строка: 54
+=================
+[2024-05-17 19:48:26] Текст ошибки: No connection to DataBase | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\DataBase.php | Строка: 54
+=================
+[2024-05-17 19:51:11] Текст ошибки: No connection to DataBase | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\DataBase.php | Строка: 54
+=================
+[2024-05-17 19:51:16] Текст ошибки: No connection to DataBase | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\DataBase.php | Строка: 54
+=================
+[2024-05-17 20:28:42] Текст ошибки: session_start(): open(C:/OSPanel/temp/PHP-8.1/default/session\sess_mq8aac65vh2c7i8u2tpu7a601m3vq7id, O_RDWR) failed: Permission denied (13) | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\App.php | Строка: 17
+=================
+[2024-05-17 20:28:42] Текст ошибки: session_start(): open(C:/OSPanel/temp/PHP-8.1/default/session\sess_mq8aac65vh2c7i8u2tpu7a601m3vq7id, O_RDWR) failed: Permission denied (13) | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\App.php | Строка: 17
+=================
+[2024-05-17 20:28:42] Текст ошибки: session_start(): open(C:/OSPanel/temp/PHP-8.1/default/session\sess_mq8aac65vh2c7i8u2tpu7a601m3vq7id, O_RDWR) failed: Permission denied (13) | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\App.php | Строка: 17
+=================
+[2024-05-17 20:28:42] Текст ошибки: session_start(): open(C:/OSPanel/temp/PHP-8.1/default/session\sess_mq8aac65vh2c7i8u2tpu7a601m3vq7id, O_RDWR) failed: Permission denied (13) | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\App.php | Строка: 17
+=================
+[2024-05-17 20:28:42] Текст ошибки: session_start(): open(C:/OSPanel/temp/PHP-8.1/default/session\sess_mq8aac65vh2c7i8u2tpu7a601m3vq7id, O_RDWR) failed: Permission denied (13) | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\App.php | Строка: 17
+=================
+[2024-05-17 20:28:42] Текст ошибки: session_start(): open(C:/OSPanel/temp/PHP-8.1/default/session\sess_mq8aac65vh2c7i8u2tpu7a601m3vq7id, O_RDWR) failed: Permission denied (13) | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\App.php | Строка: 17
+=================
+[2024-05-18 15:03:08] Текст ошибки: Undefined array key "mail" | Файл: C:\OSPanel\home\pro-learn\backend\app\models\User.php | Строка: 144
+=================
+[2024-05-18 15:04:48] Текст ошибки: Undefined array key "mail" | Файл: C:\OSPanel\home\pro-learn\backend\app\models\User.php | Строка: 144
+=================
+[2024-05-18 15:05:27] Текст ошибки: Undefined array key "password" | Файл: C:\OSPanel\home\pro-learn\backend\app\models\User.php | Строка: 145
+=================
+[2024-05-18 17:13:44] Текст ошибки: Undefined array key "user_token" | Файл: C:\OSPanel\home\pro-learn\backend\app\models\User.php | Строка: 63
+=================

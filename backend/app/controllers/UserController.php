@@ -29,8 +29,9 @@ class UserController extends AppController
     public function loginAction()
     {
         $userParam = json_decode(file_get_contents("php://input"), true);
+//        debug($userParam, 1);
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && $userParam) {
-            if ($this->model->login($userParam)) {
+            if ($this->model->login($userParam, $userParam['rememberMe'])) {
                 $_SESSION['user']['success'] = true;
                 $_SESSION['user_activation'] = [];
 
@@ -80,68 +81,18 @@ class UserController extends AppController
             //TODO Если аккаунт уже есть, но он не подтвержден
             $userID = $this->model->newUser($userParam, $error);
             if ($userID !== false) {
-                $mail = new PHPMailer(true);
-                try {
-                    //Enable verbose debug output
-                    $mail->SMTPDebug = 0; //SMTP::DEBUG_SERVER;
-
-                    //Send using SMTP
-                    $mail->isSMTP();
-
-                    //Set the SMTP server to send through
-                    $mail->Host = App::$app->getProperty('smtp_host');
-
-                    //Enable SMTP authentication
-                    $mail->SMTPAuth = App::$app->getProperty('smtp_auth');
-
-                    //SMTP username
-                    $mail->Username = App::$app->getProperty('smtp_username');
-
-                    //SMTP password
-                    $mail->Password = App::$app->getProperty('smtp_password');
-
-                    //Enable TLS encryption;
-                    $mail->SMTPSecure = App::$app->getProperty('site_secure');
-
-                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-                    $mail->Port = App::$app->getProperty('smtp_port');
-
-                    //Recipients
-                    $mail->setFrom(App::$app->getProperty('smtp_from_email'), App::$app->getProperty('site_name'));
-
-                    // $mail->smtpConnect(array("ssl" => array(
-                    //     "verify_peer" => false,
-                    //     "verify_peer_name" => false,
-                    //     "allow_self_signed" => true
-                    // )));
-
-                    //Add a recipient
-                    $mail->addAddress($userParam['mail'], $userParam['username']);
-
-                    //Set email format to HTML
-                    $mail->isHTML(true);
-
-                    $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
-
-                    $mail->Subject = 'Email verification';
-                    $mail->Body = '<p>Your verification code is: <b style="font-size: 30px;">' . $verification_code . '</b></p>';
-                    // $mail->Mail
-
-                    if ($mail->send()) {
-                        $this->model->setActivationCode($userID, $verification_code);
-                        $_SESSION['user_activation'] = [];
-                        $_SESSION['user_activation']['activate'] = true;
-                        $_SESSION['user_activation']['mail'] = $userParam['mail'];
-                        echo json_encode(array('result' => true));
-                    } else {
-                        header('HTTP/1.0 400 Bad Request');
-                    }
-                } catch (\Exception $e) {
+                $code = $this->model->sendCode($userParam['mail'], $userParam['username'], $userID, $_SESSION['user_activation']);
+                if ($code === false) {
                     $this->model->deleteUser($userID);
-                    header("HTTP/1.0 400 Bat Request");
+                    header('HTTP/1.0 400 Bad Request');
                     $error = "Невозможно отправить код с подтверждением на эту почту";
                     echo json_encode(array('error' => $error));
+                    die;
+                } else {
+                    $this->model->setActivationCode($userID, $code);
                 }
+
+                echo json_encode(array('result' => true));
             } else {
                 header('HTTP/1.0 400 Bad Request');
                 if (str_contains($error, 'UniqueMail')) {
@@ -175,6 +126,104 @@ class UserController extends AppController
             }
             $_SESSION['user_activation'] = [];
             echo json_encode(array('success' => $success));
+        } else {
+            header('HTTP/1.0 400 Bad Request');
+            die;
+        }
+    }
+
+    public function restoreVerifyCodeAction()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $data) {
+            $error = '';
+            $success = $this->model->checkRestoreCode($data, $error);
+            if (!$success && str_contains($error, 'InCorrectCode')) {
+                header('HTTP/1.0 400 Bad Request');
+                $error = 'Не правильный код';
+                echo json_encode(array('error' => $error));
+                die;
+            }
+            echo json_encode(array('success' => $success));
+        } else {
+            header('HTTP/1.0 400 Bad Request');
+            die;
+        }
+    }
+
+    public function restorePasswordAction()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $data) {
+            $error = '';
+            $success = $this->model->changePassword($data, $error);
+            if ($success) {
+                $_SESSION['user_restore'] = [];
+            }
+            echo json_encode(array('success' => $success));
+        } else {
+            header('HTTP/1.0 400 Bad Request');
+            die;
+        }
+    }
+
+    public function resendCodeAction()
+    {
+        $_POST = json_decode(file_get_contents("php://input"), true);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST) {
+            if ($_POST['type'] === 'restore') {
+                $user = $this->model->getUserByMail($_SESSION['user_restore']['mail']);
+                $code = $this->model->sendCode($user['mail'], $user['username'], $user['id'], $_SESSION['user_restore']);
+                if ($code === false) {
+                    header('HTTP/1.0 400 Bad Request');
+                    $error = "Невозможно отправить код с подтверждением на эту почту";
+                    echo json_encode(array('error' => $error));
+                    die;
+                } else {
+                    $this->model->setChangeCode($user['id'], $code);
+                }
+            } else if ($_POST['type'] === 'create') {
+                $user = $this->model->getUserByMail($_SESSION['user_activation']['mail']);
+                $code = $this->model->sendCode($user['mail'], $user['username'], $user['id'], $_SESSION['user_activation']);
+                if ($code === false) {
+                    header('HTTP/1.0 400 Bad Request');
+                    $error = "Невозможно отправить код с подтверждением на эту почту";
+                    echo json_encode(array('error' => $error));
+                    die;
+                } else {
+                    $this->model->setActivationCode($user['id'], $code);
+                }
+            }
+        }
+    }
+
+    public function sendCodeRestoreAction()
+    {
+        $userParam = json_decode(file_get_contents("php://input"), true);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $userParam) {
+            $error = '';
+            //TODO Если аккаунт уже есть, но он не подтвержден
+            $user = $this->model->getUserByMail($userParam['mail']);
+            if ($user) {
+                $code = $this->model->sendCode($userParam['mail'], $user['username'], $user['id'], $_SESSION['user_restore']);
+                if ($code === false) {
+                    header('HTTP/1.0 400 Bad Request');
+                    $error = "Невозможно отправить код с подтверждением на эту почту";
+                    echo json_encode(array('error' => $error));
+                    die;
+                } else {
+                    $this->model->setChangeCode($user['id'], $code);
+                }
+                echo json_encode(array('result' => true));
+            } else {
+                header('HTTP/1.0 400 Bad Request');
+                $error = "Пользователя не существует";
+                echo json_encode(array('error' => $error));
+            }
+        } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $viewWords = Language::$langView;
+
+            echo json_encode(array('viewWords' => $viewWords), JSON_UNESCAPED_SLASHES);
         } else {
             header('HTTP/1.0 400 Bad Request');
             die;

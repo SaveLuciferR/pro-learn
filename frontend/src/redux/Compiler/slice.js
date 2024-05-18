@@ -42,7 +42,12 @@ const initialState = {
             rename: {
                 path: "",
                 newName: "",
-            }
+            },
+            past: {
+                type: '',
+                path: '',
+                to: '',
+            },
         }
     },
     needReloadFrameCompiler: true,
@@ -165,6 +170,15 @@ export const compilerSlice = createSlice({
             setCanBeExistElementProject(state, action) {
                 state.canBeExistElementProject = action.payload;
             },
+            setTypeCopyFileInAction(state, action) {
+                state.actionContext.file.past.type = action.payload.type;
+            },
+            setPathCopyFileInAction(state, action) {
+                state.actionContext.file.past.path = action.payload.path;
+            },
+            setToCopyFileInAction(state, action) {
+                state.actionContext.file.past.to = action.payload.to;
+            }
         }
     })
 ;
@@ -198,6 +212,9 @@ export const {
     setCurrentFolder,
     setCurrentInputContent,
     setCanBeExistElementProject,
+    setPathCopyFileInAction,
+    setTypeCopyFileInAction,
+    setToCopyFileInAction,
 } = compilerSlice.actions;
 
 export default compilerSlice.reducer;

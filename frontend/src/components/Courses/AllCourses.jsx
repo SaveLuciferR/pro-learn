@@ -38,7 +38,8 @@ const AllCourses = ({courses, viewWords}) => {
                 <div className="courses-slider">(слайдер)</div>
             </div>
             <BlogFilter
-                isOpen={true}
+                isOpen={isOpenFilter}
+                setIsOpen={setIsOpenFilter}
 
             />
         </div>

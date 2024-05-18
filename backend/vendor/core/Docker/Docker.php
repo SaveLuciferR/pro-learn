@@ -55,7 +55,6 @@ class Docker
         ob_end_flush();
 
         $cmd = $this->commandPathProject . ' && ' . $commandDockerProject;
-
         $process = proc_open($cmd, $this->descriptorspec, $pipes);
 
 //        debug($cmd, 1);
@@ -101,6 +100,8 @@ class Docker
             $dockerfile = file_get_contents($this->projectPath . '/dockerfile');
         } else if (file_exists($this->projectPath . '/Dockerfile')) {
             $dockerfile = file_get_contents($this->projectPath . '/Dockerfile');
+        } else if (file_exists($this->projectPath . '/docker-compose.yml')) {
+
         }
         if ($dockerfile !== '') {
             preg_match_all('/(\r?\n|\r[^\s#])+EXPOSE\s([0-9]+)\n?/m', $dockerfile, $matches);
@@ -178,6 +179,8 @@ class Docker
 //            $output .= stream_get_contents($pipes[1]);
             fclose($pipes[1]);
 
+
+            debug(stream_get_contents($pipes[2]));
             $error .= stream_get_contents($pipes[2]);
             fclose($pipes[2]);
 
