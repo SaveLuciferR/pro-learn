@@ -34,7 +34,9 @@ const ProfilePopUpSidebar = ({ viewWords, isSettings = false }) => {
                   lang === undefined ? '/' : '/' + lang + '/'
                 }profile/${username}/current-courses`}
               >
-                {viewWords['tpl_profile_current-courses_title']}
+                {viewWords === undefined
+                  ? 'Текущие курсы'
+                  : viewWords['tpl_profile_current-courses_title']}
               </Link>
             </li>
             <li>
@@ -43,7 +45,9 @@ const ProfilePopUpSidebar = ({ viewWords, isSettings = false }) => {
                   lang === undefined ? '/' : '/' + lang + '/'
                 }profile/${username}/completed-courses`}
               >
-                {viewWords['tpl_profile_completed-courses_title']}
+                {viewWords === undefined
+                  ? 'Пройденные курсы'
+                  : viewWords['tpl_profile_completed-courses_title']}
               </Link>
             </li>
             <li>
@@ -52,26 +56,30 @@ const ProfilePopUpSidebar = ({ viewWords, isSettings = false }) => {
                   lang === undefined ? '/' : '/' + lang + '/'
                 }profile/${username}/created-courses`}
               >
-                {viewWords['tpl_profile_created-courses_title']}
+                {viewWords === undefined
+                  ? 'Созданные курсы'
+                  : viewWords['tpl_profile_created-courses_title']}
               </Link>
             </li>
             <li>
               <Link
                 to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/projects`}
               >
-                {viewWords['tpl_profile_project_title']}
+                {viewWords === undefined ? 'Проекты' : viewWords['tpl_profile_project_title']}
               </Link>
             </li>
             <li>
               <Link
                 to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/user-tasks`}
               >
-                {viewWords['tpl_profile_created-task_title']}
+                {viewWords === undefined
+                  ? 'Созданные задачи'
+                  : viewWords['tpl_profile_created-task_title']}
               </Link>
             </li>
             <li>
               <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/tasks`}>
-                {viewWords['tpl_profile_task_title']}
+                {viewWords === undefined ? 'Задачи' : viewWords['tpl_profile_task_title']}
               </Link>
             </li>
           </>

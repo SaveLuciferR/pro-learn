@@ -354,6 +354,16 @@
                 &_item {
                     padding: 12px;
                 }
+
+                &_addfile {
+                    &-inner {
+                        padding: 12px;
+
+                        & > svg {
+                            margin-left: 15px;
+                        }
+                    }
+                }
             }
         }
     }
@@ -398,6 +408,10 @@
             &-body {
                 & svg {
                     height: 14px;
+                }
+
+                &_addfile {
+                    font-size: 14px;
                 }
             }
         }

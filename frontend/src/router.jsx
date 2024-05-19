@@ -200,15 +200,15 @@ const router = createBrowserRouter([
         element: <TaskCreatePage type={'edit'} />,
       },
       {
-        path: 'profile/:username/project/:project',
+        path: 'profile/:username/project/:project', //adaptive: +
         element: <ProjectPage isActiveSidebar={false} />,
       },
       {
-        path: 'profile/:username/project-creation',
+        path: 'profile/:username/project-creation', //adaptive: +
         element: <ProjectAddPage isActiveSidebar={false} />,
       },
       {
-        path: 'profile/:username/project-edit/:slug',
+        path: 'profile/:username/project-edit/:slug', //adaptive: +
         element: <ProjectAddPage isActiveSidebar={false} type={'edit'} />,
       },
       {
@@ -262,7 +262,7 @@ const router = createBrowserRouter([
         element: <CourseStudyPage />,
       },
       {
-        path: 'task',
+        path: 'task', //adaptive: +
         element: <TaskPage isActiveSidebar={true} isCompiler={false} />,
       },
       {
