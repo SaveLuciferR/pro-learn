@@ -1,27 +1,13 @@
 import { Link, useParams } from 'react-router-dom';
-import useOnClickOutside from '../../hooks/useOnClickOutside';
+import { useSelector } from 'react-redux';
+import { mainLayout } from '../../redux/MainLayout/slice';
 
-const ProfilePopUpSidebar = ({ viewWords, isSettings = false }) => {
+const ProfilePopUpSidebar = ({ viewWords, type }) => {
   const { lang, username } = useParams();
   return (
     <div className="profile-popup">
       <ul className="profile-popup-list">
-        {isSettings ? (
-          <>
-            <li>
-              <Link to={`../../profile/${username}/settings/general`}>Настройки профиля</Link>
-            </li>
-            <li>
-              <Link to={`../../profile/${username}/settings/sessions`}>Текущие сесии</Link>
-            </li>
-            <li>
-              <Link to={`../../profile/${username}/settings/security`}>Безопасность</Link>
-            </li>
-            <li>
-              <Link to={`../../profile/${username}/settings/privacy`}>Приватность</Link>
-            </li>
-          </>
-        ) : (
+        {type === undefined ? (
           <>
             <li>
               <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}`}>
@@ -81,6 +67,42 @@ const ProfilePopUpSidebar = ({ viewWords, isSettings = false }) => {
               <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/tasks`}>
                 {viewWords === undefined ? 'Задачи' : viewWords['tpl_profile_task_title']}
               </Link>
+            </li>
+          </>
+        ) : type === 'settings' ? (
+          <>
+            <li>
+              <Link to={`../../profile/${username}/settings/general`}>Настройки профиля</Link>
+            </li>
+            <li>
+              <Link to={`../../profile/${username}/settings/sessions`}>Текущие сесии</Link>
+            </li>
+            <li>
+              <Link to={`../../profile/${username}/settings/security`}>Безопасность</Link>
+            </li>
+            <li>
+              <Link to={`../../profile/${username}/settings/privacy`}>Приватность</Link>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link to={'/admin-panel/'}>Главная</Link>
+            </li>
+            <li>
+              <Link to={'/admin-panel/courses'}>Курсы</Link>
+            </li>
+            <li>
+              <Link to={'/admin-panel/tasks'}>Задачи</Link>
+            </li>
+            <li>
+              <Link to={'/admin-panel/projects'}>Проекты</Link>
+            </li>
+            <li>
+              <Link to={'/admin-panel/users'}>Пользователи</Link>
+            </li>
+            <li>
+              <Link to={'/admin-panel/feedback'}>Обратная связь</Link>
             </li>
           </>
         )}
