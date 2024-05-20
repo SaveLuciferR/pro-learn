@@ -20,9 +20,30 @@
     margin: 0 auto;
     padding: 32px;
   }
+
+  &-bottom {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .profile-task-desc {
   // height: inherit;
   max-height: 100%;
+}
+
+@media (max-width: 430px) {
+  .task-single {
+    &-main {
+      padding: 12px;
+    }
+
+    &-desc {
+      font-size: 14px;
+    }
+
+    &-middle {
+      padding: 14px;
+    }
+  }
 }

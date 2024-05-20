@@ -122,7 +122,7 @@ const router = createBrowserRouter([
         element: <Login isActiveSidebar={false} />,
       },
       {
-        path: 'user/register',
+        path: 'user/register', //adaptive: +
         element: <Register isActiveSidebar={false} />,
       },
       {
@@ -134,7 +134,7 @@ const router = createBrowserRouter([
         element: <ConfirmAccount isActiveSidebar={false} />,
       },
       {
-        path: 'user/feedback',
+        path: 'user/feedback', //adaptive: +
         element: <Feedback />,
       },
       {
@@ -184,7 +184,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: 'profile/:username/course-creation',
+        path: 'profile/:username/course-creation', //adaptive: +
         element: <CourseCreatePage />,
       },
       {
@@ -192,7 +192,7 @@ const router = createBrowserRouter([
         element: <CourseCreatePage type={'edit'} />,
       },
       {
-        path: 'profile/:username/task-creation',
+        path: 'profile/:username/task-creation', //adaptive: +
         element: <TaskCreatePage />,
       },
       {
@@ -266,7 +266,7 @@ const router = createBrowserRouter([
         element: <TaskPage isActiveSidebar={true} isCompiler={false} />,
       },
       {
-        path: 'task/:slug',
+        path: 'task/:slug', //adaptive: +
         element: <TaskSinglePage />,
       },
       {

@@ -143,15 +143,21 @@
 @media (max-width: 430px) {
     .modal_form {
         margin-top: 100px;
+        width: 375px;
     }
 }
 
 @media (max-width: 375px) {
     .modal_form {
         margin-top: 50px;
+        width: 320px;
 
         & label {
             font-size: 14px;
+        }
+
+        &-h2 {
+            font-size: 20px;
         }
     }
 
