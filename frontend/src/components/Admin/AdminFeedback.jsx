@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axiosClient from '../../axiosClient';
 import Table from '../Table/Table';
-import TablePagination from "../Table/TablePagination";
+import TablePagination from '../Table/TablePagination';
 /* ICONS */
-import { RxOpenInNewWindow } from "react-icons/rx";
-import { RiCloseCircleLine } from "react-icons/ri";
+import { RxOpenInNewWindow } from 'react-icons/rx';
+import { RiCloseCircleLine, RiCheckboxCircleLine } from 'react-icons/ri';
 
 const AdminFeedback = () => {
   const [adminFeedback, setAdminFeedback] = useState([]);
@@ -28,49 +28,59 @@ const AdminFeedback = () => {
       accessorKey: 'username',
       header: 'Проверил',
       size: 272,
-      cell: (item) => <p>{item.name}</p>,
+      cell: (item) => <p title={item.username}>{item.username}</p>,
     },
     {
       accessorKey: 'title',
       header: 'Статус',
       size: 272,
       cell: (item) => {
-        item.title === 'Просмотрено' ? (<p className='admin-status green'>
-          <RxOpenInNewWindow size={20} color='#2EA043' />Просмотрено
-        </p>) : (<p className='admin-status red'><RiCloseCircleLine size={20} color='#DB5B42' />Не просмотрено</p>)
+        return item.title === 'Просмотрено' ? (
+          <p className="admin-status green" title={item.title}>
+            <RiCheckboxCircleLine size={18} color="#2EA043" />
+            {item.title}
+          </p>
+        ) : (
+          <p className="admin-status red" title={item.title}>
+            <RiCloseCircleLine size={18} color="#DB5B42" />
+            {item.title}
+          </p>
+        );
       },
     },
     {
       accessorKey: 'name',
       header: 'Имя',
       size: 272,
-      cell: (item) => <p>{item.name}</p>,
+      cell: (item) => <p title={item.name}>{item.name}</p>,
     },
     {
       accessorKey: 'email',
       header: 'Email',
       size: 272,
-      cell: (item) => <p>{item.email}</p>,
+      cell: (item) => <p title={item.email}>{item.email}</p>,
     },
     {
       accessorKey: 'text',
       header: 'Текст',
       size: 272,
-      cell: (item) => <p>{item.text}</p>,
+      cell: (item) => <p title={item.text}>{item.text}</p>,
     },
     {
       accessorKey: 'date_of_departure',
       header: 'Дата отправления',
       size: 272,
-      cell: (item) => <p>{item.date_of_departure}</p>,
+      cell: (item) => <p title={item.date_of_departure}>{item.date_of_departure}</p>,
     },
   ];
 
   useEffect(() => {
-    axiosClient.get(`admin/feedback?start=${(currentPage - 1) * amountOnPage}&end=${amountOnPage}`).then(({ data }) => {
-      setAdminFeedback(data.result.feedback);
-      setAmountFeedback(data.result.feedbackCount);
-    });
+    axiosClient
+      .get(`admin/feedback?start=${(currentPage - 1) * amountOnPage}&end=${amountOnPage}`)
+      .then(({ data }) => {
+        setAdminFeedback(data.result.feedback);
+        setAmountFeedback(data.result.feedbackCount);
+      });
   }, [currentPage, amountOnPage]);
 
   const onClickRowTable = (i, item) => {
@@ -81,20 +91,20 @@ const AdminFeedback = () => {
       setCurrentSelectRow(i);
       setIsSelectRow(true);
     }
-  }
+  };
 
   const handleSelectPage = (i) => {
     if (i === currentPage) return;
     setIsSelectRow(false);
     setCurrentSelectRow(-1);
     setCurrentPage(i);
-  }
+  };
 
   const getAmountSkipNote = () => {
     let skip = amountOnPage * currentPage;
     if (skip > amountFeedback) return amountFeedback;
     return skip;
-  }
+  };
 
   return (
     <>
@@ -105,28 +115,43 @@ const AdminFeedback = () => {
         <input type="search" placeholder="Поиск ..." className="input width1200" />
       </div>
       <div className="admin-content">
-        <Table data={adminFeedback} columns={columns} handleClickRow={onClickRowTable} selectRow={currentSelectRow} />
+        <Table
+          data={adminFeedback}
+          columns={columns}
+          handleClickRow={onClickRowTable}
+          selectRow={currentSelectRow}
+          type="feedback"
+        />
       </div>
-      {isSelectRow ?
-        <div className={"admin-footer-buttons"}>
-          <button className={"btn primary big"}>Редактировать</button>
-          <Link className={"btn with_icon"} to={"/"} target={'_blank'}><RxOpenInNewWindow
-            size={21} /><span>Открыть</span></Link> {/* TODO если не опубликовано, то нет ссылки */}
-          <button className={"btn with_icon btn-red"}>
-            <RiCloseCircleLine size={21}
-              color={'#DB5B42'} />
+      {isSelectRow ? (
+        <div className={'admin-footer-buttons'}>
+          <Link className={'btn with_icon'} to={'/'} target={'_blank'}>
+            <RxOpenInNewWindow size={21} />
+            <span>Открыть</span>
+          </Link>{' '}
+          {/* TODO если не опубликовано, то нет ссылки */}
+          <button className={'btn with_icon btn-red'}>
+            <RiCloseCircleLine size={21} color={'#DB5B42'} />
             <span>Удалить</span>
           </button>
         </div>
-        :
-        <></>}
-      <div className={"admin-footer-buttons"}>Показано {getAmountSkipNote()} из {amountFeedback} записей</div>
-      <div className={"admin-footer-buttons"}>
-        <button className={"btn secondary-white big"} type={'button'}
-          onClick={() => setAmountOnPage(prevState => prevState + addAmountOnPage)}>Загрузить еще
+      ) : (
+        <></>
+      )}
+      <div className={'admin-footer-buttons'}>
+        Показано {getAmountSkipNote()} из {amountFeedback} записей
+      </div>
+      <div className={'admin-footer-buttons'}>
+        <button
+          className={'btn secondary-white big'}
+          type={'button'}
+          onClick={() => setAmountOnPage((prevState) => prevState + addAmountOnPage)}
+        >
+          Загрузить еще
         </button>
       </div>
-      <TablePagination amountNote={amountFeedback}
+      <TablePagination
+        amountNote={amountFeedback}
         amountNoteOnPage={amountOnPage}
         currentPage={currentPage}
         setCurrentPage={handleSelectPage}

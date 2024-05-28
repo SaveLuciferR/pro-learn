@@ -84,7 +84,7 @@ const Feedback = () => {
               onClick={() => dropdownClick()}
             >
               <div className="select big">
-                <span className="big">{currentFeedbackCategory.title}</span>
+                <span className="big clamp">{currentFeedbackCategory.title}</span>
                 <svg
                   className="arrow"
                   xmlns="http://www.w3.org/2000/svg"

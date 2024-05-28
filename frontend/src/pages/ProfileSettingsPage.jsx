@@ -1,13 +1,12 @@
 import img from '../header_bg.png';
-import {Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import ProfilePopUpSidebar from '../components/Profile/ProfilePopUpSidebar';
 import useOnClickOutside from '../hooks/useOnClickOutside';
 import ProfileSettingsSidebar from '../components/Profile/ProfileSettings/ProfileSettingsSidebar';
-import axiosClient from "../axiosClient";
+import axiosClient from '../axiosClient';
 /* ICONS */
 import { FiMenu } from 'react-icons/fi';
-
 
 const ProfileSettingsPage = () => {
   const [isProfileSidebar, setIsProfileSidebar] = useState(false);
@@ -39,7 +38,7 @@ const ProfileSettingsPage = () => {
                 />
               </button>
             </div>
-            {isProfileSidebar ? <ProfilePopUpSidebar isSettings={true} /> : <></>}
+            {isProfileSidebar ? <ProfilePopUpSidebar type={'settings'} /> : <></>}
             <img src={img} alt="background-image" />
           </div>
         </div>

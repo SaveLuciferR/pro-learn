@@ -12,7 +12,7 @@ const AdminSidebar = () => {
             className="profile-section-sidebar-tab-text"
             onClick={() => setActivePage('main')}
           >
-            AdminName
+            Главная
           </Link>
         </div>
         {/* <div className={`profile-section-sidebar-tab${activePage === 'blog' ? ' active' : ''}`}>

@@ -1,7 +1,7 @@
 .tasks-card {
   padding: 32px;
 
-  max-width: 704px;
+  max-width: 584px;
   width: 100%;
   height: inherit;
 
@@ -36,24 +36,6 @@
       color: rgba(255, 255, 255, 0.6);
       font-size: 14px;
     }
-  }
-}
-
-@media (max-width: 1560px) {
-  .tasks-card {
-    max-width: 680px;
-  }
-}
-
-@media (max-width: 1512px) {
-  .tasks-card {
-    max-width: 640px;
-  }
-}
-
-@media (max-width: 1440px) {
-  .tasks-card {
-    max-width: 584px;
   }
 }
 

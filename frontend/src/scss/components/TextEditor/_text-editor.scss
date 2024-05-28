@@ -41,3 +41,37 @@
     font-weight: 400;
   }
 }
+
+@media (max-width: 1024px) {
+  .text-editor {
+    height: 200px;
+    &-menu {
+      & button {
+        padding: 4px;
+
+        width: 25px;
+        height: 28px;
+      }
+
+      & span {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 678px) {
+  .text-editor {
+    &-menu {
+      & span {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .text-editor {
+    height: 250px;
+  }
+}

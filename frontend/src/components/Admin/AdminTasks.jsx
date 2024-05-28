@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axiosClient from '../../axiosClient';
 import Table from '../Table/Table';
-import TablePagination from "../Table/TablePagination";
+import TablePagination from '../Table/TablePagination';
 /* ICONS */
-import { BiDislike, BiLike } from "react-icons/bi";
-import { IoIosCheckmarkCircleOutline, IoIosCloseCircleOutline } from "react-icons/io";
-import { LuClock4 } from "react-icons/lu";
-import { CgNotes } from "react-icons/cg";
-import { RxOpenInNewWindow } from "react-icons/rx";
-import { RiCloseCircleLine } from "react-icons/ri";
+import { BiDislike, BiLike } from 'react-icons/bi';
+import { IoIosCheckmarkCircleOutline, IoIosCloseCircleOutline } from 'react-icons/io';
+import { LuClock4 } from 'react-icons/lu';
+import { CgNotes } from 'react-icons/cg';
+import { RxOpenInNewWindow } from 'react-icons/rx';
+import { RiCloseCircleLine } from 'react-icons/ri';
 
 const AdminTasks = () => {
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const AdminTasks = () => {
       size: 73,
       cell: (item) => (
         <p className="admin-status">
-          <BiLike size={20} className='svg' />
+          <BiLike size={20} className="svg" />
           {item.like}
         </p>
       ),
@@ -52,7 +52,7 @@ const AdminTasks = () => {
       size: 73,
       cell: (item) => (
         <p className="admin-status">
-          <BiDislike size={20} className='svg' />
+          <BiDislike size={20} className="svg" />
           {item.dislike}
         </p>
       ),
@@ -67,8 +67,9 @@ const AdminTasks = () => {
             {countDifficulty.map((i) => {
               return (
                 <li
-                  className={`profile-difficulty-range-item${i <= item.difficulty ? ' active' : ''
-                    }`}
+                  className={`profile-difficulty-range-item${
+                    i <= item.difficulty ? ' active' : ''
+                  }`}
                 ></li>
               );
             })}
@@ -84,13 +85,12 @@ const AdminTasks = () => {
         <>
           {item.code === 'public' ? (
             <p className="admin-status green">
-              <IoIosCheckmarkCircleOutline size={20} color='#2ea043' />
-
+              <IoIosCheckmarkCircleOutline size={20} color="#2ea043" />
               Опубликован
             </p>
           ) : item.code === 'reject' ? (
             <p className="admin-status red">
-              <IoIosCloseCircleOutline size={20} color='#db5b42' />
+              <IoIosCloseCircleOutline size={20} color="#db5b42" />
               Отклонён
             </p>
           ) : item.code === 'moderation' ? (
@@ -111,15 +111,19 @@ const AdminTasks = () => {
       accessorKey: 'date_of_publication',
       header: 'Дата публикации',
       size: 205,
-      cell: (item) => <p>{item.date_of_publication === null ? 'Не опубликовано' : item.date_of_publication}</p>,
+      cell: (item) => (
+        <p>{item.date_of_publication === null ? 'Не опубликовано' : item.date_of_publication}</p>
+      ),
     },
   ];
 
   useEffect(() => {
-    axiosClient.get(`admin/task?start=${(currentPage - 1) * amountOnPage}&end=${amountOnPage}&lang=1`).then(({ data }) => {
-      setAdminTasks(data.result.tasks);
-      setAmountTask(data.result.taskCount);
-    });
+    axiosClient
+      .get(`admin/task?start=${(currentPage - 1) * amountOnPage}&end=${amountOnPage}&lang=1`)
+      .then(({ data }) => {
+        setAdminTasks(data.result.tasks);
+        setAmountTask(data.result.taskCount);
+      });
   }, [currentPage, amountOnPage]);
 
   const onClickRowTable = (i, item) => {
@@ -130,20 +134,20 @@ const AdminTasks = () => {
       setCurrentSelectRow(i);
       setIsSelectRow(true);
     }
-  }
+  };
 
   const handleSelectPage = (i) => {
     if (i === currentPage) return;
     setIsSelectRow(false);
     setCurrentSelectRow(-1);
     setCurrentPage(i);
-  }
+  };
 
   const getAmountSkipNote = () => {
     let skip = amountOnPage * currentPage;
     if (skip > amountTask) return amountTask;
     return skip;
-  }
+  };
 
   return (
     <>
@@ -157,29 +161,45 @@ const AdminTasks = () => {
         </button>
       </div>
       <div className="admin-content">
-        <Table data={adminTasks} columns={columns} handleClickRow={onClickRowTable} selectRow={currentSelectRow} />
+        <Table
+          data={adminTasks}
+          columns={columns}
+          handleClickRow={onClickRowTable}
+          selectRow={currentSelectRow}
+          type="task"
+        />
         {/* <OldTable data={adminTasks} columns={columns} /> */}
       </div>
-      {isSelectRow ?
-        <div className={"admin-footer-buttons"}>
-          <button className={"btn primary big"}>Редактировать</button>
-          <Link className={"btn with_icon"} to={"/"} target={'_blank'}><RxOpenInNewWindow
-            size={21} /><span>Открыть</span></Link> {/* TODO если не опубликовано, то нет ссылки */}
-          <button className={"btn with_icon btn-red"}>
-            <RiCloseCircleLine size={21}
-              color={'#DB5B42'} />
+      {isSelectRow ? (
+        <div className={'admin-footer-buttons'}>
+          <button className={'btn primary big'}>Редактировать</button>
+          <Link className={'btn with_icon'} to={'/'} target={'_blank'}>
+            <RxOpenInNewWindow size={21} />
+            <span>Открыть</span>
+          </Link>{' '}
+          {/* TODO если не опубликовано, то нет ссылки */}
+          <button className={'btn with_icon btn-red'}>
+            <RiCloseCircleLine size={21} color={'#DB5B42'} />
             <span>Удалить</span>
           </button>
         </div>
-        :
-        <></>}
-      <div className={"admin-footer-buttons"}>Показано {getAmountSkipNote()} из {amountTask} записей</div>
-      <div className={"admin-footer-buttons"}>
-        <button className={"btn secondary-white big"} type={'button'}
-          onClick={() => setAmountOnPage(prevState => prevState + addAmountOnPage)}>Загрузить еще
+      ) : (
+        <></>
+      )}
+      <div className={'admin-footer-buttons'}>
+        Показано {getAmountSkipNote()} из {amountTask} записей
+      </div>
+      <div className={'admin-footer-buttons'}>
+        <button
+          className={'btn secondary-white big'}
+          type={'button'}
+          onClick={() => setAmountOnPage((prevState) => prevState + addAmountOnPage)}
+        >
+          Загрузить еще
         </button>
       </div>
-      <TablePagination amountNote={amountTask}
+      <TablePagination
+        amountNote={amountTask}
         amountNoteOnPage={amountOnPage}
         currentPage={currentPage}
         setCurrentPage={handleSelectPage}

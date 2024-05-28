@@ -1,30 +1,34 @@
 import img from '../../image 7.png';
-import {useState} from "react";
-import {Link} from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const CourseCard = ({obj, isSlider, viewWords}) => {
-    const getLangProg = () => {
-        let temp = '';
-        obj.language.map((item, i) => temp += item.title + ', ');
-        temp = temp.replace(/, $/, '');
-        return temp;
-    }
+const CourseCard = ({ obj, isSlider, viewWords }) => {
+  const getLangProg = () => {
+    let temp = '';
+    obj.language.map((item, i) => (temp += item.title + ', '));
+    temp = temp.replace(/, $/, '');
+    return temp;
+  };
 
   return (
     <div className={`courses-card ${isSlider ? 'slider-card' : ''}`}>
       <div className="courses-card-header">
         <ul className="courses-card-header-tags">
-          {obj.tags.map((item, i) => <li key={i} className="courses-card-header-tag">#{item.title}</li>)}
+          {obj.tags.map((item, i) => (
+            <li key={i} className="courses-card-header-tag">
+              #{item.title}
+            </li>
+          ))}
         </ul>
         {/*<p className="courses-card-header-status">Не начат</p>*/}
       </div>
       <div className="created-course-info">
         <div className="courses-card-info-title clamp">
-          <Link to={`${obj.slug}`} >{obj.title}</Link>
+          <Link to={`${obj.slug}`}>{obj.title}</Link>
         </div>
         <div className="created-course-info-desc">
-          <p className="courses-card-info-desc-text">
-            // {obj.excerpt}
+          <p className="courses-card-info-desc-text clamp multiline">
+            {'//'} {obj.excerpt}
           </p>
           <img src={img} className="courses-card-info-desc-img"></img>
         </div>
@@ -32,9 +36,13 @@ const CourseCard = ({obj, isSlider, viewWords}) => {
       <div className="profile-difficulty">
         <p>_{viewWords['tpl_course-card_dif']}: </p>
         <ul className="profile-difficulty-range">
-          {Array(5).fill('').map((item, i) =>
-              <li className={`profile-difficulty-range-item ${i < obj.difficulty ? 'active' : ''}`}></li>
-          )}
+          {Array(5)
+            .fill('')
+            .map((item, i) => (
+              <li
+                className={`profile-difficulty-range-item ${i < obj.difficulty ? 'active' : ''}`}
+              ></li>
+            ))}
         </ul>
       </div>
       <div className="courses-card-cards">
@@ -61,7 +69,9 @@ const CourseCard = ({obj, isSlider, viewWords}) => {
               fill="white"
             />
           </svg>
-          <p>{viewWords['tpl_course-card_amount-block']}: {obj.amount_stage}</p>
+          <p>
+            {viewWords['tpl_course-card_amount-block']}: {obj.amount_stage}
+          </p>
         </div>
         <div className="courses-card-card">
           <svg
@@ -90,7 +100,9 @@ const CourseCard = ({obj, isSlider, viewWords}) => {
               fill="white"
             />
           </svg>
-          <p>{viewWords['tpl_course-card_amount-lesson']}: {obj.amount_step}</p>
+          <p>
+            {viewWords['tpl_course-card_amount-lesson']}: {obj.amount_step}
+          </p>
         </div>
         <div className="courses-card-card">
           <svg
@@ -119,7 +131,9 @@ const CourseCard = ({obj, isSlider, viewWords}) => {
               fill="white"
             />
           </svg>
-          <p>{obj.final_projects} {viewWords['tpl_course-card_finish-project']}</p>
+          <p>
+            {obj.final_projects} {viewWords['tpl_course-card_finish-project']}
+          </p>
         </div>
       </div>
       <div className="profile-completed-card-stat">
@@ -162,9 +176,14 @@ const CourseCard = ({obj, isSlider, viewWords}) => {
           </div>
         </div>
       </div>
-      <div className="created-course-bottom">
-        <p className="created-course-bottom-date">&gt; {obj.username}, {viewWords[`tpl_course-card_role-${obj.role}`]}, {obj.date_of_publication}</p>
-        <p className="created-course-bottom-lang">// {viewWords['tpl_course-card_language']}: {getLangProg()}</p>
+      <div className="courses-card-bottom">
+        <p className="created-course-bottom-date">
+          &gt; {obj.username}, {viewWords[`tpl_course-card_role-${obj.role}`]},{' '}
+          {obj.date_of_publication}
+        </p>
+        <p className="created-course-bottom-lang">
+          // {viewWords['tpl_course-card_language']}: {getLangProg()}
+        </p>
       </div>
     </div>
   );

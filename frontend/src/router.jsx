@@ -41,10 +41,10 @@ import AdminUsers from './components/Admin/AdminUsers.jsx';
 import AdminFeedback from './components/Admin/AdminFeedback.jsx';
 import NotFoundPage from './components/NotFoundPage';
 import MainMenu from './components/MainMenu.jsx';
-import TemplateAddPage from "./pages/TemplateAddPage";
-import TemplatePage from "./pages/TemplatePage";
-import AdminMain from "./components/Admin/AdminMain";
-import AdminUserSingle from "./components/Admin/AdminUserSingle";
+import TemplateAddPage from './pages/TemplateAddPage';
+import TemplatePage from './pages/TemplatePage';
+import AdminMain from './components/Admin/AdminMain';
+import AdminUserSingle from './components/Admin/AdminUserSingle';
 
 const router = createBrowserRouter([
   {
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: '',
-            element: <AdminMain/>
+            element: <AdminMain />,
           },
           {
             path: 'blog',
@@ -88,9 +88,9 @@ const router = createBrowserRouter([
               },
               {
                 path: ':username',
-                element: <AdminUserSingle/>
-              }
-            ]
+                element: <AdminUserSingle />,
+              },
+            ],
           },
           {
             path: 'feedback',
@@ -110,19 +110,19 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/:lang?',
+    path: '/:lang?', //adaptive: +
     element: <MainLayout isActiveSidebar={true} isCompiler={false} />,
     children: [
       {
-        path: '',
+        path: '', //adaptive: +
         element: <MainMenu isActiveSidebar={false} />,
       },
       {
-        path: 'user/login',
+        path: 'user/login', //adaptive: +
         element: <Login isActiveSidebar={false} />,
       },
       {
-        path: 'user/register',
+        path: 'user/register', //adaptive: +
         element: <Register isActiveSidebar={false} />,
       },
       {
@@ -134,7 +134,7 @@ const router = createBrowserRouter([
         element: <ConfirmAccount isActiveSidebar={false} />,
       },
       {
-        path: 'user/feedback',
+        path: 'user/feedback', //adaptive: +
         element: <Feedback />,
       },
       {
@@ -142,31 +142,31 @@ const router = createBrowserRouter([
         element: <BlogPage />,
       },
       {
-        path: 'profile/:username',
+        path: 'profile/:username', //adaptive: +
         element: <ProfilePage isActiveSidebar={false} isCompiler={false} />,
         children: [
           {
-            path: '',
+            path: '', //adaptive: +
             element: <ProfileMainPage />,
           },
           {
-            path: 'created-courses',
+            path: 'created-courses', //adaptive: +
             element: <ProfileCreatedCourses />,
           },
           {
-            path: 'questions',
+            path: 'questions', //adaptive: +
             element: <ProfileQuestionsMain />,
           },
           {
-            path: 'user-tasks',
+            path: 'user-tasks', //adaptive: +
             element: <ProfileUserTasks />,
           },
           {
-            path: 'tasks',
+            path: 'tasks', //adaptive: +
             element: <ProfileTasks />,
           },
           {
-            path: 'projects',
+            path: 'projects', //adaptive: +
             element: <ProfileProjects />,
           },
           {
@@ -174,17 +174,17 @@ const router = createBrowserRouter([
             element: <ProfileProjects />,
           },
           {
-            path: 'completed-courses',
+            path: 'completed-courses', //adaptive: +
             element: <ProfileCompletedCourses />,
           },
           {
-            path: 'current-courses',
+            path: 'current-courses', //adaptive: +
             element: <ProfileCurrentCourses />,
           },
         ],
       },
       {
-        path: 'profile/:username/course-creation',
+        path: 'profile/:username/course-creation', //adaptive: +
         element: <CourseCreatePage />,
       },
       {
@@ -192,7 +192,7 @@ const router = createBrowserRouter([
         element: <CourseCreatePage type={'edit'} />,
       },
       {
-        path: 'profile/:username/task-creation',
+        path: 'profile/:username/task-creation', //adaptive: +
         element: <TaskCreatePage />,
       },
       {
@@ -200,39 +200,39 @@ const router = createBrowserRouter([
         element: <TaskCreatePage type={'edit'} />,
       },
       {
-        path: 'profile/:username/project/:project',
+        path: 'profile/:username/project/:project', //adaptive: +
         element: <ProjectPage isActiveSidebar={false} />,
       },
       {
-        path: 'profile/:username/project-creation',
+        path: 'profile/:username/project-creation', //adaptive: +
         element: <ProjectAddPage isActiveSidebar={false} />,
       },
       {
-        path: 'profile/:username/project-edit/:slug',
+        path: 'profile/:username/project-edit/:slug', //adaptive: +
         element: <ProjectAddPage isActiveSidebar={false} type={'edit'} />,
       },
       {
         path: 'profile/:username/template/:template',
-        element: <TemplatePage isActiveSidebar={false}/>,
+        element: <TemplatePage isActiveSidebar={false} />,
       },
       {
         path: 'profile/:username/template-creation',
-        element: <TemplateAddPage isActiveSidebar={false}/>,
+        element: <TemplateAddPage isActiveSidebar={false} />,
       },
       {
         path: 'profile/:username/template-edit/:slug',
-        element: <TemplateAddPage isActiveSidebar={false} type={'edit'}/>,
+        element: <TemplateAddPage isActiveSidebar={false} type={'edit'} />,
       },
       {
-        path: 'profile/:username/settings/general',
+        path: 'profile/:username/settings/general', //adaptive: +
         element: <ProfileSettingsUserPage />,
       },
       {
-        path: 'profile/:username/settings',
+        path: 'profile/:username/settings', //adaptive: +
         element: <ProfileSettingsPage />,
         children: [
           {
-            path: 'security',
+            path: 'security', //adaptive: +
             element: <ProfileSettingsSecurity />,
           },
           {
@@ -240,21 +240,21 @@ const router = createBrowserRouter([
             element: <ProfileSettingsSessions />,
           },
           {
-            path: 'privacy',
+            path: 'privacy', //adaptive: +
             element: <ProfileSettingsPrivacy />,
           },
           {
-            path: 'creations',
+            path: 'creations', //adaptive: +
             element: <ProfileSettingsMadeByUser />,
           },
         ],
       },
       {
-        path: 'course',
+        path: 'course', //adaptive: -
         element: <CoursesPage />,
       },
       {
-        path: 'course/:slug',
+        path: 'course/:slug', //adaptive: +
         element: <CourseSinglePage />,
       },
       {
@@ -262,11 +262,11 @@ const router = createBrowserRouter([
         element: <CourseStudyPage />,
       },
       {
-        path: 'task',
+        path: 'task', //adaptive: +
         element: <TaskPage isActiveSidebar={true} isCompiler={false} />,
       },
       {
-        path: 'task/:slug',
+        path: 'task/:slug', //adaptive: +
         element: <TaskSinglePage />,
       },
       {
