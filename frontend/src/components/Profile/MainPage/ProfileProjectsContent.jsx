@@ -21,6 +21,7 @@ const ProfileProjectsContent = ({ data, viewWords }) => {
           </p>
         </div>
         <svg
+            onClick={() => navigate(`../../profile/${username}/project-edit/${data.slug}`)}
           className="info-about-name-edit"
           width="16"
           height="16"

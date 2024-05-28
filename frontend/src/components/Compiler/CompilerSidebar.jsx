@@ -19,7 +19,11 @@ import {
     setNewFileInActionContext,
     setCurrentInputContent,
     setCanBeExistElementProject,
-    setFileDeletingInActionContext, setNewFolderInActionContext,
+    setFileDeletingInActionContext,
+    setNewFolderInActionContext,
+    setPathCopyFileInAction,
+    setTypeCopyFileInAction,
+    setToCopyFileInAction,
 } from '../../redux/Compiler/slice';
 import CompilerSidebarList from './CompilerSidebarList';
 import ProjectSvg from '../Project/ProjectSvg';
@@ -36,7 +40,7 @@ import useKeypress from "../../hooks/useKeypress";
 import LoadingElement from "../LoadingElement";
 import {string} from "react-table/src/sortTypes";
 
-const CompilerSidebar = ({dockerIsLoading, taskIsLoading}) => {
+const CompilerSidebar = ({titleProject, dockerIsLoading, taskIsLoading, canBeEdit}) => {
     const dispatch = useDispatch();
     // const {inputCompilerFileElement} = useContext(Context);
 
@@ -94,6 +98,7 @@ const CompilerSidebar = ({dockerIsLoading, taskIsLoading}) => {
         dispatch(setFileDeletingInActionContext(pathIndex));
         // console.log(actionContext.file.rename);
         dispatch(setFileSavingInActionContext(tempSavingFile));
+        dispatch(setToCopyFileInAction({to: pathIndex}));
         // dispatch(setFileRenamingInActionContext(tempRenamingFile));
         setXYPosition(positionChange);
         setContext(true);
@@ -132,6 +137,7 @@ const CompilerSidebar = ({dockerIsLoading, taskIsLoading}) => {
 
     useEffect(() => {
         // console.log(`canRenameFile: ${canRenameFile}\nsaveRenameFile: ${saveRenameFile}`);
+        if (actionContext.action === 'copy' || actionContext.action === 'cut') return;
         if (actionContext.action !== 'rename' || (!canRenameFile && saveRenameFile)) {
             console.log(actionContext, inputContent);
             // console.log(actionContext);
@@ -148,6 +154,9 @@ const CompilerSidebar = ({dockerIsLoading, taskIsLoading}) => {
                     dispatch(setFileRenamingPathInActionContext(''));
                     dispatch(setNewFileInActionContext({name: '', path: '/'}))
                     dispatch(setUpdateFiles(true));
+                    dispatch(setPathCopyFileInAction({path: ''}));
+                    dispatch(setTypeCopyFileInAction({type: ''}));
+                    dispatch(setToCopyFileInAction({to: ''}));
                     // setContext(false);
                 })
                 .catch((res) => {
@@ -361,7 +370,8 @@ const CompilerSidebar = ({dockerIsLoading, taskIsLoading}) => {
                         </button>
                         <Collapse isOpened={isOpenedInfo}>
                             <div className="compiler-sidebar-info-main">
-                                Project: Первая программа моя, вау
+                                {/*{console.log(titleProject)}*/}
+                                {titleProject}
                             </div>
                         </Collapse>
                     </div>
@@ -394,28 +404,30 @@ const CompilerSidebar = ({dockerIsLoading, taskIsLoading}) => {
                                     </svg>
                                     <p>Files</p>
                                 </button>
-                                <div className={"collapse-header-buttons"}>
-                                    <button onClick={() => {
-                                    }} className={"btn btn-without_text"}>
-                                        <VscCloudDownload/></button>
-                                    <button onClick={() => handleAddNewFile()} className={"btn btn-without_text"}>
-                                        <VscNewFile/>
-                                    </button>
-                                    <button onClick={() => handleAddNewFolder()} className={"btn btn-without_text"}>
-                                        <VscNewFolder/></button>
-                                    <button onClick={() => {
-                                    }} className={"btn btn-without_text"}>
-                                        <VscRefresh/>
-                                    </button>
-                                    <button onClick={() => {
-                                    }} className={"btn btn-without_text"}>
-                                        <VscCollapseAll/></button>
-                                </div>
+                                {canBeEdit &&
+                                    <div className={"collapse-header-buttons"}>
+                                        {/*<button onClick={() => {*/}
+                                        {/*}} className={"btn btn-without_text"}>*/}
+                                        {/*    <VscCloudDownload/></button>*/}
+                                        <button onClick={() => handleAddNewFile()} className={"btn btn-without_text"}>
+                                            <VscNewFile/>
+                                        </button>
+                                        <button onClick={() => handleAddNewFolder()} className={"btn btn-without_text"}>
+                                            <VscNewFolder/></button>
+                                        {/*<button onClick={() => {*/}
+                                        {/*}} className={"btn btn-without_text"}>*/}
+                                        {/*    <VscRefresh/>*/}
+                                        {/*</button>*/}
+                                        {/*<button onClick={() => {*/}
+                                        {/*}} className={"btn btn-without_text"}>*/}
+                                        {/*    <VscCollapseAll/></button>*/}
+                                    </div>
+                                }
                             </div>
                             <Collapse isOpened={isOpenedFiles}>
                                 <div className="compiler-sidebar-files-main scroll" data-project-element={'/'}>
                                     {Object.keys(compilerFiles).length !== 0 ? getFilesStructure :
-                                        <div>Loading...</div>}
+                                        <div>Файлов нет...</div>}
                                 </div>
                             </Collapse>
                             {portal}
@@ -514,7 +526,8 @@ const CompilerSidebar = ({dockerIsLoading, taskIsLoading}) => {
                     }
                 </div>
             </div>
-            <CompilerContextMenu context={context} setContext={(v) => setContext(v)} xyPos={xyPosition}/>
+            <CompilerContextMenu canBeEdit={canBeEdit} context={context} setContext={(v) => setContext(v)}
+                                 xyPos={xyPosition}/>
         </div>
     );
 };

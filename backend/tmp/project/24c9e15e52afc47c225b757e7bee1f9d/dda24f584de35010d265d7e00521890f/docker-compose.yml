@@ -1,0 +1,8 @@
+version: "3.5"
+services:
+  my-webserverclient:
+    build: ../sayt-dlya-transportnoy-kompanii
+    ports:
+      - "9876:80"
+    volumes:
+      - './src:/usr/share/nginx/html'

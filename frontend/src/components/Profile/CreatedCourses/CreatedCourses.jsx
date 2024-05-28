@@ -3,9 +3,12 @@ import ProfileCreateCourse from './ProfileCreateCourseSlider';
 import ProfileCreateCourseButton from './ProfileCreateCourseButton';
 import { useEffect, useState } from 'react';
 import axiosClient from '../../../axiosClient';
+import {useSelector} from "react-redux";
 
 const ProfileCreatedCourses = () => {
   const { username, lang } = useParams();
+
+  const user = useSelector(state => state.mainLayout.user);
 
   const [viewWords, setViewWords] = useState({});
 
@@ -41,7 +44,7 @@ const ProfileCreatedCourses = () => {
         <h1>_Созданные курсы</h1>
       </div>
       <div className="profile-section-main-cards created-page">
-        <ProfileCreateCourseButton type="course" viewWords={viewWords} />
+        <ProfileCreateCourseButton type="course" viewWords={viewWords} isOwner={username === user.username}/>
         <ProfileCreateCourse viewWords={viewWords} />
       </div>
     </div>

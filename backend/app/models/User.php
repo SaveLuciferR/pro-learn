@@ -5,6 +5,7 @@ namespace app\models;
 use core\App;
 use core\Cache;
 use http\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 use RedBeanPHP\R;
 
 
@@ -19,7 +20,8 @@ class User extends AppModel
 
     public function checkAuth()
     {
-        return isset($_SESSION['user']) || isset($_COOKIE['user']);
+        return isset($_SESSION['user']);
+//        return false;
     }
 
 
@@ -28,7 +30,7 @@ class User extends AppModel
      * @return bool Возвращает результат работы, если пользователь ввел правильные данные, то true, если что-то неправильно, то false
      */
 
-    public function login($userParam): bool
+    public function login($userParam, $saveCookie): bool
     {
         $email = $userParam['email'];
         $password = $userParam['password'];
@@ -45,21 +47,21 @@ class User extends AppModel
                         }
                     }
 
-                    // echo session_id();
-
-                    // if (isset($_COOKIE['user_token'])) {
-                    //     setcookie('user_token', '', 0, "/");
-                    // }
-
-                    // $userToken = md5($email);
-
-                    // $timeCookie = 2592000;
-                    // setcookie('user_token', $userToken, time() + $timeCookie, '/', 'pro-learn', false, false);
-
-                    // echo $_COOKIE['user_token'];
-
-                    // $lastLoginTime = time();
-                    // $lastLoginIP = $_SERVER['REMOTE_ADDR'];
+//                    if ($saveCookie) {
+//
+//                        if (isset($_COOKIE['user_token'])) {
+//                            setcookie('user_token', '', 0);
+//                        }
+//
+////                        $userToken = md5($email);
+//                        $userToken = $email;
+//
+//                        $timeCookie = 2592000;
+////                        setcookie('user_token', $userToken, time() + 5);
+//                        debug($_COOKIE, 1);
+//
+//                        echo $_COOKIE['user_token'];
+//                    }
 
                     return true;
                 }
@@ -67,6 +69,127 @@ class User extends AppModel
         }
 
         return false;
+    }
+
+    public function getUserByMail($mail)
+    {
+        return R::getRow('SELECT * FROM user WHERE mail = ?', [$mail]);
+    }
+
+    public function sendCode($mailText, $usernameText, $userID, &$saveArray)
+    {
+        $mail = new PHPMailer(true);
+        try {
+            //Enable verbose debug output
+            $mail->SMTPDebug = 0; //SMTP::DEBUG_SERVER;
+
+            //Send using SMTP
+            $mail->isSMTP();
+
+            //Set the SMTP server to send through
+            $mail->Host = App::$app->getProperty('smtp_host');
+
+            //Enable SMTP authentication
+            $mail->SMTPAuth = App::$app->getProperty('smtp_auth');
+
+            //SMTP username
+            $mail->Username = App::$app->getProperty('smtp_username');
+
+            //SMTP password
+            $mail->Password = App::$app->getProperty('smtp_password');
+
+            //Enable TLS encryption;
+            $mail->SMTPSecure = App::$app->getProperty('site_secure');
+
+            //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+            $mail->Port = App::$app->getProperty('smtp_port');
+
+            //Recipients
+            $mail->setFrom(App::$app->getProperty('smtp_from_email'), App::$app->getProperty('site_name'));
+
+            // $mail->smtpConnect(array("ssl" => array(
+            //     "verify_peer" => false,
+            //     "verify_peer_name" => false,
+            //     "allow_self_signed" => true
+            // )));
+
+            //Add a recipient
+            $mail->addAddress($mailText, $usernameText);
+
+            //Set email format to HTML
+            $mail->isHTML(true);
+
+            $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+
+            $mail->Subject = 'Email verification';
+            $mail->Body = '<p>Your verification code is: <b style="font-size: 30px;">' . $verification_code . '</b></p>';
+            // $mail->Mail
+
+            if ($mail->send()) {
+                $saveArray = [];
+                $saveArray['activate'] = true;
+                $saveArray['mail'] = $mailText;
+                return md5($verification_code);
+            } else {
+                return false;
+            }
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function changePassword($data, &$error)
+    {
+        R::begin();
+        try {
+            $user = R::findOne('user', 'mail = ?', [$_SESSION['user_restore']['mail']]);
+            $user->password = password_hash($data['password'], null);
+            R::store($user);
+            R::commit();
+            return true;
+        } catch (\Exception $ex) {
+            R::rollback();
+            $error = $ex->getMessage();
+            return false;
+        }
+    }
+
+    public function checkRestoreCode($data, &$error)
+    {
+        R::begin();
+        try {
+            // debug($_SESSION['user_activation']['mail'], 1);
+            $user = R::findOne('user', 'mail = ?', [$_SESSION['user_restore']['mail']]);
+            if (md5($data['code']) === $user->change_code) {
+                $user->change_code = null;
+                R::store($user);
+                R::commit();
+                return true;
+            } else {
+                R::commit();
+                $error = 'InCorrectCode';
+                return false;
+            }
+        } catch (\Exception $ex) {
+            R::rollback();
+            $error = $ex->getMessage();
+            return false;
+        }
+    }
+
+    public function setChangeCode($userID, $code)
+    {
+        R::begin();
+        try {
+            $user = R::load("user", $userID);
+            $user->change_code = $code;
+            R::store($user);
+            R::commit();
+            return $userID;
+        } catch (\Exception $ex) {
+            R::rollback();
+            return false;
+        }
     }
 
     public function newUser($data, &$error)
@@ -93,8 +216,9 @@ class User extends AppModel
         try {
             // debug($_SESSION['user_activation']['mail'], 1);
             $user = R::findOne('user', 'mail = ?', [$_SESSION['user_activation']['mail']]);
-            if ($data['code'] === $user->activation_code) {
+            if (md5($data['code']) === $user->activation_code) {
                 $user->activation_code = null;
+                $user->change_code = null;
                 $user->is_activated = true;
                 R::store($user);
                 R::commit();

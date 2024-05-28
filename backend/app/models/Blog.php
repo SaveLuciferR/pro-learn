@@ -28,7 +28,8 @@ class Blog extends AppModel
                             WHERE br.blog_id = b.id) AS 'comments'
                         FROM blog b JOIN blog_description bd ON b.id = bd.blog_id
                         JOIN user u ON u.id = b.user_id
-                        WHERE bd.language_id = ? AND b.status = 'Опубликован'
+                        JOIN status s ON s.id = b.status_id
+                        WHERE bd.language_id = ? AND s.code = 'public'
                         ORDER BY b.date_of_publication DESC",
             [$lang]
         );
@@ -48,7 +49,8 @@ class Blog extends AppModel
                             WHERE br.blog_id = b.id) AS 'comments'
                         FROM blog b JOIN blog_description bd ON b.id = bd.blog_id
                         JOIN user u ON u.id = b.user_id
-                        WHERE bd.language_id = ? AND b.status = 'Опубликован' AND b.popular = 1
+                        JOIN status s ON s.id = b.status_id
+                        WHERE bd.language_id = ? AND s.code = 'public' AND b.popular = 1
                         ORDER BY b.date_of_publication DESC",
             [$lang]);
     }

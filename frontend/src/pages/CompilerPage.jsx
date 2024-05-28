@@ -20,6 +20,7 @@ import CompilerTaskDescription from "../components/Compiler/CompilerTaskDescript
 import CompilerEmptyWindow from "../components/Compiler/CompilerEmptyWindow";
 import CompilerCreateDocker from "../components/Compiler/CompilerCreateDocker";
 import ModalCreateProject from "../components/Modal/ModalCreateProject";
+import NotFoundPage from "../components/NotFoundPage";
 
 const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
 
@@ -56,6 +57,10 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
     const [portsDocker, setPortsDocker] = useState([]);
     const [dockerIsLoading, setDockerIsLoading] = useState(false);
     const [taskIsLoading, setTaskIsLoading] = useState(false);
+    const [titleProject, setTitleProject] = useState('');
+    const [canBeEdit, setCanBeEdit] = useState(false);
+
+    const [isError404, setIsError404] = useState(false);
 
     const sendRequestTerminal = (req) => {
         setDockerIsStart(false);
@@ -123,14 +128,18 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                     console.log(data);
                     dispatch(setCompilerFiles(data.fileStructure));
                     dispatch(setShouldBeRunAtStart(data.shouldBeRunAtStart));
-                    console.log(data);
+                    setTitleProject(data.project);
                     dispatch(setTasksProject(data.tasks));
                     dispatch(setUpdateFiles(false));
                     dispatch(setNeedReloadFrameCompiler(true));
                     setIsWebProject(data.isWebProject);
+                    setCanBeEdit(data.canBeEdit);
                 })
                 .catch((data) => {
                     console.log(data);
+                    if (data.response.status === 404) {
+                        setIsError404(true);
+                    }
                 });
         }
     }, [updateFiles]);
@@ -147,12 +156,6 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                 });
         }
     }, [task, lang])
-
-    useEffect(() => {
-        if (createDockerContainer) {
-
-        }
-    }, [createDockerContainer])
 
     useEffect(() => {
         if (shouldBeRunAtStart || runDocker) {
@@ -180,6 +183,12 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
             setDockerIsStart(true);
         }
     }, [shouldBeRunAtStart, runDocker])
+
+    if (isError404) {
+        return (
+            <NotFoundPage/>
+        );
+    }
 
     return (
         <>
@@ -212,7 +221,12 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                             dispatch(setEventPointerFrame(false))
                         }}
                     >
-                        <CompilerSidebar dockerIsLoading={dockerIsLoading} taskIsLoading={taskIsLoading}/>
+                        <CompilerSidebar
+                            canBeEdit={canBeEdit}
+                            titleProject={titleProject}
+                            dockerIsLoading={dockerIsLoading}
+                            taskIsLoading={taskIsLoading}
+                        />
                         <div className="compiler">
                             <div className="compiler-container">
                                 <div className="compiler-blocks">
@@ -244,6 +258,7 @@ const CompilerPage = ({isSolve, isActiveSidebar, isCompiler}) => {
                                                 {/*    :*/}
                                                 <>
                                                     <CompilerEditor
+                                                        canBeEdit={canBeEdit}
                                                         isWebProject={isWebProject}
                                                         handleOpenOutput={() => setIsOpenOutput(!isOpenOutput)}
                                                         handleStartDocker={() => setRunDocker(true)}

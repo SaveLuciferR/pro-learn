@@ -15,7 +15,7 @@ import {TfiLayoutTabWindow} from "react-icons/tfi";
 import CompilerEmptyWindow from "./CompilerEmptyWindow";
 import {VscDebugStart} from "react-icons/vsc";
 
-const CompilerEditor = ({isWebProject, handleOpenOutput, handleStartDocker}) => {
+const CompilerEditor = ({canBeEdit, isWebProject, handleOpenOutput, handleStartDocker}) => {
     const dispatch = useDispatch();
 
     const currentFile = useSelector((state) => state.compiler.currentFile.file);
@@ -125,7 +125,6 @@ const CompilerEditor = ({isWebProject, handleOpenOutput, handleStartDocker}) => 
                             <CompilerEmptyWindow/>
                             :
                             <Editor
-
                                 defaultLanguage="markdown"
                                 defaultValue={"Your code..."}
                                 language={currentFile.language}
@@ -133,7 +132,7 @@ const CompilerEditor = ({isWebProject, handleOpenOutput, handleStartDocker}) => 
                                 onChange={(v) => onChangeBodyFile(v, currentFile.path)}
                                 options={
                                     {
-                                        readOnly: Object.entries(currentFile).length === 0,
+                                        readOnly: Object.entries(currentFile).length === 0 || !canBeEdit,
                                         automaticLayout: true,
                                         minimap: true,
                                         fontSize: '14px',

@@ -20,12 +20,18 @@ class Compiler extends AppModel
         return R::getAll('SELECT id, title, extension, code FROM langprog');
     }
 
+    public function getProject($slug)
+    {
+        return R::getRow('SELECT * FROM project WHERE slug = ?', [$slug]);
+    }
+
     protected function getInfoDirectory($path, $url, $localPath = ""): array|false
     {
-        $files = scandir($path);
-        if ($files === false) {
+        if (!file_exists($path)) {
+//            debug($path, 1);
             return false;
         }
+        $files = scandir($path);
 
 //        debug($files, 1);
         array_shift($files);
@@ -136,8 +142,7 @@ class Compiler extends AppModel
             return true;
         } else if (file_exists($pathProject . '/' . 'Dockerfile') || file_exists($pathProject . '/' . 'dockerfile')) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -225,6 +230,39 @@ class Compiler extends AppModel
 //            debug($ex);
             R::rollback();
             return false;
+        }
+    }
+
+    public function copyFileOrDir($from, $to, $isDir, $type)
+    {
+        if ($isDir) {
+            $this->copyFolderInCompiler($from, $to);
+            if ($type === 'cut') {
+                $this->deleteDirectoryProject($from);
+            }
+        } else {
+            copy($from, $to);
+            if ($type === 'cut') {
+                unlink($from);
+            }
+        }
+    }
+
+    protected function copyFolderInCompiler($folder, $to, $name = '')
+    {
+        if (!is_dir($folder)) return;
+        if (!file_exists($to)) {
+            mkdir($to . '/' . $name);
+        }
+        $files = scandir($folder);
+        array_shift($files);
+        array_shift($files);
+        foreach ($files as $k => $v) {
+            if (is_dir($folder . '/' . $v)) {
+                $this->copyFolderInCompiler($folder, $to, $v);
+            } else {
+                copy($folder . '/' . $v, $to . '/' . $v);
+            }
         }
     }
 

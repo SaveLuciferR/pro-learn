@@ -18,7 +18,7 @@ Router::add('^(?P<lang>[a-z]+)?/?compiler/@(?P<username>[a-z-0-9A-Z]+)/(?P<slug>
 Router::add('^(?P<lang>[a-z]+)?/?compiler/@(?P<username>[a-z-0-9A-Z]+)/(?P<slug>[a-z-0-9A-Z]+)/(?P<action>[a-z-]+)/?$', ['controller' => 'Compiler']); // сохранение, удаление и тд для редактора
 Router::add('^(?P<lang>[a-z]+)?/?compiler/@(?P<username>[a-z-0-9A-Z]+)/(?P<slug>[a-z-0-9A-Z]+)/start-task/?$', ['controller' => 'Compiler', 'action' => 'startTask']); // сохранение, удаление и тд для редактора
 Router::add('^(?P<lang>[a-z]+)?/?compiler/@(?P<username>[a-z-0-9A-Z]+)/(?P<slugProject>[a-z-0-9A-Z]+)/(?P<slugTask>[a-z-0-9A-Z]+)/check-solution-task/?$', ['controller' => 'Compiler', 'action' => 'checkSolutionTask']); // загрузка задачи
-Router::add('^compiler/solve-task/?$', ['controller' => 'Compiler', 'action' => 'solveTask']); // загрузка задачи
+Router::add('^compiler/solve-task/?$', ['controller' => 'Compiler', 'action' => 'solveTask']); // запуск задачи
 
 Router::add('^(?P<lang>[a-z]+)?/?template/?$', ['controller' => 'Template', 'action' => 'index']); // Главная страница со статьями
 

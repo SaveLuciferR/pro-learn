@@ -24,6 +24,7 @@ const CourseCreatePage = ({type = 'create'}) => {
 
     const course = useSelector(state => state.course.currentCourseEdit);
     const userAuth = useSelector(state => state.mainLayout.userAuth);
+    const user = useSelector(state => state.mainLayout.user)
 
     const [successToGetCourse, setSuccessToGetCourse] = useState(false);
     const [uploadIcon, setUploadIcon] = useState(null);
@@ -38,7 +39,7 @@ const CourseCreatePage = ({type = 'create'}) => {
     const [status, setStatus] = useState("draft");
 
     useEffect(() => {
-        if (!userAuth) {
+        if (!userAuth || username !== user.username) {
             navigate('/user/login');
         }
     }, [userAuth])

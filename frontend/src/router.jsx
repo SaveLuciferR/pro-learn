@@ -281,7 +281,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <NotFoundPage />,
+    element: <NotFoundPage isPage={true}/>,
   },
 ]);
 
