@@ -5,9 +5,12 @@ import {useState, useEffect} from "react";
 import axiosClient from "../../../axiosClient";
 import SliderMain from "../../Slider/SliderMain";
 import ProfileUserTaskSlider from "./ProfileUserTaskSlider";
+import {useSelector} from "react-redux";
 
 const ProfileUserTasks = () => {
     const {lang, username} = useParams();
+
+    const user = useSelector(state => state.mainLayout.user);
 
     const [viewWords, setViewWords] = useState({});
     const [tasks, setTasks] = useState([]);
@@ -53,7 +56,7 @@ const ProfileUserTasks = () => {
                 <h1>_{viewWords['tpl_profile_created-task_title']}</h1>
             </div>
             <div className="profile-tasks">
-                <ProfileCreateCourseButton type="task" viewWords={viewWords}/>
+                <ProfileCreateCourseButton type="task" viewWords={viewWords} isOwner={user.username === username}/>
                 <ProfileUserTaskSlider viewWords={viewWords} data={tasks}/>
                 {/*<ProfileUserTaskItem viewWords={viewWords}/>*/}
             </div>

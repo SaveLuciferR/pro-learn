@@ -3965,3 +3965,59 @@
 =================
 [2024-05-18 17:13:44] Текст ошибки: Undefined array key "user_token" | Файл: C:\OSPanel\home\pro-learn\backend\app\models\User.php | Строка: 63
 =================
+[2024-05-19 12:50:57] Текст ошибки: Not Found language 'profile' | Файл: C:\OSPanel\home\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-05-19 12:50:58] Текст ошибки: Not Found language 'profile' | Файл: C:\OSPanel\home\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-05-19 12:51:04] Текст ошибки: Not Found language 'gfdsg' | Файл: C:\OSPanel\home\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-05-19 12:51:04] Текст ошибки: Not Found language 'gfdsg' | Файл: C:\OSPanel\home\pro-learn\backend\app\languages\Language.php | Строка: 48
+=================
+[2024-05-19 13:44:46] Текст ошибки: Undefined array key "rememberMe" | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 34
+=================
+[2024-05-19 13:47:30] Текст ошибки: Undefined variable $dockerCompose | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 109
+=================
+[2024-05-19 13:57:18] Текст ошибки: preg_match_all(): Unknown modifier 'g' | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 112
+=================
+[2024-05-19 14:00:30] Текст ошибки: preg_match_all(): Delimiter must not be alphanumeric or backslash | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 112
+=================
+[2024-05-19 14:02:40] Текст ошибки: preg_match_all(): Compilation failed: unmatched closing parenthesis at offset 46 | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\Docker\Docker.php | Строка: 112
+=================
+[2024-05-19 14:09:25] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-20 13:55:00] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:11] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:31] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:32] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:32] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:32] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:32] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:33] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:33] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:33] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:33] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:33] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:33] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:55:41] Текст ошибки: file_get_contents(): php_network_getaddresses: getaddrinfo for ipwho.is failed: ���� ���� ����������.  | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 40
+=================
+[2024-05-20 13:56:39] Текст ошибки: Undefined variable $json | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 41
+=================
+[2024-05-20 13:57:01] Текст ошибки: Undefined variable $userDevice | Файл: C:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 56
+=================
+[2024-05-24 18:40:59] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================
+[2024-05-24 18:41:01] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\home\pro-learn\backend\vendor\core\Router.php | Строка: 101
+=================

@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 
-const NotFoundPage = () => {
+const NotFoundPage = ({isPage = false}) => {
   const navigate = useNavigate();
   return (
-    <div className="not-found">
+    <div className="not-found" style={{minHeight: isPage ? '100vh' : '100%'}}>
       <h2>error</h2>
       <h1>404</h1>
       <p>&gt; Страница не найдена</p>

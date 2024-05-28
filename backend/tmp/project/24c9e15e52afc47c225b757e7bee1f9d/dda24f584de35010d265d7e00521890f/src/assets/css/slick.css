@@ -83,7 +83,7 @@
     min-height: 1px;
 }
 
-.slick-slide:focus {
+.slick-slide:focus{
     outline: none;
 }
 

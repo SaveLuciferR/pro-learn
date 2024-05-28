@@ -8,6 +8,7 @@ class CompilerController extends AppController
 {
     public function indexAction()
     {
+        $isOnwer = isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'];
         $urlProject = $this->model->getUrlPathProject($this->route['username'], $this->route['slug']);
         $fileStructure = $this->model->getAllFileProject($this->route['username'], $this->route['slug'], $urlProject);
         $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
@@ -23,7 +24,7 @@ class CompilerController extends AppController
 
 //        debug(json_last_error(), 1);
 
-        if (!$project || $fileStructure === false || $project['private'] === '1') {
+        if (!$project || $fileStructure === false || !($isOnwer || $project['private'] === '0')) {
             header('HTTP/1.0 404 Not Found');
             die;
         }
@@ -50,7 +51,7 @@ class CompilerController extends AppController
             'tasks' => $tasks,
             'shouldBeRunAtStart' => $shouldBeRunAtStart,
             'project' => $project['title'],
-            'canBeEdit' => isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'],
+            'canBeEdit' => $isOnwer,
         ), JSON_UNESCAPED_SLASHES);
     }
 
@@ -62,7 +63,7 @@ class CompilerController extends AppController
             $pathProject = $this->model->getPathProject($this->route['username'], $this->route['slug']);
             $task = [];
             $tasks = $this->model->getTasksForProject($pathProject);
-            foreach ($tasks['tasks'] as $k => $v) {
+            foreach ($tasks['tasks'] as $k => $v) { 
                 if ($k === $_GET['task']) {
                     $task = $v;
                 }

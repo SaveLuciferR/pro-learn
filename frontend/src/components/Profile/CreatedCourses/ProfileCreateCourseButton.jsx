@@ -1,19 +1,15 @@
 import {useParams, useNavigate, Link} from 'react-router-dom';
 
-const ProfileCreateCourseButton = ({ type, viewWords }) => {
+const ProfileCreateCourseButton = ({ type, viewWords, isOwner}) => {
   const navigate = useNavigate();
   const { lang, username } = useParams();
   return (
     <>
       {type === 'course' ? (
         <Link
+            style={{pointerEvents: isOwner ? 'auto' : 'none'}}
             to={`../../profile/${username}/course-creation`}
-          // onClick={() => {
-          //   navigate(
-          //     `${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/course-creation`,
-          //   );
-          // }}
-          className="created-button"
+            className="created-button"
         >
           <div className="created-button-content">
             <svg
@@ -35,6 +31,7 @@ const ProfileCreateCourseButton = ({ type, viewWords }) => {
         </Link>
       ) : (
         <Link
+            style={{pointerEvents: isOwner ? 'auto' : 'none'}}
             to={`../../profile/${username}/task-creation`}
             className="created-button">
           <div className="created-button-content">

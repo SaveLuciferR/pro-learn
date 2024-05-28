@@ -27,10 +27,11 @@ class Compiler extends AppModel
 
     protected function getInfoDirectory($path, $url, $localPath = ""): array|false
     {
-        $files = scandir($path);
-        if ($files === false) {
+        if (!file_exists($path)) {
+//            debug($path, 1);
             return false;
         }
+        $files = scandir($path);
 
 //        debug($files, 1);
         array_shift($files);

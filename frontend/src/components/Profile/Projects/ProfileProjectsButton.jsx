@@ -3,10 +3,13 @@ import ModalCreateProject from "../../Modal/ModalCreateProject";
 import {useState} from "react";
 import ModalWindowInput from "../../Modal/ModalWindowInput";
 import axiosClient from "../../../axiosClient";
+import {useSelector} from "react-redux";
 
 const ProfileProjectsButton = ({viewWords}) => {
     const {lang, username} = useParams();
     const navigate = useNavigate();
+
+    const user = useSelector(state => state.mainLayout.user);
 
     const [isOpenCreateProject, setIsOpenCreateProject] = useState(false);
     const [isOpenNameProject, setIsOpenNameProject] = useState(false);
@@ -56,6 +59,7 @@ const ProfileProjectsButton = ({viewWords}) => {
     return (
         <>
             <button
+                style={{pointerEvents: user.username === username ? 'auto' : 'none'}}
                 className="profile-projects-card-button"
                 // onClick={() =>
                 //     navigate(`${lang === undefined ? '/' : '/' + lang + '/'}profile/${username}/project-creation`)

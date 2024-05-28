@@ -35,25 +35,25 @@ class UserController extends AppController
                 $_SESSION['user']['success'] = true;
                 $_SESSION['user_activation'] = [];
 
-                $userDevice = [];
-                if (isset($_SERVER['REMOTE_ADDR'])) {
-                    $json = json_decode(file_get_contents(GEOIP . "/132.3.200.1")); // . $_SERVER['REMOTE_ADDR']
-                    $userDevice['ip'] = $json->ip;
-                    $userDevice['success'] = $json->success;
-                    if ($userDevice['success']) {
-                        $userDevice['city'] = $json->city;
-                        $userDevice['country'] = $json->country;
-                        $browser = new BrowserDetection();
-                        $userDevice['browser'] = $browser->getBrowser($_SERVER['HTTP_USER_AGENT']);
-                        $userDevice['browser'] = $userDevice['browser']['browser_title'];
-                        $userDevice['type'] = $browser->getDevice($_SERVER['HTTP_USER_AGENT']);
-                        $userDevice['type'] = $userDevice['type']['device_type'];
-                        $userDevice['OS'] = $browser->getOS($_SERVER['HTTP_USER_AGENT']);
-                        $userDevice['OS'] = $userDevice['OS']['os_title'];
-                    }
-                }
+//                $userDevice = [];
+//                if (isset($_SERVER['REMOTE_ADDR'])) {
+//                    $json = json_decode(file_get_contents(GEOIP . "/132.3.200.1")); // . $_SERVER['REMOTE_ADDR']
+//                    $userDevice['ip'] = $json->ip;
+//                    $userDevice['success'] = $json->success;
+//                    if ($userDevice['success']) {
+//                        $userDevice['city'] = $json->city;
+//                        $userDevice['country'] = $json->country;
+//                        $browser = new BrowserDetection();
+//                        $userDevice['browser'] = $browser->getBrowser($_SERVER['HTTP_USER_AGENT']);
+//                        $userDevice['browser'] = $userDevice['browser']['browser_title'];
+//                        $userDevice['type'] = $browser->getDevice($_SERVER['HTTP_USER_AGENT']);
+//                        $userDevice['type'] = $userDevice['type']['device_type'];
+//                        $userDevice['OS'] = $browser->getOS($_SERVER['HTTP_USER_AGENT']);
+//                        $userDevice['OS'] = $userDevice['OS']['os_title'];
+//                    }
+//                }
 
-                $_SESSION['user']['sessionID'] = $this->model->saveSession($userDevice, $_SESSION['user']['username']);
+//                $_SESSION['user']['sessionID'] = $this->model->saveSession($userDevice, $_SESSION['user']['username']);
             } else {
                 header('HTTP/1.0 401 Unauthorized');
                 die;

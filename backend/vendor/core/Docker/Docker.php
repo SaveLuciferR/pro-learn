@@ -47,6 +47,7 @@ class Docker
 
     public function runDockerCompose(&$output, &$error)
     {
+        $this->getPortsForProjct();
         $this->restoreSessionDocker();
         $commandDockerProject = 'docker-compose up --build -d'; //"C:\Program Files\Docker\Docker\resources\cli-plugins\docker-compose.exe"
 
@@ -66,12 +67,14 @@ class Docker
 //            } else {
 //                fwrite($pipes[0], $inputData);
 //            }
+
             fclose($pipes[0]);
 
             $output .= stream_get_contents($pipes[1]);
             fclose($pipes[1]);
 
             $error .= stream_get_contents($pipes[2]);
+//            debug($error, 1);
             fclose($pipes[2]);
 
             proc_close($process);
@@ -96,14 +99,20 @@ class Docker
     protected function getPortsForProjct()
     {
         $dockerfile = '';
-        if (file_exists($this->projectPath . '/dockerfile')) {
+        $dockerCompose = '';
+        if (file_exists($this->projectPath . '/docker-compose.yml')) {
+            $dockerCompose = file_get_contents($this->projectPath . '/docker-compose.yml');
+        } else if (file_exists($this->projectPath . '/dockerfile')) {
             $dockerfile = file_get_contents($this->projectPath . '/dockerfile');
         } else if (file_exists($this->projectPath . '/Dockerfile')) {
             $dockerfile = file_get_contents($this->projectPath . '/Dockerfile');
-        } else if (file_exists($this->projectPath . '/docker-compose.yml')) {
-
         }
-        if ($dockerfile !== '') {
+//        debug($dockerCompose, 1);
+        if ($dockerCompose !== '') {
+            preg_match_all('/\r?(\s+)ports:(\s+)?(\n(\s+)?-\s)("([0-9]+):([0-9]+)")(.*?)\n/m', $dockerCompose, $matches);
+//            debug($matches, 1);
+            $this->ports = $matches[6];
+        } else if ($dockerfile !== '') {
             preg_match_all('/(\r?\n|\r[^\s#])+EXPOSE\s([0-9]+)\n?/m', $dockerfile, $matches);
             $this->ports = $matches[2];
 //            debug($this->ports);
@@ -180,8 +189,8 @@ class Docker
             fclose($pipes[1]);
 
 
-            debug(stream_get_contents($pipes[2]));
-            $error .= stream_get_contents($pipes[2]);
+//            debug(stream_get_contents($pipes[2]));
+//            $error .= stream_get_contents($pipes[2]);
             fclose($pipes[2]);
 
             proc_close($process);

@@ -427,7 +427,7 @@ const CompilerSidebar = ({titleProject, dockerIsLoading, taskIsLoading, canBeEdi
                             <Collapse isOpened={isOpenedFiles}>
                                 <div className="compiler-sidebar-files-main scroll" data-project-element={'/'}>
                                     {Object.keys(compilerFiles).length !== 0 ? getFilesStructure :
-                                        <div>Loading...</div>}
+                                        <div>Файлов нет...</div>}
                                 </div>
                             </Collapse>
                             {portal}
