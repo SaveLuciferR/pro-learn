@@ -6,7 +6,6 @@ import {Link, useNavigate, useOutletContext, useParams} from "react-router-dom";
 import ProjectFile from "../components/Project/ProjectFile";
 import ProjectMain from "../components/Project/ProjectMain";
 import ProjectReadme from "../components/Project/ProjectReadme";
-import {saveAs} from 'file-saver';
 import ModalWindowConfirm from "../components/Modal/ModalWindowConfirm";
 
 const TemplatePage = ({isActiveSidebar}) => {
