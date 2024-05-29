@@ -26,9 +26,9 @@ const ProfileProjects = () => {
 
     return (
         <>
-            {Object.keys(projectsData).length === 0 ? (
+            {/* {Object.keys(projectsData).length === 0 ? (
                 <LoadingElement/>
-            ) : (
+            ) : ( */}
                 <div>
                     <div className="created-courses-header">
                         <div className="lessons-header-back">
@@ -52,16 +52,16 @@ const ProfileProjects = () => {
                     </div>
                     <div className="profile-projects-page">
                         <div className="profile-projects-page-main">
-                            {projectsData.length === 0 ? (
+                            {/* {projectsData.length === 0 ? (
                                 <div className="profile-none">{viewWords['tpl_profile_project_missing']} :(</div>
-                            ) : (
+                            ) : ( */}
                                 <ProfileProjectsPagination itemsPerPage={3} data={projectsData} viewWords={viewWords}/>
-                                // <SliderMain data={projectsData} sliderType="profileProjectsPage" countSlide={4} />
-                            )}
+                                {/* // <SliderMain data={projectsData} sliderType="profileProjectsPage" countSlide={4} /> */}
+                            {/* )} */}
                         </div>
                     </div>
                 </div>
-            )}
+            {/* )} */}
         </>
     );
 };

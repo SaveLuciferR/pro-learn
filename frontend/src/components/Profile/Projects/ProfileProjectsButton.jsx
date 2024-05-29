@@ -23,6 +23,8 @@ const ProfileProjectsButton = ({viewWords}) => {
         setIsOpenCreateProject(false);
     }
 
+    console.log(viewWords)
+
     const templateToProject = (isCreate) => {
         axiosClient.post(`/@${username}/template-to-project`, {
             template: currentTemplateID,

@@ -3,15 +3,9 @@ import ProfileProjectItem from './ProfileProjectItem';
 import ProfileProjectsButton from './ProfileProjectsButton';
 
 const ProfileProjectspaginationItems = ({currentItems, viewWords}) => {
-    const [projects, setProjects] = useState([]);
+    const [projects, setProjects] = useState(currentItems);
 
-    useEffect(() => {
-        setProjects((prevState) => [<ProfileProjectsButton viewWords={viewWords}/>]);
-        // console.log(projects);
-        currentItems.map((slide, i) => {
-            setProjects((prevState) => [...prevState, <ProfileProjectItem viewWords={viewWords} key={i} data={slide}/>]);
-        });
-    }, [currentItems]);
+    
 
     return (
         <>

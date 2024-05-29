@@ -65,8 +65,8 @@ const ProjectTable = ({
     <>
       <div className="project_files">
         <div className="project_files-head">
-          <span>Name</span>
-          <span>Last commit date</span>
+          <span>Название</span>
+          <span>Дата последнего изменения</span>
         </div>
         <div className="project_files-body">
           {!isMainFolder ? (

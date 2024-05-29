@@ -2,18 +2,19 @@ import {useState, useEffect} from 'react';
 import ReactPaginate from 'react-paginate';
 import LoadingElement from '../../LoadingElement';
 import ProfileProjectspaginationItems from './ProfileProjectsPaginationItems';
+import ProfileProjectsButton from './ProfileProjectsButton';
 
 const ProfileProjectsPagination = ({itemsPerPage, data, viewWords}) => {
     const [currentItems, setCurrentItems] = useState([]); //работа с пагинацией
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
-    // console.log(data);
-
+    
     useEffect(() => {
-        console.log(data);
         const endOffset = itemOffset + itemsPerPage;
-        setCurrentItems(data.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(data.length / itemsPerPage));
+        console.log(viewWords);
+        setCurrentItems(prevState => [<ProfileProjectsButton viewWords={viewWords}/>])
+        setCurrentItems(prevState => [...prevState, data.slice(itemOffset, endOffset)]);
+        setPageCount(Math.ceil(currentItems.length / itemsPerPage));
     }, [itemOffset, itemsPerPage, data]);
 
     const handlePageClick = (event) => {
@@ -24,9 +25,9 @@ const ProfileProjectsPagination = ({itemsPerPage, data, viewWords}) => {
 
     return (
         <>
-            {currentItems === null || Object.keys(data).length === 0 ? (
+            {/* {currentItems === null || Object.keys(data).length === 0 ? (
                 <LoadingElement/>
-            ) : (
+            ) : ( */}
                 <>
                     {pageCount === 0 ? <div>loading...</div> :
                         <>
@@ -49,7 +50,7 @@ const ProfileProjectsPagination = ({itemsPerPage, data, viewWords}) => {
                         </>
                     }
                 </>
-            )}
+            {/* )} */}
         </>
     );
 };

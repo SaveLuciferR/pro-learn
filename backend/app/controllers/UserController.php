@@ -629,7 +629,7 @@ class UserController extends AppController
 
 //            $mainFolder = $_POST['mainFolderProject'];
             $files = $_FILES;
-            $username = $_POST['username'];
+            $username = $_SESSION['user']['username'];
             $newProject = $_POST['newProject'];
 
             //TODO: Сделать так, чтобы проект пользователя сохранялся лишь по его нику из роутера в кеш.
