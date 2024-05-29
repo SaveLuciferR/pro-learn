@@ -103,7 +103,7 @@ const ProjectPage = ({isActiveSidebar}) => {
                                     <div className="project__action">
                                         <div className="project__action-center">
                                             <button className="btn  primary  big center"
-                                                    onClick={() => onClickNavCompiler()}>Открыть в компиляторе
+                                                    onClick={() => onClickNavCompiler()}>Открыть в онлайн редакторе
                                             </button>
                                             <div className="project__action-links center btn btn-white">
                                                 <button className="project__action-links-item"
