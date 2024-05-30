@@ -10,11 +10,17 @@ use core\Language as CoreLanguage;
 use app\models\User;
 use RedBeanPHP\R;
 
+use OpenApi\Attributes as OA;
+
+#[OA\Info(version: "0.1", title: "My First API", description: "API сайта для обучения программированию")]
 
 /** Контроллер, который наследуется от контроллера фреймворка.
  * Здесь прописана логика для всех контроллеров общего доступа.
  * От AppController идет наследование на все контроллеры общего доступа.
  */
+
+
+
 
 class AppController extends Controller
 {

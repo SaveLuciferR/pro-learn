@@ -5,6 +5,9 @@ namespace core;
 
 /** Основной класс фреймворка. В нем идет запись параметров, создание класса отловли ошибок и запись url-адреса */
 
+/**
+ * @OA\Info(title="dsds", version="1.0")
+ */
 class App
 {
     public static $app;
@@ -29,7 +32,7 @@ class App
     {
         $params = require_once CONFIG . '/params.php';
         if (!empty($params)) {
-            foreach($params as $k => $v) {
+            foreach ($params as $k => $v) {
                 self::$app->setProperty($k, $v);
             }
         }

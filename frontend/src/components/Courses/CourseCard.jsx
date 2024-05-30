@@ -132,7 +132,7 @@ const CourseCard = ({ obj, isSlider, viewWords }) => {
             />
           </svg>
           <p>
-            {obj.final_projects} {viewWords['tpl_course-card_finish-project']}
+            {viewWords['tpl_course-card_finish-project']}: {obj.final_projects} 
           </p>
         </div>
       </div>

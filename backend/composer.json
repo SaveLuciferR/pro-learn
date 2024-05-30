@@ -9,6 +9,7 @@
     "gabordemooij/redbean": "^v5.7.1",
     "foroco/php-browser-detection": "^2.7",
     "phpmailer/phpmailer": "^6.9",
-    "ext-zip": "*"
+    "ext-zip": "*",
+    "zircote/swagger-php": "^4.9"
   }
 }

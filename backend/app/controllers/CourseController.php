@@ -2,13 +2,37 @@
 
 namespace app\controllers;
 
+
 use app\controllers\AppController;
 use core\App;
 use core\Language;
 
+use OpenApi\Attributes as OA;
+
 class CourseController extends AppController
 {
+    #[OA\Get(
+        path: '/{langCode}/course',
+        description: 'Получает все курсы, что были опубликованы. Если пользователь авторизован, то пытается найти курсы, что он проходит или проходил',
+        summary: 'Все курсы',
+        tags: ["Course"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Код языка (ru, en)",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
 
+            ),
+
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект со всеми найденными курсами'),
+        ]
+    )]
     /* Вызывается, если в url адресе код_языка/course */
     public function indexAction()
     {
@@ -34,6 +58,38 @@ class CourseController extends AppController
         echo json_encode(array('course' => $course, 'viewWords' => Language::$langView), JSON_UNESCAPED_SLASHES);
     }
 
+
+    #[OA\Get(
+        path: '/{langCode}/course/{slug}',
+        description: 'Получает всю информацию о нужном курсе или 404 ошибка',
+        summary: 'Получает информацию о курсе',
+        tags: ["Course"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Оставить пустым, если нужен базовый язык",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+            new OA\Parameter(
+                name: 'slug',
+                description: "slug-курса",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект со всеми найденными курсами'),
+            new OA\Response(response: 404, description: 'Возврашает 404 ошибку, если курс не был найден, или он не был опубликован')
+        ]
+    )]
 
     /* Вызывается, если в url адресе код_языка/course/slug_курса */
     public function viewAction()
@@ -108,6 +164,58 @@ class CourseController extends AppController
 
         echo json_encode(array('course' => $course), JSON_UNESCAPED_SLASHES);
     }
+
+
+    #[OA\Get(
+        path: '/{langCode}/course/{slug}/lessons',
+        description: 'Получает всю информацию о уроке курса, если пользователь авторизован',
+        summary: 'Получает информацию о уроке курса',
+        tags: ["Course"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Оставить пустым, если нужен базовый язык",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+            new OA\Parameter(
+                name: 'slug',
+                description: "slug-курса",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+            new OA\Parameter(
+                name: 'block',
+                description: "Номер блока курса. Если не заполнять, то выдаст текущий блок и урок",
+                in: "query",
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer'
+                )
+            ),
+            new OA\Parameter(
+                name: 'lesson',
+                description: "Номер урока в блоке курса. Если не заполнять, то выдаст текущий блок и урок",
+                in: "query",
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer'
+                )
+            ),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект с информацией о уроке'),
+            new OA\Response(response: 401, description: 'Возвращает 401 ошибку, если пользователь не был авторизован'),
+            new OA\Response(response: 404, description: 'Возврашает 404 ошибку, если урок или курс не был найден, или он не был опубликован')
+        ]
+    )]
 
     public function studyAction()
     {
@@ -186,6 +294,68 @@ class CourseController extends AppController
         }
 
     }
+
+
+    #[OA\Get(
+        path: '/{langCode}/course/{slug}/lessons/study-check',
+        description: 'Проверяет ответ в уроке курса, если пользователь авторизован',
+        summary: 'Проверяет ответ в уроке курса',
+        tags: ["Course"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Оставить пустым, если нужен базовый язык",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+            new OA\Parameter(
+                name: 'slug',
+                description: "slug-курса",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+            new OA\Parameter(
+                name: 'block',
+                description: "Номер блока курса. Если не заполнять, то выдаст текущий блок и урок",
+                in: "query",
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer'
+                )
+            ),
+            new OA\Parameter(
+                name: 'lesson',
+                description: "Номер урока в блоке курса. Если не заполнять, то выдаст текущий блок и урок",
+                in: "query",
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer'
+                )
+            ),
+            new OA\Parameter(
+                name: 'answer',
+                description: 'Ответ от пользователя. Если это теория, то null. Если это один ответ, то ключ овета. Если входные данные, то все данные через заглушку. Если несколько ответов, то ключи ответов через запятую',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'mixedList'
+                )
+            )
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект со всеми найденными курсами'),
+            new OA\Response(response: 400, description: 'Возвращает 400 ошибку, если не были переданы query параметры'),
+            new OA\Response(response: 401, description: 'Возвращает 401 ошибку, если пользователь не был авторизован'),
+            new OA\Response(response: 404, description: 'Возврашает 404 ошибку, если урок или курс не был найден, или он не был опубликован')
+        ]
+    )]
 
     public function studyCheckAction()
     {

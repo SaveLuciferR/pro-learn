@@ -32,7 +32,11 @@
 /* КАТЕГОРИЯ СО ВСЕМИ КУРСАМИ */
 
 .courses-all {
+  margin: 0 auto;
+  
   padding-top: 68px;
+
+  max-width: 1200px;
 
   &-title {
     position: relative;

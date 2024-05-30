@@ -2,7 +2,6 @@
 
 namespace core;
 
-
 /** Абстрактный класс конроллера */
 
 abstract class Controller
