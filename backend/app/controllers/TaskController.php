@@ -3,14 +3,75 @@
 namespace app\controllers;
 
 use core\App;
+use OpenApi\Attributes as OA;
 
 class TaskController extends AppController
 {
+
+    #[OA\Get(
+        path: '/{langCode}/task',
+        description: 'Получает все задачи, что были опубликованы',
+        summary: 'Все задачи',
+        tags: ["Task"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Код языка (ru, en)",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект с выводом и ошибками при запуске задачи'),
+        ]
+    )]
     public function indexAction()
     {
+        $tasks = $this->model->getAllTasks(App::$app->getProperty('language')['id']);
 
+        foreach ($tasks as $k => &$v) {
+            $v['date_of_publication'] = date('d.m.Y', strtotime($v['date_of_publication']));
+            $v['tags'] = $this->model->getTaskTagByID($v['id']);
+            $v['lang'] = $this->model->getTaskLangProgByID($v['id']);
+        }
+
+        echo json_encode(array('tasks' => $tasks), JSON_UNESCAPED_SLASHES);
     }
 
+
+    #[OA\Get(
+        path: '/{langCode}/task/{slug}',
+        description: 'Получает задачу по ее слагу',
+        summary: 'Страница задачи',
+        tags: ["Task"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Код языка (ru, en)",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+            new OA\Parameter(
+                name: 'slug',
+                description: "Слаг задачи",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект с выводом и ошибками при запуске задачи'),
+            new OA\Response(response: 404, description: 'Возвращает 404 ошибку, если не была найдена задача, или она не опубликована'),
+        ]
+    )]
     public function viewAction()
     {
         $task = $this->model->getTaskBySlug($this->route['slug'], App::$app->getProperty('language')['id']);
@@ -28,6 +89,38 @@ class TaskController extends AppController
         echo json_encode(array('task' => $task), JSON_UNESCAPED_SLASHES);
     }
 
+
+    #[OA\Get(
+        path: '/{langCode}/task/{slug}/solve',
+        description: 'Записывает в бд, что пользователь начал решать задачу',
+        summary: 'Решение задачи',
+        tags: ["Task"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Код языка (ru, en)",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+            new OA\Parameter(
+                name: 'slug',
+                description: "Слаг задачи",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект с выводом и ошибками при запуске задачи'),
+            new OA\Response(response: 401, description: 'Возвращает 401 ошибку, если пользователь не был авторизован'),
+            new OA\Response(response: 404, description: 'Возвращает 404 ошибку, если не была найдена задача, или она не опубликована'),
+        ]
+    )]
     public function solveTaskAction()
     {
         // Добавление проекта с файлами из темплейта

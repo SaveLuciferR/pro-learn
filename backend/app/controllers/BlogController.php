@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models\Blog;
 use core\App;
 
+use OpenApi\Attributes as OA;
+
 /** @property Blog $model */
 
 
@@ -12,6 +14,29 @@ use core\App;
 
 class BlogController extends AppController
 {
+
+    #[OA\Get(
+        path: '/{langCode}/blog',
+        description: 'Получает все статьи, что были опубликованы.',
+        summary: 'Все статьи',
+        tags: ["Blog"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Код языка (ru, en)",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект со всеми найденными статьями'),
+        ]
+    )]
 
     /** Вызывается, если в url код_языка/blog */
 
@@ -32,6 +57,40 @@ class BlogController extends AppController
         echo json_encode(array('allBlogs' => $allBlogItem, 'popularBlogs' => $popularBlogs), JSON_UNESCAPED_SLASHES);
     }
 
+
+    #[OA\Get(
+        path: '/{langCode}/blog/slug',
+        description: 'Получает все статьи, что были опубликованы.',
+        summary: 'Все статьи',
+        tags: ["Blog"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Код языка (ru, en)",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+            new OA\Parameter(
+                name: 'slug',
+                description: "Slug-курса",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект со всеми найденными статьями'),
+            new OA\Response(response: 404, description: 'Возвращает 404 ошибку, если статья не была найдена или не была опубликована'),
+        ]
+    )]
 
     /** Вызывается, если в url код_языка/blog/url_статьи */
 

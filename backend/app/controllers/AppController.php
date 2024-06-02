@@ -12,7 +12,7 @@ use RedBeanPHP\R;
 
 use OpenApi\Attributes as OA;
 
-#[OA\Info(version: "0.1", title: "My First API", description: "API сайта для обучения программированию")]
+#[OA\Info(version: "1.0", description: "API сайта для обучения программированию", title: "API For ProLearn")]
 
 /** Контроллер, который наследуется от контроллера фреймворка.
  * Здесь прописана логика для всех контроллеров общего доступа.

@@ -10,11 +10,23 @@ use foroco\BrowserDetection;
 use http\Header;
 use PHPMailer\PHPMailer\PHPMailer;
 
+use OpenApi\Attributes as OA;
+
 /** @property User $model */
 
 /** Контроллер общего доступа для работы с пользователями (регистрация, авторизация, профиль) */
 class UserController extends AppController
 {
+
+    #[OA\Get(
+        path: '/user/auth',
+        description: 'Проверяет авторизован ли пользователь, если да, выведет информацию о нем',
+        summary: 'Проверка авторизации',
+        tags: ["User"],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект со всей базовой информацией, включая файлы проекта в виде дерева'),
+        ]
+    )]
     public function authAction()
     {
         echo json_encode(array(
@@ -25,6 +37,40 @@ class UserController extends AppController
     }
 
     //TODO Сделать повторный посыл кода
+
+
+    #[OA\Post(
+        path: '/user/login',
+        description: 'Авторизация пользователя и запись его в куки',
+        summary: 'Авторизация пользователя',
+        requestBody: new OA\RequestBody(
+            description: 'Логин и пароль от аккаунта',
+            required: true,
+            content: new OA\JsonContent(
+                title: 'Логин и пароль',
+                required: ['email', 'password', 'rememberMe'],
+                properties: [
+                    new OA\Property(
+                        property: 'email',
+                        type: 'string'
+                    ),
+                    new OA\Property(
+                        property: 'password',
+                        type: 'string'
+                    ),
+                    new OA\Property(
+                        property: 'rememberMe',
+                        type: 'boolean'
+                    ),
+                ]
+            )
+        ),
+        tags: ["User"],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает проверку на авторизацию пользователя'),
+            new OA\Response(response: 400, description: 'Возвращает 400 ошибку, если были неправильные данные')
+        ]
+    )]
 
     public function loginAction()
     {
@@ -71,6 +117,40 @@ class UserController extends AppController
         }
     }
 
+
+    #[OA\Post(
+        path: '/user/register',
+        description: 'Регистрация пользователя и посыл кода на почту',
+        summary: 'Регистрация пользователя',
+        requestBody: new OA\RequestBody(
+            description: 'Псевдоним, почта и пароль',
+            required: true,
+            content: new OA\JsonContent(
+                title: 'Логин и пароль',
+                required: ['mail', 'password', 'username'],
+                properties: [
+                    new OA\Property(
+                        property: 'mail',
+                        type: 'string'
+                    ),
+                    new OA\Property(
+                        property: 'password',
+                        type: 'string'
+                    ),
+                    new OA\Property(
+                        property: 'username',
+                        type: 'string'
+                    ),
+                ]
+            )
+        ),
+        tags: ["User"],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает при успешной регистрации и высланным кодом'),
+            new OA\Response(response: 400, description: 'Возвращает 400 ошибку, если почта или псевдоним были заняты или почта недействительна')
+        ]
+    )]
+
     public function registerAction()
     {
         $userParam = json_decode(file_get_contents("php://input"), true);
@@ -111,6 +191,33 @@ class UserController extends AppController
             die;
         }
     }
+
+
+    #[OA\Post(
+        path: '/user/confirm',
+        description: 'Подтверждение регистрации пользователя',
+        summary: 'Подтвеждение пользователя',
+        requestBody: new OA\RequestBody(
+            description: 'Код',
+            required: true,
+            content: new OA\JsonContent(
+                title: 'Код',
+                required: ['code'],
+                properties: [
+                    new OA\Property(
+                        property: 'code',
+                        type: 'string'
+                    ),
+
+                ]
+            )
+        ),
+        tags: ["User"],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает при успешной активации аккаунта'),
+            new OA\Response(response: 400, description: 'Возвращает 400 ошибку, если код неверный')
+        ]
+    )]
 
     public function confirmAction()
     {
@@ -229,6 +336,17 @@ class UserController extends AppController
             die;
         }
     }
+
+
+    #[OA\Post(
+        path: '/user/logout',
+        description: 'Выход из аккаунта пользователя',
+        summary: 'Выход из аккаунта',
+        tags: ["User"],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает при успешном выходе'),
+        ]
+    )]
 
     public function logoutAction()
     {

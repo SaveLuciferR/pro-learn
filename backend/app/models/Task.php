@@ -6,6 +6,16 @@ use RedBeanPHP\R;
 
 class Task extends AppModel
 {
+    public function getAllTasks($lang)
+    {
+        return R::getAll("SELECT c.id, c.slug, difficulty, u.username, u.role, c.views, cd.title, cd.content,
+                                cd.description, cd.keywords, c.date_of_publication
+                                FROM challenge c JOIN challenge_description cd ON cd.challenge_id = c.id
+                                JOIN user u ON u.id = c.user_id
+                                JOIN status s ON s.id = c.status_id
+                                WHERE c.for_course = 0 AND cd.language_id = ? AND s.code = 'public'", [$lang]);
+    }
+
     public function getTaskBySlug($slug, $lang)
     {
         return R::getRow("SELECT c.id, c.difficulty, c.date_of_publication, cd.title, c.for_course,
