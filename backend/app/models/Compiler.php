@@ -28,16 +28,11 @@ class Compiler extends AppModel
     protected function getInfoDirectory($path, $url, $localPath = ""): array|false
     {
         if (!file_exists($path)) {
-//            debug($path, 1);
             return false;
         }
         $files = scandir($path);
-
-//        debug($files, 1);
         array_shift($files);
         array_shift($files);
-
-        // debug($files, 1);
 
         $tree = array();
 
@@ -58,7 +53,6 @@ class Compiler extends AppModel
                 if (!isset($tree[$v]['language'])) {
                     $tree[$v]['language'] = $tree[$v]['extension'];
                 }
-//                $tree[$v]['language'] = substr(strrchr($v, '.'), 1);
                 if ($tree[$v]['language'] === 'png' ||
                     $tree[$v]['language'] === 'jpg' ||
                     $tree[$v]['language'] === 'svg' ||
@@ -67,9 +61,7 @@ class Compiler extends AppModel
                     $tree[$v]['type'] = 'img';
                     $tree[$v]['body'] = $url . '/' . $v;
                 } else {
-//                    $tree[$v]['body'] = utf8_encode(file_get_contents($path . '/' . $v));
                     $tree[$v]['body'] = file_get_contents($path . '/' . $v);
-//                    $tree[$v]['body'] = mb_convert_encoding(file_get_contents($path . '/' . $v), 'UTF-8', 'auto');
                 }
             }
         }
@@ -89,8 +81,6 @@ class Compiler extends AppModel
         ksort($tempFile);
 
         $tree = array_merge($tempDirectory, $tempFile);
-
-//        debug($tree, 1);
 
         return $tree;
     }
@@ -149,8 +139,6 @@ class Compiler extends AppModel
 
     public function startOrUpdateDockerContainer($pathProject, &$output, &$error, $data = [])
     {
-        $retval = null;
-
         $tasks = $this->getTasksForProject($pathProject);
         if (!$this->dockerExists($pathProject)) {
             return -1;
@@ -203,7 +191,7 @@ class Compiler extends AppModel
         }
     }
 
-    public function getSolveTask($userID, $slug)
+    public function getSolveTask($slug)
     {
         return R::getRow("SELECT c.id, cd.title, cd.content, i.input_data, i.output_data
                                 FROM challenge c JOIN challenge_description cd ON cd.challenge_id = c.id

@@ -26,21 +26,6 @@ class DataBase
         DataBase::run($dataBase);
     }
 
-//    public static function refreshDataBase($user = 'root', $password = '', $dsn = 'mysql:host=localhost;dbname=ProLearn;charset=utf8')
-//    {
-//        $dataBase['dsn'] = $dsn;
-//        $dataBase['user'] = $user;
-//        $dataBase['password'] = $password;
-//
-//        // debug($dataBase, 1);
-//
-//        R::close();
-//
-//        redirect();
-//
-//        DataBase::run($dataBase);
-//    }
-
 
     /** Функция для подключения к базе данных
      * @param array $dataBase Параметры для подключения к базе данных
@@ -60,3 +45,22 @@ class DataBase
         }
     }
 }
+
+
+
+
+
+//    public static function refreshDataBase($user = 'root', $password = '', $dsn = 'mysql:host=localhost;dbname=ProLearn;charset=utf8')
+//    {
+//        $dataBase['dsn'] = $dsn;
+//        $dataBase['user'] = $user;
+//        $dataBase['password'] = $password;
+//
+//        // debug($dataBase, 1);
+//
+//        R::close();
+//
+//        redirect();
+//
+//        DataBase::run($dataBase);
+//    }

@@ -45,10 +45,12 @@ class Docker
         }
     }
 
+
+    //$this->restoreSessionDocker();
+
     public function runDockerCompose(&$output, &$error)
     {
         $this->getPortsForProjct();
-        $this->restoreSessionDocker();
         $commandDockerProject = 'docker-compose up --build -d'; //"C:\Program Files\Docker\Docker\resources\cli-plugins\docker-compose.exe"
 
         set_time_limit(0);
@@ -60,40 +62,13 @@ class Docker
 
 //        debug($cmd, 1);
         if (is_resource($process)) {
-//            if (is_array($inputData)) {
-//                foreach ($inputData as $input) {
-//                    fwrite($pipes[0], $input . PHP_EOL);
-//                }
-//            } else {
-//                fwrite($pipes[0], $inputData);
-//            }
-
             fclose($pipes[0]);
-
             $output .= stream_get_contents($pipes[1]);
             fclose($pipes[1]);
-
             $error .= stream_get_contents($pipes[2]);
-//            debug($error, 1);
             fclose($pipes[2]);
-
             proc_close($process);
-//
-//            echo json_encode(array('data' => $output));
-////
-//            if (!empty($error)) {
-//                echo json_encode(array('data' => 'Error: ' . $error), JSON_UNESCAPED_SLASHES);
-//            }
         }
-
-//        while (!feof($process)) {
-//            echo json_encode(array('data' => fread($process, 4096)), JSON_UNESCAPED_SLASHES);
-//            flush();
-//            ob_flush();
-//        }
-
-//        exec($this->$commandPathProject . " && " . $commandDockerProject, $output, $retval);
-//        debug($output);
     }
 
     protected function getPortsForProjct()
@@ -107,16 +82,13 @@ class Docker
         } else if (file_exists($this->projectPath . '/Dockerfile')) {
             $dockerfile = file_get_contents($this->projectPath . '/Dockerfile');
         }
-//        debug($dockerCompose, 1);
+        
         if ($dockerCompose !== '') {
             preg_match_all('/\r?(\s+)ports:(\s+)?(\n(\s+)?-\s)("([0-9]+):([0-9]+)")(.*?)\n/m', $dockerCompose, $matches);
-//            debug($matches, 1);
             $this->ports = $matches[6];
         } else if ($dockerfile !== '') {
             preg_match_all('/(\r?\n|\r[^\s#])+EXPOSE\s([0-9]+)\n?/m', $dockerfile, $matches);
             $this->ports = $matches[2];
-//            debug($this->ports);
-//            debug($matches, 1);
         }
     }
 
@@ -162,59 +134,24 @@ class Docker
         }
     }
 
+    //$this->restoreSessionDocker();
+
     public function createImage(&$output, &$error)
     {
-        $this->restoreSessionDocker();
-
         $this->getPortsForProjct();
         $commandCreateImages = 'docker build . -t ' . $this->image . ($this->tag !== '' ? (':' . $this->tag) : '');
         $cmd = $this->commandPathProject . ' && ' . $commandCreateImages;
 
-
-//        exec($cmd);
-
         $process = proc_open($cmd, $this->descriptorspec, $pipes);
 
         if (is_resource($process)) {
-//            if (is_array($inputData)) {
-//                foreach ($inputData as $input) {
-//                    fwrite($pipes[0], $input . PHP_EOL);
-//                }
-//            } else {
-//                fwrite($pipes[0], $inputData);
-//            }
             fclose($pipes[0]);
-
-//            $output .= stream_get_contents($pipes[1]);
             fclose($pipes[1]);
-
-
-//            debug(stream_get_contents($pipes[2]));
-//            $error .= stream_get_contents($pipes[2]);
+            $error .= stream_get_contents($pipes[2]);
             fclose($pipes[2]);
 
             proc_close($process);
-//
-//            echo json_encode(array('data' => $output));
-////
-//            if (!empty($error)) {
-//                echo json_encode(array('data' => 'Error: ' . $error), JSON_UNESCAPED_SLASHES);
-//            }
         }
-//        debug(1, 1);
-
-
-//        $process = popen($cmd, 'r');
-//        debug($cmd, 1);
-
-//        debug(, 1);
-
-//        echo "<pre>";
-//        while (!feof($process)) {
-//            echo json_encode(array('data' => fread($process, 4096)), JSON_UNESCAPED_SLASHES);
-//            flush();
-//            ob_flush();
-//        }
     }
 
     public static function execIntoContainer($cmd)
@@ -237,10 +174,7 @@ class Docker
         $commandRunContainer = 'docker run -i --rm ' . $commandPorstContainer . ' --name ' . $this->container . ' ' .
             $this->image . ($this->tag !== '' ? (':' . $this->tag) : ''); //-d -it
 
-//        debug($commandRunContainer, 1);
-
         $process = proc_open($commandRunContainer, $this->descriptorspec, $pipes);
-
         if (is_resource($process)) {
             if (is_array($inputData)) {
                 foreach ($inputData as $input) {
@@ -251,7 +185,6 @@ class Docker
             }
             fclose($pipes[0]);
 
-//            debug(stream_get_contents($pipes[1]));
             $output = stream_get_contents($pipes[1]);
             fclose($pipes[1]);
 
@@ -259,12 +192,6 @@ class Docker
             fclose($pipes[2]);
 
             proc_close($process);
-
-//            echo json_encode(array('data' => $output));
-//
-//            if (!empty($errors)) {
-//                echo json_encode(array('data' => 'Error: ' . $errors), JSON_UNESCAPED_SLASHES);
-//            }
         }
     }
 

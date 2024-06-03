@@ -124,7 +124,6 @@ class CompilerController extends AppController
         $success = true;
         $error = "";
         $taskInputOutputData = $this->model->getDataSolutionTask($this->route['slugTask']);
-//        debug($taskInputOutputData, 1);
 
         foreach ($taskInputOutputData as $k => &$v) {
             $v['input_data'] = json_decode($v['input_data'], true);
@@ -151,7 +150,7 @@ class CompilerController extends AppController
     public function solveTaskAction()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['task'])) {
-            $task = $this->model->getSolveTask($_SESSION['user']['id'], $_GET['task']);
+            $task = $this->model->getSolveTask($_GET['task']);
             if ($task) {
                 if ($task['input_data']) {
                     $task['input_data'] = json_decode($task['input_data'], true);
@@ -160,7 +159,6 @@ class CompilerController extends AppController
                 if ($task['output_data']) {
                     $task['output_data'] = json_decode($task['output_data'], true);
                 }
-//                debug(json_encode(array('task' => $task), JSON_UNESCAPED_SLASHES), 1);
                 echo json_encode(array('task' => $task), JSON_UNESCAPED_SLASHES);
             } else {
                 header('HTTP/1.0 404 Not Found');
@@ -291,8 +289,7 @@ class CompilerController extends AppController
 
         $namesPath = explode('/', $file['path']);
         $namesTo = explode('/', $file['to']);
-//        debug($namesPath);
-//        debug($namesTo);
+        
         if (is_dir($pathProject . $file['to'])) {
             $this->model->copyFileOrDir(
                 $pathProject . $file['path'],
