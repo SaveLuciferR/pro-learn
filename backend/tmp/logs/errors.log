@@ -4031,3 +4031,15 @@
 =================
 [2024-05-29 20:36:34] Текст ошибки: Undefined array key "rememberMe" | Файл: D:\OSPanel\home\pro-learn\backend\app\controllers\UserController.php | Строка: 34
 =================
+[2024-06-03 17:18:40] Текст ошибки: Страница не найдена | Файл: D:\OSPanel\home\pro-learn\backend\vendor\core\Router.php | Строка: 100
+=================
+[2024-06-03 17:23:36] Текст ошибки: Страница не найдена | Файл: D:\OSPanel\home\pro-learn\backend\vendor\core\Router.php | Строка: 100
+=================
+[2024-06-03 17:55:10] Текст ошибки: Undefined array key "type" | Файл: D:\OSPanel\home\pro-learn\backend\app\controllers\CompilerController.php | Строка: 298
+=================
+[2024-06-04 12:16:51] Текст ошибки: copy(D:\OSPanel\home\pro-learn\backend/public/projects/user1/sssssss/old-folder/go-to-folder): Failed to open stream: No such file or directory | Файл: D:\OSPanel\home\pro-learn\backend\app\models\Compiler.php | Строка: 232
+=================
+[2024-06-04 12:24:51] Текст ошибки: Страница не найдена | Файл: D:\OSPanel\home\pro-learn\backend\vendor\core\Router.php | Строка: 100
+=================
+[2024-06-04 12:24:51] Текст ошибки: Страница не найдена | Файл: D:\OSPanel\home\pro-learn\backend\vendor\core\Router.php | Строка: 100
+=================
