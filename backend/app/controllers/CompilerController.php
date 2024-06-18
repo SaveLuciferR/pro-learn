@@ -4,8 +4,53 @@ namespace app\controllers;
 
 use app\controllers\AppController;
 
+use OpenApi\Attributes as OA;
+
 class CompilerController extends AppController
 {
+
+    #[OA\Get(
+        path: '/{langCode}/compiler/@{username}/{slugProject}',
+        description: 'Получает базовую информацию о проекте пользователя для компилятора',
+        summary: 'Базовая информация для компилятора',
+        tags: ["Compiler"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Код языка (ru, en)",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+            new OA\Parameter(
+                name: 'username',
+                description: "Псевдоним пользователя",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+            new OA\Parameter(
+                name: 'slugProject',
+                description: "Slug-проекта",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект со всей базовой информацией, включая файлы проекта в виде дерева'),
+            new OA\Response(response: 404, description: 'Возвращает 404 ошибку, если проект был приватным и его смотрим не владелец или его не существует'),
+        ]
+    )]
+
     public function indexAction()
     {
         $isOnwer = isset($_SESSION['user']) && $_SESSION['user']['username'] === $this->route['username'];
@@ -55,6 +100,58 @@ class CompilerController extends AppController
         ), JSON_UNESCAPED_SLASHES);
     }
 
+
+    #[OA\Get(
+        path: '/{langCode}/compiler/@{username}/{slugProject}/start-task',
+        description: 'Получает базовую информацию о проекте пользователя для компилятора',
+        summary: 'Базовая информация для компилятора',
+        tags: ["Compiler"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Код языка (ru, en)",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+            new OA\Parameter(
+                name: 'username',
+                description: "Псевдоним пользователя",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+            new OA\Parameter(
+                name: 'slugProject',
+                description: "Slug-проекта",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+            new OA\Parameter(
+                name: 'task',
+                description: "ключ задачи проекта",
+                in: "query",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект с выводом и ошибками при запуске задачи'),
+            new OA\Response(response: 404, description: 'Возвращает 404 ошибку, если проект был приватным и его смотрим не владелец или его не существует'),
+        ]
+    )]
+
     public function startTaskAction()
     {
         if (isset($_GET['task'])) {
@@ -82,6 +179,49 @@ class CompilerController extends AppController
             echo json_encode(array('output' => $output, 'error' => $error));
         }
     }
+
+
+    #[OA\Get(
+        path: '/{langCode}/compiler/@{username}/{slugProject}/start-docker-session',
+        description: 'Получает базовую информацию о проекте пользователя для компилятора',
+        summary: 'Базовая информация для компилятора',
+        tags: ["Compiler"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Код языка (ru, en)",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+            new OA\Parameter(
+                name: 'username',
+                description: "Псевдоним пользователя",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+            new OA\Parameter(
+                name: 'slugProject',
+                description: "Slug-проекта",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект с выводом и ошибками при запуске проекта, а также доступные порты'),
+            new OA\Response(response: 404, description: 'Возвращает 404 ошибку, если проект был приватным и его смотрим не владелец или его не существует'),
+        ]
+    )]
 
     public function startDockerSessionAction()
     {

@@ -4,6 +4,7 @@ import axiosClient from '../axiosClient';
 import TaskMainCard from '../components/Task/TaskMainCard';
 /* ICONS */
 import { FiFilter } from 'react-icons/fi';
+import LoadingElement from '../components/LoadingElement';
 
 const TaskPage = ({ isActiveSidebar, isCompiler }) => {
   const { activeSidebar, activeCompiler } = useOutletContext();
@@ -14,20 +15,31 @@ const TaskPage = ({ isActiveSidebar, isCompiler }) => {
 
   const [tasks, setTasks] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    axiosClient.get(`${lang === undefined ? '/' : '/' + lang + '/'}task`).then((res) => {
-      console.log(res);
-    });
+    axiosClient
+      .get(`${lang === undefined ? '/' : '/' + lang + '/'}task`)
+      .then((res) => {
+        setTasks(res.data.tasks);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [lang]);
+
+  if (isLoading) {
+    return <LoadingElement />;
+  }
 
   return (
     <div className="courses">
       <div className="courses-header">
         <p className="courses-header-title">_Задачи</p>
-        {/* <p className="courses-header-desc">
+        <p className="courses-header-desc">
           // Цель этого раздела - предоставить как можно более грамотную и структурированную
           информацию для обучения языков программирования и смежным технологиям.
-        </p> */}
+        </p>
       </div>
       <div className="courses-all">
         <div className="courses-all-title">
@@ -37,11 +49,9 @@ const TaskPage = ({ isActiveSidebar, isCompiler }) => {
           </button>
         </div>
         <div className="courses-all-main">
-          <TaskMainCard />
-          <TaskMainCard />
-          <TaskMainCard />
-          <TaskMainCard />
-          <TaskMainCard />
+          {tasks.map((item, i) => (
+            <TaskMainCard key={i} data={item} />
+          ))}
         </div>
         <div className="courses-all-bottom">
           <p className="courses-all-bottom-showed">Показано 10 из 10 записей</p>

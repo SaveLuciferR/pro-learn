@@ -6,10 +6,33 @@ namespace app\controllers;
 use core\App;
 use core\Language;
 use RedUNIT\Base\Indexes;
+use OpenApi\Attributes as OA;
 
 /** Котроллер, который отвечает за смену языка */
 class LanguageController extends AppController
 {
+
+    #[OA\Get(
+        path: '/{langCode}/language',
+        description: 'Получает всю информацию о языках.',
+        summary: 'Получает всю информацию о языках',
+        tags: ["Language"],
+        parameters: [
+            new OA\Parameter(
+                name: 'langCode',
+                description: "Код языка (ru, en)",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+
+            ),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Возвращает JSON-объект с выводом и ошибками при запуске задачи'),
+        ]
+    )]
 
     public function indexAction()
     {
