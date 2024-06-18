@@ -24,10 +24,10 @@ const TaskPage = ({ isActiveSidebar, isCompiler }) => {
     <div className="courses">
       <div className="courses-header">
         <p className="courses-header-title">_Задачи</p>
-        <p className="courses-header-desc">
+        {/* <p className="courses-header-desc">
           // Цель этого раздела - предоставить как можно более грамотную и структурированную
           информацию для обучения языков программирования и смежным технологиям.
-        </p>
+        </p> */}
       </div>
       <div className="courses-all">
         <div className="courses-all-title">

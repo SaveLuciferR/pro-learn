@@ -1,4 +1,4 @@
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -61,9 +61,9 @@ const Sidebar = () => {
               </svg>
             </div>
           </Link>
-          <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}blog`} className="sidebar_btn">
+          {/* <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}blog`} className="sidebar_btn">
             <div className="sidebar_btn__item">
-              {/* Сообщество */}
+              {/* Сообщество
               <svg
                 onClick={() => navigate(`${lang === undefined ? '/' : '/' + lang + '/'}blog`)}
                 width="24"
@@ -100,7 +100,7 @@ const Sidebar = () => {
                 />
               </svg>
             </div>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </nav>

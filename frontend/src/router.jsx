@@ -137,10 +137,10 @@ const router = createBrowserRouter([
         path: 'user/feedback', //adaptive: +
         element: <Feedback />,
       },
-      {
-        path: 'blog',
-        element: <BlogPage />,
-      },
+      // {
+      //   path: 'blog',
+      //   element: <BlogPage />,
+      // },
       {
         path: 'profile/:username', //adaptive: +
         element: <ProfilePage isActiveSidebar={false} isCompiler={false} />,
@@ -153,10 +153,10 @@ const router = createBrowserRouter([
             path: 'created-courses', //adaptive: +
             element: <ProfileCreatedCourses />,
           },
-          {
-            path: 'questions', //adaptive: +
-            element: <ProfileQuestionsMain />,
-          },
+          // {
+          //   path: 'questions', //adaptive: +
+          //   element: <ProfileQuestionsMain />,
+          // },
           {
             path: 'user-tasks', //adaptive: +
             element: <ProfileUserTasks />,
@@ -281,7 +281,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <NotFoundPage isPage={true}/>,
+    element: <NotFoundPage isPage={true} />,
   },
 ]);
 

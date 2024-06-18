@@ -1,10 +1,13 @@
 import { Link, useParams } from 'react-router-dom';
 import img from '../../../avatar.png';
+import defaultBackground from '../../../Background.svg';
+import defaultAvatar from '../../../AvatarProfile.png';
 import { useEffect, useState, useRef } from 'react';
 import axiosClient from '../../../axiosClient';
 
 import ProfilePopUpSidebar from '../ProfilePopUpSidebar';
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
+import LoadImage from '../../Component/LoadImage';
 
 /* ICONS */
 import { FiMenu } from 'react-icons/fi';
@@ -107,7 +110,11 @@ const ProfileSettingsUserMain = ({ data, viewWords }) => {
     <div className="profile-settings-main">
       <label className="profile-settings-main-header input-file btn">
         {/*<div className={"profile-settings-main-header-container"}>*/}
-        <img src={headUrl} alt={'header'} />
+        <LoadImage
+          imageurl={headUrl}
+          defaultImage={defaultBackground}
+          altDefault={'default-background'}
+        />
         {/*</div>*/}
         <input
           type={'file'}
@@ -177,7 +184,11 @@ const ProfileSettingsUserMain = ({ data, viewWords }) => {
       <div className="profile-settings-main-main">
         <div className="profile-settings-main-main-avatar">
           <div className={'profile-settings-main-main-avatar-container'}>
-            <img src={avaUrl} alt="avatar" />
+            <LoadImage
+              imageurl={avaUrl}
+              defaultImage={defaultAvatar}
+              altDefault={'default-avatar'}
+            />
           </div>
           <label className="btn profile-settings-main-header-load input-file">
             <FaFileImage size={21} />

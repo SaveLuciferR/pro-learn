@@ -1,7 +1,8 @@
-import img from '../../../header_bg.png';
+import defaultAvatar from '../../../AvatarProfile.png';
 import { useNavigate, useParams } from 'react-router-dom';
+import LoadImage from '../../Component/LoadImage';
 
-const ProfileInfo = ({ data, viewWords}) => {
+const ProfileInfo = ({ data, viewWords }) => {
   const navigate = useNavigate();
   const { lang, username } = useParams();
   console.log(data);
@@ -10,8 +11,11 @@ const ProfileInfo = ({ data, viewWords}) => {
       <div className="info-about-name">
         <div className="info-about-name-leftside">
           <div className="info-about-name-photo">
-            <img src={data.avatar_img} alt="profile-avatar" />
-            {/* настроить стили, чтобы изображение не искажалось */}
+            <LoadImage
+              imageurl={data.avatar_img}
+              defaultImage={defaultAvatar}
+              altDefault={'default-avatar'}
+            />
           </div>
           <div className="info-about-name-nameblock">
             <p className="info-about-name-nameblock-nickname">{data.username}</p>
@@ -22,9 +26,7 @@ const ProfileInfo = ({ data, viewWords}) => {
             </p>
           </div>
         </div>
-        <p className="info-about-name-status">
-          {viewWords[`tpl_profile_card_role-${data.role}`]}
-        </p>
+        <p className="info-about-name-status">{viewWords[`tpl_profile_card_role-${data.role}`]}</p>
         <svg
           onClick={() => navigate(`../profile/${username}/settings/general`)}
           className="info-about-name-edit"
@@ -58,10 +60,16 @@ const ProfileInfo = ({ data, viewWords}) => {
       </div>
       <div className="info-about-bottom">
         <div className="info-about-bottom-dor">
-          <p>// {viewWords['tpl_profile_main-page_date-of-registration']}: {data.date_of_registration}</p>
+          <p>
+            // {viewWords['tpl_profile_main-page_date-of-registration']}:{' '}
+            {data.date_of_registration}
+          </p>
         </div>
         <div className="info-about-bottom-country">
-          <p>{viewWords['tpl_profile_main-page_country']}: {data.country_address === undefined ? '######' : data.country_address}</p>
+          <p>
+            {viewWords['tpl_profile_main-page_country']}:{' '}
+            {data.country_address === undefined ? '######' : data.country_address}
+          </p>
         </div>
       </div>
     </div>

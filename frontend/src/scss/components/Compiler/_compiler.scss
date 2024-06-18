@@ -22,7 +22,9 @@ button {
     opacity: 0.7;
     cursor: pointer;
     white-space: nowrap;
-    border: none;
+    border: 1px solid #0d1117;
+    border-radius: 4px;
+
     transition: all 0.4s ease-in;
     box-sizing: border-box;
 
@@ -30,7 +32,6 @@ button {
       opacity: 1;
       border: 1px solid #797ef9;
       background-color: #1e2632;
-      border-radius: 4px;
     }
   }
 
@@ -78,14 +79,16 @@ button {
   &-tab {
     &-button {
       display: flex;
+      align-items: center;
       column-gap: 4px;
 
       width: 100%;
       padding: 10px 0;
 
       text-align: left;
-      vertical-align: middle;
       color: rgba($color: #ffffff, $alpha: 0.6);
+
+      user-select: none;
     }
   }
 
@@ -105,8 +108,8 @@ button {
     }
 
     &-button {
-      width: 20px;
-      height: 20px;
+      min-width: 20px;
+      min-height: 20px;
     }
   }
 }
@@ -217,7 +220,7 @@ div .compiler-sidebar-icon {
     align-items: center;
     max-height: 50px;
     height: 100%;
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
     padding-right: 24px;
 
     &-file {
@@ -269,7 +272,6 @@ div .compiler-sidebar-icon {
 
     text-wrap: none;
     white-space: nowrap;
-
 
     transition: 0.3s ease-out;
     border: 1px solid #13171d;
@@ -327,7 +329,7 @@ div .compiler-sidebar-icon {
   }
 
   &-tabs {
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
     padding: 7.5px 12px;
     display: flex;
     width: 100%;
@@ -411,6 +413,8 @@ div .compiler-sidebar-icon {
     align-items: center;
     overflow-x: auto;
     overflow-y: hidden;
+
+    user-select: none;
 
     & button {
       width: 18px;

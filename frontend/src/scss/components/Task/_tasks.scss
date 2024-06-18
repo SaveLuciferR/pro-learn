@@ -13,6 +13,10 @@
 
     font-size: 28px;
     font-weight: 500;
+
+    & span {
+      user-select: none;
+    }
   }
 
   &-desc {
@@ -20,6 +24,10 @@
 
     height: 130px;
     max-height: 130px;
+
+    & span {
+      user-select: none;
+    }
   }
 
   & button {
@@ -35,6 +43,10 @@
     & p {
       color: rgba(255, 255, 255, 0.6);
       font-size: 14px;
+    }
+
+    & span {
+      user-select: none;
     }
   }
 }

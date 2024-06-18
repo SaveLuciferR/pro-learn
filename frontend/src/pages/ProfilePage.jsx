@@ -1,12 +1,13 @@
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Outlet, useOutletContext, useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import axiosClient from '../axiosClient';
 import ProfileSidebarMain from '../components/Profile/ProfileSidebarMain';
 import img from '../header_bg.png';
-import axiosClient from '../axiosClient';
 import ProfilePopUpSidebar from '../components/Profile/ProfilePopUpSidebar';
 import useOnClickOutside from '../hooks/useOnClickOutside';
-import { useRef } from 'react';
+import defaultBackground from '../Background.svg';
+import LoadImage from '../components/Component/LoadImage';
 /* ICONS */
 import { FiMenu } from 'react-icons/fi';
 import { IoSettingsOutline } from 'react-icons/io5';
@@ -33,6 +34,7 @@ const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
       .then(({ data }) => {
         setProfileData(data.profileInfo);
         setViewWords(data.viewWords);
+        console.log(profileData);
       });
   }, [lang, username]);
 
@@ -74,7 +76,11 @@ const ProfilePage = ({ isActiveSidebar, isCompiler }) => {
               </button>
             </div>
             {isProfileSidebar ? <ProfilePopUpSidebar viewWords={viewWords} /> : <></>}
-            <img src={profileData.heading_img} alt="background-image" />
+            <LoadImage
+              imageurl={profileData.heading_img}
+              defaultImage={defaultBackground}
+              altDefault={'default-background'}
+            />
           </div>
         </div>
         <Outlet />

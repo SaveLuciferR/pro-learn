@@ -1,11 +1,9 @@
-
-
 const CompilerEmptyWindow = () => {
-    return (
-        <div>
-            fdfds
-        </div>
-    );
-}
+  return (
+    <div>
+      <div></div>
+    </div>
+  );
+};
 
 export default CompilerEmptyWindow;

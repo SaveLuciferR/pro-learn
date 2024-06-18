@@ -1,11 +1,15 @@
 import img from '../../../image_5.png';
+import defaultIcon from '../../../DefaultIconCourse.png';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import LoadImage from '../../Component/LoadImage';
 
 const CourseInfo = ({ course }) => {
   const navigate = useNavigate();
   const [dif, setDif] = useState([0, 0, 0, 0, 0]);
+
+  console.log(course);
 
   return (
     <div className="course-info">
@@ -165,10 +169,15 @@ const CourseInfo = ({ course }) => {
                 , {course.date_of_publication}
               </p>
             </div>
-            <p className="created-course-bottom-lang">// Язык: Python</p>
+            {/* <p className="created-course-bottom-lang">// Язык: Python</p> */}
           </div>
         </div>
-        <img src={img} alt="course-image" className="course-info-main-img" />
+        <LoadImage
+          imageurl={course.icon}
+          defaultImage={defaultIcon}
+          altDefault={'no-course-icon'}
+          nameOfClass={'course-info-main-img'}
+        />
       </div>
       <div className="course-info-button">
         <button onClick={() => navigate('study')} className="btn primary big">

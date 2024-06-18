@@ -1,6 +1,8 @@
-import img from '../../image 7.png';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import img from '../../image 7.png';
+import defaultIcon from '../../DefaultIconCourse.png';
+import LoadImage from '../Component/LoadImage';
 
 const CourseCard = ({ obj, isSlider, viewWords }) => {
   const getLangProg = () => {
@@ -30,7 +32,12 @@ const CourseCard = ({ obj, isSlider, viewWords }) => {
           <p className="courses-card-info-desc-text clamp multiline">
             {'//'} {obj.excerpt}
           </p>
-          <img src={img} className="courses-card-info-desc-img"></img>
+          <LoadImage
+            imageurl={obj.icon}
+            defaultImage={defaultIcon}
+            altDefault={'no-course-icon'}
+            nameOfClass="courses-card-info-desc-img"
+          />
         </div>
       </div>
       <div className="profile-difficulty">
@@ -132,7 +139,7 @@ const CourseCard = ({ obj, isSlider, viewWords }) => {
             />
           </svg>
           <p>
-            {viewWords['tpl_course-card_finish-project']}: {obj.final_projects} 
+            {viewWords['tpl_course-card_finish-project']}: {obj.final_projects}
           </p>
         </div>
       </div>

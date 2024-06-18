@@ -1,13 +1,13 @@
+import { useRef, useState } from 'react';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import img from '../../header_bg.png';
-import { setNeedReloadPage, setSidebarProfileActive } from '../../redux/MainLayout/slice';
 import axiosClient from '../../axiosClient';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import defaultAvatar from '../../AvatarProfile.png';
+import { setNeedReloadPage, setSidebarProfileActive } from '../../redux/MainLayout/slice';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
-import { useRef } from 'react';
+import LoadImage from '../Component/LoadImage';
 
-const SidebarProfile = ({viewWords}) => {
+const SidebarProfile = ({ viewWords }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,13 +25,11 @@ const SidebarProfile = ({viewWords}) => {
   };
 
   const onClickLogout = () => {
-    axiosClient
-      .post('/user/logout')
-      .then(({ data }) => {
-        dispatch(setSidebarProfileActive(false));
-        navigate(currentUrl);
-        dispatch(setNeedReloadPage(true));
-      });
+    axiosClient.post('/user/logout').then(({ data }) => {
+      dispatch(setSidebarProfileActive(false));
+      navigate(currentUrl);
+      dispatch(setNeedReloadPage(true));
+    });
   };
 
   const onClickLogin = () => {
@@ -119,7 +117,11 @@ const SidebarProfile = ({viewWords}) => {
             </div>
             <div className="sidebar_profile-body">
               <div className="sidebar_profile-body_img">
-                <img src={img} alt="" />
+                <LoadImage
+                  imageurl={currentUser.avatar_img}
+                  defaultImage={defaultAvatar}
+                  altDefault={'default-avatar'}
+                />
               </div>
               <Link to={'profile/' + currentUser.username} className="btn primary big">
                 {viewWords['tpl_sidebar-profile_go_to_profile']}
@@ -129,37 +131,52 @@ const SidebarProfile = ({viewWords}) => {
               </button>
 
               <div className="sidebar_profile-create">
-                <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${currentUser.username}/course-creation`} className="sidebar_profile-create_item">
+                <Link
+                  to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${
+                    currentUser.username
+                  }/course-creation`}
+                  className="sidebar_profile-create_item"
+                >
                   <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="37"
-                      height="37"
-                      viewBox="0 0 37 37"
-                      fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="37"
+                    height="37"
+                    viewBox="0 0 37 37"
+                    fill="none"
                   >
                     <path d="M21.4979 0V15.7724H37V21.3462H21.4979V37H15.3049V21.3462H0V15.7724H15.3049V0H21.4979Z" />
                   </svg>
                   <span>{viewWords['tpl_sidebar-profile_course-creation']}</span>
                 </Link>
-                <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${currentUser.username}/task-creation`} className="sidebar_profile-create_item">
+                <Link
+                  to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${
+                    currentUser.username
+                  }/task-creation`}
+                  className="sidebar_profile-create_item"
+                >
                   <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="37"
-                      height="37"
-                      viewBox="0 0 37 37"
-                      fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="37"
+                    height="37"
+                    viewBox="0 0 37 37"
+                    fill="none"
                   >
                     <path d="M21.4979 0V15.7724H37V21.3462H21.4979V37H15.3049V21.3462H0V15.7724H15.3049V0H21.4979Z" />
                   </svg>
                   <span>{viewWords['tpl_sidebar-profile_task-creation']}</span>
                 </Link>
-                <Link to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${currentUser.username}/project-creation`} className="sidebar_profile-create_item">
+                <Link
+                  to={`${lang === undefined ? '/' : '/' + lang + '/'}profile/${
+                    currentUser.username
+                  }/project-creation`}
+                  className="sidebar_profile-create_item"
+                >
                   <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="37"
-                      height="37"
-                      viewBox="0 0 37 37"
-                      fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="37"
+                    height="37"
+                    viewBox="0 0 37 37"
+                    fill="none"
                   >
                     <path d="M21.4979 0V15.7724H37V21.3462H21.4979V37H15.3049V21.3462H0V15.7724H15.3049V0H21.4979Z" />
                   </svg>
